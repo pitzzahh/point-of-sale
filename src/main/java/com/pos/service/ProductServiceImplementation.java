@@ -60,8 +60,9 @@ public class ProductServiceImplementation implements ProductService {
 
 
     /**
-     * checks all the products' expiration date and updates the expired column if a product is expired.
+     * checks all the products expiration date and updates the expired column if a product is expired.
      */
+    @Override
     public void updateAllProductsExpirationDate() {
         productRepository
                 .getAllProducts()

@@ -25,5 +25,7 @@ public interface ProductService {
     Consumer<Integer> deleteProductById();
 
     void insertAllProductsToDatabase();
+    
+    void updateAllProductsExpirationDate();
 
 }
