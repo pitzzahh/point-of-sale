@@ -50,6 +50,9 @@ public class Main extends JFrame {
                 .map(Product::getPrice)
                 .collect(Collectors.toList());
 
+        /*
+            Setting prices label for cleaning products
+         */
         cleanFirstPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(0)));
         hydroSafePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(1)));
         rightFlexPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(2)));
@@ -60,12 +63,40 @@ public class Main extends JFrame {
         sureCleanPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(7)));
         arielPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(8)));
         joyPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(9)));
-        cleanCutPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(10)));
-        cleanCutPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(11)));
-        cleanCutPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(12)));
-        cleanCutPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(13)));
-        cleanCutPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(14)));
-        cleanCutPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(15)));
+        smartPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(10)));
+        domexPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(11)));
+        mrMusclePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(12)));
+        lysolPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(13)));
+        surfPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(14)));
+
+        /*
+            Setting prices label for chocolates
+         */
+        hersheysPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(15)));
+        snickersPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(16)));
+        ferreroRocherPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(17)));
+        esthechocPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(18)));
+        flyingNoirPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(19)));
+        drostePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(20)));
+        wittakersPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(21)));
+        amedeiPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(22)));
+        jacquesGeninPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(23)));
+        richartPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(24)));
+        patchiPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(25)));
+        teuscherPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(26)));
+        valrhonaPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(27)));
+        dovePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(28)));
+        dovePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(29)));
+        dovePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(30)));
+        dovePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(31)));
+        dovePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(32)));
+        dovePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(33)));
+        dovePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(34)));
+        dovePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(35)));
+        dovePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(36)));
+        dovePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(37)));
+        dovePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(38)));
+
 
     }
     private Product getProductById(int id) {
