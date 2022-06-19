@@ -1,15 +1,16 @@
 package com.pos;
 
-import com.pos.JPAConfiguration;
-import com.pos.service.ProductService;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 import javax.swing.table.DefaultTableCellRenderer;
+import com.pos.service.ProductService;
+import com.pos.service.SalesService;
 import java.text.SimpleDateFormat;
+import com.pos.entity.Product;
 import java.text.DateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 import javax.swing.*;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.AbstractApplicationContext;
 
 /**
  *
@@ -18,13 +19,14 @@ import org.springframework.context.support.AbstractApplicationContext;
 public class Main extends JFrame {
 
     private final AbstractApplicationContext CONTEXT=  new AnnotationConfigApplicationContext(JPAConfiguration.class);
-    private final ProductService PRODUCT_SERVICE = CONTEXT.getBean(ProductService.class);  
+    private final ProductService PRODUCT_SERVICE = CONTEXT.getBean(ProductService.class);
+    private final SalesService SALES_SERVICE = CONTEXT.getBean(SalesService.class);
 
     /**
      * Creates new form Main
      */
     public Main() {
-      
+        PRODUCT_SERVICE.insertAllProductsToDatabase();
         initComponents();
         initializeDate();
         initializeTime();
@@ -37,7 +39,16 @@ public class Main extends JFrame {
         ordersTable.getColumnModel().getColumn(3).setCellRenderer(RENDERER);
         ordersTable.getColumnModel().getColumn(4).setCellRenderer(RENDERER);
     }
-
+    
+    private Product getProductById(int id) {
+        return PRODUCT_SERVICE.getAllProducts()
+                .get()
+                .stream()
+                .filter(product -> product.getId().equals(id))
+                .findFirst()
+                .get();
+    }
+    
     private int getExpiredProductsCount() {
         return PRODUCT_SERVICE.getExpiredProductsCount().get();
     }
@@ -475,7 +486,7 @@ public class Main extends JFrame {
         sureClean.setMinimumSize(new java.awt.Dimension(118, 118));
         cleaningProductsPanel.add(sureClean, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 100, 90));
 
-        mrClean.setText("MR CLEAN");
+        mrClean.setText("ARIEL");
         mrClean.setMaximumSize(new java.awt.Dimension(118, 118));
         mrClean.setMinimumSize(new java.awt.Dimension(118, 118));
         cleaningProductsPanel.add(mrClean, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 100, 90));
@@ -1363,7 +1374,7 @@ public class Main extends JFrame {
     }//GEN-LAST:event_viewExpiredProductsActionPerformed
 
     private void cleanFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleanFirstActionPerformed
-        // TODO add your handling code here:
+        Product cleanFirstProduct = getProductById(1);
     }//GEN-LAST:event_cleanFirstActionPerformed
 
     private void myCleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myCleanActionPerformed

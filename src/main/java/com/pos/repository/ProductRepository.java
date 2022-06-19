@@ -3,7 +3,6 @@ package com.pos.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 import com.pos.entity.Product;
@@ -11,7 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Repository("productRepository")
-public interface ProductRepository extends CrudRepository<Product, Integer> {
+public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     @Query("select p from #{#entityName} p")
     List<Product> getAllProducts();

@@ -4,6 +4,8 @@
  */
 package com.pos;
 
+import com.pos.service.SalesService;
+import com.pos.service.SalesServiceImplementation;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -26,6 +28,11 @@ public class JPAConfiguration {
 	@Bean
 	public ProductService productService() {
 		return new ProductServiceImplementation();
+	}
+
+	@Bean
+	SalesService salesService() {
+		return new SalesServiceImplementation();
 	}
 
 }

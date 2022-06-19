@@ -1,10 +1,10 @@
 package com.pos.entity;
 
 import static javax.persistence.GenerationType.SEQUENCE;
-import javax.persistence.*;
-import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
+import javax.persistence.*;
+import java.io.Serial;
 
 @Table(
         name = "products",
@@ -83,6 +83,19 @@ public class Product implements Serializable {
             columnDefinition = "boolean"
     )
     private Boolean expired;
+
+    public Product() {
+    }
+
+    public Product(String name, Double price, Category category, LocalDate expirationDate, Integer stocks, Double discount, Boolean expired) {
+        this.name = name;
+        this.price = price;
+        this.category = category;
+        this.expirationDate = expirationDate;
+        this.stocks = stocks;
+        this.discount = discount;
+        this.expired = expired;
+    }
 
     public Integer getId() {
         return id;

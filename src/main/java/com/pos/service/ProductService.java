@@ -1,10 +1,10 @@
 package com.pos.service;
 
-import com.pos.entity.Product;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import com.pos.entity.Product;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -23,5 +23,7 @@ public interface ProductService {
     BiConsumer<LocalDate, Integer> updateProductExpiredStatusById();
 
     Consumer<Integer> deleteProductById();
+
+    void insertAllProductsToDatabase();
 
 }
