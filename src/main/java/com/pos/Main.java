@@ -10,6 +10,8 @@ import com.pos.entity.Product;
 import java.text.DateFormat;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 import javax.swing.*;
 
 /**
@@ -31,6 +33,7 @@ public class Main extends JFrame {
         initializeDate();
         initializeTime();
         day.setText(LocalDate.now().getDayOfWeek().name());
+        setProductsPrices();
         final DefaultTableCellRenderer RENDERER = new DefaultTableCellRenderer();
         RENDERER.setHorizontalAlignment(JLabel.CENTER);
         ordersTable.getColumnModel().getColumn(0).setCellRenderer(RENDERER);
@@ -39,7 +42,32 @@ public class Main extends JFrame {
         ordersTable.getColumnModel().getColumn(3).setCellRenderer(RENDERER);
         ordersTable.getColumnModel().getColumn(4).setCellRenderer(RENDERER);
     }
-    
+    private void setProductsPrices() {
+        final char PESO_SIGN = '₱';
+
+        List<Double> priceList = PRODUCT_SERVICE.getAllProducts().get()
+                .stream()
+                .map(Product::getPrice)
+                .collect(Collectors.toList());
+
+        cleanFirstPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(0)));
+        hydroSafePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(1)));
+        rightFlexPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(2)));
+        cloroxPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(3)));
+        dirtBustersPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(4)));
+        myCleanPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(5)));
+        cleanCutPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(6)));
+        sureCleanPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(7)));
+        arielPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(8)));
+        joyPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(9)));
+        cleanCutPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(10)));
+        cleanCutPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(11)));
+        cleanCutPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(12)));
+        cleanCutPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(13)));
+        cleanCutPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(14)));
+        cleanCutPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(15)));
+
+    }
     private Product getProductById(int id) {
         return PRODUCT_SERVICE.getAllProducts()
                 .get()
@@ -127,7 +155,7 @@ public class Main extends JFrame {
         clorox = new javax.swing.JButton();
         dirtBuster = new javax.swing.JButton();
         dirtBustersPrice = new javax.swing.JLabel();
-        coloroxPrice = new javax.swing.JLabel();
+        cloroxPrice = new javax.swing.JLabel();
         rightFlexPrice = new javax.swing.JLabel();
         hydroSafePrice = new javax.swing.JLabel();
         cleanFirstPrice = new javax.swing.JLabel();
@@ -137,7 +165,7 @@ public class Main extends JFrame {
         mrClean = new javax.swing.JButton();
         joy = new javax.swing.JButton();
         joyPrice = new javax.swing.JLabel();
-        mrCleanPrice = new javax.swing.JLabel();
+        arielPrice = new javax.swing.JLabel();
         sureCleanPrice = new javax.swing.JLabel();
         cleanCutPrice = new javax.swing.JLabel();
         myCleanPrice = new javax.swing.JLabel();
@@ -384,7 +412,7 @@ public class Main extends JFrame {
                 logoutActionPerformed(evt);
             }
         });
-        informationPanel.add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 630, -1, 30));
+        informationPanel.add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 640, -1, 30));
 
         viewSales.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         viewSales.setText("VIEW SALES");
@@ -446,10 +474,10 @@ public class Main extends JFrame {
         dirtBustersPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         cleaningProductsPanel.add(dirtBustersPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, 50, 20));
 
-        coloroxPrice.setText("₱ 1000");
-        coloroxPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        coloroxPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        cleaningProductsPanel.add(coloroxPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, 50, 20));
+        cloroxPrice.setText("₱ 1000");
+        cloroxPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        cloroxPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        cleaningProductsPanel.add(cloroxPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, 50, 20));
 
         rightFlexPrice.setText("₱ 1000");
         rightFlexPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -501,10 +529,10 @@ public class Main extends JFrame {
         joyPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         cleaningProductsPanel.add(joyPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, 50, 20));
 
-        mrCleanPrice.setText("₱ 1000");
-        mrCleanPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        mrCleanPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        cleaningProductsPanel.add(mrCleanPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, 50, 20));
+        arielPrice.setText("₱ 1000");
+        arielPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        arielPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        cleaningProductsPanel.add(arielPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, 50, 20));
 
         sureCleanPrice.setText("₱ 1000");
         sureCleanPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -1468,6 +1496,7 @@ public class Main extends JFrame {
     private javax.swing.JLabel amedeiPrice;
     private javax.swing.JButton appleJuice;
     private javax.swing.JLabel appleJuicePrice;
+    private javax.swing.JLabel arielPrice;
     private javax.swing.JButton beer;
     private javax.swing.JLabel beerPrice;
     private javax.swing.JPanel beveragesPanel;
@@ -1497,9 +1526,9 @@ public class Main extends JFrame {
     private javax.swing.JPanel cleaningProductsPanel;
     private javax.swing.JScrollPane cleaningProductsScroller;
     private javax.swing.JButton clorox;
+    private javax.swing.JLabel cloroxPrice;
     private javax.swing.JButton cocaCola;
     private javax.swing.JLabel cocaColaPrice;
-    private javax.swing.JLabel coloroxPrice;
     private javax.swing.JLabel date;
     private javax.swing.JLabel dateLabel;
     private javax.swing.JPanel datePanel;
@@ -1573,7 +1602,6 @@ public class Main extends JFrame {
     private javax.swing.JButton mountainDew;
     private javax.swing.JLabel mountainDewPrice;
     private javax.swing.JButton mrClean;
-    private javax.swing.JLabel mrCleanPrice;
     private javax.swing.JButton mrMuscle;
     private javax.swing.JLabel mrMusclePrice;
     private javax.swing.JButton myClean;

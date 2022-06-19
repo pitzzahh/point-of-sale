@@ -307,7 +307,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="70" y="630" width="-1" height="30"/>
+                  <AbsoluteConstraints x="70" y="640" width="-1" height="30"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -524,7 +524,7 @@
                                 </Constraint>
                               </Constraints>
                             </Component>
-                            <Component class="javax.swing.JLabel" name="coloroxPrice">
+                            <Component class="javax.swing.JLabel" name="cloroxPrice">
                               <Properties>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 1000"/>
                                 <Property name="verticalAlignment" type="int" value="1"/>
@@ -667,7 +667,7 @@
                                 </Constraint>
                               </Constraints>
                             </Component>
-                            <Component class="javax.swing.JLabel" name="mrCleanPrice">
+                            <Component class="javax.swing.JLabel" name="arielPrice">
                               <Properties>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 1000"/>
                                 <Property name="verticalAlignment" type="int" value="1"/>
