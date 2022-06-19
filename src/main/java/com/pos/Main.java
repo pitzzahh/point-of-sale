@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import javax.swing.*;
 
+import static java.util.stream.Collectors.toList;
+
 /**
  *
  * @author peter
@@ -42,13 +44,19 @@ public class Main extends JFrame {
         ordersTable.getColumnModel().getColumn(3).setCellRenderer(RENDERER);
         ordersTable.getColumnModel().getColumn(4).setCellRenderer(RENDERER);
     }
+
+    /**
+     * Method that sets the prices label for all the products.
+     * Products discount is already computed and disounted price will be shown to the label.
+     */
     private void setProductsPrices() {
         final char PESO_SIGN = '₱';
 
-        List<Double> priceList = PRODUCT_SERVICE.getAllProducts().get()
+        List<Double> priceList = PRODUCT_SERVICE.getAllProducts()
+                .get()
                 .stream()
-                .map(Product::getPrice)
-                .collect(Collectors.toList());
+                .map(p -> (p.getPrice() - p.getDiscount()))
+                .collect(toList());
 
         /*
             Setting prices label for cleaning products
@@ -86,16 +94,29 @@ public class Main extends JFrame {
         teuscherPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(26)));
         valrhonaPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(27)));
         dovePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(28)));
-        dovePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(29)));
-        dovePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(30)));
-        dovePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(31)));
-        dovePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(32)));
-        dovePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(33)));
-        dovePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(34)));
-        dovePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(35)));
-        dovePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(36)));
-        dovePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(37)));
-        dovePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(38)));
+        russelStoverPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(29)));
+        ritterSportPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(30)));
+        guyLianPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(31)));
+        kinderPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(32)));
+        marsPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(33)));
+        tobleronePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(34)));
+        nestlePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(35)));
+        milkaPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(36)));
+        ghirardellPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(37)));
+        cadburyPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(38)));
+        godivaPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(39)));
+
+        /*
+            Setting prices label for beverages
+         */
+        cocaColaPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(40)));
+        pepsiPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(41)));
+        cadburyPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(42)));
+        cadburyPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(43)));
+        cadburyPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(44)));
+        cadburyPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(45)));
+        cadburyPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(46)));
+        cadburyPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(47)));
 
 
     }
