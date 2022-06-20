@@ -23,9 +23,8 @@ public class Main extends JFrame {
     private final ProductService PRODUCT_SERVICE = CONTEXT.getBean(ProductService.class);
     private final SalesService SALES_SERVICE = CONTEXT.getBean(SalesService.class);
 
-    private List<Order> orders = new ArrayList<>();
-
-    private static int clickCount = 1;
+    public static final String OS_NAME = System.getProperty("os.name", "").toUpperCase();
+    private final List<Order> orders = new ArrayList<>();
 
     /**
      * Creates new form Main
@@ -45,6 +44,10 @@ public class Main extends JFrame {
         ordersTable.getColumnModel().getColumn(3).setCellRenderer(RENDERER);
         ordersTable.getColumnModel().getColumn(4).setCellRenderer(RENDERER);
     }
+
+    /**
+     * Method that refresh the orders' table for every button click of a product.
+     */
     private void refreshOrdersTable() {
         DefaultTableModel defaultTableModel = (DefaultTableModel) ordersTable.getModel();
         defaultTableModel.setRowCount(0);
@@ -60,19 +63,25 @@ public class Main extends JFrame {
             defaultTableModel.addRow(data);
         }
     }
+
+    /**
+     * Method that makes a new order.
+     * @param product the product information to be searched from the database needed to make an order.
+     */
     private void makeOrder(Product product) {
+        final int CLICK_COUNT = 1;
         orders.add(new Order(
                 product.getName(),
                 (product.getDiscount() != null) ? (product.getPrice() - product.getDiscount()) : product.getPrice(),
                 product.getCategory(),
-                clickCount,
+                CLICK_COUNT,
                 (product.getDiscount() != null) ? product.getDiscount() : 0.00
         ));
     }
 
     /**
      * Method that modifies the order.
-     * @param product
+     * @param product the product information to be searched from the database needed to modify the order.
      */
     private void modifyOrder(Product product) {
         Order order = orders.stream()
@@ -2086,24 +2095,34 @@ public class Main extends JFrame {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        //</editor-fold>Application.runSpringServer(args);
+        // Checks if the current operating system is a Windows operating system
+        // Windows theme for Windows machines
+        // Nimbus theme for non Windows machines
+        if (OS_NAME.startsWith("WINDOWS")) {
+            try {
+                for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                    if ("Windows".equals(info.getName())) {
+                        UIManager.setLookAndFeel(info.getClassName());
+                        break;
+                    }
+                }
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+                java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
+        }
+        else {
+            try {
+                for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                    if ("Nimbus".equals(info.getName())) {
+                        UIManager.setLookAndFeel(info.getClassName());
+                        break;
+                    }
+                }
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+                java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
+        }
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
