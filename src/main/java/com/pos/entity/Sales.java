@@ -35,9 +35,7 @@ public class Sales implements Serializable {
 
     @Column(
             name = "sales",
-            nullable = false,
-            columnDefinition = "DOUBLE",
-            unique = true
+            nullable = false
     )
     private Double sales;
 
