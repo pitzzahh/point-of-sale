@@ -1181,6 +1181,11 @@ public class Main extends JFrame {
         dole.setText("DOLE");
         dole.setMaximumSize(new java.awt.Dimension(118, 118));
         dole.setMinimumSize(new java.awt.Dimension(118, 118));
+        dole.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                doleActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(dole, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, 100, 90));
 
         dolePrice.setText("₱ 1000");
@@ -1196,11 +1201,21 @@ public class Main extends JFrame {
         tropicana.setText("TROPICANA");
         tropicana.setMaximumSize(new java.awt.Dimension(118, 118));
         tropicana.setMinimumSize(new java.awt.Dimension(118, 118));
+        tropicana.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tropicanaActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(tropicana, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 100, 90));
 
         minuteMaid.setText("MINUTE MAID");
         minuteMaid.setMaximumSize(new java.awt.Dimension(118, 118));
         minuteMaid.setMinimumSize(new java.awt.Dimension(118, 118));
+        minuteMaid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                minuteMaidActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(minuteMaid, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 100, 90));
 
         minuteMaidPrice.setText("₱ 1000");
@@ -1216,6 +1231,11 @@ public class Main extends JFrame {
         sprite.setText("SPRITE");
         sprite.setMaximumSize(new java.awt.Dimension(118, 118));
         sprite.setMinimumSize(new java.awt.Dimension(118, 118));
+        sprite.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                spriteActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(sprite, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 100, 90));
 
         gatoradePrice.setText("₱ 1000");
@@ -1261,21 +1281,41 @@ public class Main extends JFrame {
         heineken.setText("HEINEKEN");
         heineken.setMaximumSize(new java.awt.Dimension(118, 118));
         heineken.setMinimumSize(new java.awt.Dimension(118, 118));
+        heineken.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                heinekenActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(heineken, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 100, 90));
 
         budWeiser.setText("BUD WEISER");
         budWeiser.setMaximumSize(new java.awt.Dimension(118, 118));
         budWeiser.setMinimumSize(new java.awt.Dimension(118, 118));
+        budWeiser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                budWeiserActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(budWeiser, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 100, 90));
 
         redBull.setText("RED BULL");
         redBull.setMaximumSize(new java.awt.Dimension(118, 118));
         redBull.setMinimumSize(new java.awt.Dimension(118, 118));
+        redBull.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                redBullActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(redBull, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 100, 90));
 
         pepsi.setText("PEPSI");
         pepsi.setMaximumSize(new java.awt.Dimension(118, 118));
         pepsi.setMinimumSize(new java.awt.Dimension(118, 118));
+        pepsi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pepsiActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(pepsi, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 100, 90));
 
         cocaCola.setText("COCA-COLA");
@@ -1311,16 +1351,31 @@ public class Main extends JFrame {
         sevenUp.setText("7 UP");
         sevenUp.setMaximumSize(new java.awt.Dimension(118, 118));
         sevenUp.setMinimumSize(new java.awt.Dimension(118, 118));
+        sevenUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sevenUpActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(sevenUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 100, 90));
 
         mountainDew.setText("MOUNTAIN DEW");
         mountainDew.setMaximumSize(new java.awt.Dimension(118, 118));
         mountainDew.setMinimumSize(new java.awt.Dimension(118, 118));
+        mountainDew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mountainDewActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(mountainDew, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 100, 90));
 
         lipton.setText("LIPTON");
         lipton.setMaximumSize(new java.awt.Dimension(118, 118));
         lipton.setMinimumSize(new java.awt.Dimension(118, 118));
+        lipton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                liptonActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(lipton, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, 100, 90));
 
         sunkistPrice.setText("₱ 1000");
@@ -1361,11 +1416,21 @@ public class Main extends JFrame {
         pineAppleJuice.setText("PINEAPPLE JUICE");
         pineAppleJuice.setMaximumSize(new java.awt.Dimension(118, 118));
         pineAppleJuice.setMinimumSize(new java.awt.Dimension(118, 118));
+        pineAppleJuice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pineAppleJuiceActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(pineAppleJuice, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, 100, 90));
 
         blackCher.setText("BLACK CHERRY");
         blackCher.setMaximumSize(new java.awt.Dimension(118, 118));
         blackCher.setMinimumSize(new java.awt.Dimension(118, 118));
+        blackCher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                blackCherActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(blackCher, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 100, 90));
 
         blackCherPrice.setText("₱ 1000");
@@ -1390,21 +1455,41 @@ public class Main extends JFrame {
         mead.setText("MEAD");
         mead.setMaximumSize(new java.awt.Dimension(118, 118));
         mead.setMinimumSize(new java.awt.Dimension(118, 118));
+        mead.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                meadActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(mead, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 500, 100, 90));
 
         hardCider.setText("HARD CIDER");
         hardCider.setMaximumSize(new java.awt.Dimension(118, 118));
         hardCider.setMinimumSize(new java.awt.Dimension(118, 118));
+        hardCider.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hardCiderActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(hardCider, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 500, 100, 90));
 
         wine.setText("WINE");
         wine.setMaximumSize(new java.awt.Dimension(118, 118));
         wine.setMinimumSize(new java.awt.Dimension(118, 118));
+        wine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wineActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(wine, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 500, 100, 90));
 
         beer.setText("BEER");
         beer.setMaximumSize(new java.awt.Dimension(118, 118));
         beer.setMinimumSize(new java.awt.Dimension(118, 118));
+        beer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                beerActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(beer, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 500, 100, 90));
 
         tequila.setText("TEQUILA");
@@ -1445,21 +1530,41 @@ public class Main extends JFrame {
         vodka.setText("VODKA");
         vodka.setMaximumSize(new java.awt.Dimension(118, 118));
         vodka.setMinimumSize(new java.awt.Dimension(118, 118));
+        vodka.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vodkaActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(vodka, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 610, 100, 90));
 
         rum.setText("RUM");
         rum.setMaximumSize(new java.awt.Dimension(118, 118));
         rum.setMinimumSize(new java.awt.Dimension(118, 118));
+        rum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rumActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(rum, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 610, 100, 90));
 
         whisky.setText("WHISKY");
         whisky.setMaximumSize(new java.awt.Dimension(118, 118));
         whisky.setMinimumSize(new java.awt.Dimension(118, 118));
+        whisky.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                whiskyActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(whisky, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 610, 100, 90));
 
         brandy.setText("BRANDY");
         brandy.setMaximumSize(new java.awt.Dimension(118, 118));
         brandy.setMinimumSize(new java.awt.Dimension(118, 118));
+        brandy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                brandyActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(brandy, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 610, 100, 90));
 
         gin.setText("GIN");
@@ -1705,11 +1810,11 @@ public class Main extends JFrame {
     }//GEN-LAST:event_myCleanActionPerformed
 
     private void gatoradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gatoradeActionPerformed
-        // TODO add your handling code here:
+        handleOrder(46);
     }//GEN-LAST:event_gatoradeActionPerformed
 
     private void cocaColaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocaColaActionPerformed
-        // TODO add your handling code here:
+        handleOrder(41);
     }//GEN-LAST:event_cocaColaActionPerformed
 
     private void cashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cashActionPerformed
@@ -1734,23 +1839,23 @@ public class Main extends JFrame {
     }//GEN-LAST:event_milkaActionPerformed
 
     private void koolAidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_koolAidActionPerformed
-        // TODO add your handling code here:
+        handleOrder(51);
     }//GEN-LAST:event_koolAidActionPerformed
 
     private void appleJuiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appleJuiceActionPerformed
-        // TODO add your handling code here:
+        handleOrder(56);
     }//GEN-LAST:event_appleJuiceActionPerformed
 
     private void sunkistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sunkistActionPerformed
-        // TODO add your handling code here:
+        handleOrder(55);
     }//GEN-LAST:event_sunkistActionPerformed
 
     private void tequilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tequilaActionPerformed
-        // TODO add your handling code here:
+        handleOrder(59);
     }//GEN-LAST:event_tequilaActionPerformed
 
     private void ginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ginActionPerformed
-        // TODO add your handling code here:
+        handleOrder(64);
     }//GEN-LAST:event_ginActionPerformed
 
     private void smartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_smartActionPerformed
@@ -1824,7 +1929,7 @@ public class Main extends JFrame {
     private void drosteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_drosteActionPerformed
         handleOrder(21);
     }//GEN-LAST:event_drosteActionPerformed
-
+    
     private void wittakersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wittakersActionPerformed
         handleOrder(22);
     }//GEN-LAST:event_wittakersActionPerformed
@@ -1892,6 +1997,90 @@ public class Main extends JFrame {
     private void godivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_godivaActionPerformed
         handleOrder(40);
     }//GEN-LAST:event_godivaActionPerformed
+
+    private void pepsiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pepsiActionPerformed
+        handleOrder(42);
+    }//GEN-LAST:event_pepsiActionPerformed
+
+    private void redBullActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redBullActionPerformed
+        handleOrder(43);
+    }//GEN-LAST:event_redBullActionPerformed
+
+    private void budWeiserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_budWeiserActionPerformed
+        handleOrder(44);
+    }//GEN-LAST:event_budWeiserActionPerformed
+
+    private void heinekenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_heinekenActionPerformed
+        handleOrder(45);
+    }//GEN-LAST:event_heinekenActionPerformed
+
+    private void spriteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spriteActionPerformed
+        handleOrder(47);
+    }//GEN-LAST:event_spriteActionPerformed
+
+    private void minuteMaidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minuteMaidActionPerformed
+        handleOrder(48);
+    }//GEN-LAST:event_minuteMaidActionPerformed
+
+    private void tropicanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tropicanaActionPerformed
+        handleOrder(49);
+    }//GEN-LAST:event_tropicanaActionPerformed
+
+    private void doleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doleActionPerformed
+        handleOrder(50);
+    }//GEN-LAST:event_doleActionPerformed
+
+    private void sevenUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sevenUpActionPerformed
+         handleOrder(52);
+    }//GEN-LAST:event_sevenUpActionPerformed
+
+    private void mountainDewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mountainDewActionPerformed
+        handleOrder(53);
+    }//GEN-LAST:event_mountainDewActionPerformed
+
+    private void liptonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_liptonActionPerformed
+        handleOrder(54);
+    }//GEN-LAST:event_liptonActionPerformed
+
+    private void pineAppleJuiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pineAppleJuiceActionPerformed
+        handleOrder(57);
+    }//GEN-LAST:event_pineAppleJuiceActionPerformed
+
+    private void blackCherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blackCherActionPerformed
+        handleOrder(58);
+    }//GEN-LAST:event_blackCherActionPerformed
+
+    private void beerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beerActionPerformed
+        handleOrder(60);
+    }//GEN-LAST:event_beerActionPerformed
+
+    private void wineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wineActionPerformed
+        handleOrder(61);
+    }//GEN-LAST:event_wineActionPerformed
+
+    private void hardCiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hardCiderActionPerformed
+        handleOrder(62);
+    }//GEN-LAST:event_hardCiderActionPerformed
+
+    private void meadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meadActionPerformed
+        handleOrder(63);
+    }//GEN-LAST:event_meadActionPerformed
+
+    private void brandyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brandyActionPerformed
+        handleOrder(65);
+    }//GEN-LAST:event_brandyActionPerformed
+
+    private void whiskyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_whiskyActionPerformed
+        handleOrder(66);
+    }//GEN-LAST:event_whiskyActionPerformed
+
+    private void rumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rumActionPerformed
+        handleOrder(67);
+    }//GEN-LAST:event_rumActionPerformed
+
+    private void vodkaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vodkaActionPerformed
+        handleOrder(68);
+    }//GEN-LAST:event_vodkaActionPerformed
     
     /**
      * @param args the command line arguments
