@@ -111,12 +111,33 @@ public class Main extends JFrame {
          */
         cocaColaPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(40)));
         pepsiPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(41)));
-        cadburyPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(42)));
-        cadburyPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(43)));
-        cadburyPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(44)));
-        cadburyPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(45)));
-        cadburyPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(46)));
-        cadburyPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(47)));
+        redBullPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(42)));
+        budWeiserPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(43)));
+        heinekenPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(44)));
+        gatoradePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(45)));
+        spritePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(46)));
+        minuteMaidPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(47)));
+        tropicanaPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(48)));
+        dolePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(49)));
+        koolAidPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(50)));
+        sevenUpPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(51)));
+        mountainDewPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(52)));
+        liptonPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(53)));
+        sunkistPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(54)));
+        appleJuicePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(55)));
+        pineAppleJuicePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(56)));
+        blackCherPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(57)));
+        // liquors
+        tequilaPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(58)));
+        beerPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(59)));
+        winePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(60)));
+        hardCiderPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(61)));
+        meadPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(62)));
+        ginPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(63)));
+        brandyPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(64)));
+        whiskyPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(65)));
+        rumPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(66)));
+        vodkaPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(67)));
 
 
     }
@@ -325,7 +346,7 @@ public class Main extends JFrame {
         pineAppleJuice = new javax.swing.JButton();
         blackCher = new javax.swing.JButton();
         blackCherPrice = new javax.swing.JLabel();
-        pinappleJuicePrice = new javax.swing.JLabel();
+        pineAppleJuicePrice = new javax.swing.JLabel();
         appleJuicePrice = new javax.swing.JLabel();
         liquorsLabel = new javax.swing.JLabel();
         mead = new javax.swing.JButton();
@@ -1130,10 +1151,10 @@ public class Main extends JFrame {
         blackCherPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         beveragesPanel.add(blackCherPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 430, 50, 20));
 
-        pinappleJuicePrice.setText("₱ 1000");
-        pinappleJuicePrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        pinappleJuicePrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(pinappleJuicePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 430, 50, 20));
+        pineAppleJuicePrice.setText("₱ 1000");
+        pineAppleJuicePrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        pineAppleJuicePrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        beveragesPanel.add(pineAppleJuicePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 430, 50, 20));
 
         appleJuicePrice.setText("₱ 1000");
         appleJuicePrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -1669,8 +1690,8 @@ public class Main extends JFrame {
     private javax.swing.JButton pay;
     private javax.swing.JButton pepsi;
     private javax.swing.JLabel pepsiPrice;
-    private javax.swing.JLabel pinappleJuicePrice;
     private javax.swing.JButton pineAppleJuice;
+    private javax.swing.JLabel pineAppleJuicePrice;
     private javax.swing.JButton printRecipt;
     private javax.swing.JPanel productsPanel;
     private javax.swing.JButton redBull;

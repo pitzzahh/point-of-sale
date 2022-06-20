@@ -2113,7 +2113,7 @@
                                 </Constraint>
                               </Constraints>
                             </Component>
-                            <Component class="javax.swing.JLabel" name="pinappleJuicePrice">
+                            <Component class="javax.swing.JLabel" name="pineAppleJuicePrice">
                               <Properties>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 1000"/>
                                 <Property name="verticalAlignment" type="int" value="1"/>
