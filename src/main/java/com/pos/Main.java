@@ -1,5 +1,6 @@
 package com.pos;
 
+import com.pos.entity.Order;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -9,18 +10,22 @@ import java.text.SimpleDateFormat;
 import com.pos.entity.Product;
 import java.text.DateFormat;
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.*;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author peter
  */
 public class Main extends JFrame {
-
     private final AbstractApplicationContext CONTEXT=  new AnnotationConfigApplicationContext(JPAConfiguration.class);
     private final ProductService PRODUCT_SERVICE = CONTEXT.getBean(ProductService.class);
     private final SalesService SALES_SERVICE = CONTEXT.getBean(SalesService.class);
+
+    private List<Order> orders = new ArrayList<>();
+
+    private static Integer clickCount = 0;
 
     /**
      * Creates new form Main
@@ -40,7 +45,41 @@ public class Main extends JFrame {
         ordersTable.getColumnModel().getColumn(3).setCellRenderer(RENDERER);
         ordersTable.getColumnModel().getColumn(4).setCellRenderer(RENDERER);
     }
-    
+    private void refreshOrdersTable() {
+        DefaultTableModel defaultTableModel = (DefaultTableModel) ordersTable.getModel();
+        defaultTableModel.setRowCount(0);
+        Object[] data = new Object[defaultTableModel.getColumnCount()];
+
+        for (Order order : orders) {
+            data[0] = order.getName();
+            data[1] = order.getPrice();
+            data[2] = order.getCategory();
+            data[3] = order.getQuantity();
+            data[4] = order.getDiscount();
+
+            defaultTableModel.addRow(data);
+        }
+    }
+    private void makeOrder(Product product) {
+        orders.add(new Order(
+                product.getName(),
+                (product.getDiscount() != null) ? (product.getPrice() - product.getDiscount()) : product.getPrice(),
+                product.getCategory(),
+                clickCount,
+                (product.getDiscount() != null) ? product.getDiscount() : 0.00
+        ));
+    }
+    private void modifyOrder(Product product) {
+        Order o = orders.stream()
+                .filter(order -> order.getName().equals(product.getName()))
+                .findAny()
+                .get();
+        orders.stream()
+                .filter(order -> order.getName().equals(product.getName()))
+                .findAny()
+                .get()
+                .setQuantity(o.getQuantity() + 1);
+    }
     /**
      * Method that sets the prices label for all the products.
      * Products discount is already computed and discounted price will be shown to the label.
@@ -48,92 +87,92 @@ public class Main extends JFrame {
     private void setProductsPrices() {
         final char PESO_SIGN = '₱';
 
-        PRODUCT_SERVICE.getAllProducts().get()
+        List<Double> priceList = PRODUCT_SERVICE.getAllProducts().get()
                         .stream()
                         .map(p -> (p.getDiscount() != null) ? (p.getPrice() - p.getDiscount()) : p.getPrice())
-                        .forEach(System.out::println);
+                        .toList();
 
 
-//        /*
-//            Setting prices label for cleaning products
-//         */
-//        cleanFirstPrice.setText(PESO_SIGN + " " + priceList.get(0));
-//        hydroSafePrice.setText(PESO_SIGN + " " + priceList.get(1));
-//        rightFlexPrice.setText(PESO_SIGN + " " + priceList.get(2));
-//        cloroxPrice.setText(PESO_SIGN + " " + priceList.get(3));
-//        dirtBustersPrice.setText(PESO_SIGN + " " + priceList.get(4));
-//        myCleanPrice.setText(PESO_SIGN + " " + priceList.get(5));
-//        cleanCutPrice.setText(PESO_SIGN + " " + priceList.get(6));
-//        sureCleanPrice.setText(PESO_SIGN + " " + priceList.get(7));
-//        arielPrice.setText(PESO_SIGN + " " + priceList.get(8));
-//        joyPrice.setText(PESO_SIGN + " " + priceList.get(9));
-//        smartPrice.setText(PESO_SIGN + " " + priceList.get(10));
-//        domexPrice.setText(PESO_SIGN + " " + priceList.get(11));
-//        mrMusclePrice.setText(PESO_SIGN + " " + priceList.get(12));
-//        lysolPrice.setText(PESO_SIGN + " " + priceList.get(13));
-//        surfPrice.setText(PESO_SIGN + " " + priceList.get(14));
-//
-//        /*
-//            Setting prices label for chocolates
-//         */
-//        hersheysPrice.setText(PESO_SIGN + " " + priceList.get(15));
-//        snickersPrice.setText(PESO_SIGN + " " + priceList.get(16));
-//        ferreroRocherPrice.setText(PESO_SIGN + " " + priceList.get(17));
-//        esthechocPrice.setText(PESO_SIGN + " " + priceList.get(18));
-//        flyingNoirPrice.setText(PESO_SIGN + " " + priceList.get(19));
-//        drostePrice.setText(PESO_SIGN + " " + priceList.get(20));
-//        wittakersPrice.setText(PESO_SIGN + " " + priceList.get(21));
-//        amedeiPrice.setText(PESO_SIGN + " " + priceList.get(22));
-//        jacquesGeninPrice.setText(PESO_SIGN + " " + priceList.get(23));
-//        richartPrice.setText(PESO_SIGN + " " + priceList.get(24));
-//        patchiPrice.setText(PESO_SIGN + " " + priceList.get(25));
-//        teuscherPrice.setText(PESO_SIGN + " " + priceList.get(26));
-//        valrhonaPrice.setText(PESO_SIGN + " " + priceList.get(27));
-//        dovePrice.setText(PESO_SIGN + " " + priceList.get(28));
-//        russelStoverPrice.setText(PESO_SIGN + " " + priceList.get(29));
-//        ritterSportPrice.setText(PESO_SIGN + " " + priceList.get(30));
-//        guyLianPrice.setText(PESO_SIGN + " " + priceList.get(31));
-//        kinderPrice.setText(PESO_SIGN + " " + priceList.get(32));
-//        marsPrice.setText(PESO_SIGN + " " + priceList.get(33));
-//        tobleronePrice.setText(PESO_SIGN + " " + priceList.get(34));
-//        nestlePrice.setText(PESO_SIGN + " " + priceList.get(35));
-//        milkaPrice.setText(PESO_SIGN + " " + priceList.get(36));
-//        ghirardellPrice.setText(PESO_SIGN + " " + priceList.get(37));
-//        cadburyPrice.setText(PESO_SIGN + " " + priceList.get(38));
-//        godivaPrice.setText(PESO_SIGN + " " + priceList.get(39));
-//
-//        /*
-//            Setting prices label for beverages
-//         */
-//        cocaColaPrice.setText(PESO_SIGN + " " + priceList.get(40));
-//        pepsiPrice.setText(PESO_SIGN + " " + priceList.get(41));
-//        redBullPrice.setText(PESO_SIGN + " " + priceList.get(42));
-//        budWeiserPrice.setText(PESO_SIGN + " " + priceList.get(43));
-//        heinekenPrice.setText(PESO_SIGN + " " + priceList.get(44));
-//        gatoradePrice.setText(PESO_SIGN + " " + priceList.get(45));
-//        spritePrice.setText(PESO_SIGN + " " + priceList.get(46));
-//        minuteMaidPrice.setText(PESO_SIGN + " " + priceList.get(47));
-//        tropicanaPrice.setText(PESO_SIGN + " " + priceList.get(48));
-//        dolePrice.setText(PESO_SIGN + " " + priceList.get(49));
-//        koolAidPrice.setText(PESO_SIGN + " " + priceList.get(50));
-//        sevenUpPrice.setText(PESO_SIGN + " " + priceList.get(51));
-//        mountainDewPrice.setText(PESO_SIGN + " " + priceList.get(52));
-//        liptonPrice.setText(PESO_SIGN + " " + priceList.get(53));
-//        sunkistPrice.setText(PESO_SIGN + " " + priceList.get(54));
-//        appleJuicePrice.setText(PESO_SIGN + " " + priceList.get(55));
-//        pineAppleJuicePrice.setText(PESO_SIGN + " " + priceList.get(56));
-//        blackCherPrice.setText(PESO_SIGN + " " + priceList.get(57));
-//        // liquors
-//        tequilaPrice.setText(PESO_SIGN + " " + priceList.get(58));
-//        beerPrice.setText(PESO_SIGN + " " + priceList.get(59));
-//        winePrice.setText(PESO_SIGN + " " + priceList.get(60));
-//        hardCiderPrice.setText(PESO_SIGN + " " + priceList.get(61));
-//        meadPrice.setText(PESO_SIGN + " " + priceList.get(62));
-//        ginPrice.setText(PESO_SIGN + " " + priceList.get(63));
-//        brandyPrice.setText(PESO_SIGN + " " + priceList.get(64));
-//        whiskyPrice.setText(PESO_SIGN + " " + priceList.get(65));
-//        rumPrice.setText(PESO_SIGN + " " + priceList.get(66));
-//        vodkaPrice.setText(PESO_SIGN + " " + priceList.get(67));
+        /*
+            Setting prices label for cleaning products
+         */
+        cleanFirstPrice.setText(PESO_SIGN + " " + priceList.get(0));
+        hydroSafePrice.setText(PESO_SIGN + " " + priceList.get(1));
+        rightFlexPrice.setText(PESO_SIGN + " " + priceList.get(2));
+        cloroxPrice.setText(PESO_SIGN + " " + priceList.get(3));
+        dirtBustersPrice.setText(PESO_SIGN + " " + priceList.get(4));
+        myCleanPrice.setText(PESO_SIGN + " " + priceList.get(5));
+        cleanCutPrice.setText(PESO_SIGN + " " + priceList.get(6));
+        sureCleanPrice.setText(PESO_SIGN + " " + priceList.get(7));
+        arielPrice.setText(PESO_SIGN + " " + priceList.get(8));
+        joyPrice.setText(PESO_SIGN + " " + priceList.get(9));
+        smartPrice.setText(PESO_SIGN + " " + priceList.get(10));
+        domexPrice.setText(PESO_SIGN + " " + priceList.get(11));
+        mrMusclePrice.setText(PESO_SIGN + " " + priceList.get(12));
+        lysolPrice.setText(PESO_SIGN + " " + priceList.get(13));
+        surfPrice.setText(PESO_SIGN + " " + priceList.get(14));
+
+        /*
+            Setting prices label for chocolates
+         */
+        hersheysPrice.setText(PESO_SIGN + " " + priceList.get(15));
+        snickersPrice.setText(PESO_SIGN + " " + priceList.get(16));
+        ferreroRocherPrice.setText(PESO_SIGN + " " + priceList.get(17));
+        esthechocPrice.setText(PESO_SIGN + " " + priceList.get(18));
+        flyingNoirPrice.setText(PESO_SIGN + " " + priceList.get(19));
+        drostePrice.setText(PESO_SIGN + " " + priceList.get(20));
+        wittakersPrice.setText(PESO_SIGN + " " + priceList.get(21));
+        amedeiPrice.setText(PESO_SIGN + " " + priceList.get(22));
+        jacquesGeninPrice.setText(PESO_SIGN + " " + priceList.get(23));
+        richartPrice.setText(PESO_SIGN + " " + priceList.get(24));
+        patchiPrice.setText(PESO_SIGN + " " + priceList.get(25));
+        teuscherPrice.setText(PESO_SIGN + " " + priceList.get(26));
+        valrhonaPrice.setText(PESO_SIGN + " " + priceList.get(27));
+        dovePrice.setText(PESO_SIGN + " " + priceList.get(28));
+        russelStoverPrice.setText(PESO_SIGN + " " + priceList.get(29));
+        ritterSportPrice.setText(PESO_SIGN + " " + priceList.get(30));
+        guyLianPrice.setText(PESO_SIGN + " " + priceList.get(31));
+        kinderPrice.setText(PESO_SIGN + " " + priceList.get(32));
+        marsPrice.setText(PESO_SIGN + " " + priceList.get(33));
+        tobleronePrice.setText(PESO_SIGN + " " + priceList.get(34));
+        nestlePrice.setText(PESO_SIGN + " " + priceList.get(35));
+        milkaPrice.setText(PESO_SIGN + " " + priceList.get(36));
+        ghirardellPrice.setText(PESO_SIGN + " " + priceList.get(37));
+        cadburyPrice.setText(PESO_SIGN + " " + priceList.get(38));
+        godivaPrice.setText(PESO_SIGN + " " + priceList.get(39));
+
+        /*
+            Setting prices label for beverages
+         */
+        cocaColaPrice.setText(PESO_SIGN + " " + priceList.get(40));
+        pepsiPrice.setText(PESO_SIGN + " " + priceList.get(41));
+        redBullPrice.setText(PESO_SIGN + " " + priceList.get(42));
+        budWeiserPrice.setText(PESO_SIGN + " " + priceList.get(43));
+        heinekenPrice.setText(PESO_SIGN + " " + priceList.get(44));
+        gatoradePrice.setText(PESO_SIGN + " " + priceList.get(45));
+        spritePrice.setText(PESO_SIGN + " " + priceList.get(46));
+        minuteMaidPrice.setText(PESO_SIGN + " " + priceList.get(47));
+        tropicanaPrice.setText(PESO_SIGN + " " + priceList.get(48));
+        dolePrice.setText(PESO_SIGN + " " + priceList.get(49));
+        koolAidPrice.setText(PESO_SIGN + " " + priceList.get(50));
+        sevenUpPrice.setText(PESO_SIGN + " " + priceList.get(51));
+        mountainDewPrice.setText(PESO_SIGN + " " + priceList.get(52));
+        liptonPrice.setText(PESO_SIGN + " " + priceList.get(53));
+        sunkistPrice.setText(PESO_SIGN + " " + priceList.get(54));
+        appleJuicePrice.setText(PESO_SIGN + " " + priceList.get(55));
+        pineAppleJuicePrice.setText(PESO_SIGN + " " + priceList.get(56));
+        blackCherPrice.setText(PESO_SIGN + " " + priceList.get(57));
+        // liquors
+        tequilaPrice.setText(PESO_SIGN + " " + priceList.get(58));
+        beerPrice.setText(PESO_SIGN + " " + priceList.get(59));
+        winePrice.setText(PESO_SIGN + " " + priceList.get(60));
+        hardCiderPrice.setText(PESO_SIGN + " " + priceList.get(61));
+        meadPrice.setText(PESO_SIGN + " " + priceList.get(62));
+        ginPrice.setText(PESO_SIGN + " " + priceList.get(63));
+        brandyPrice.setText(PESO_SIGN + " " + priceList.get(64));
+        whiskyPrice.setText(PESO_SIGN + " " + priceList.get(65));
+        rumPrice.setText(PESO_SIGN + " " + priceList.get(66));
+        vodkaPrice.setText(PESO_SIGN + " " + priceList.get(67));
 
     }
 
@@ -183,7 +222,14 @@ public class Main extends JFrame {
         TIME_THREAD.setPriority(Thread.MIN_PRIORITY);
         TIME_THREAD.start();
     }
-
+    private void handleOrder(int productId) {
+        Product product = PRODUCT_SERVICE.getProductById().apply(1);
+        boolean alreadyAdded = orders.stream()
+                .anyMatch(order -> order.getName().equals(product.getName()));
+        if (alreadyAdded) modifyOrder(product);
+        else makeOrder(product);
+        refreshOrdersTable();
+    }
     private static void updateTransaction() {
 
     }
@@ -526,21 +572,41 @@ public class Main extends JFrame {
         hydroSafe.setText("HYDROSAFE");
         hydroSafe.setMaximumSize(new java.awt.Dimension(118, 118));
         hydroSafe.setMinimumSize(new java.awt.Dimension(118, 118));
+        hydroSafe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hydroSafeActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(hydroSafe, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 100, 90));
 
         rightFlex.setText("RIGHTFLEX");
         rightFlex.setMaximumSize(new java.awt.Dimension(118, 118));
         rightFlex.setMinimumSize(new java.awt.Dimension(118, 118));
+        rightFlex.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rightFlexActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(rightFlex, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 100, 90));
 
         clorox.setText("CLOROX");
         clorox.setMaximumSize(new java.awt.Dimension(118, 118));
         clorox.setMinimumSize(new java.awt.Dimension(118, 118));
+        clorox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cloroxActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(clorox, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 100, 90));
 
         dirtBuster.setText("DIRTBUSTERS");
         dirtBuster.setMaximumSize(new java.awt.Dimension(118, 118));
         dirtBuster.setMinimumSize(new java.awt.Dimension(118, 118));
+        dirtBuster.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dirtBusterActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(dirtBuster, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 100, 90));
 
         dirtBustersPrice.setText("₱ 1000");
@@ -581,21 +647,41 @@ public class Main extends JFrame {
         cleanCut.setText("CLEAN CUT");
         cleanCut.setMaximumSize(new java.awt.Dimension(118, 118));
         cleanCut.setMinimumSize(new java.awt.Dimension(118, 118));
+        cleanCut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cleanCutActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(cleanCut, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 100, 90));
 
         sureClean.setText("SURE CLEAN");
         sureClean.setMaximumSize(new java.awt.Dimension(118, 118));
         sureClean.setMinimumSize(new java.awt.Dimension(118, 118));
+        sureClean.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sureCleanActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(sureClean, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 100, 90));
 
         mrClean.setText("ARIEL");
         mrClean.setMaximumSize(new java.awt.Dimension(118, 118));
         mrClean.setMinimumSize(new java.awt.Dimension(118, 118));
+        mrClean.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mrCleanActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(mrClean, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 100, 90));
 
         joy.setText("JOY");
         joy.setMaximumSize(new java.awt.Dimension(118, 118));
         joy.setMinimumSize(new java.awt.Dimension(118, 118));
+        joy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                joyActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(joy, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, 100, 90));
 
         joyPrice.setText("₱ 1000");
@@ -641,6 +727,11 @@ public class Main extends JFrame {
         domex.setText("DOMEX");
         domex.setMaximumSize(new java.awt.Dimension(118, 118));
         domex.setMinimumSize(new java.awt.Dimension(118, 118));
+        domex.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                domexActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(domex, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 100, 90));
 
         domexPrice.setText("₱ 1000");
@@ -651,6 +742,11 @@ public class Main extends JFrame {
         mrMuscle.setText("MR MUSCLE");
         mrMuscle.setMaximumSize(new java.awt.Dimension(118, 118));
         mrMuscle.setMinimumSize(new java.awt.Dimension(118, 118));
+        mrMuscle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mrMuscleActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(mrMuscle, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 100, 90));
 
         mrMusclePrice.setText("₱ 1000");
@@ -661,6 +757,11 @@ public class Main extends JFrame {
         lysol.setText("LYSOL");
         lysol.setMaximumSize(new java.awt.Dimension(118, 118));
         lysol.setMinimumSize(new java.awt.Dimension(118, 118));
+        lysol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lysolActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(lysol, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, 100, 90));
 
         lysolPrice.setText("₱ 1000");
@@ -671,6 +772,11 @@ public class Main extends JFrame {
         surf.setText("SURF");
         surf.setMaximumSize(new java.awt.Dimension(118, 118));
         surf.setMinimumSize(new java.awt.Dimension(118, 118));
+        surf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                surfActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(surf, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, 100, 90));
 
         surfPrice.setText("₱ 1000");
@@ -1476,11 +1582,11 @@ public class Main extends JFrame {
     }//GEN-LAST:event_viewExpiredProductsActionPerformed
 
     private void cleanFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleanFirstActionPerformed
-        // TODO add your handling code here:
+        handleOrder(1);
     }//GEN-LAST:event_cleanFirstActionPerformed
 
     private void myCleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myCleanActionPerformed
-        // TODO add your handling code here:
+        handleOrder(6);
     }//GEN-LAST:event_myCleanActionPerformed
 
     private void gatoradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gatoradeActionPerformed
@@ -1533,9 +1639,57 @@ public class Main extends JFrame {
     }//GEN-LAST:event_ginActionPerformed
 
     private void smartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_smartActionPerformed
-        // TODO add your handling code here:
+        handleOrder(11);
     }//GEN-LAST:event_smartActionPerformed
 
+    private void hydroSafeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hydroSafeActionPerformed
+        handleOrder(2);
+    }//GEN-LAST:event_hydroSafeActionPerformed
+
+    private void rightFlexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightFlexActionPerformed
+        handleOrder(3);
+    }//GEN-LAST:event_rightFlexActionPerformed
+
+    private void cloroxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cloroxActionPerformed
+        handleOrder(4);
+    }//GEN-LAST:event_cloroxActionPerformed
+
+    private void dirtBusterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dirtBusterActionPerformed
+        handleOrder(5);
+    }//GEN-LAST:event_dirtBusterActionPerformed
+
+    private void cleanCutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleanCutActionPerformed
+        handleOrder(7);
+    }//GEN-LAST:event_cleanCutActionPerformed
+
+    private void sureCleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sureCleanActionPerformed
+        handleOrder(8);
+    }//GEN-LAST:event_sureCleanActionPerformed
+
+    private void mrCleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mrCleanActionPerformed
+        handleOrder(9);
+    }//GEN-LAST:event_mrCleanActionPerformed
+
+    private void joyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joyActionPerformed
+         handleOrder(10);
+    }//GEN-LAST:event_joyActionPerformed
+
+    private void domexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_domexActionPerformed
+        handleOrder(12);
+    }//GEN-LAST:event_domexActionPerformed
+
+    private void mrMuscleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mrMuscleActionPerformed
+        handleOrder(13);
+    }//GEN-LAST:event_mrMuscleActionPerformed
+
+    private void lysolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lysolActionPerformed
+        handleOrder(14);
+    }//GEN-LAST:event_lysolActionPerformed
+
+    private void surfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_surfActionPerformed
+        handleOrder(15);
+    }//GEN-LAST:event_surfActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -1547,7 +1701,7 @@ public class Main extends JFrame {
          */
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
+                if ("Nimbus".equals(info.getName())) {
                     UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

@@ -59,7 +59,6 @@ public class ProductServiceImplementation implements ProductService {
         return productRepository::deleteProductById;
     }
 
-
     /**
      * checks all the product's expiration date and updates the expired column if a product is expired.
      */
