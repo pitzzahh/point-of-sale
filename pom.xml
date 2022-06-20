@@ -22,8 +22,8 @@
         
 	<dependencies>
             
-            	<dependency>
-                    <groupId>org.netbeans.external</groupId>
+		<dependency>
+			<groupId>org.netbeans.external</groupId>
 			<artifactId>AbsoluteLayout</artifactId>
 			<version>RELEASE130</version>
 		</dependency>
@@ -36,13 +36,12 @@
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<scope>runtime</scope>
+			<version>42.3.6</version>
 		</dependency>
 
 		<dependency>
 			<groupId>net.bytebuddy</groupId>
 			<artifactId>byte-buddy</artifactId>
-			<version>1.9.12</version>
 		</dependency>
                 
 		<dependency>
@@ -54,44 +53,44 @@
 		 <dependency>
 			  <groupId>org.eclipse.persistence</groupId>
 			  <artifactId>org.eclipse.persistence.core</artifactId>
-			  <version>2.7.9</version>
+			  <version>3.0.2</version>
 		 </dependency>
 
-	 <dependency>
-	  <groupId>org.eclipse.persistence</groupId>
-	  <artifactId>org.eclipse.persistence.asm</artifactId>
-	  <version>9.1.0</version>
-	 </dependency>
+		 <dependency>
+			  <groupId>org.eclipse.persistence</groupId>
+			  <artifactId>org.eclipse.persistence.asm</artifactId>
+			  <version>9.2.0</version>
+		 </dependency>
 
-	 <dependency>
-	  <groupId>org.eclipse.persistence</groupId>
-	  <artifactId>org.eclipse.persistence.antlr</artifactId>
-	  <version>2.7.9</version>
-	 </dependency>
+		 <dependency>
+			  <groupId>org.eclipse.persistence</groupId>
+			  <artifactId>org.eclipse.persistence.antlr</artifactId>
+			  <version>2.7.10</version>
+		 </dependency>
 
-	 <dependency>
-	  <groupId>org.eclipse.persistence</groupId>
-	  <artifactId>org.eclipse.persistence.jpa</artifactId>
-	  <version>2.7.9</version>
-	 </dependency>
+		 <dependency>
+			  <groupId>org.eclipse.persistence</groupId>
+			  <artifactId>org.eclipse.persistence.jpa</artifactId>
+			  <version>3.0.2</version>
+		 </dependency>
 
-	 <dependency>
-	  <groupId>org.eclipse.persistence</groupId>
-	  <artifactId>org.eclipse.persistence.jpa.jpql</artifactId>
-	  <version>2.7.9</version>
-	 </dependency>
+		 <dependency>
+			  <groupId>org.eclipse.persistence</groupId>
+			  <artifactId>org.eclipse.persistence.jpa.jpql</artifactId>
+			  <version>3.0.2</version>
+		 </dependency>
 
-	 <dependency>
-	  <groupId>org.eclipse.persistence</groupId>
-	  <artifactId>org.eclipse.persistence.moxy</artifactId>
-	  <version>2.7.9</version>
-	 </dependency>
+		 <dependency>
+			  <groupId>org.eclipse.persistence</groupId>
+			  <artifactId>org.eclipse.persistence.moxy</artifactId>
+			  <version>3.0.2</version>
+		 </dependency>
 
-	 <dependency>
-	  <groupId>org.eclipse.persistence</groupId>
-	  <artifactId>javax.persistence</artifactId>
-	  <version>2.2.1</version>
-	 </dependency>
+		 <dependency>
+			  <groupId>org.eclipse.persistence</groupId>
+			  <artifactId>javax.persistence</artifactId>
+			  <version>2.2.1</version>
+		 </dependency>
 
 	</dependencies>
 

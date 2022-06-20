@@ -1,5 +1,6 @@
 package com.pos;
 
+import com.sun.istack.NotNull;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -11,10 +12,8 @@ import java.text.DateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Objects;
 import javax.swing.*;
-
-import static java.util.stream.Collectors.toList;
 
 /**
  *
@@ -44,110 +43,110 @@ public class Main extends JFrame {
         ordersTable.getColumnModel().getColumn(3).setCellRenderer(RENDERER);
         ordersTable.getColumnModel().getColumn(4).setCellRenderer(RENDERER);
     }
-
+    
     /**
      * Method that sets the prices label for all the products.
-     * Products discount is already computed and disounted price will be shown to the label.
+     * Products discount is already computed and discounted price will be shown to the label.
      */
     private void setProductsPrices() {
         final char PESO_SIGN = '₱';
 
-        List<Double> priceList = PRODUCT_SERVICE.getAllProducts()
-                .get()
-                .stream()
-                .map(p -> (p.getPrice() - p.getDiscount()))
-                .collect(toList());
+        List<Double> priceList = PRODUCT_SERVICE.getAllProducts().get()
+                        .stream()
+                        .map(Product::getPrice)
+                        .filter(Objects::nonNull)
+                        .toList();
 
         /*
             Setting prices label for cleaning products
          */
-        cleanFirstPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(0)));
-        hydroSafePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(1)));
-        rightFlexPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(2)));
-        cloroxPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(3)));
-        dirtBustersPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(4)));
-        myCleanPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(5)));
-        cleanCutPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(6)));
-        sureCleanPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(7)));
-        arielPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(8)));
-        joyPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(9)));
-        smartPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(10)));
-        domexPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(11)));
-        mrMusclePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(12)));
-        lysolPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(13)));
-        surfPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(14)));
+        cleanFirstPrice.setText(PESO_SIGN + " " + priceList.get(0));
+        hydroSafePrice.setText(PESO_SIGN + " " + priceList.get(1));
+        rightFlexPrice.setText(PESO_SIGN + " " + priceList.get(2));
+        cloroxPrice.setText(PESO_SIGN + " " + priceList.get(3));
+        dirtBustersPrice.setText(PESO_SIGN + " " + priceList.get(4));
+        myCleanPrice.setText(PESO_SIGN + " " + priceList.get(5));
+        cleanCutPrice.setText(PESO_SIGN + " " + priceList.get(6));
+        sureCleanPrice.setText(PESO_SIGN + " " + priceList.get(7));
+        arielPrice.setText(PESO_SIGN + " " + priceList.get(8));
+        joyPrice.setText(PESO_SIGN + " " + priceList.get(9));
+        smartPrice.setText(PESO_SIGN + " " + priceList.get(10));
+        domexPrice.setText(PESO_SIGN + " " + priceList.get(11));
+        mrMusclePrice.setText(PESO_SIGN + " " + priceList.get(12));
+        lysolPrice.setText(PESO_SIGN + " " + priceList.get(13));
+        surfPrice.setText(PESO_SIGN + " " + priceList.get(14));
 
         /*
             Setting prices label for chocolates
          */
-        hersheysPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(15)));
-        snickersPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(16)));
-        ferreroRocherPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(17)));
-        esthechocPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(18)));
-        flyingNoirPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(19)));
-        drostePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(20)));
-        wittakersPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(21)));
-        amedeiPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(22)));
-        jacquesGeninPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(23)));
-        richartPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(24)));
-        patchiPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(25)));
-        teuscherPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(26)));
-        valrhonaPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(27)));
-        dovePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(28)));
-        russelStoverPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(29)));
-        ritterSportPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(30)));
-        guyLianPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(31)));
-        kinderPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(32)));
-        marsPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(33)));
-        tobleronePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(34)));
-        nestlePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(35)));
-        milkaPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(36)));
-        ghirardellPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(37)));
-        cadburyPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(38)));
-        godivaPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(39)));
+        hersheysPrice.setText(PESO_SIGN + " " + priceList.get(15));
+        snickersPrice.setText(PESO_SIGN + " " + priceList.get(16));
+        ferreroRocherPrice.setText(PESO_SIGN + " " + priceList.get(17));
+        esthechocPrice.setText(PESO_SIGN + " " + priceList.get(18));
+        flyingNoirPrice.setText(PESO_SIGN + " " + priceList.get(19));
+        drostePrice.setText(PESO_SIGN + " " + priceList.get(20));
+        wittakersPrice.setText(PESO_SIGN + " " + priceList.get(21));
+        amedeiPrice.setText(PESO_SIGN + " " + priceList.get(22));
+        jacquesGeninPrice.setText(PESO_SIGN + " " + priceList.get(23));
+        richartPrice.setText(PESO_SIGN + " " + priceList.get(24));
+        patchiPrice.setText(PESO_SIGN + " " + priceList.get(25));
+        teuscherPrice.setText(PESO_SIGN + " " + priceList.get(26));
+        valrhonaPrice.setText(PESO_SIGN + " " + priceList.get(27));
+        dovePrice.setText(PESO_SIGN + " " + priceList.get(28));
+        russelStoverPrice.setText(PESO_SIGN + " " + priceList.get(29));
+        ritterSportPrice.setText(PESO_SIGN + " " + priceList.get(30));
+        guyLianPrice.setText(PESO_SIGN + " " + priceList.get(31));
+        kinderPrice.setText(PESO_SIGN + " " + priceList.get(32));
+        marsPrice.setText(PESO_SIGN + " " + priceList.get(33));
+        tobleronePrice.setText(PESO_SIGN + " " + priceList.get(34));
+        nestlePrice.setText(PESO_SIGN + " " + priceList.get(35));
+        milkaPrice.setText(PESO_SIGN + " " + priceList.get(36));
+        ghirardellPrice.setText(PESO_SIGN + " " + priceList.get(37));
+        cadburyPrice.setText(PESO_SIGN + " " + priceList.get(38));
+        godivaPrice.setText(PESO_SIGN + " " + priceList.get(39));
 
         /*
             Setting prices label for beverages
          */
-        cocaColaPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(40)));
-        pepsiPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(41)));
-        redBullPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(42)));
-        budWeiserPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(43)));
-        heinekenPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(44)));
-        gatoradePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(45)));
-        spritePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(46)));
-        minuteMaidPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(47)));
-        tropicanaPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(48)));
-        dolePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(49)));
-        koolAidPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(50)));
-        sevenUpPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(51)));
-        mountainDewPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(52)));
-        liptonPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(53)));
-        sunkistPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(54)));
-        appleJuicePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(55)));
-        pineAppleJuicePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(56)));
-        blackCherPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(57)));
+        cocaColaPrice.setText(PESO_SIGN + " " + priceList.get(40));
+        pepsiPrice.setText(PESO_SIGN + " " + priceList.get(41));
+        redBullPrice.setText(PESO_SIGN + " " + priceList.get(42));
+        budWeiserPrice.setText(PESO_SIGN + " " + priceList.get(43));
+        heinekenPrice.setText(PESO_SIGN + " " + priceList.get(44));
+        gatoradePrice.setText(PESO_SIGN + " " + priceList.get(45));
+        spritePrice.setText(PESO_SIGN + " " + priceList.get(46));
+        minuteMaidPrice.setText(PESO_SIGN + " " + priceList.get(47));
+        tropicanaPrice.setText(PESO_SIGN + " " + priceList.get(48));
+        dolePrice.setText(PESO_SIGN + " " + priceList.get(49));
+        koolAidPrice.setText(PESO_SIGN + " " + priceList.get(50));
+        sevenUpPrice.setText(PESO_SIGN + " " + priceList.get(51));
+        mountainDewPrice.setText(PESO_SIGN + " " + priceList.get(52));
+        liptonPrice.setText(PESO_SIGN + " " + priceList.get(53));
+        sunkistPrice.setText(PESO_SIGN + " " + priceList.get(54));
+        appleJuicePrice.setText(PESO_SIGN + " " + priceList.get(55));
+        pineAppleJuicePrice.setText(PESO_SIGN + " " + priceList.get(56));
+        blackCherPrice.setText(PESO_SIGN + " " + priceList.get(57));
         // liquors
-        tequilaPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(58)));
-        beerPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(59)));
-        winePrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(60)));
-        hardCiderPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(61)));
-        meadPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(62)));
-        ginPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(63)));
-        brandyPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(64)));
-        whiskyPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(65)));
-        rumPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(66)));
-        vodkaPrice.setText(PESO_SIGN + " " + String.valueOf(priceList.get(67)));
-
+        tequilaPrice.setText(PESO_SIGN + " " + priceList.get(58));
+        beerPrice.setText(PESO_SIGN + " " + priceList.get(59));
+        winePrice.setText(PESO_SIGN + " " + priceList.get(60));
+        hardCiderPrice.setText(PESO_SIGN + " " + priceList.get(61));
+        meadPrice.setText(PESO_SIGN + " " + priceList.get(62));
+        ginPrice.setText(PESO_SIGN + " " + priceList.get(63));
+        brandyPrice.setText(PESO_SIGN + " " + priceList.get(64));
+        whiskyPrice.setText(PESO_SIGN + " " + priceList.get(65));
+        rumPrice.setText(PESO_SIGN + " " + priceList.get(66));
+        vodkaPrice.setText(PESO_SIGN + " " + priceList.get(67));
 
     }
-    private Product getProductById(int id) {
+    private Product getProductById(int id) throws IllegalAccessException {
         return PRODUCT_SERVICE.getAllProducts()
                 .get()
                 .stream()
                 .filter(product -> product.getId().equals(id))
-                .findFirst()
-                .get();
+                .findAny()
+                .orElseThrow(() -> new IllegalAccessException("Product with id: " + id + " does not exist"));
+
     }
     
     private int getExpiredProductsCount() {
@@ -393,7 +392,7 @@ public class Main extends JFrame {
         changeLabel = new javax.swing.JLabel();
         changePesoSignLabel = new javax.swing.JLabel();
         change = new javax.swing.JTextField();
-        printRecipt = new javax.swing.JButton();
+        printReceipt = new javax.swing.JButton();
         pay = new javax.swing.JButton();
         removeItem = new javax.swing.JButton();
         reset = new javax.swing.JButton();
@@ -497,7 +496,7 @@ public class Main extends JFrame {
         headerPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         header.setFont(new java.awt.Font("Yu Gothic", 1, 36)); // NOI18N
-        header.setText("HELLO WORLD");
+        header.setText("PITZZAHH STORE");
         headerPanel.add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, -1, -1));
 
         mainPanel.add(headerPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 1080, 70));
@@ -1425,14 +1424,14 @@ public class Main extends JFrame {
 
         transactionPanel.add(changePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, 310, 30));
 
-        printRecipt.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        printRecipt.setText("PRINT RECIPT");
-        printRecipt.addActionListener(new java.awt.event.ActionListener() {
+        printReceipt.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        printReceipt.setText("PRINT RECEIPT");
+        printReceipt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                printReciptActionPerformed(evt);
+                printReceiptActionPerformed(evt);
             }
         });
-        transactionPanel.add(printRecipt, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 20, 200, 40));
+        transactionPanel.add(printReceipt, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 20, 210, 40));
 
         pay.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         pay.setText("PAY");
@@ -1445,7 +1444,7 @@ public class Main extends JFrame {
 
         removeItem.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         removeItem.setText("REMOVE ITEM");
-        transactionPanel.add(removeItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 90, 200, 40));
+        transactionPanel.add(removeItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 90, 210, 40));
 
         reset.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         reset.setText("RESET");
@@ -1475,7 +1474,7 @@ public class Main extends JFrame {
     }//GEN-LAST:event_viewExpiredProductsActionPerformed
 
     private void cleanFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleanFirstActionPerformed
-        Product cleanFirstProduct = getProductById(1);
+        // TODO add your handling code here:
     }//GEN-LAST:event_cleanFirstActionPerformed
 
     private void myCleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myCleanActionPerformed
@@ -1499,9 +1498,9 @@ public class Main extends JFrame {
 
     }//GEN-LAST:event_subTotalActionPerformed
 
-    private void printReciptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printReciptActionPerformed
+    private void printReceiptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printReceiptActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_printReciptActionPerformed
+    }//GEN-LAST:event_printReceiptActionPerformed
 
     private void guyLianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guyLianActionPerformed
         // TODO add your handling code here:
@@ -1692,7 +1691,7 @@ public class Main extends JFrame {
     private javax.swing.JLabel pepsiPrice;
     private javax.swing.JButton pineAppleJuice;
     private javax.swing.JLabel pineAppleJuicePrice;
-    private javax.swing.JButton printRecipt;
+    private javax.swing.JButton printReceipt;
     private javax.swing.JPanel productsPanel;
     private javax.swing.JButton redBull;
     private javax.swing.JLabel redBullPrice;

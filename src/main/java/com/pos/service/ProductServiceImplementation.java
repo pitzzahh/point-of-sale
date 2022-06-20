@@ -138,7 +138,7 @@ public class ProductServiceImplementation implements ProductService {
                         LocalDate.of(2023, 1, 1).isBefore(LocalDate.now())
                 ),
                 new Product(
-                        "MR CLEAN",
+                        "MY CLEAN",
                         89.60,
                         Category.CLEANING_PRODUCT,
                         LocalDate.of(2023, 1, 1),
@@ -227,6 +227,10 @@ public class ProductServiceImplementation implements ProductService {
                         null,
                         LocalDate.of(2023, 1, 1).isBefore(LocalDate.now())
                 ),
+
+                /*
+                    Chocolates
+                 */
                 new Product(
                         "HERSHEYS",
                         32.00,
@@ -336,6 +340,15 @@ public class ProductServiceImplementation implements ProductService {
                         LocalDate.of(2022, 3, 12).isBefore(LocalDate.now())
                 ),
                 new Product(
+                        "VALRHONA",
+                        150.78,
+                        Category.CHOCOLATE,
+                        LocalDate.of(2022, 3, 24),
+                        100,
+                        null,
+                        LocalDate.of(2022, 3, 24).isBefore(LocalDate.now())
+                ),
+                new Product(
                         "DOVE",
                         150.12,
                         Category.CHOCOLATE,
@@ -443,6 +456,10 @@ public class ProductServiceImplementation implements ProductService {
                         12.00,
                         LocalDate.of(2022, 2, 15).isBefore(LocalDate.now())
                 ),
+
+                /*
+                    Beverages
+                 */
                 new Product(
                         "COCA-COLA",
                         75.00,
