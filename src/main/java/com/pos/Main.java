@@ -25,7 +25,7 @@ public class Main extends JFrame {
 
     private List<Order> orders = new ArrayList<>();
 
-    private static Integer clickCount = 0;
+    private static int clickCount = 1;
 
     /**
      * Creates new form Main
@@ -69,16 +69,21 @@ public class Main extends JFrame {
                 (product.getDiscount() != null) ? product.getDiscount() : 0.00
         ));
     }
+
+    /**
+     * Method that modifies the order.
+     * @param product
+     */
     private void modifyOrder(Product product) {
-        Order o = orders.stream()
-                .filter(order -> order.getName().equals(product.getName()))
+        Order order = orders.stream()
+                .filter(o -> o.getName().equals(product.getName()))
                 .findAny()
                 .get();
         orders.stream()
-                .filter(order -> order.getName().equals(product.getName()))
+                .filter(o -> o.getName().equals(product.getName()))
                 .findAny()
                 .get()
-                .setQuantity(o.getQuantity() + 1);
+                .setQuantity(order.getQuantity() + 1);
     }
     /**
      * Method that sets the prices label for all the products.
@@ -223,7 +228,7 @@ public class Main extends JFrame {
         TIME_THREAD.start();
     }
     private void handleOrder(int productId) {
-        Product product = PRODUCT_SERVICE.getProductById().apply(1);
+        Product product = PRODUCT_SERVICE.getProductById().apply(productId);
         boolean alreadyAdded = orders.stream()
                 .anyMatch(order -> order.getName().equals(product.getName()));
         if (alreadyAdded) modifyOrder(product);
@@ -810,6 +815,11 @@ public class Main extends JFrame {
         snickers.setText("SNICKERS");
         snickers.setMaximumSize(new java.awt.Dimension(118, 118));
         snickers.setMinimumSize(new java.awt.Dimension(118, 118));
+        snickers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                snickersActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(snickers, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 100, 90));
 
         snickersPrice.setText("₱ 1000");
@@ -820,16 +830,31 @@ public class Main extends JFrame {
         flyingNoir.setText("FLYING NOIR");
         flyingNoir.setMaximumSize(new java.awt.Dimension(118, 118));
         flyingNoir.setMinimumSize(new java.awt.Dimension(118, 118));
+        flyingNoir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                flyingNoirActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(flyingNoir, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 100, 90));
 
         ferreroRocher.setText("FERRERO ROCHER");
         ferreroRocher.setMaximumSize(new java.awt.Dimension(118, 118));
         ferreroRocher.setMinimumSize(new java.awt.Dimension(118, 118));
+        ferreroRocher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ferreroRocherActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(ferreroRocher, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 100, 90));
 
         esthechoc.setText("ESTHECHOC");
         esthechoc.setMaximumSize(new java.awt.Dimension(118, 118));
         esthechoc.setMinimumSize(new java.awt.Dimension(118, 118));
+        esthechoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                esthechocActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(esthechoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 100, 90));
 
         flyingNoirPrice.setText("₱ 1000");
@@ -850,26 +875,51 @@ public class Main extends JFrame {
         droste.setText("DROSTE");
         droste.setMaximumSize(new java.awt.Dimension(118, 118));
         droste.setMinimumSize(new java.awt.Dimension(118, 118));
+        droste.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                drosteActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(droste, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 100, 90));
 
         wittakers.setText("WITTAKER'S");
         wittakers.setMaximumSize(new java.awt.Dimension(118, 118));
         wittakers.setMinimumSize(new java.awt.Dimension(118, 118));
+        wittakers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wittakersActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(wittakers, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 100, 90));
 
         amedei.setText("AMEDEI");
         amedei.setMaximumSize(new java.awt.Dimension(118, 118));
         amedei.setMinimumSize(new java.awt.Dimension(118, 118));
+        amedei.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                amedeiActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(amedei, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 100, 90));
 
         jacqueslGenin.setText("JACQUES GENIN");
         jacqueslGenin.setMaximumSize(new java.awt.Dimension(118, 118));
         jacqueslGenin.setMinimumSize(new java.awt.Dimension(118, 118));
+        jacqueslGenin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jacqueslGeninActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(jacqueslGenin, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 100, 90));
 
         richart.setText("RICHART");
         richart.setMaximumSize(new java.awt.Dimension(118, 118));
         richart.setMinimumSize(new java.awt.Dimension(118, 118));
+        richart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                richartActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(richart, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, 100, 90));
 
         richartPrice.setText("₱ 1000");
@@ -900,26 +950,51 @@ public class Main extends JFrame {
         patchi.setText("PATCHI");
         patchi.setMaximumSize(new java.awt.Dimension(118, 118));
         patchi.setMinimumSize(new java.awt.Dimension(118, 118));
+        patchi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                patchiActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(patchi, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 100, 90));
 
         teuscher.setText("TEUSCHER");
         teuscher.setMaximumSize(new java.awt.Dimension(118, 118));
         teuscher.setMinimumSize(new java.awt.Dimension(118, 118));
+        teuscher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                teuscherActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(teuscher, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 100, 90));
 
         valrhona.setText("VALRHONA");
         valrhona.setMaximumSize(new java.awt.Dimension(118, 118));
         valrhona.setMinimumSize(new java.awt.Dimension(118, 118));
+        valrhona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                valrhonaActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(valrhona, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 100, 90));
 
         dove.setText("DOVE");
         dove.setMaximumSize(new java.awt.Dimension(118, 118));
         dove.setMinimumSize(new java.awt.Dimension(118, 118));
+        dove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                doveActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(dove, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, 100, 90));
 
         russelStover.setText("RUSSEL STOVER");
         russelStover.setMaximumSize(new java.awt.Dimension(118, 118));
         russelStover.setMinimumSize(new java.awt.Dimension(118, 118));
+        russelStover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                russelStoverActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(russelStover, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, 100, 90));
 
         russelStoverPrice.setText("₱ 1000");
@@ -950,6 +1025,11 @@ public class Main extends JFrame {
         ritterSport.setText("RITTER SPORT");
         ritterSport.setMaximumSize(new java.awt.Dimension(118, 118));
         ritterSport.setMinimumSize(new java.awt.Dimension(118, 118));
+        ritterSport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ritterSportActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(ritterSport, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 100, 90));
 
         guyLian.setText("GUYLIAN");
@@ -965,16 +1045,31 @@ public class Main extends JFrame {
         kinder.setText("KINDER");
         kinder.setMaximumSize(new java.awt.Dimension(118, 118));
         kinder.setMinimumSize(new java.awt.Dimension(118, 118));
+        kinder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kinderActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(kinder, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 100, 90));
 
         mars.setText("MARS");
         mars.setMaximumSize(new java.awt.Dimension(118, 118));
         mars.setMinimumSize(new java.awt.Dimension(118, 118));
+        mars.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marsActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(mars, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 340, 100, 90));
 
         toblerone.setText("TOBLERONE");
         toblerone.setMaximumSize(new java.awt.Dimension(118, 118));
         toblerone.setMinimumSize(new java.awt.Dimension(118, 118));
+        toblerone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tobleroneActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(toblerone, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 340, 100, 90));
 
         godivaPrice.setText("₱ 1000");
@@ -1005,11 +1100,21 @@ public class Main extends JFrame {
         godiva.setText("GODIVA");
         godiva.setMaximumSize(new java.awt.Dimension(118, 118));
         godiva.setMinimumSize(new java.awt.Dimension(118, 118));
+        godiva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                godivaActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(godiva, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 450, 100, 90));
 
         nestle.setText("NESTLE");
         nestle.setMaximumSize(new java.awt.Dimension(118, 118));
         nestle.setMinimumSize(new java.awt.Dimension(118, 118));
+        nestle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nestleActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(nestle, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 100, 90));
 
         milka.setText("MILKA");
@@ -1025,11 +1130,21 @@ public class Main extends JFrame {
         ghirardell.setText("GHIRARDELLI");
         ghirardell.setMaximumSize(new java.awt.Dimension(118, 118));
         ghirardell.setMinimumSize(new java.awt.Dimension(118, 118));
+        ghirardell.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ghirardellActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(ghirardell, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 450, 100, 90));
 
         cadbury.setText("CADBURY");
         cadbury.setMaximumSize(new java.awt.Dimension(118, 118));
         cadbury.setMinimumSize(new java.awt.Dimension(118, 118));
+        cadbury.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadburyActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(cadbury, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 450, 100, 90));
 
         cadburyPrice.setText("₱ 1000");
@@ -1570,7 +1685,7 @@ public class Main extends JFrame {
     }//GEN-LAST:event_payActionPerformed
 
     private void hersheysActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hersheysActionPerformed
-
+        handleOrder(16);
     }//GEN-LAST:event_hersheysActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
@@ -1611,11 +1726,11 @@ public class Main extends JFrame {
     }//GEN-LAST:event_printReceiptActionPerformed
 
     private void guyLianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guyLianActionPerformed
-        // TODO add your handling code here:
+        handleOrder(32);
     }//GEN-LAST:event_guyLianActionPerformed
 
     private void milkaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_milkaActionPerformed
-        // TODO add your handling code here:
+        handleOrder(37);
     }//GEN-LAST:event_milkaActionPerformed
 
     private void koolAidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_koolAidActionPerformed
@@ -1689,6 +1804,94 @@ public class Main extends JFrame {
     private void surfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_surfActionPerformed
         handleOrder(15);
     }//GEN-LAST:event_surfActionPerformed
+
+    private void snickersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_snickersActionPerformed
+        handleOrder(17);
+    }//GEN-LAST:event_snickersActionPerformed
+
+    private void ferreroRocherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ferreroRocherActionPerformed
+        handleOrder(18);
+    }//GEN-LAST:event_ferreroRocherActionPerformed
+
+    private void esthechocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esthechocActionPerformed
+        handleOrder(19);
+    }//GEN-LAST:event_esthechocActionPerformed
+
+    private void flyingNoirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_flyingNoirActionPerformed
+        handleOrder(20);
+    }//GEN-LAST:event_flyingNoirActionPerformed
+
+    private void drosteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_drosteActionPerformed
+        handleOrder(21);
+    }//GEN-LAST:event_drosteActionPerformed
+
+    private void wittakersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wittakersActionPerformed
+        handleOrder(22);
+    }//GEN-LAST:event_wittakersActionPerformed
+
+    private void amedeiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amedeiActionPerformed
+        handleOrder(23);
+    }//GEN-LAST:event_amedeiActionPerformed
+
+    private void jacqueslGeninActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jacqueslGeninActionPerformed
+        handleOrder(24);
+    }//GEN-LAST:event_jacqueslGeninActionPerformed
+
+    private void richartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_richartActionPerformed
+        handleOrder(25);
+    }//GEN-LAST:event_richartActionPerformed
+
+    private void patchiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patchiActionPerformed
+        handleOrder(26);
+    }//GEN-LAST:event_patchiActionPerformed
+
+    private void teuscherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teuscherActionPerformed
+        handleOrder(27);
+    }//GEN-LAST:event_teuscherActionPerformed
+
+    private void valrhonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valrhonaActionPerformed
+        handleOrder(28);
+    }//GEN-LAST:event_valrhonaActionPerformed
+
+    private void doveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doveActionPerformed
+        handleOrder(29);
+    }//GEN-LAST:event_doveActionPerformed
+
+    private void russelStoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_russelStoverActionPerformed
+        handleOrder(30);
+    }//GEN-LAST:event_russelStoverActionPerformed
+
+    private void ritterSportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ritterSportActionPerformed
+        handleOrder(31);
+    }//GEN-LAST:event_ritterSportActionPerformed
+
+    private void kinderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kinderActionPerformed
+        handleOrder(33);
+    }//GEN-LAST:event_kinderActionPerformed
+
+    private void marsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marsActionPerformed
+        handleOrder(34);
+    }//GEN-LAST:event_marsActionPerformed
+
+    private void tobleroneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tobleroneActionPerformed
+        handleOrder(35);
+    }//GEN-LAST:event_tobleroneActionPerformed
+
+    private void nestleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nestleActionPerformed
+        handleOrder(36);
+    }//GEN-LAST:event_nestleActionPerformed
+
+    private void ghirardellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ghirardellActionPerformed
+        handleOrder(37);
+    }//GEN-LAST:event_ghirardellActionPerformed
+
+    private void cadburyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadburyActionPerformed
+        handleOrder(39);
+    }//GEN-LAST:event_cadburyActionPerformed
+
+    private void godivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_godivaActionPerformed
+        handleOrder(40);
+    }//GEN-LAST:event_godivaActionPerformed
     
     /**
      * @param args the command line arguments
