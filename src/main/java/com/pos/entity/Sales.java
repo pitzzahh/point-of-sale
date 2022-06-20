@@ -2,7 +2,6 @@ package com.pos.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.io.Serial;
 
 @Table(
         name = "sales",
@@ -16,7 +15,6 @@ import java.io.Serial;
 @Entity
 public class Sales implements Serializable {
 
-    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id

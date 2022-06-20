@@ -12,16 +12,23 @@
         
 	<groupId>com</groupId>
 	<artifactId>pos</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0-SNAPSHOT</version>
 	<name>pos</name>
+	<packaging>jar</packaging>
 	<description>Point of Sale project for Spring Boot</description>
         
 	<properties>
-		<java.version>17</java.version>
+		<java.version>1.8</java.version>
 	</properties>
         
 	<dependencies>
-            
+
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>org.netbeans.external</groupId>
 			<artifactId>AbsoluteLayout</artifactId>

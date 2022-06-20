@@ -4,18 +4,17 @@
  */
 package com.pos;
 
-import com.pos.service.SalesService;
-import com.pos.service.SalesServiceImplementation;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
-import com.pos.service.ProductService;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ComponentScan;
 import com.pos.service.ProductServiceImplementation;
+import org.springframework.context.annotation.Bean;
+import com.pos.service.SalesServiceImplementation;
+import com.pos.service.ProductService;
+import com.pos.service.SalesService;
 
 @Configuration
 @EnableAutoConfiguration

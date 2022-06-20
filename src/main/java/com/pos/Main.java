@@ -1,6 +1,5 @@
 package com.pos;
 
-import com.sun.istack.NotNull;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -11,8 +10,6 @@ import com.pos.entity.Product;
 import java.text.DateFormat;
 import java.time.LocalDate;
 import java.util.Date;
-import java.util.List;
-import java.util.Objects;
 import javax.swing.*;
 
 /**
@@ -51,94 +48,95 @@ public class Main extends JFrame {
     private void setProductsPrices() {
         final char PESO_SIGN = '₱';
 
-        List<Double> priceList = PRODUCT_SERVICE.getAllProducts().get()
+        PRODUCT_SERVICE.getAllProducts().get()
                         .stream()
-                        .map(Product::getPrice)
-                        .filter(Objects::nonNull)
-                        .toList();
+                        .map(p -> (p.getDiscount() != null) ? (p.getPrice() - p.getDiscount()) : p.getPrice())
+                        .forEach(System.out::println);
 
-        /*
-            Setting prices label for cleaning products
-         */
-        cleanFirstPrice.setText(PESO_SIGN + " " + priceList.get(0));
-        hydroSafePrice.setText(PESO_SIGN + " " + priceList.get(1));
-        rightFlexPrice.setText(PESO_SIGN + " " + priceList.get(2));
-        cloroxPrice.setText(PESO_SIGN + " " + priceList.get(3));
-        dirtBustersPrice.setText(PESO_SIGN + " " + priceList.get(4));
-        myCleanPrice.setText(PESO_SIGN + " " + priceList.get(5));
-        cleanCutPrice.setText(PESO_SIGN + " " + priceList.get(6));
-        sureCleanPrice.setText(PESO_SIGN + " " + priceList.get(7));
-        arielPrice.setText(PESO_SIGN + " " + priceList.get(8));
-        joyPrice.setText(PESO_SIGN + " " + priceList.get(9));
-        smartPrice.setText(PESO_SIGN + " " + priceList.get(10));
-        domexPrice.setText(PESO_SIGN + " " + priceList.get(11));
-        mrMusclePrice.setText(PESO_SIGN + " " + priceList.get(12));
-        lysolPrice.setText(PESO_SIGN + " " + priceList.get(13));
-        surfPrice.setText(PESO_SIGN + " " + priceList.get(14));
 
-        /*
-            Setting prices label for chocolates
-         */
-        hersheysPrice.setText(PESO_SIGN + " " + priceList.get(15));
-        snickersPrice.setText(PESO_SIGN + " " + priceList.get(16));
-        ferreroRocherPrice.setText(PESO_SIGN + " " + priceList.get(17));
-        esthechocPrice.setText(PESO_SIGN + " " + priceList.get(18));
-        flyingNoirPrice.setText(PESO_SIGN + " " + priceList.get(19));
-        drostePrice.setText(PESO_SIGN + " " + priceList.get(20));
-        wittakersPrice.setText(PESO_SIGN + " " + priceList.get(21));
-        amedeiPrice.setText(PESO_SIGN + " " + priceList.get(22));
-        jacquesGeninPrice.setText(PESO_SIGN + " " + priceList.get(23));
-        richartPrice.setText(PESO_SIGN + " " + priceList.get(24));
-        patchiPrice.setText(PESO_SIGN + " " + priceList.get(25));
-        teuscherPrice.setText(PESO_SIGN + " " + priceList.get(26));
-        valrhonaPrice.setText(PESO_SIGN + " " + priceList.get(27));
-        dovePrice.setText(PESO_SIGN + " " + priceList.get(28));
-        russelStoverPrice.setText(PESO_SIGN + " " + priceList.get(29));
-        ritterSportPrice.setText(PESO_SIGN + " " + priceList.get(30));
-        guyLianPrice.setText(PESO_SIGN + " " + priceList.get(31));
-        kinderPrice.setText(PESO_SIGN + " " + priceList.get(32));
-        marsPrice.setText(PESO_SIGN + " " + priceList.get(33));
-        tobleronePrice.setText(PESO_SIGN + " " + priceList.get(34));
-        nestlePrice.setText(PESO_SIGN + " " + priceList.get(35));
-        milkaPrice.setText(PESO_SIGN + " " + priceList.get(36));
-        ghirardellPrice.setText(PESO_SIGN + " " + priceList.get(37));
-        cadburyPrice.setText(PESO_SIGN + " " + priceList.get(38));
-        godivaPrice.setText(PESO_SIGN + " " + priceList.get(39));
-
-        /*
-            Setting prices label for beverages
-         */
-        cocaColaPrice.setText(PESO_SIGN + " " + priceList.get(40));
-        pepsiPrice.setText(PESO_SIGN + " " + priceList.get(41));
-        redBullPrice.setText(PESO_SIGN + " " + priceList.get(42));
-        budWeiserPrice.setText(PESO_SIGN + " " + priceList.get(43));
-        heinekenPrice.setText(PESO_SIGN + " " + priceList.get(44));
-        gatoradePrice.setText(PESO_SIGN + " " + priceList.get(45));
-        spritePrice.setText(PESO_SIGN + " " + priceList.get(46));
-        minuteMaidPrice.setText(PESO_SIGN + " " + priceList.get(47));
-        tropicanaPrice.setText(PESO_SIGN + " " + priceList.get(48));
-        dolePrice.setText(PESO_SIGN + " " + priceList.get(49));
-        koolAidPrice.setText(PESO_SIGN + " " + priceList.get(50));
-        sevenUpPrice.setText(PESO_SIGN + " " + priceList.get(51));
-        mountainDewPrice.setText(PESO_SIGN + " " + priceList.get(52));
-        liptonPrice.setText(PESO_SIGN + " " + priceList.get(53));
-        sunkistPrice.setText(PESO_SIGN + " " + priceList.get(54));
-        appleJuicePrice.setText(PESO_SIGN + " " + priceList.get(55));
-        pineAppleJuicePrice.setText(PESO_SIGN + " " + priceList.get(56));
-        blackCherPrice.setText(PESO_SIGN + " " + priceList.get(57));
-        // liquors
-        tequilaPrice.setText(PESO_SIGN + " " + priceList.get(58));
-        beerPrice.setText(PESO_SIGN + " " + priceList.get(59));
-        winePrice.setText(PESO_SIGN + " " + priceList.get(60));
-        hardCiderPrice.setText(PESO_SIGN + " " + priceList.get(61));
-        meadPrice.setText(PESO_SIGN + " " + priceList.get(62));
-        ginPrice.setText(PESO_SIGN + " " + priceList.get(63));
-        brandyPrice.setText(PESO_SIGN + " " + priceList.get(64));
-        whiskyPrice.setText(PESO_SIGN + " " + priceList.get(65));
-        rumPrice.setText(PESO_SIGN + " " + priceList.get(66));
-        vodkaPrice.setText(PESO_SIGN + " " + priceList.get(67));
+//        /*
+//            Setting prices label for cleaning products
+//         */
+//        cleanFirstPrice.setText(PESO_SIGN + " " + priceList.get(0));
+//        hydroSafePrice.setText(PESO_SIGN + " " + priceList.get(1));
+//        rightFlexPrice.setText(PESO_SIGN + " " + priceList.get(2));
+//        cloroxPrice.setText(PESO_SIGN + " " + priceList.get(3));
+//        dirtBustersPrice.setText(PESO_SIGN + " " + priceList.get(4));
+//        myCleanPrice.setText(PESO_SIGN + " " + priceList.get(5));
+//        cleanCutPrice.setText(PESO_SIGN + " " + priceList.get(6));
+//        sureCleanPrice.setText(PESO_SIGN + " " + priceList.get(7));
+//        arielPrice.setText(PESO_SIGN + " " + priceList.get(8));
+//        joyPrice.setText(PESO_SIGN + " " + priceList.get(9));
+//        smartPrice.setText(PESO_SIGN + " " + priceList.get(10));
+//        domexPrice.setText(PESO_SIGN + " " + priceList.get(11));
+//        mrMusclePrice.setText(PESO_SIGN + " " + priceList.get(12));
+//        lysolPrice.setText(PESO_SIGN + " " + priceList.get(13));
+//        surfPrice.setText(PESO_SIGN + " " + priceList.get(14));
+//
+//        /*
+//            Setting prices label for chocolates
+//         */
+//        hersheysPrice.setText(PESO_SIGN + " " + priceList.get(15));
+//        snickersPrice.setText(PESO_SIGN + " " + priceList.get(16));
+//        ferreroRocherPrice.setText(PESO_SIGN + " " + priceList.get(17));
+//        esthechocPrice.setText(PESO_SIGN + " " + priceList.get(18));
+//        flyingNoirPrice.setText(PESO_SIGN + " " + priceList.get(19));
+//        drostePrice.setText(PESO_SIGN + " " + priceList.get(20));
+//        wittakersPrice.setText(PESO_SIGN + " " + priceList.get(21));
+//        amedeiPrice.setText(PESO_SIGN + " " + priceList.get(22));
+//        jacquesGeninPrice.setText(PESO_SIGN + " " + priceList.get(23));
+//        richartPrice.setText(PESO_SIGN + " " + priceList.get(24));
+//        patchiPrice.setText(PESO_SIGN + " " + priceList.get(25));
+//        teuscherPrice.setText(PESO_SIGN + " " + priceList.get(26));
+//        valrhonaPrice.setText(PESO_SIGN + " " + priceList.get(27));
+//        dovePrice.setText(PESO_SIGN + " " + priceList.get(28));
+//        russelStoverPrice.setText(PESO_SIGN + " " + priceList.get(29));
+//        ritterSportPrice.setText(PESO_SIGN + " " + priceList.get(30));
+//        guyLianPrice.setText(PESO_SIGN + " " + priceList.get(31));
+//        kinderPrice.setText(PESO_SIGN + " " + priceList.get(32));
+//        marsPrice.setText(PESO_SIGN + " " + priceList.get(33));
+//        tobleronePrice.setText(PESO_SIGN + " " + priceList.get(34));
+//        nestlePrice.setText(PESO_SIGN + " " + priceList.get(35));
+//        milkaPrice.setText(PESO_SIGN + " " + priceList.get(36));
+//        ghirardellPrice.setText(PESO_SIGN + " " + priceList.get(37));
+//        cadburyPrice.setText(PESO_SIGN + " " + priceList.get(38));
+//        godivaPrice.setText(PESO_SIGN + " " + priceList.get(39));
+//
+//        /*
+//            Setting prices label for beverages
+//         */
+//        cocaColaPrice.setText(PESO_SIGN + " " + priceList.get(40));
+//        pepsiPrice.setText(PESO_SIGN + " " + priceList.get(41));
+//        redBullPrice.setText(PESO_SIGN + " " + priceList.get(42));
+//        budWeiserPrice.setText(PESO_SIGN + " " + priceList.get(43));
+//        heinekenPrice.setText(PESO_SIGN + " " + priceList.get(44));
+//        gatoradePrice.setText(PESO_SIGN + " " + priceList.get(45));
+//        spritePrice.setText(PESO_SIGN + " " + priceList.get(46));
+//        minuteMaidPrice.setText(PESO_SIGN + " " + priceList.get(47));
+//        tropicanaPrice.setText(PESO_SIGN + " " + priceList.get(48));
+//        dolePrice.setText(PESO_SIGN + " " + priceList.get(49));
+//        koolAidPrice.setText(PESO_SIGN + " " + priceList.get(50));
+//        sevenUpPrice.setText(PESO_SIGN + " " + priceList.get(51));
+//        mountainDewPrice.setText(PESO_SIGN + " " + priceList.get(52));
+//        liptonPrice.setText(PESO_SIGN + " " + priceList.get(53));
+//        sunkistPrice.setText(PESO_SIGN + " " + priceList.get(54));
+//        appleJuicePrice.setText(PESO_SIGN + " " + priceList.get(55));
+//        pineAppleJuicePrice.setText(PESO_SIGN + " " + priceList.get(56));
+//        blackCherPrice.setText(PESO_SIGN + " " + priceList.get(57));
+//        // liquors
+//        tequilaPrice.setText(PESO_SIGN + " " + priceList.get(58));
+//        beerPrice.setText(PESO_SIGN + " " + priceList.get(59));
+//        winePrice.setText(PESO_SIGN + " " + priceList.get(60));
+//        hardCiderPrice.setText(PESO_SIGN + " " + priceList.get(61));
+//        meadPrice.setText(PESO_SIGN + " " + priceList.get(62));
+//        ginPrice.setText(PESO_SIGN + " " + priceList.get(63));
+//        brandyPrice.setText(PESO_SIGN + " " + priceList.get(64));
+//        whiskyPrice.setText(PESO_SIGN + " " + priceList.get(65));
+//        rumPrice.setText(PESO_SIGN + " " + priceList.get(66));
+//        vodkaPrice.setText(PESO_SIGN + " " + priceList.get(67));
 
     }
+
     private Product getProductById(int id) throws IllegalAccessException {
         return PRODUCT_SERVICE.getAllProducts()
                 .get()
@@ -148,7 +146,11 @@ public class Main extends JFrame {
                 .orElseThrow(() -> new IllegalAccessException("Product with id: " + id + " does not exist"));
 
     }
-    
+
+    /**
+     *  Method that gets the expired products
+     * @return the number of expired products.
+     */
     private int getExpiredProductsCount() {
         return PRODUCT_SERVICE.getExpiredProductsCount().get();
     }
