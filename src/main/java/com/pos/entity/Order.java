@@ -1,7 +1,6 @@
 package com.pos.entity;
 
 
-import java.util.Objects;
 
 public final class Order {
     private String name;

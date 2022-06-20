@@ -1,6 +1,8 @@
 package com.pos;
 
+import com.pos.entity.Category;
 import com.pos.entity.Order;
+import com.pos.ui.Prompt;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -13,7 +15,6 @@ import com.pos.entity.Product;
 import java.text.DateFormat;
 import java.time.LocalDate;
 import java.util.*;
-import java.util.stream.Collectors;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -31,6 +32,7 @@ public class Main extends JFrame {
 
     private final NumberFormat NUMBER_FORMAT = NumberFormat.getInstance(Locale.ENGLISH);
 
+    private static final Prompt PROMPT = new Prompt();
     /**
      * Creates new form Main
      */
@@ -94,11 +96,21 @@ public class Main extends JFrame {
                 .filter(o -> o.getName().equals(product.getName()))
                 .findAny()
                 .get();
-        ORDERS_LIST.stream()
-                .filter(o -> o.getName().equals(product.getName()))
+
+        int productQuantity = ORDERS_LIST.stream()
+                .filter(o -> o.getName().equals(order.getName()))
+                .map(Order::getQuantity)
                 .findAny()
-                .get()
-                .setQuantity(isRemovingProduct ? (order.getQuantity() - 1) : order.getQuantity() + 1);
+                .get();
+
+        if (productQuantity == 1 && isRemovingProduct) ORDERS_LIST.removeIf(o -> o.getName().equals(order.getName()));
+        else {
+            ORDERS_LIST.stream()
+                    .filter(o -> o.getName().equals(order.getName()))
+                    .findAny()
+                    .get()
+                    .setQuantity(isRemovingProduct ? (order.getQuantity() - 1) : order.getQuantity() + 1);
+        }
     }
 
     /**
@@ -273,6 +285,21 @@ public class Main extends JFrame {
         subTotal.setText(String.valueOf(NUMBER_FORMAT.format(SUB_TOTAL)));
         totalDiscount.setText(String.valueOf(NUMBER_FORMAT.format(TOTAL_DISCOUNT)));
     }
+
+    private Order getOrderFromTableSelection() {
+        try{
+            return new Order(
+                    String.valueOf(ordersTable.getModel().getValueAt(ordersTable.getSelectedRow(), 0)),
+                    Double.parseDouble(String.valueOf(ordersTable.getModel().getValueAt(ordersTable.getSelectedRow(), 1))),
+                    Category.valueOf(String.valueOf(ordersTable.getModel().getValueAt(ordersTable.getSelectedRow(), 2))),
+                    Integer.parseInt(String.valueOf(ordersTable.getModel().getValueAt(ordersTable.getSelectedRow(), 3))),
+                    Double.parseDouble(String.valueOf(ordersTable.getModel().getValueAt(ordersTable.getSelectedRow(), 4)))
+            );
+        } catch (RuntimeException ignored) {
+            return null;
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -567,11 +594,6 @@ public class Main extends JFrame {
         logout.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         logout.setForeground(new java.awt.Color(255, 0, 0));
         logout.setText("LOGOUT");
-        logout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutActionPerformed(evt);
-            }
-        });
         informationPanel.add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 640, -1, 30));
 
         viewSales.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -1657,9 +1679,16 @@ public class Main extends JFrame {
                 "NAME", "PRICE", "CATEGORY", "QUANTITY", "DISCOUNT"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Double.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Double.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -1807,6 +1836,11 @@ public class Main extends JFrame {
 
         removeItem.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         removeItem.setText("REMOVE ITEM");
+        removeItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeItemActionPerformed(evt);
+            }
+        });
         transactionPanel.add(removeItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 90, 210, 40));
 
         reset.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -1826,16 +1860,23 @@ public class Main extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void payActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payActionPerformed
-        // TODO add your handling code here:
+        try {
+            if (ORDERS_LIST.isEmpty()) throw new IllegalStateException("NO PRODUCTS TO PAY");
+            if(cash.getText().trim().isEmpty()) throw new IllegalStateException("PLEASE INSERT YOUR CASH AMOUNT");
+
+            final double SUB_TOTAL = Double.parseDouble(subTotal.getText().trim());
+            final double CASH = Double.parseDouble(cash.getText().trim());
+            if (CASH < SUB_TOTAL) throw new IllegalStateException("CASH AMOUNT NOT ENOUGH");
+            change.setText(NUMBER_FORMAT.format(CASH - SUB_TOTAL));
+            PROMPT.show.accept("SUCCESS", false);
+        } catch(RuntimeException runtimeException) {
+            PROMPT.show.accept(runtimeException.getMessage(), true);
+        }
     }//GEN-LAST:event_payActionPerformed
 
     private void hersheysActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hersheysActionPerformed
         handleOrder(16);
     }//GEN-LAST:event_hersheysActionPerformed
-
-    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_logoutActionPerformed
 
     private void viewExpiredProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewExpiredProductsActionPerformed
 
@@ -2126,6 +2167,21 @@ public class Main extends JFrame {
         ORDERS_LIST.clear();
         refreshOrdersTable();
     }//GEN-LAST:event_resetActionPerformed
+
+    private void removeItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeItemActionPerformed
+        try {
+            Order order = getOrderFromTableSelection();
+            if (order == null) throw new IllegalStateException("NO ITEM TO BE REMOVED!\n PLEASE SELECT A ROW FROM THE TABLE IF DATA IS AVAILABLE ");
+            else {
+                Product product = PRODUCT_SERVICE.getProductByName().apply(order.getName());
+                modifyOrder(product, true);
+                refreshOrdersTable();
+            }
+        } catch (RuntimeException runtimeException) {
+            PROMPT.show.accept(runtimeException.getMessage(), true);
+        }
+
+    }//GEN-LAST:event_removeItemActionPerformed
     
     /**
      * @param args the command line arguments

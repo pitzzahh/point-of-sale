@@ -19,6 +19,7 @@ public interface ProductService {
     Consumer<List<Product>> saveAllProducts();
 
     Function<Integer, Product> getProductById();
+    Function<String, Product> getProductByName();
 
     BiConsumer<LocalDate, Integer> updateProductExpiredStatusById();
 

@@ -302,9 +302,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="LOGOUT"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logoutActionPerformed"/>
-              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="70" y="640" width="-1" height="30"/>
@@ -2648,11 +2645,11 @@
                         </Property>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="5" rowCount="0">
-                            <Column editable="false" title="NAME" type="java.lang.Object"/>
-                            <Column editable="false" title="PRICE" type="java.lang.Object"/>
+                            <Column editable="false" title="NAME" type="java.lang.String"/>
+                            <Column editable="false" title="PRICE" type="java.lang.Double"/>
                             <Column editable="false" title="CATEGORY" type="java.lang.Object"/>
-                            <Column editable="false" title="QUANTITY" type="java.lang.Object"/>
-                            <Column editable="false" title="DISCOUNT" type="java.lang.Object"/>
+                            <Column editable="false" title="QUANTITY" type="java.lang.Integer"/>
+                            <Column editable="false" title="DISCOUNT" type="java.lang.Double"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -3084,6 +3081,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="REMOVE ITEM"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeItemActionPerformed"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="730" y="90" width="210" height="40"/>

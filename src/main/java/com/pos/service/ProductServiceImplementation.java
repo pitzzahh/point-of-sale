@@ -45,6 +45,11 @@ public class ProductServiceImplementation implements ProductService {
     }
 
     @Override
+    public Function<String, Product> getProductByName() {
+        return productRepository::getProductByName;
+    }
+
+    @Override
     public Supplier<List<Product>> getAllProducts() {
         return productRepository::getAllProducts;
     }
