@@ -6,11 +6,14 @@ import org.springframework.context.support.AbstractApplicationContext;
 import javax.swing.table.DefaultTableCellRenderer;
 import com.pos.service.ProductService;
 import com.pos.service.SalesService;
+
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import com.pos.entity.Product;
 import java.text.DateFormat;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -23,8 +26,10 @@ public class Main extends JFrame {
     private final ProductService PRODUCT_SERVICE = CONTEXT.getBean(ProductService.class);
     private final SalesService SALES_SERVICE = CONTEXT.getBean(SalesService.class);
 
-    public static final String OS_NAME = System.getProperty("os.name", "").toUpperCase();
-    private final List<Order> orders = new ArrayList<>();
+    private static final String OS_NAME = System.getProperty("os.name", "").toUpperCase();
+    private final List<Order> ORDERS_LIST = new ArrayList<>();
+
+    private final NumberFormat NUMBER_FORMAT = NumberFormat.getInstance(Locale.ENGLISH);
 
     /**
      * Creates new form Main
@@ -46,14 +51,14 @@ public class Main extends JFrame {
     }
 
     /**
-     * Method that refresh the orders' table for every button click of a product.
+     * Method that refresh the orders table for every button click of a product.
      */
     private void refreshOrdersTable() {
         DefaultTableModel defaultTableModel = (DefaultTableModel) ordersTable.getModel();
         defaultTableModel.setRowCount(0);
         Object[] data = new Object[defaultTableModel.getColumnCount()];
 
-        for (Order order : orders) {
+        for (Order order : ORDERS_LIST) {
             data[0] = order.getName();
             data[1] = order.getPrice();
             data[2] = order.getCategory();
@@ -62,6 +67,7 @@ public class Main extends JFrame {
 
             defaultTableModel.addRow(data);
         }
+        updateTransaction();
     }
 
     /**
@@ -70,12 +76,12 @@ public class Main extends JFrame {
      */
     private void makeOrder(Product product) {
         final int CLICK_COUNT = 1;
-        orders.add(new Order(
+        ORDERS_LIST.add(new Order(
                 product.getName(),
                 (product.getDiscount() != null) ? (product.getPrice() - product.getDiscount()) : product.getPrice(),
                 product.getCategory(),
                 CLICK_COUNT,
-                (product.getDiscount() != null) ? product.getDiscount() : 0.00
+                (product.getDiscount() != null) ? product.getDiscount() : 0.0
         ));
     }
 
@@ -83,17 +89,18 @@ public class Main extends JFrame {
      * Method that modifies the order.
      * @param product the product information to be searched from the database needed to modify the order.
      */
-    private void modifyOrder(Product product) {
-        Order order = orders.stream()
+    private void modifyOrder(Product product, boolean isRemovingProduct) {
+        Order order = ORDERS_LIST.stream()
                 .filter(o -> o.getName().equals(product.getName()))
                 .findAny()
                 .get();
-        orders.stream()
+        ORDERS_LIST.stream()
                 .filter(o -> o.getName().equals(product.getName()))
                 .findAny()
                 .get()
-                .setQuantity(order.getQuantity() + 1);
+                .setQuantity(isRemovingProduct ? (order.getQuantity() - 1) : order.getQuantity() + 1);
     }
+
     /**
      * Method that sets the prices label for all the products.
      * Products discount is already computed and discounted price will be shown to the label.
@@ -213,7 +220,7 @@ public class Main extends JFrame {
      */
     private void initializeDate() {
         final LocalDate LOCALDATE = LocalDate.now();
-        date.setText(LOCALDATE.getMonth().name() + " " + LOCALDATE.getDayOfWeek().getValue() + ", " + LOCALDATE.getYear());
+        date.setText(LOCALDATE.getMonth().name() + " " + LOCALDATE.getDayOfMonth() + ", " + LOCALDATE.getYear());
     }
 
     /**
@@ -238,14 +245,33 @@ public class Main extends JFrame {
     }
     private void handleOrder(int productId) {
         Product product = PRODUCT_SERVICE.getProductById().apply(productId);
-        boolean alreadyAdded = orders.stream()
+        boolean alreadyAdded = ORDERS_LIST.stream()
                 .anyMatch(order -> order.getName().equals(product.getName()));
-        if (alreadyAdded) modifyOrder(product);
+        if (alreadyAdded) modifyOrder(product, false);
         else makeOrder(product);
         refreshOrdersTable();
     }
-    private static void updateTransaction() {
 
+    private void updateTransaction() {
+        final double TOTAL_PRICE = ORDERS_LIST.stream()
+                .map(product -> (product.getPrice() * product.getQuantity()))
+                .reduce(0.0, Double::sum);
+
+        final double SUB_TOTAL = ORDERS_LIST.stream()
+                .map(product ->
+                        (product.getDiscount() != 0.0) ?
+                                (product.getPrice() * product.getQuantity() - (product.getDiscount() * product.getQuantity())) :
+                                (product.getPrice() * product.getQuantity()))
+                .reduce(0.0, Double::sum);
+
+        final double TOTAL_DISCOUNT = ORDERS_LIST.stream()
+                .filter(product -> (product.getDiscount() != 0.0))
+                .map(order -> (order.getDiscount() * order.getQuantity()))
+                .reduce(0.0, Double::sum);
+
+        total.setText(String.valueOf(NUMBER_FORMAT.format(TOTAL_PRICE)));
+        subTotal.setText(String.valueOf(NUMBER_FORMAT.format(SUB_TOTAL)));
+        totalDiscount.setText(String.valueOf(NUMBER_FORMAT.format(TOTAL_DISCOUNT)));
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -1785,6 +1811,11 @@ public class Main extends JFrame {
 
         reset.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         reset.setText("RESET");
+        reset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resetActionPerformed(evt);
+            }
+        });
         transactionPanel.add(reset, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 90, 110, 40));
 
         mainPanel.add(transactionPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 540, 1080, 150));
@@ -2090,6 +2121,11 @@ public class Main extends JFrame {
     private void vodkaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vodkaActionPerformed
         handleOrder(68);
     }//GEN-LAST:event_vodkaActionPerformed
+
+    private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
+        ORDERS_LIST.clear();
+        refreshOrdersTable();
+    }//GEN-LAST:event_resetActionPerformed
     
     /**
      * @param args the command line arguments
