@@ -4,13 +4,12 @@
  */
 package com.pos.ui;
 
-import com.pos.Main;
-import static com.pos.Main.OS_NAME;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import static com.pos.Main.OS_NAME;
+import java.util.logging.Logger;
+import java.util.logging.Level;
+import javax.swing.UIManager;
+import com.pos.Main;
 
 /**
  *
@@ -51,7 +50,12 @@ public class Logout extends javax.swing.JFrame {
         TIME_THREAD.setPriority(Thread.MIN_PRIORITY);
         TIME_THREAD.start();
     }
-    
+
+    /**
+     * Method that gets the time the JVM takes to execute a code block.
+     * @param block the code block to calculate the time for it to terminate.
+     * @return the time taken by a code block before terminating.
+     */
     private long getTime(Runnable block) {
         long start = System.nanoTime();
         block.run();
