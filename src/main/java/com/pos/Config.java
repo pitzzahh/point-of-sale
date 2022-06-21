@@ -22,7 +22,7 @@ import com.pos.service.SalesService;
 @EnableJpaRepositories(basePackages = { "com.pos.repository" })
 @ComponentScan("com.pos")
 @PropertySource("classpath:application.properties")
-public class JPAConfiguration {
+public class Config {
 
 	@Bean
 	public ProductService productService() {
