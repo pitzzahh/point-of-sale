@@ -15,12 +15,13 @@ import com.pos.Main;
  *
  * @author peter
  */
-public class Logout extends javax.swing.JFrame {
-
+public class Progress extends javax.swing.JFrame {
+    public static final int LOGGING_OUT = 1;
+    public static final int PRINTING_RECIPT = 2;
     /**
      * Creates new form Logout
      */
-    public Logout() {
+    public Progress() {
         initComponents();
         setVisible(true);
     }
@@ -28,8 +29,12 @@ public class Logout extends javax.swing.JFrame {
     /**
      * Method that stats the progress bar.
      * @param block the code block to wait for.
+     * @param progressType the type of progress bar if logging out or printing receipt.
      */
-    public void startProgressBar(Runnable block) {
+    public void startProgressBar(Runnable block, int progressType) {
+        if(progressType == 1) message.setText("LOGGING OUT");
+        if(progressType == 2) message.setText("PRINTING RECEIPT");
+        
         final Thread TIME_THREAD = new Thread(() -> {
             final int MINIMUM = 0;
             final int MAXIMUM = 10;
@@ -42,10 +47,10 @@ public class Logout extends javax.swing.JFrame {
                 try {
                     Thread.sleep(getTime(block));
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(Logout.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Progress.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            System.exit(0);
+            if(progressType == 1) System.exit(0);
         });
         TIME_THREAD.setPriority(Thread.MIN_PRIORITY);
         TIME_THREAD.start();
@@ -73,16 +78,16 @@ public class Logout extends javax.swing.JFrame {
 
         logoutPanel = new javax.swing.JPanel();
         progressBar = new javax.swing.JProgressBar();
-        jLabel1 = new javax.swing.JLabel();
+        message = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
 
         logoutPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        logoutPanel.add(progressBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 27, 202, 18));
+        logoutPanel.add(progressBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 27, 210, 18));
 
-        jLabel1.setText("logging out");
-        logoutPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, -1, -1));
+        message.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logoutPanel.add(message, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 140, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -136,13 +141,13 @@ public class Logout extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new Logout().setVisible(true);
+            new Progress().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel logoutPanel;
+    private javax.swing.JLabel message;
     private javax.swing.JProgressBar progressBar;
     // End of variables declaration//GEN-END:variables
 }
