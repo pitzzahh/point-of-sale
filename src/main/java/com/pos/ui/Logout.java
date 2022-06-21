@@ -25,6 +25,11 @@ public class Logout extends javax.swing.JFrame {
         initComponents();
         setVisible(true);
     }
+
+    /**
+     * Method that stats the progress bar.
+     * @param block the code block to wait for.
+     */
     public void startProgressBar(Runnable block) {
         final Thread TIME_THREAD = new Thread(() -> {
             final int MINIMUM = 0;
@@ -49,12 +54,9 @@ public class Logout extends javax.swing.JFrame {
     
     private long getTime(Runnable block) {
         long start = System.nanoTime();
-        try {
-            block.run();
-        } finally {
-            long end = System.nanoTime();
-            return (long) ((end - start) / 1.0e9);
-        }
+        block.run();
+        long end = System.nanoTime();
+        return (long) ((end - start) / 1.0e9);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -96,7 +98,7 @@ public class Logout extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         // Checks if the current operating system is a Windows operating system
         // Windows theme for Windows machines
         // Nimbus theme for non Windows machines
