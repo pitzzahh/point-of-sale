@@ -98,7 +98,7 @@ public class Main extends JFrame {
         Order order = ORDERS_LIST.stream()
                 .filter(o -> o.getName().equals(product.getName()))
                 .findAny()
-                .get();
+                .get(); // no checking if product is not present because products are sure available.
 
         int productQuantity = ORDERS_LIST.stream()
                 .filter(o -> o.getName().equals(order.getName()))
@@ -266,7 +266,7 @@ public class Main extends JFrame {
         else makeOrder(product);
         refreshOrdersTable();
     }
-
+    
     private void updateTransaction() {
         final double TOTAL_PRICE = ORDERS_LIST.stream()
                 .map(product -> (product.getPrice() * product.getQuantity()))
@@ -2212,29 +2212,25 @@ public class Main extends JFrame {
         // Checks if the current operating system is a Windows operating system
         // Windows theme for Windows machines
         // Nimbus theme for non Windows machines
-        if (OS_NAME.startsWith("WINDOWS")) {
-            try {
+        try {
+            if (OS_NAME.startsWith("WINDOWS")) {
                 for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                     if ("Windows".equals(info.getName())) {
                         UIManager.setLookAndFeel(info.getClassName());
                         break;
                     }
                 }
-            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-                java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             }
-        }
-        else {
-            try {
+            else {
                 for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                     if ("Nimbus".equals(info.getName())) {
                         UIManager.setLookAndFeel(info.getClassName());
                         break;
                     }
                 }
-            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-                java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
         /* Create and display the form */
