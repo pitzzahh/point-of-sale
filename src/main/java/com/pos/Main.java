@@ -25,8 +25,10 @@ import javax.swing.table.DefaultTableModel;
  * @author peter
  */
 public class Main extends JFrame {
-    private final AbstractApplicationContext CONTEXT=  new AnnotationConfigApplicationContext(JPAConfiguration.class);
+    
+    private final AbstractApplicationContext CONTEXT=  new AnnotationConfigApplicationContext(Config.class);
     private final ProductService PRODUCT_SERVICE = CONTEXT.getBean(ProductService.class);
+    
     private final SalesService SALES_SERVICE = CONTEXT.getBean(SalesService.class);
 
     public static final String OS_NAME = System.getProperty("os.name", "").toUpperCase();
@@ -35,6 +37,7 @@ public class Main extends JFrame {
     private final NumberFormat NUMBER_FORMAT = NumberFormat.getInstance(Locale.ENGLISH);
 
     private static final Prompt PROMPT = new Prompt();
+    
     /**
      * Creates new form Main
      */
