@@ -1,24 +1,22 @@
 package com.pos;
 
-import com.pos.entity.Category;
-import com.pos.entity.Order;
-import com.pos.ui.Prompt;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import com.pos.service.ProductService;
 import com.pos.service.SalesService;
-import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import com.pos.entity.Category;
+import java.text.NumberFormat;
 import com.pos.entity.Product;
-import com.pos.ui.Logout;
+import com.pos.entity.Order;
 import java.text.DateFormat;
 import java.time.LocalDate;
-import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import com.pos.ui.Prompt;
+import com.pos.ui.Logout;
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
+import java.util.*;
 
 /**
  *
