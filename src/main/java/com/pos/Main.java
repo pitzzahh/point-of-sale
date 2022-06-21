@@ -20,7 +20,8 @@ import javax.swing.*;
 import java.util.*;
 
 /**
- *
+ * Main user interface of point of sale system.
+ * JDK version used: 17 LTS
  * @author peter
  */
 public class Main extends JFrame {
