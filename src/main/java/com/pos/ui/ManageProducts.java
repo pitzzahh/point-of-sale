@@ -7,7 +7,6 @@ import static com.pos.Main.OS_NAME;
 import com.pos.entity.Product;
 import java.util.ArrayList;
 import java.util.List;
-import com.pos.Config;
 import javax.swing.*;
 import com.pos.Main;
 
@@ -19,8 +18,12 @@ public class ManageProducts extends javax.swing.JFrame {
     
     private List<Product> AVAILABLE_PRODUCTS = new ArrayList<>();
     
+    private List<Product> EXPIRED_PRODUCTS = new ArrayList();
+    
     private final Main MAIN = new Main(); // main object needed to use the product service.
 
+    private static final int IS_AVAILABLE_PRODUCTS_TABLE = 1;
+    private static final int IS_EXPIRED_PRODUCTS_TABLE = 2;
     /**
      * Creates new form ExpiredProducts
      */
@@ -34,9 +37,13 @@ public class ManageProducts extends javax.swing.JFrame {
         availableProductsTable.getColumnModel().getColumn(4).setCellRenderer(RENDERER);
         availableProductsTable.getColumnModel().getColumn(5).setCellRenderer(RENDERER);
         availableProductsTable.getColumnModel().getColumn(6).setCellRenderer(RENDERER);
+        expiredProductsTable.getColumnModel().getColumn(0).setCellRenderer(RENDERER);
         loadAvailableProducts();
     }
-    
+
+    /**
+     * Method that loads the available products which are not expired from the database to the {@code List<Product>} AVAILABLE_PRODUCTS.
+     */
     private void loadAvailableProducts() {
         AVAILABLE_PRODUCTS = MAIN.PRODUCT_SERVICE
                 .getAllProducts()
@@ -44,31 +51,58 @@ public class ManageProducts extends javax.swing.JFrame {
                 .stream()
                 .filter(product -> !product.getExpired())
                 .collect(Collectors.toList());
-        refreshAvailableProductsTable();
+        refreshTable(IS_AVAILABLE_PRODUCTS_TABLE);
     }
-    
+
+
     /**
-     * Method that refresh the order table for every button click of a product.
+     * Method that loads the expired products from the database to the {@code List<Product>} EXPIRED_PRODUCTS.
      */
-    private void refreshAvailableProductsTable() {
-        DefaultTableModel defaultTableModel = (DefaultTableModel) availableProductsTable.getModel();
-        defaultTableModel.setRowCount(0);
-        Object[] data = new Object[defaultTableModel.getColumnCount()];
-
-        for (Product product : AVAILABLE_PRODUCTS) {
-            data[0] = product.getId();
-            data[1] = product.getName();
-            data[2] = product.getPrice();
-            data[3] = product.getCategory();
-            data[4] = product.getExpirationDate();
-            data[5] = product.getStocks();
-            data[6] = (product.getDiscount() == null) ? "" : String.valueOf(product.getDiscount());
-
-            defaultTableModel.addRow(data);
-        }
-
+    private void loadExpiredProducts() {
+        EXPIRED_PRODUCTS = MAIN.PRODUCT_SERVICE
+                .getAllProducts()
+                .get()
+                .stream()
+                .filter(Product::getExpired)
+                .collect(Collectors.toList());
+        refreshTable(IS_EXPIRED_PRODUCTS_TABLE);
     }
-    
+
+    /**
+     * Method that refresh the availableProductsTable.
+     */
+    private void refreshTable(int whatTable) {
+        if (whatTable == 1) {
+            DefaultTableModel defaultTableModel = (DefaultTableModel) availableProductsTable.getModel();
+            defaultTableModel.setRowCount(0);
+            Object[] data = new Object[defaultTableModel.getColumnCount()];
+
+            for (Product product : AVAILABLE_PRODUCTS) {
+                data[0] = product.getId();
+                data[1] = product.getName();
+                data[2] = product.getPrice();
+                data[3] = product.getCategory();
+                data[4] = product.getExpirationDate();
+                data[5] = product.getStocks();
+                data[6] = (product.getDiscount() == null) ? "" : String.valueOf(product.getDiscount());
+
+                defaultTableModel.addRow(data);
+            }
+        }
+        if (whatTable == 2) {
+            DefaultTableModel defaultTableModel = (DefaultTableModel) expiredProductsTable.getModel();
+            defaultTableModel.setRowCount(0);
+            Object[] data = new Object[defaultTableModel.getColumnCount()];
+
+            for (Product product : EXPIRED_PRODUCTS) {
+                data[0] = product.getId();
+                data[1] = product.getName();
+
+                defaultTableModel.addRow(data);
+            }
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -100,6 +134,8 @@ public class ManageProducts extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        mainPanelTab.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         restockProductsPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -135,7 +171,7 @@ public class ManageProducts extends javax.swing.JFrame {
             availableProductsTable.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        restockProductsPanel.add(avaialbleProductsTableScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 870, 400));
+        restockProductsPanel.add(avaialbleProductsTableScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 890, 400));
 
         availableProductsHeader.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         availableProductsHeader.setText("AVAILABLE PRODUCTS ");
