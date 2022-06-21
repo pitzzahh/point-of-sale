@@ -14,7 +14,7 @@ import com.pos.entity.Order;
 import java.text.DateFormat;
 import java.time.LocalDate;
 import com.pos.ui.Prompt;
-import com.pos.ui.Logout;
+import com.pos.ui.Progress;
 import javax.swing.*;
 import java.util.*;
 
@@ -2200,8 +2200,8 @@ public class Main extends JFrame {
     }//GEN-LAST:event_removeItemActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
-        var l = new Logout();
-        l.startProgressBar(() -> ORDERS_LIST.clear());
+        var progress = new Progress();
+        progress.startProgressBar(ORDERS_LIST::clear, Progress.LOGGING_OUT);
     }//GEN-LAST:event_logoutActionPerformed
     
     /**
