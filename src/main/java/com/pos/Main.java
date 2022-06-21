@@ -144,9 +144,17 @@ public class Main extends JFrame {
         /*
             Setting prices label for cleaning products
         */
-        cleanFirstPrice.setText((priceList.containsKey(1) ? PESO_SIGN + " " + priceList.get(0) : "EXPIRED PRODUCT"));
-
-
+        cleanFirstPrice.setText((priceList.containsKey(1) ? PESO_SIGN + " " + priceList.get(1) : "EXPIRED"));
+        hydroSafePrice.setText((priceList.containsKey(2) ? PESO_SIGN + " " + priceList.get(2) : "EXPIRED"));
+        hydroSafePrice.setText((priceList.containsKey(3) ? PESO_SIGN + " " + priceList.get(3) : "EXPIRED"));
+        hydroSafePrice.setText((priceList.containsKey(4) ? PESO_SIGN + " " + priceList.get(4) : "EXPIRED"));
+        hydroSafePrice.setText((priceList.containsKey(5) ? PESO_SIGN + " " + priceList.get(5) : "EXPIRED"));
+        hydroSafePrice.setText((priceList.containsKey(6) ? PESO_SIGN + " " + priceList.get(6) : "EXPIRED"));
+        hydroSafePrice.setText((priceList.containsKey(7) ? PESO_SIGN + " " + priceList.get(7) : "EXPIRED"));
+        hydroSafePrice.setText((priceList.containsKey(8) ? PESO_SIGN + " " + priceList.get(8) : "EXPIRED"));
+        hydroSafePrice.setText((priceList.containsKey(9) ? PESO_SIGN + " " + priceList.get(9) : "EXPIRED"));
+        hydroSafePrice.setText((priceList.containsKey(10) ? PESO_SIGN + " " + priceList.get(10) : "EXPIRED"));
+        hydroSafePrice.setText((priceList.containsKey(11) ? PESO_SIGN + " " + priceList.get(11) : "EXPIRED"));
     }
     /**
      * Method that sets the prices label for all the products.
@@ -165,7 +173,6 @@ public class Main extends JFrame {
 //        /*
 //            Setting prices label for cleaning products
 //         */
-//            cleanFirstPrice.setText(PESO_SIGN + " " + priceList.get(0));
 //            hydroSafePrice.setText(PESO_SIGN + " " + priceList.get(1));
 //            rightFlexPrice.setText(PESO_SIGN + " " + priceList.get(2));
 //            cloroxPrice.setText(PESO_SIGN + " " + priceList.get(3));
