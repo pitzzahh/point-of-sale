@@ -8,13 +8,15 @@ import org.springframework.context.support.AbstractApplicationContext;
 import javax.swing.table.DefaultTableCellRenderer;
 import com.pos.service.ProductService;
 import com.pos.service.SalesService;
-
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import com.pos.entity.Product;
+import com.pos.ui.Logout;
 import java.text.DateFormat;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,7 +29,7 @@ public class Main extends JFrame {
     private final ProductService PRODUCT_SERVICE = CONTEXT.getBean(ProductService.class);
     private final SalesService SALES_SERVICE = CONTEXT.getBean(SalesService.class);
 
-    private static final String OS_NAME = System.getProperty("os.name", "").toUpperCase();
+    public static final String OS_NAME = System.getProperty("os.name", "").toUpperCase();
     private final List<Order> ORDERS_LIST = new ArrayList<>();
 
     private final NumberFormat NUMBER_FORMAT = NumberFormat.getInstance(Locale.ENGLISH);
@@ -65,7 +67,7 @@ public class Main extends JFrame {
             data[1] = order.getPrice();
             data[2] = order.getCategory();
             data[3] = order.getQuantity();
-            data[4] = order.getDiscount();
+            data[4] = (order.getDiscount() == 0.0) ? "" : String.valueOf(order.getDiscount());
 
             defaultTableModel.addRow(data);
         }
@@ -293,8 +295,13 @@ public class Main extends JFrame {
                     Double.parseDouble(String.valueOf(ordersTable.getModel().getValueAt(ordersTable.getSelectedRow(), 1))),
                     Category.valueOf(String.valueOf(ordersTable.getModel().getValueAt(ordersTable.getSelectedRow(), 2))),
                     Integer.parseInt(String.valueOf(ordersTable.getModel().getValueAt(ordersTable.getSelectedRow(), 3))),
-                    Double.parseDouble(String.valueOf(ordersTable.getModel().getValueAt(ordersTable.getSelectedRow(), 4)))
-            );
+                    Double.parseDouble(
+                            ((String.valueOf(
+                                    ordersTable.getModel().getValueAt(ordersTable.getSelectedRow(), 4))
+                                    ).trim().isEmpty() ? "0" : (String.valueOf(
+                                    ordersTable.getModel().getValueAt(ordersTable.getSelectedRow(), 4)))
+                    )
+            ));
         } catch (RuntimeException ignored) {
             return null;
         }
@@ -594,6 +601,11 @@ public class Main extends JFrame {
         logout.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         logout.setForeground(new java.awt.Color(255, 0, 0));
         logout.setText("LOGOUT");
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
+            }
+        });
         informationPanel.add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 640, -1, 30));
 
         viewSales.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -1680,7 +1692,7 @@ public class Main extends JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Double.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Double.class
+                java.lang.String.class, java.lang.Double.class, java.lang.Object.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
@@ -1857,6 +1869,7 @@ public class Main extends JFrame {
         getContentPane().add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1368, 720));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void payActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payActionPerformed
@@ -1864,8 +1877,8 @@ public class Main extends JFrame {
             if (ORDERS_LIST.isEmpty()) throw new IllegalStateException("NO PRODUCTS TO PAY");
             if(cash.getText().trim().isEmpty()) throw new IllegalStateException("PLEASE INSERT YOUR CASH AMOUNT");
 
-            final double SUB_TOTAL = Double.parseDouble(subTotal.getText().trim());
-            final double CASH = Double.parseDouble(cash.getText().trim());
+            final double SUB_TOTAL = Double.parseDouble(subTotal.getText().trim().replaceAll(",", ""));
+            final double CASH = Double.parseDouble(cash.getText().trim().replaceAll(",", ""));
             if (CASH < SUB_TOTAL) throw new IllegalStateException("CASH AMOUNT NOT ENOUGH");
             change.setText(NUMBER_FORMAT.format(CASH - SUB_TOTAL));
             PROMPT.show.accept("SUCCESS", false);
@@ -2165,6 +2178,8 @@ public class Main extends JFrame {
 
     private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
         ORDERS_LIST.clear();
+        cash.setText("");
+        change.setText("0.00");
         refreshOrdersTable();
     }//GEN-LAST:event_resetActionPerformed
 
@@ -2182,6 +2197,11 @@ public class Main extends JFrame {
         }
 
     }//GEN-LAST:event_removeItemActionPerformed
+
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        var l = new Logout();
+        l.startProgressBar(() -> ORDERS_LIST.clear());
+    }//GEN-LAST:event_logoutActionPerformed
     
     /**
      * @param args the command line arguments
