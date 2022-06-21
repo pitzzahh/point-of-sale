@@ -2,10 +2,17 @@ package com.pos.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.io.Serial;
+
+import static javax.persistence.GenerationType.SEQUENCE;
 
 @Table(
         name = "sales",
         uniqueConstraints = {
+                @UniqueConstraint(
+                        name = "sales_number_unique",
+                        columnNames = "sales_number"
+                ),
                 @UniqueConstraint(
                         name = "product_id_unique",
                         columnNames = "product_id"
@@ -15,9 +22,27 @@ import javax.persistence.*;
 @Entity
 public class Sales implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
+    @Column(
+            name = "sales_number",
+            nullable = false,
+            columnDefinition = "INT",
+            unique = true
+    )
+    @SequenceGenerator(
+            name = "sales_sequence",
+            sequenceName = "sales_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = SEQUENCE,
+            generator = "sales_sequence"
+    )
+    private Integer salesNumber;
+
     @Column(
             name = "product_id",
             nullable = false,
