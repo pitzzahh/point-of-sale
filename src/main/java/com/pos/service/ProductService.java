@@ -5,7 +5,6 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import com.pos.entity.Product;
-import java.time.LocalDate;
 import java.util.List;
 
 public interface ProductService {
@@ -22,7 +21,8 @@ public interface ProductService {
     Function<String, Product> getProductByName();
 
     Function<Integer, Integer> getProductStocksById();
-    BiConsumer<LocalDate, Integer> updateProductExpiredStatusById();
+    
+    BiConsumer<Integer, Double> updateProductPriceById();
 
     Consumer<Integer> deleteProductById();
 

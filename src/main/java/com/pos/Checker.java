@@ -36,4 +36,12 @@ public class Checker {
         } catch (RuntimeException ignored) {}
         return false;
     }
+    
+    public static boolean isNumberWithDecimal(String string) {
+        try {
+            Double.parseDouble(string);
+            return true;
+        } catch (RuntimeException ignored) {}
+        return false;
+    }
 }

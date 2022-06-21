@@ -58,9 +58,7 @@ public class ManageProducts extends javax.swing.JFrame {
                 .stream()
                 .filter(product -> !product.getExpired())
                 .forEach(AVAILABLE_PRODUCTS::add);
-        refreshTable(AVAILABLE_PRODUCTS_TABLE);
     }
-
     /**
      * Method that loads the expired products from the database to the {@code List<Product>} EXPIRED_PRODUCTS.
      */
@@ -71,8 +69,6 @@ public class ManageProducts extends javax.swing.JFrame {
                 .stream()
                 .filter(Product::getExpired)
                 .forEach(EXPIRED_PRODUCTS::add);
-        
-        refreshTable(EXPIRED_PRODUCTS_TABLE);
     }
 
     /**
@@ -230,6 +226,11 @@ public class ManageProducts extends javax.swing.JFrame {
 
         editPrice.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         editPrice.setText("EDIT PRICE");
+        editPrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editPriceActionPerformed(evt);
+            }
+        });
         restockProductsPanel.add(editPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 490, 110, 30));
 
         editDiscount.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -320,8 +321,9 @@ public class ManageProducts extends javax.swing.JFrame {
             if (EXPIRED_PRODUCTS.isEmpty()) throw new IllegalStateException("THERE ARE NO EXPIRED PRODUCTS TO BE REMOVED\nLIST IS EMPTY");
             PRODUCT_SERVICE.deleteAllExpiredProducts();
             EXPIRED_PRODUCTS.clear();
-            Main.PROMPT.show.accept("EXPIRED PRODUCTS REMOVED SUCCESSFULLY", false);
+            loadExpiredProducts();
             refreshTable(EXPIRED_PRODUCTS_TABLE);
+            Main.PROMPT.show.accept("EXPIRED PRODUCTS REMOVED SUCCESSFULLY", false);
         } catch (RuntimeException runtimeException) {
             Main.PROMPT.show.accept(runtimeException.getMessage(), true);
         }
@@ -344,6 +346,8 @@ public class ManageProducts extends javax.swing.JFrame {
                 PRODUCT_SERVICE.getProductById()
                         .apply(selectedProduct)
                         .setStocks(newStocks);
+                AVAILABLE_PRODUCTS.clear();
+                loadAvailableProducts();
                 refreshTable(AVAILABLE_PRODUCTS_TABLE);
                 Main.PROMPT.show.accept("STOCKS EDITED SUCCESSFULLY", false);
             }
@@ -351,13 +355,33 @@ public class ManageProducts extends javax.swing.JFrame {
         } catch (RuntimeException runtimeException) {
             Main.PROMPT.show.accept(runtimeException.getMessage(), true);
         }
-        
     }//GEN-LAST:event_editStocksActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         AVAILABLE_PRODUCTS.clear();
         EXPIRED_PRODUCTS.clear();
     }//GEN-LAST:event_formWindowClosed
+
+    private void editPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPriceActionPerformed
+        try {
+            int selectedProduct = getProductFromTable(AVAILABLE_PRODUCTS_TABLE);
+            if (AVAILABLE_PRODUCTS.isEmpty()) throw new IllegalStateException("THERE ARE NO AVAILABLE PRODUCTS");
+            if (selectedProduct == 0) throw new IllegalStateException("TO ADD STOCKS TO A PRODUCT\nPLEASE SELECT A ROW FROM THE TABLE AND CLICK EDIT STOCKS");
+            String newPriceString = JOptionPane.showInputDialog("ENTER NEW PRICE");
+            double newPrice;
+            if (Checker.isNumber(newPriceString) || Checker.isNumberWithDecimal(newPriceString)) {
+                newPrice = Double.parseDouble(newPriceString);
+                PRODUCT_SERVICE.updateProductPriceById().accept(selectedProduct, newPrice);
+                AVAILABLE_PRODUCTS.clear();
+                loadAvailableProducts();
+                refreshTable(AVAILABLE_PRODUCTS_TABLE);
+                Main.PROMPT.show.accept("PRICE EDITED SUCCESSFULLY", false);
+            }
+            else throw new IllegalStateException("INVALID PRICE");
+        } catch (RuntimeException runtimeException) {
+            Main.PROMPT.show.accept(runtimeException.getMessage(), true);
+        }
+    }//GEN-LAST:event_editPriceActionPerformed
 
     /**
      * main method.

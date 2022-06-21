@@ -64,8 +64,8 @@ public class ProductServiceImplementation implements ProductService {
     }
 
     @Override
-    public BiConsumer<LocalDate, Integer> updateProductExpiredStatusById() {
-        return (newExpirationDate, id) -> productRepository.updateProductExpiredStatusById(false, id);
+    public BiConsumer<Integer, Double> updateProductPriceById() {
+        return (id, newPrice) -> productRepository.updateProductPriceById(id, newPrice);
     }
 
     @Override
