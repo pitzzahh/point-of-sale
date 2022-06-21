@@ -21,6 +21,9 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Query("select p from #{#entityName} p where p.name = ?1")
     Product getProductByName(String name);
 
+    @Query("select p.stocks from #{#entityName} p where id = ?1")
+    int getProductStocksById(int id);
+
     @Query("select p.expirationDate from #{#entityName} p")
     List<LocalDate> getAllProductsExpirationDate();
 

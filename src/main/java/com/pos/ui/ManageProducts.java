@@ -1,18 +1,17 @@
 package com.pos.ui;
 
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import java.util.stream.Collectors;
+import com.pos.service.ProductService;
 import static com.pos.Main.OS_NAME;
-import com.pos.Config;
 import com.pos.entity.Product;
 import java.util.ArrayList;
+import com.pos.Config;
 import java.util.List;
 import javax.swing.*;
 import com.pos.Main;
-import com.pos.service.ProductService;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.AbstractApplicationContext;
 
 /**
  *
@@ -27,8 +26,8 @@ public class ManageProducts extends javax.swing.JFrame {
     private final AbstractApplicationContext CONTEXT=  new AnnotationConfigApplicationContext(Config.class);
     public final ProductService PRODUCT_SERVICE = CONTEXT.getBean(ProductService.class);
 
-    private static final int IS_AVAILABLE_PRODUCTS_TABLE = 1;
-    private static final int IS_EXPIRED_PRODUCTS_TABLE = 2;
+    private static final int AVAILABLE_PRODUCTS_TABLE = 1;
+    private static final int EXPIRED_PRODUCTS_TABLE = 2;
 
     /**
      * Creates new form ExpiredProducts
@@ -54,27 +53,27 @@ public class ManageProducts extends javax.swing.JFrame {
      * Method that loads the available products which are not expired from the database to the {@code List<Product>} AVAILABLE_PRODUCTS.
      */
     private void loadAvailableProducts() {
-
-        AVAILABLE_PRODUCTS = PRODUCT_SERVICE
+        PRODUCT_SERVICE
                 .getAllProducts()
                 .get()
                 .stream()
                 .filter(product -> !product.getExpired())
-                .collect(Collectors.toList());
-        refreshTable(IS_AVAILABLE_PRODUCTS_TABLE);
+                .forEach(AVAILABLE_PRODUCTS::add);
+        refreshTable(AVAILABLE_PRODUCTS_TABLE);
     }
 
     /**
      * Method that loads the expired products from the database to the {@code List<Product>} EXPIRED_PRODUCTS.
      */
     private void loadExpiredProducts() {
-        EXPIRED_PRODUCTS = PRODUCT_SERVICE
+        PRODUCT_SERVICE
                 .getAllProducts()
                 .get()
                 .stream()
                 .filter(Product::getExpired)
-                .collect(Collectors.toList());
-        refreshTable(IS_EXPIRED_PRODUCTS_TABLE);
+                .forEach(EXPIRED_PRODUCTS::add);
+        
+        refreshTable(EXPIRED_PRODUCTS_TABLE);
     }
 
     /**
@@ -116,12 +115,22 @@ public class ManageProducts extends javax.swing.JFrame {
      * Method that makes an Order object based from the selection from the order table.
      * @return the product id of a selected product. returns 0 if no product was selected.
      */
-    private int getProductFromTableSelection() {
-        try {
-            return Integer.parseInt(String.valueOf(expiredProductsTable.getModel().getValueAt(expiredProductsTable.getSelectedRow(), 0)));
-        } catch (RuntimeException runtimeException) {
-            return 0;
+    private int getProductFromTable(int whatTable) {
+        if(whatTable == 1) {
+            try {
+                return Integer.parseInt(String.valueOf(availableProductsTable.getModel().getValueAt(availableProductsTable.getSelectedRow(), 0)));
+            } catch (RuntimeException runtimeException) {
+                return 0;
+            }
+        } 
+        if(whatTable == 2) {
+            try {
+                return Integer.parseInt(String.valueOf(expiredProductsTable.getModel().getValueAt(expiredProductsTable.getSelectedRow(), 0)));
+            } catch (RuntimeException runtimeException) {
+                return 0;
+            }
         }
+        return 0;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -208,6 +217,11 @@ public class ManageProducts extends javax.swing.JFrame {
 
         editStocks.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         editStocks.setText("EDIT STOCKS");
+        editStocks.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editStocksActionPerformed(evt);
+            }
+        });
         restockProductsPanel.add(editStocks, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 120, 30));
 
         editPrice.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -281,13 +295,13 @@ public class ManageProducts extends javax.swing.JFrame {
      */
     private void removeProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeProductActionPerformed
         try {
-            int selectedProduct = getProductFromTableSelection();
+            int selectedProduct = getProductFromTable(EXPIRED_PRODUCTS_TABLE);
             if (EXPIRED_PRODUCTS.isEmpty()) throw new IllegalStateException("THERE ARE NO EXPIRED PRODUCTS TO BE REMOVED\nLIST IS EMPTY");
             if (selectedProduct == 0) throw new IllegalStateException("TO REMOVE A PRODUCT\nPLEASE SELECT A ROW FROM THE TABLE AND CLICK REMOVE PRODUCT");
             PRODUCT_SERVICE.deleteProductById().accept(selectedProduct);
             EXPIRED_PRODUCTS.removeIf(product -> product.getId().equals(selectedProduct));
             Main.PROMPT.show.accept("PRODUCT REMOVED SUCCESSFULLY", false);
-            refreshTable(ManageProducts.IS_EXPIRED_PRODUCTS_TABLE);
+            refreshTable(EXPIRED_PRODUCTS_TABLE);
         } catch (RuntimeException runtimeException) {
             Main.PROMPT.show.accept(runtimeException.getMessage(), true);
         }
@@ -303,7 +317,7 @@ public class ManageProducts extends javax.swing.JFrame {
             PRODUCT_SERVICE.deleteAllExpiredProducts();
             EXPIRED_PRODUCTS.clear();
             Main.PROMPT.show.accept("EXPIRED PRODUCTS REMOVED SUCCESSFULLY", false);
-            refreshTable(ManageProducts.IS_EXPIRED_PRODUCTS_TABLE);
+            refreshTable(EXPIRED_PRODUCTS_TABLE);
         } catch (RuntimeException runtimeException) {
             Main.PROMPT.show.accept(runtimeException.getMessage(), true);
         }
@@ -312,6 +326,25 @@ public class ManageProducts extends javax.swing.JFrame {
     private void mainPanelTabComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_mainPanelTabComponentShown
         Main.PROMPT.show.accept(String.valueOf(evt.getComponent().getName().equals("RESTOCK PRODUCTS PANEL")), false);
     }//GEN-LAST:event_mainPanelTabComponentShown
+
+    private void editStocksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editStocksActionPerformed
+        try {
+            int selectedProduct = getProductFromTable(AVAILABLE_PRODUCTS_TABLE);
+            if (AVAILABLE_PRODUCTS.isEmpty()) throw new IllegalStateException("THERE ARE NO AVAILABLE PRODUCTS");
+            if (selectedProduct == 0) throw new IllegalStateException("TO ADD STOCKS TO A PRODUCT\nPLEASE SELECT A ROW FROM THE TABLE AND CLICK EDIT STOCKS");
+            int newStocks = Integer.parseInt(JOptionPane.showInputDialog("ENTER NEW STOCKS"));
+            if(PRODUCT_SERVICE.getProductStocksById().apply(selectedProduct) < newStocks) throw new IllegalStateException("NEW STOCKS SHOULD NOT BE LESS THAN CURRENT STOCKS");
+            PRODUCT_SERVICE.getProductById()
+                    .apply(selectedProduct)
+                    .setStocks(newStocks);
+            AVAILABLE_PRODUCTS.removeIf(product -> product.getId().equals(selectedProduct));
+            refreshTable(AVAILABLE_PRODUCTS_TABLE);
+            Main.PROMPT.show.accept("STOCKS EDITED SUCCESSFULLY", false);
+        } catch (RuntimeException runtimeException) {
+            Main.PROMPT.show.accept(runtimeException.getMessage(), true);
+        }
+        
+    }//GEN-LAST:event_editStocksActionPerformed
 
     /**
      * main method.

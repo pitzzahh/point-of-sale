@@ -21,6 +21,7 @@ public interface ProductService {
     Function<Integer, Product> getProductById();
     Function<String, Product> getProductByName();
 
+    Function<Integer, Integer> getProductStocksById();
     BiConsumer<LocalDate, Integer> updateProductExpiredStatusById();
 
     Consumer<Integer> deleteProductById();
