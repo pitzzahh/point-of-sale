@@ -44,8 +44,6 @@ public class ManageProducts extends javax.swing.JFrame {
         availableProductsTable.getColumnModel().getColumn(5).setCellRenderer(RENDERER);
         availableProductsTable.getColumnModel().getColumn(6).setCellRenderer(RENDERER);
         expiredProductsTable.getColumnModel().getColumn(0).setCellRenderer(RENDERER);
-
-
         loadAvailableProducts();
         loadExpiredProducts();
     }
@@ -161,6 +159,11 @@ public class ManageProducts extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -351,6 +354,11 @@ public class ManageProducts extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_editStocksActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        AVAILABLE_PRODUCTS.clear();
+        EXPIRED_PRODUCTS.clear();
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * main method.

@@ -118,7 +118,8 @@ public class Main extends JFrame {
                     .setQuantity(isRemovingProduct ? (order.getQuantity() - 1) : order.getQuantity() + 1);
         }
     }
-
+    
+    // <editor-fold defaultstate="collapsed" desc="Method that sets the prices ont product labels.">//
     private void setProductsPrices() {
         final char PESO_SIGN = '₱';
 
@@ -134,153 +135,87 @@ public class Main extends JFrame {
                         }, Hashtable::new
                 ));
 
-        priceList.forEach(
-                (key, value) -> System.out.println(
-                        "key = " + key + "\n" +
-                        "value = " + value
-                )
-        );
-        
         /*
             Setting prices label for cleaning products
         */
         cleanFirstPrice.setText((priceList.containsKey(1) ? PESO_SIGN + " " + priceList.get(1) : "EXPIRED"));
         hydroSafePrice.setText((priceList.containsKey(2) ? PESO_SIGN + " " + priceList.get(2) : "EXPIRED"));
-        hydroSafePrice.setText((priceList.containsKey(3) ? PESO_SIGN + " " + priceList.get(3) : "EXPIRED"));
-        hydroSafePrice.setText((priceList.containsKey(4) ? PESO_SIGN + " " + priceList.get(4) : "EXPIRED"));
-        hydroSafePrice.setText((priceList.containsKey(5) ? PESO_SIGN + " " + priceList.get(5) : "EXPIRED"));
-        hydroSafePrice.setText((priceList.containsKey(6) ? PESO_SIGN + " " + priceList.get(6) : "EXPIRED"));
-        hydroSafePrice.setText((priceList.containsKey(7) ? PESO_SIGN + " " + priceList.get(7) : "EXPIRED"));
-        hydroSafePrice.setText((priceList.containsKey(8) ? PESO_SIGN + " " + priceList.get(8) : "EXPIRED"));
-        hydroSafePrice.setText((priceList.containsKey(9) ? PESO_SIGN + " " + priceList.get(9) : "EXPIRED"));
-        hydroSafePrice.setText((priceList.containsKey(10) ? PESO_SIGN + " " + priceList.get(10) : "EXPIRED"));
-        hydroSafePrice.setText((priceList.containsKey(11) ? PESO_SIGN + " " + priceList.get(11) : "EXPIRED"));
-    }
-    /**
-     * Method that sets the prices label for all the products.
-     * Products discount is already computed and discounted price will be shown to the label.
-     */
-//    private void setProductsPrices() {
-//        final char PESO_SIGN = '₱';
-//
-//        List<Double> priceList = PRODUCT_SERVICE.getAllProducts().get()
-//                        .stream()
-//                        .map(p -> (p.getDiscount() != null) ? (p.getPrice() - p.getDiscount()) : p.getPrice())
-//                        .toList();
-//
-//
-//        try{
-//        /*
-//            Setting prices label for cleaning products
-//         */
-//            hydroSafePrice.setText(PESO_SIGN + " " + priceList.get(1));
-//            rightFlexPrice.setText(PESO_SIGN + " " + priceList.get(2));
-//            cloroxPrice.setText(PESO_SIGN + " " + priceList.get(3));
-//            dirtBustersPrice.setText(PESO_SIGN + " " + priceList.get(4));
-//            myCleanPrice.setText(PESO_SIGN + " " + priceList.get(5));
-//            cleanCutPrice.setText(PESO_SIGN + " " + priceList.get(6));
-//            sureCleanPrice.setText(PESO_SIGN + " " + priceList.get(7));
-//            arielPrice.setText(PESO_SIGN + " " + priceList.get(8));
-//            joyPrice.setText(PESO_SIGN + " " + priceList.get(9));
-//            smartPrice.setText(PESO_SIGN + " " + priceList.get(10));
-//            domexPrice.setText(PESO_SIGN + " " + priceList.get(11));
-//            mrMusclePrice.setText(PESO_SIGN + " " + priceList.get(12));
-//            lysolPrice.setText(PESO_SIGN + " " + priceList.get(13));
-//            surfPrice.setText(PESO_SIGN + " " + priceList.get(14));
-//
-//        /*
-//            Setting prices label for chocolates
-//         */
-//            hersheysPrice.setText(PESO_SIGN + " " + priceList.get(15));
-//            snickersPrice.setText(PESO_SIGN + " " + priceList.get(16));
-//            ferreroRocherPrice.setText(PESO_SIGN + " " + priceList.get(17));
-//            esthechocPrice.setText(PESO_SIGN + " " + priceList.get(18));
-//            flyingNoirPrice.setText(PESO_SIGN + " " + priceList.get(19));
-//            drostePrice.setText(PESO_SIGN + " " + priceList.get(20));
-//            wittakersPrice.setText(PESO_SIGN + " " + priceList.get(21));
-//            amedeiPrice.setText(PESO_SIGN + " " + priceList.get(22));
-//            jacquesGeninPrice.setText(PESO_SIGN + " " + priceList.get(23));
-//            richartPrice.setText(PESO_SIGN + " " + priceList.get(24));
-//            patchiPrice.setText(PESO_SIGN + " " + priceList.get(25));
-//            teuscherPrice.setText(PESO_SIGN + " " + priceList.get(26));
-//            valrhonaPrice.setText(PESO_SIGN + " " + priceList.get(27));
-//            dovePrice.setText(PESO_SIGN + " " + priceList.get(28));
-//            russelStoverPrice.setText(PESO_SIGN + " " + priceList.get(29));
-//            ritterSportPrice.setText(PESO_SIGN + " " + priceList.get(30));
-//            guyLianPrice.setText(PESO_SIGN + " " + priceList.get(31));
-//            kinderPrice.setText(PESO_SIGN + " " + priceList.get(32));
-//            marsPrice.setText(PESO_SIGN + " " + priceList.get(33));
-//            tobleronePrice.setText(PESO_SIGN + " " + priceList.get(34));
-//            nestlePrice.setText(PESO_SIGN + " " + priceList.get(35));
-//            milkaPrice.setText(PESO_SIGN + " " + priceList.get(36));
-//            ghirardellPrice.setText(PESO_SIGN + " " + priceList.get(37));
-//            cadburyPrice.setText(PESO_SIGN + " " + priceList.get(38));
-//            if (PRODUCT_SERVICE.getProductById().apply(40).equals(null)) godivaPrice.setText("EXPIRED PRODUCT");
-//            else godivaPrice.setText(PESO_SIGN + " " + priceList.get(39));
-//
-//        /*
-//            Setting prices label for beverages
-//         */
-//            cocaColaPrice.setText(PESO_SIGN + " " + priceList.get(40));
-//            pepsiPrice.setText(PESO_SIGN + " " + priceList.get(41));
-//            redBullPrice.setText(PESO_SIGN + " " + priceList.get(42));
-//            budWeiserPrice.setText(PESO_SIGN + " " + priceList.get(43));
-//            heinekenPrice.setText(PESO_SIGN + " " + priceList.get(44));
-//            gatoradePrice.setText(PESO_SIGN + " " + priceList.get(45));
-//            spritePrice.setText(PESO_SIGN + " " + priceList.get(46));
-//            minuteMaidPrice.setText(PESO_SIGN + " " + priceList.get(47));
-//            tropicanaPrice.setText(PESO_SIGN + " " + priceList.get(48));
-//            dolePrice.setText(PESO_SIGN + " " + priceList.get(49));
-//            koolAidPrice.setText(PESO_SIGN + " " + priceList.get(50));
-//            sevenUpPrice.setText(PESO_SIGN + " " + priceList.get(51));
-//            mountainDewPrice.setText(PESO_SIGN + " " + priceList.get(52));
-//            liptonPrice.setText(PESO_SIGN + " " + priceList.get(53));
-//            sunkistPrice.setText(PESO_SIGN + " " + priceList.get(54));
-//            appleJuicePrice.setText(PESO_SIGN + " " + priceList.get(55));
-//            pineAppleJuicePrice.setText(PESO_SIGN + " " + priceList.get(56));
-//            blackCherPrice.setText(PESO_SIGN + " " + priceList.get(57));
-//            // liquors
-//            try {
-//                if (!PRODUCT_SERVICE.getProductById().apply(59).equals(null)) tequilaPrice.setText(PESO_SIGN + " " + priceList.get(58));
-//            } catch (NullPointerException ignored) {
-//                tequilaPrice.setText("EXPIRED PRODUCT");
-//            }
-//
-//            try {
-//                if (!PRODUCT_SERVICE.getProductById().apply(60).equals(null)) beerPrice.setText(PESO_SIGN + " " + priceList.get(59));
-//            } catch (NullPointerException ignored) {
-//                beerPrice.setText("EXPIRED PRODUCT");
-//            }
-//
-//            try{
-//                if (!PRODUCT_SERVICE.getProductById().apply(61).equals(null)) winePrice.setText(PESO_SIGN + " " + priceList.get(60));
-//            } catch (NullPointerException ignored) {
-//                winePrice.setText("EXPIRED PRODUCT");
-//            }
-//
-//            if (PRODUCT_SERVICE.getProductById().apply(62).equals(null)) hardCiderPrice.setText("EXPIRED PRODUCT");
-//            else hardCiderPrice.setText(PESO_SIGN + " " + priceList.get(61));
-//
-//            if (PRODUCT_SERVICE.getProductById().apply(63).equals(null)) meadPrice.setText("EXPIRED PRODUCT");
-//            else meadPrice.setText(PESO_SIGN + " " + priceList.get(62));
-//
-//            if (PRODUCT_SERVICE.getProductById().apply(64).equals(null)) ginPrice.setText("EXPIRED PRODUCT");
-//            else ginPrice.setText(PESO_SIGN + " " + priceList.get(63));
-//
-//            if (PRODUCT_SERVICE.getProductById().apply(65).equals(null)) brandyPrice.setText("EXPIRED PRODUCT");
-//            else brandyPrice.setText(PESO_SIGN + " " + priceList.get(64));
-//
-//            if (PRODUCT_SERVICE.getProductById().apply(66).equals(null)) whiskyPrice.setText("EXPIRED PRODUCT");
-//            else whiskyPrice.setText(PESO_SIGN + " " + priceList.get(65));
-//
-//            if (PRODUCT_SERVICE.getProductById().apply(67).equals(null)) rumPrice.setText("EXPIRED PRODUCT");
-//            else rumPrice.setText(PESO_SIGN + " " + priceList.get(66));
-//
-//            if (PRODUCT_SERVICE.getProductById().apply(68).equals(null)) vodkaPrice.setText("EXPIRED PRODUCT");
-//            else vodkaPrice.setText(PESO_SIGN + " " + priceList.get(67));
-//        } catch (NullPointerException ignored) {}
-//    }
-
+        rightFlexPrice.setText((priceList.containsKey(3) ? PESO_SIGN + " " + priceList.get(3) : "EXPIRED"));
+        cloroxPrice.setText((priceList.containsKey(4) ? PESO_SIGN + " " + priceList.get(4) : "EXPIRED"));
+        dirtBustersPrice.setText((priceList.containsKey(5) ? PESO_SIGN + " " + priceList.get(5) : "EXPIRED"));
+        myCleanPrice.setText((priceList.containsKey(6) ? PESO_SIGN + " " + priceList.get(6) : "EXPIRED"));
+        cleanCutPrice.setText((priceList.containsKey(7) ? PESO_SIGN + " " + priceList.get(7) : "EXPIRED"));
+        sureCleanPrice.setText((priceList.containsKey(8) ? PESO_SIGN + " " + priceList.get(8) : "EXPIRED"));
+        arielPrice.setText((priceList.containsKey(9) ? PESO_SIGN + " " + priceList.get(9) : "EXPIRED"));
+        joyPrice.setText((priceList.containsKey(10) ? PESO_SIGN + " " + priceList.get(10) : "EXPIRED"));
+        smartPrice.setText((priceList.containsKey(11) ? PESO_SIGN + " " + priceList.get(11) : "EXPIRED"));
+        domexPrice.setText((priceList.containsKey(12) ? PESO_SIGN + " " + priceList.get(12) : "EXPIRED"));
+        mrMusclePrice.setText((priceList.containsKey(13) ? PESO_SIGN + " " + priceList.get(13) : "EXPIRED"));
+        lysolPrice.setText((priceList.containsKey(14) ? PESO_SIGN + " " + priceList.get(14) : "EXPIRED"));
+        surfPrice.setText((priceList.containsKey(15) ? PESO_SIGN + " " + priceList.get(15) : "EXPIRED"));
+        
+        /*
+            Setting prices label for chcolates
+        */
+        hersheysPrice.setText((priceList.containsKey(16) ? PESO_SIGN + " " + priceList.get(16) : "EXPIRED"));
+        snickersPrice.setText((priceList.containsKey(17) ? PESO_SIGN + " " + priceList.get(17) : "EXPIRED"));
+        ferreroRocherPrice.setText((priceList.containsKey(18) ? PESO_SIGN + " " + priceList.get(18) : "EXPIRED"));
+        esthechocPrice.setText((priceList.containsKey(19) ? PESO_SIGN + " " + priceList.get(19) : "EXPIRED"));
+        flyingNoirPrice.setText((priceList.containsKey(20) ? PESO_SIGN + " " + priceList.get(20) : "EXPIRED"));
+        drostePrice.setText((priceList.containsKey(21) ? PESO_SIGN + " " + priceList.get(21) : "EXPIRED"));
+        wittakersPrice.setText((priceList.containsKey(22) ? PESO_SIGN + " " + priceList.get(22) : "EXPIRED"));
+        amedeiPrice.setText((priceList.containsKey(23) ? PESO_SIGN + " " + priceList.get(23) : "EXPIRED"));
+        jacquesGeninPrice.setText((priceList.containsKey(24) ? PESO_SIGN + " " + priceList.get(24) : "EXPIRED"));
+        richartPrice.setText((priceList.containsKey(25) ? PESO_SIGN + " " + priceList.get(25) : "EXPIRED"));
+        patchiPrice.setText((priceList.containsKey(26) ? PESO_SIGN + " " + priceList.get(26) : "EXPIRED"));
+        teuscherPrice.setText((priceList.containsKey(27) ? PESO_SIGN + " " + priceList.get(27) : "EXPIRED"));
+        valrhonaPrice.setText((priceList.containsKey(28) ? PESO_SIGN + " " + priceList.get(28) : "EXPIRED"));
+        dovePrice.setText((priceList.containsKey(29) ? PESO_SIGN + " " + priceList.get(29) : "EXPIRED"));
+        russelStoverPrice.setText((priceList.containsKey(30) ? PESO_SIGN + " " + priceList.get(30) : "EXPIRED"));
+        ritterSportPrice.setText((priceList.containsKey(31) ? PESO_SIGN + " " + priceList.get(31) : "EXPIRED"));
+        guyLianPrice.setText((priceList.containsKey(32) ? PESO_SIGN + " " + priceList.get(32) : "EXPIRED"));
+        kinderPrice.setText((priceList.containsKey(33) ? PESO_SIGN + " " + priceList.get(33) : "EXPIRED"));
+        marsPrice.setText((priceList.containsKey(34) ? PESO_SIGN + " " + priceList.get(34) : "EXPIRED"));
+        tobleronePrice.setText((priceList.containsKey(35) ? PESO_SIGN + " " + priceList.get(35) : "EXPIRED"));
+        nestlePrice.setText((priceList.containsKey(36) ? PESO_SIGN + " " + priceList.get(36) : "EXPIRED"));
+        milkaPrice.setText((priceList.containsKey(37) ? PESO_SIGN + " " + priceList.get(37) : "EXPIRED"));
+        ghirardellPrice.setText((priceList.containsKey(38) ? PESO_SIGN + " " + priceList.get(38) : "EXPIRED"));
+        cadburyPrice.setText((priceList.containsKey(39) ? PESO_SIGN + " " + priceList.get(39) : "EXPIRED"));
+        godivaPrice.setText((priceList.containsKey(40) ? PESO_SIGN + " " + priceList.get(400) : "EXPIRED"));
+        
+        /*
+            Setting price labels for beverages
+        */
+        cocaColaPrice.setText((priceList.containsKey(41) ? PESO_SIGN + " " + priceList.get(41) : "EXPIRED"));
+        pepsiPrice.setText((priceList.containsKey(42) ? PESO_SIGN + " " + priceList.get(42) : "EXPIRED"));
+        redBullPrice.setText((priceList.containsKey(43) ? PESO_SIGN + " " + priceList.get(43) : "EXPIRED"));
+        budWeiserPrice.setText((priceList.containsKey(44) ? PESO_SIGN + " " + priceList.get(44) : "EXPIRED"));
+        heinekenPrice.setText((priceList.containsKey(45) ? PESO_SIGN + " " + priceList.get(45) : "EXPIRED"));
+        gatoradePrice.setText((priceList.containsKey(46) ? PESO_SIGN + " " + priceList.get(46) : "EXPIRED"));
+        spritePrice.setText((priceList.containsKey(47) ? PESO_SIGN + " " + priceList.get(47) : "EXPIRED"));
+        minuteMaidPrice.setText((priceList.containsKey(48) ? PESO_SIGN + " " + priceList.get(48) : "EXPIRED"));
+        tropicanaPrice.setText((priceList.containsKey(49) ? PESO_SIGN + " " + priceList.get(49) : "EXPIRED"));
+        dolePrice.setText((priceList.containsKey(50) ? PESO_SIGN + " " + priceList.get(50) : "EXPIRED"));
+        koolAidPrice.setText((priceList.containsKey(51) ? PESO_SIGN + " " + priceList.get(51) : "EXPIRED"));
+        sevenUpPrice.setText((priceList.containsKey(52) ? PESO_SIGN + " " + priceList.get(52) : "EXPIRED"));
+        mountainDewPrice.setText((priceList.containsKey(53) ? PESO_SIGN + " " + priceList.get(53) : "EXPIRED"));
+        liptonPrice.setText((priceList.containsKey(54) ? PESO_SIGN + " " + priceList.get(54) : "EXPIRED"));
+        sunkistPrice.setText((priceList.containsKey(55) ? PESO_SIGN + " " + priceList.get(55) : "EXPIRED"));
+        appleJuicePrice.setText((priceList.containsKey(56) ? PESO_SIGN + " " + priceList.get(56) : "EXPIRED"));
+        pineAppleJuicePrice.setText((priceList.containsKey(57) ? PESO_SIGN + " " + priceList.get(57) : "EXPIRED"));
+        blackCherPrice.setText((priceList.containsKey(58) ? PESO_SIGN + " " + priceList.get(58) : "EXPIRED"));
+        // liquors
+        tequilaPrice.setText((priceList.containsKey(59) ? PESO_SIGN + " " + priceList.get(59) : "EXPIRED"));
+        beerPrice.setText((priceList.containsKey(60) ? PESO_SIGN + " " + priceList.get(60) : "EXPIRED"));
+        winePrice.setText((priceList.containsKey(61) ? PESO_SIGN + " " + priceList.get(61) : "EXPIRED"));
+        hardCiderPrice.setText((priceList.containsKey(62) ? PESO_SIGN + " " + priceList.get(62) : "EXPIRED"));
+        meadPrice.setText((priceList.containsKey(63) ? PESO_SIGN + " " + priceList.get(63) : "EXPIRED"));
+        ginPrice.setText((priceList.containsKey(64) ? PESO_SIGN + " " + priceList.get(64) : "EXPIRED"));
+        brandyPrice.setText((priceList.containsKey(65) ? PESO_SIGN + " " + priceList.get(65) : "EXPIRED"));
+        whiskyPrice.setText((priceList.containsKey(66) ? PESO_SIGN + " " + priceList.get(66) : "EXPIRED"));
+        rumPrice.setText((priceList.containsKey(67) ? PESO_SIGN + " " + priceList.get(67) : "EXPIRED"));
+        vodkaPrice.setText((priceList.containsKey(68) ? PESO_SIGN + " " + priceList.get(68) : "EXPIRED"));
+    }// </editor-fold>//
 
     // <editor-fold defaultstate="collapsed" desc="Method that gets the number expired products and returns it.">//
     private int getExpiredProductsCount() {
@@ -670,6 +605,11 @@ public class Main extends JFrame {
 
         viewSales.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         viewSales.setText("VIEW SALES");
+        viewSales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewSalesActionPerformed(evt);
+            }
+        });
         informationPanel.add(viewSales, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 170, 30));
 
         mainPanel.add(informationPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 260, 680));
@@ -2022,7 +1962,17 @@ public class Main extends JFrame {
     private void manageProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageProductsActionPerformed
         new ManageProducts().setVisible(true);
     }//GEN-LAST:event_manageProductsActionPerformed
-
+    /**
+     * Method that gets the time the JVM takes to execute a code block.
+     * @param block the code block to calculate the time for it to terminate.
+     * @return the time taken by a code block before terminating.
+     */
+    public long getTime(Runnable block) {
+        long start = System.nanoTime();
+        block.run();
+        long end = System.nanoTime();
+        return (long) ((end - start) / 1.0e9);
+    }
     private void cleanFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleanFirstActionPerformed
         handleOrder(1);
     }//GEN-LAST:event_cleanFirstActionPerformed
@@ -2336,6 +2286,10 @@ public class Main extends JFrame {
         , Progress.LOGGING_OUT);
 
     }//GEN-LAST:event_logoutActionPerformed
+
+    private void viewSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewSalesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewSalesActionPerformed
 
     /**
      * @param args the command line arguments

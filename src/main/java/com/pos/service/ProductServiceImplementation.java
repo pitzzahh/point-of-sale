@@ -26,8 +26,10 @@ public class ProductServiceImplementation implements ProductService {
 
     @Override
     public Supplier<Integer> getExpiredProductsCount() {
-        return () -> (int) productRepository.getAllProductsExpirationDate()
-                .stream().filter(localDate -> localDate.isBefore(LocalDate.now()))
+        updateAllProductsExpirationDate();
+        return () -> (int) productRepository.getAllProducts()
+                .stream()
+                .filter(p -> p.getExpired() == true)
                 .count();
     }
 

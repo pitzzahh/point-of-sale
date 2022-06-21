@@ -30,13 +30,16 @@ public class Progress extends javax.swing.JFrame {
      * @param progressType the type of progress bar if logging out or printing receipt.
      */
     public void startProgressBar(Runnable block, int progressType) {
+        
         if(progressType == 1) message.setText("LOGGING OUT");
         if(progressType == 2) message.setText("PRINTING RECEIPT");
         if(progressType == 3) message.setText("LOADING. PLEASE WAIT");
         
+        block.run();
+        
         final Thread TIME_THREAD = new Thread(() -> {
             final int MINIMUM = 0;
-            final int MAXIMUM = 10;
+            final int MAXIMUM = (int) getTime();
             progressBar.setMinimum(MINIMUM);
             progressBar.setMaximum(MAXIMUM);
             progressBar.setValue(0);
@@ -44,11 +47,13 @@ public class Progress extends javax.swing.JFrame {
             for(int i = MINIMUM; i < MAXIMUM; i++) {
                 progressBar.setValue(i);
                 try {
-                    Thread.sleep(getTime(block));
+                    Thread.sleep(getTime());
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Progress.class.getName()).log(Level.SEVERE, null, ex);
+                    break;
                 }
             }
+            this.setVisible(false);
             if(progressType == 1) System.exit(0);
         });
         TIME_THREAD.setPriority(Thread.MIN_PRIORITY);
@@ -60,9 +65,8 @@ public class Progress extends javax.swing.JFrame {
      * @param block the code block to calculate the time for it to terminate.
      * @return the time taken by a code block before terminating.
      */
-    private long getTime(Runnable block) {
+    private long getTime() {
         long start = System.nanoTime();
-        block.run();
         long end = System.nanoTime();
         return (long) ((end - start) / 1.0e9);
     }
