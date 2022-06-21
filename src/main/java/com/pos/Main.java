@@ -35,7 +35,7 @@ public class Main extends JFrame {
 
     private final NumberFormat NUMBER_FORMAT = NumberFormat.getInstance(Locale.ENGLISH);
 
-    private static final Prompt PROMPT = new Prompt();
+    public static final Prompt PROMPT = new Prompt();
     
     /**
      * Creates new form Main
@@ -128,8 +128,14 @@ public class Main extends JFrame {
                         .stream()
                         .map(p -> (p.getDiscount() != null) ? (p.getPrice() - p.getDiscount()) : p.getPrice())
                         .toList();
+//        for (Product product : PRODUCT_SERVICE.getAllProducts().get()) {
+//            System.out.println("id = " + product.getId());
+//            System.out.println("name = " + product.getName());
+//            System.out.println("price = " + product.getPrice());
+//        }
 
-
+//        if (!PRODUCT_SERVICE.getProductById().apply(1).equals(null)) cleanFirstPrice.setText(PESO_SIGN + " " + priceList.get(0));
+//        else cleanFirstPrice.setText("EXPIRED PRODUCT");
         /*
             Setting prices label for cleaning products
          */
@@ -207,19 +213,11 @@ public class Main extends JFrame {
         meadPrice.setText(PESO_SIGN + " " + priceList.get(62));
         ginPrice.setText(PESO_SIGN + " " + priceList.get(63));
         brandyPrice.setText(PESO_SIGN + " " + priceList.get(64));
+//        if (PRODUCT_SERVICE.getProductById().apply(66).equals(null)) whiskyPrice.setText("EXPIRED PRODUCT");
+//        else whiskyPrice.setText(PESO_SIGN + " " + priceList.get(65));
         whiskyPrice.setText(PESO_SIGN + " " + priceList.get(65));
         rumPrice.setText(PESO_SIGN + " " + priceList.get(66));
         vodkaPrice.setText(PESO_SIGN + " " + priceList.get(67));
-
-    }
-
-    private Product getProductById(int id) throws IllegalAccessException {
-        return PRODUCT_SERVICE.getAllProducts()
-                .get()
-                .stream()
-                .filter(product -> product.getId().equals(id))
-                .findAny()
-                .orElseThrow(() -> new IllegalAccessException("Product with id: " + id + " does not exist"));
 
     }
 
@@ -290,6 +288,10 @@ public class Main extends JFrame {
         totalDiscount.setText(String.valueOf(NUMBER_FORMAT.format(TOTAL_DISCOUNT)));
     }
 
+    /**
+     * Method that makes an Order object based from the selection from the order table.
+     * @return
+     */
     private Order getOrderFromTableSelection() {
         try{
             return new Order(
@@ -2202,9 +2204,15 @@ public class Main extends JFrame {
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         var progress = new Progress();
-        progress.startProgressBar(ORDERS_LIST::clear, Progress.LOGGING_OUT);
+        progress.startProgressBar( () -> {
+                    ORDERS_LIST.clear();
+                    ManageProducts.AVAILABLE_PRODUCTS.clear();
+                    ManageProducts.EXPIRED_PRODUCTS.clear();
+                }
+        , Progress.LOGGING_OUT);
+
     }//GEN-LAST:event_logoutActionPerformed
-    
+
     /**
      * @param args the command line arguments
      */

@@ -4,6 +4,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.pos.repository.ProductRepository;
+
+import java.io.File;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -13,6 +15,7 @@ import com.pos.entity.Category;
 import com.pos.entity.Product;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import com.pos.Checker;
 import java.util.List;
 
 @Transactional
@@ -64,6 +67,11 @@ public class ProductServiceImplementation implements ProductService {
         return productRepository::deleteProductById;
     }
 
+    @Override
+    public void deleteAllExpiredProducts() {
+        productRepository.deleteAllExpiredProducts();
+    }
+
     /**
      * checks all the product's expiration date and updates the expired column if a product is expired.
      */
@@ -79,11 +87,20 @@ public class ProductServiceImplementation implements ProductService {
 
     }
 
+    /**
+     * Method that inserts all the products to the table in the database.
+     * If the products have been added to the table in the database, it will skip the insertion.
+     */
     @Override
     public void insertAllProductsToDatabase() {
-        int size = productRepository.getAllProducts().size();
-        if (initializeAllProducts().size() != size) productRepository.saveAll(initializeAllProducts());
+        if (!new File("src/main/resources/check.txt").exists()) productRepository.saveAll(initializeAllProducts());
+        Checker.createFile();
     }
+
+    /**
+     * Method that makes all the products to be added to the table in the database.
+     * @return a {@code List<Product>} containing the products.
+     */
     private List<Product> initializeAllProducts() {
 
         /*

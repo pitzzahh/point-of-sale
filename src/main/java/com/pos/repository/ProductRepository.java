@@ -33,9 +33,9 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Transactional
     @Query("delete from #{#entityName} p where p.id = ?1")
     void deleteProductById(int id);
-
+    
     @Modifying
     @Transactional
-    @Query("delete from #{#entityName} p where p.expired = ?1")
+    @Query("delete from #{#entityName} p where p.expired = TRUE")
     void deleteAllExpiredProducts();
 }

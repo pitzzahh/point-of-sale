@@ -8,12 +8,14 @@ import javax.swing.UIManager;
 import com.pos.Main;
 
 /**
- *
+ * Class used for creating a loading progress bar.
+ * The progress of the progress bar depends on the time taken by the program before it terminates.
  * @author peter
  */
 public class Progress extends javax.swing.JFrame {
     public static final int LOGGING_OUT = 1;
     public static final int PRINTING_RECIPT = 2;
+    public static final int LOADING = 3;
     /**
      * Creates new form Logout
      */
@@ -30,6 +32,7 @@ public class Progress extends javax.swing.JFrame {
     public void startProgressBar(Runnable block, int progressType) {
         if(progressType == 1) message.setText("LOGGING OUT");
         if(progressType == 2) message.setText("PRINTING RECEIPT");
+        if(progressType == 3) message.setText("LOADING. PLEASE WAIT");
         
         final Thread TIME_THREAD = new Thread(() -> {
             final int MINIMUM = 0;
