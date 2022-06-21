@@ -4,6 +4,7 @@ import java.io.*;
 
 /**
  * Class used to check whether the products have been added to the table in the database.
+ * Also used for some input checking.
  * Used to fix the bug that makes the program add more products to the database everytime the program is re executed.
  * @author peter
  */
@@ -26,5 +27,13 @@ public class Checker {
             bufferedWriter.write("This file is used to check whether the products are in the database, just checks if this files exists.");
             bufferedWriter.close();
         }
+    }
+
+    public static boolean isNumber(String string) {
+        try {
+            Integer.parseInt(string);
+            return true;
+        } catch (RuntimeException ignored) {}
+        return false;
     }
 }

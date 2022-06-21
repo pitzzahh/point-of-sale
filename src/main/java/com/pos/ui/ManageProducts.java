@@ -1,5 +1,6 @@
 package com.pos.ui;
 
+import com.pos.Checker;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -332,14 +333,19 @@ public class ManageProducts extends javax.swing.JFrame {
             int selectedProduct = getProductFromTable(AVAILABLE_PRODUCTS_TABLE);
             if (AVAILABLE_PRODUCTS.isEmpty()) throw new IllegalStateException("THERE ARE NO AVAILABLE PRODUCTS");
             if (selectedProduct == 0) throw new IllegalStateException("TO ADD STOCKS TO A PRODUCT\nPLEASE SELECT A ROW FROM THE TABLE AND CLICK EDIT STOCKS");
-            int newStocks = Integer.parseInt(JOptionPane.showInputDialog("ENTER NEW STOCKS"));
-            if(PRODUCT_SERVICE.getProductStocksById().apply(selectedProduct) < newStocks) throw new IllegalStateException("NEW STOCKS SHOULD NOT BE LESS THAN CURRENT STOCKS");
-            PRODUCT_SERVICE.getProductById()
-                    .apply(selectedProduct)
-                    .setStocks(newStocks);
-            AVAILABLE_PRODUCTS.removeIf(product -> product.getId().equals(selectedProduct));
-            refreshTable(AVAILABLE_PRODUCTS_TABLE);
-            Main.PROMPT.show.accept("STOCKS EDITED SUCCESSFULLY", false);
+            String newStocksInStrings = JOptionPane.showInputDialog("ENTER NEW STOCKS");
+            int newStocks;
+            if (Checker.isNumber(newStocksInStrings)) {
+                newStocks = Integer.parseInt(newStocksInStrings);
+                if(PRODUCT_SERVICE.getProductStocksById().apply(selectedProduct) < newStocks) throw new IllegalStateException("NEW STOCKS SHOULD NOT BE LESS THAN CURRENT STOCKS");
+                PRODUCT_SERVICE.getProductById()
+                        .apply(selectedProduct)
+                        .setStocks(newStocks);
+                AVAILABLE_PRODUCTS.removeIf(product -> product.getId().equals(selectedProduct));
+                refreshTable(AVAILABLE_PRODUCTS_TABLE);
+                Main.PROMPT.show.accept("STOCKS EDITED SUCCESSFULLY", false);
+            }
+            else throw new IllegalStateException("INVALID STOCKS");
         } catch (RuntimeException runtimeException) {
             Main.PROMPT.show.accept(runtimeException.getMessage(), true);
         }
