@@ -15,7 +15,16 @@ public class Checker {
     public static void createFile() {
         try {
             File file = new File("src/main/resources/check.txt");
-            if (!file.exists()) file.createNewFile();
+            if (!file.exists()) writeToFile(file);
         } catch (IOException ignored) {}
+    }
+
+    private static void writeToFile(File file) throws IOException {
+        boolean created = file.createNewFile();
+        if (created) {
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
+            bufferedWriter.write("This file is used to check whether the products are in the database, just checks if this files exists.");
+            bufferedWriter.close();
+        }
     }
 }
