@@ -340,11 +340,10 @@ public class ManageProducts extends javax.swing.JFrame {
             int newStocks;
             if (Checker.isNumber(newStocksInStrings)) {
                 newStocks = Integer.parseInt(newStocksInStrings);
-                if(PRODUCT_SERVICE.getProductStocksById().apply(selectedProduct) < newStocks) throw new IllegalStateException("NEW STOCKS SHOULD NOT BE LESS THAN CURRENT STOCKS");
+                if(PRODUCT_SERVICE.getProductStocksById().apply(selectedProduct) > newStocks) throw new IllegalStateException("NEW STOCKS SHOULD NOT BE LESS THAN CURRENT STOCKS");
                 PRODUCT_SERVICE.getProductById()
                         .apply(selectedProduct)
                         .setStocks(newStocks);
-                AVAILABLE_PRODUCTS.removeIf(product -> product.getId().equals(selectedProduct));
                 refreshTable(AVAILABLE_PRODUCTS_TABLE);
                 Main.PROMPT.show.accept("STOCKS EDITED SUCCESSFULLY", false);
             }
