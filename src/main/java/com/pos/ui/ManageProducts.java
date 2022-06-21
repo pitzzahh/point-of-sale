@@ -35,8 +35,6 @@ public class ManageProducts extends javax.swing.JFrame {
      */
     public ManageProducts() {
         initComponents();
-        var progress = new Progress();
-        progress.startProgressBar(System.out::println, Progress.LOADING);
         final DefaultTableCellRenderer RENDERER = new DefaultTableCellRenderer();
         RENDERER.setHorizontalAlignment(JLabel.CENTER);
         availableProductsTable.getColumnModel().getColumn(0).setCellRenderer(RENDERER);
@@ -46,6 +44,8 @@ public class ManageProducts extends javax.swing.JFrame {
         availableProductsTable.getColumnModel().getColumn(5).setCellRenderer(RENDERER);
         availableProductsTable.getColumnModel().getColumn(6).setCellRenderer(RENDERER);
         expiredProductsTable.getColumnModel().getColumn(0).setCellRenderer(RENDERER);
+
+
         loadAvailableProducts();
         loadExpiredProducts();
     }
