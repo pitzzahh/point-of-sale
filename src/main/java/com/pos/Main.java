@@ -18,6 +18,7 @@ import com.pos.ui.Prompt;
 import com.pos.ui.Progress;
 import javax.swing.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Main user interface of point of sale system.
@@ -47,7 +48,7 @@ public class Main extends JFrame {
         initializeDate();
         initializeTime();
         day.setText(LocalDate.now().getDayOfWeek().name());
-//        setProductsPrices();
+        setProductsPrices();
         final DefaultTableCellRenderer RENDERER = new DefaultTableCellRenderer();
         RENDERER.setHorizontalAlignment(JLabel.CENTER);
         ordersTable.getColumnModel().getColumn(0).setCellRenderer(RENDERER);
@@ -118,6 +119,35 @@ public class Main extends JFrame {
         }
     }
 
+    private void setProductsPrices() {
+        final char PESO_SIGN = '₱';
+
+        Hashtable<Integer, Double> priceList = PRODUCT_SERVICE.getAllProducts()
+                .get()
+                .stream()
+                .collect(Collectors.toMap(
+                        product -> product.getId(), s -> s.getPrice(),
+                        (key, value) -> {
+                            throw new IllegalStateException(
+                                    String.format("Cannot have 2 values (%s, %s) for the same key", key, value)
+                            );
+                        }, Hashtable::new
+                ));
+
+        priceList.forEach(
+                (key, value) -> System.out.println(
+                        "key = " + key + "\n" +
+                        "value = " + value
+                )
+        );
+        
+        /*
+            Setting prices label for cleaning products
+        */
+        cleanFirstPrice.setText((priceList.containsKey(1) ? PESO_SIGN + " " + priceList.get(0) : "EXPIRED PRODUCT"));
+
+
+    }
     /**
      * Method that sets the prices label for all the products.
      * Products discount is already computed and discounted price will be shown to the label.
@@ -244,26 +274,19 @@ public class Main extends JFrame {
 //        } catch (NullPointerException ignored) {}
 //    }
 
-    /**
-     *  Method that gets the expired products
-     * @return the number of expired products.
-     */
+
+    // <editor-fold defaultstate="collapsed" desc="Method that gets the number expired products and returns it.">//
     private int getExpiredProductsCount() {
         return PRODUCT_SERVICE.getExpiredProductsCount().get();
-    }
+    } // </editor-fold>//
 
-    /**
-     * Method that sets the current date to the date text field.
-     */
+    // <editor-fold defaultstate="collapsed" desc="Method that sets the current date to the date text field.">//
     private void initializeDate() {
         final LocalDate LOCALDATE = LocalDate.now();
         date.setText(LOCALDATE.getMonth().name() + " " + LOCALDATE.getDayOfMonth() + ", " + LOCALDATE.getYear());
-    }
+    } // </editor-fold>//
 
-    /**
-     * Method that displays a live current time to the graphical user interface.
-     * Starts a new {@code Thread} only for displaying a live time.
-     */
+    // <editor-fold defaultstate="collapsed" desc="Method that displays a live current time to the graphical user interface. Starts a new Thread only for displaying a live time.">//
     private void initializeTime() {
         final DateFormat TIME_FORMAT = new SimpleDateFormat("hh : mm : ss aa");
         final Thread TIME_THREAD = new Thread(() -> {
@@ -279,7 +302,9 @@ public class Main extends JFrame {
         });
         TIME_THREAD.setPriority(Thread.MIN_PRIORITY);
         TIME_THREAD.start();
-    }
+    }// </editor-fold>//
+
+    // <editor-fold defaultstate="collapsed" desc="Method that handles orders.">//
     private void handleOrder(int productId) {
         Product product = PRODUCT_SERVICE.getProductById().apply(productId);
         boolean alreadyAdded = ORDERS_LIST.stream()
@@ -287,8 +312,9 @@ public class Main extends JFrame {
         if (alreadyAdded) modifyOrder(product, false);
         else makeOrder(product);
         refreshOrdersTable();
-    }
-    
+    } // </editor-fold>//
+
+    // <editor-fold defaultstate="collapsed" desc="Method that updates the total, subtotal and total discount when order is being modified.">//
     private void updateTransaction() {
         final double TOTAL_PRICE = ORDERS_LIST.stream()
                 .map(product -> (product.getPrice() * product.getQuantity()))
@@ -309,7 +335,7 @@ public class Main extends JFrame {
         total.setText(String.valueOf(NUMBER_FORMAT.format(TOTAL_PRICE)));
         subTotal.setText(String.valueOf(NUMBER_FORMAT.format(SUB_TOTAL)));
         totalDiscount.setText(String.valueOf(NUMBER_FORMAT.format(TOTAL_DISCOUNT)));
-    }
+    } // </editor-fold>//
 
     /**
      * Method that makes an Order object based from the selection from the order table.
@@ -710,30 +736,35 @@ public class Main extends JFrame {
         });
         cleaningProductsPanel.add(dirtBuster, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 100, 90));
 
+        dirtBustersPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         dirtBustersPrice.setText("₱ 45.69");
         dirtBustersPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         dirtBustersPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        cleaningProductsPanel.add(dirtBustersPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, 50, 20));
+        cleaningProductsPanel.add(dirtBustersPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 100, 20));
 
+        cloroxPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cloroxPrice.setText("₱ 35");
         cloroxPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         cloroxPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        cleaningProductsPanel.add(cloroxPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, 50, 20));
+        cleaningProductsPanel.add(cloroxPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 100, 20));
 
+        rightFlexPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         rightFlexPrice.setText("₱ 34.12");
         rightFlexPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         rightFlexPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        cleaningProductsPanel.add(rightFlexPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, 50, 20));
+        cleaningProductsPanel.add(rightFlexPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 100, 20));
 
+        hydroSafePrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         hydroSafePrice.setText("₱ 40.41");
         hydroSafePrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         hydroSafePrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        cleaningProductsPanel.add(hydroSafePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 50, 20));
+        cleaningProductsPanel.add(hydroSafePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 100, 20));
 
-        cleanFirstPrice.setText("₱ 45.69");
+        cleanFirstPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cleanFirstPrice.setText("₱ 1000");
         cleanFirstPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         cleanFirstPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        cleaningProductsPanel.add(cleanFirstPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 50, 20));
+        cleaningProductsPanel.add(cleanFirstPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 100, 20));
 
         myClean.setText("MY CLEAN");
         myClean.setMaximumSize(new java.awt.Dimension(118, 118));
@@ -785,30 +816,35 @@ public class Main extends JFrame {
         });
         cleaningProductsPanel.add(joy, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, 100, 90));
 
+        joyPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         joyPrice.setText("₱ 10");
         joyPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         joyPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        cleaningProductsPanel.add(joyPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, 50, 20));
+        cleaningProductsPanel.add(joyPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, 100, 20));
 
+        arielPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         arielPrice.setText("₱ 50");
         arielPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         arielPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        cleaningProductsPanel.add(arielPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, 40, 20));
+        cleaningProductsPanel.add(arielPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 210, 100, 20));
 
+        sureCleanPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         sureCleanPrice.setText("₱ 150");
         sureCleanPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         sureCleanPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        cleaningProductsPanel.add(sureCleanPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, 50, 20));
+        cleaningProductsPanel.add(sureCleanPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 100, 20));
 
+        cleanCutPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cleanCutPrice.setText("₱ 120.12");
         cleanCutPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         cleanCutPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        cleaningProductsPanel.add(cleanCutPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 50, 20));
+        cleaningProductsPanel.add(cleanCutPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 100, 20));
 
+        myCleanPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         myCleanPrice.setText("₱ 89.6");
         myCleanPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         myCleanPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        cleaningProductsPanel.add(myCleanPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 50, 20));
+        cleaningProductsPanel.add(myCleanPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 100, 20));
 
         smart.setText("SMART");
         smart.setMaximumSize(new java.awt.Dimension(118, 118));
@@ -820,10 +856,11 @@ public class Main extends JFrame {
         });
         cleaningProductsPanel.add(smart, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 100, 90));
 
+        smartPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         smartPrice.setText("₱ 35");
         smartPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         smartPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        cleaningProductsPanel.add(smartPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 50, 20));
+        cleaningProductsPanel.add(smartPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 100, 20));
 
         domex.setText("DOMEX");
         domex.setMaximumSize(new java.awt.Dimension(118, 118));
@@ -835,10 +872,11 @@ public class Main extends JFrame {
         });
         cleaningProductsPanel.add(domex, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 100, 90));
 
+        domexPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         domexPrice.setText("₱ 36");
         domexPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         domexPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        cleaningProductsPanel.add(domexPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, 50, 20));
+        cleaningProductsPanel.add(domexPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, 100, 20));
 
         mrMuscle.setText("MR MUSCLE");
         mrMuscle.setMaximumSize(new java.awt.Dimension(118, 118));
@@ -850,10 +888,11 @@ public class Main extends JFrame {
         });
         cleaningProductsPanel.add(mrMuscle, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 100, 90));
 
+        mrMusclePrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         mrMusclePrice.setText("₱ 69");
         mrMusclePrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         mrMusclePrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        cleaningProductsPanel.add(mrMusclePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, 50, 20));
+        cleaningProductsPanel.add(mrMusclePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 320, 100, 20));
 
         lysol.setText("LYSOL");
         lysol.setMaximumSize(new java.awt.Dimension(118, 118));
@@ -865,10 +904,11 @@ public class Main extends JFrame {
         });
         cleaningProductsPanel.add(lysol, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, 100, 90));
 
+        lysolPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lysolPrice.setText("₱ 45.69");
         lysolPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         lysolPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        cleaningProductsPanel.add(lysolPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 320, 50, 20));
+        cleaningProductsPanel.add(lysolPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, 100, 20));
 
         surf.setText("SURF");
         surf.setMaximumSize(new java.awt.Dimension(118, 118));
@@ -880,10 +920,11 @@ public class Main extends JFrame {
         });
         cleaningProductsPanel.add(surf, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, 100, 90));
 
+        surfPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         surfPrice.setText("₱ 7");
         surfPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         surfPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        cleaningProductsPanel.add(surfPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 320, 50, 20));
+        cleaningProductsPanel.add(surfPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 320, 100, 20));
 
         cleaningProductsScroller.setViewportView(cleaningProductsPanel);
 
@@ -903,10 +944,11 @@ public class Main extends JFrame {
         });
         chocolatesPanel.add(hersheys, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, 90));
 
+        hersheysPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         hersheysPrice.setText("₱ 32");
         hersheysPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         hersheysPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        chocolatesPanel.add(hersheysPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 50, 20));
+        chocolatesPanel.add(hersheysPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 100, 20));
 
         snickers.setText("SNICKERS");
         snickers.setMaximumSize(new java.awt.Dimension(118, 118));
@@ -918,10 +960,11 @@ public class Main extends JFrame {
         });
         chocolatesPanel.add(snickers, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 100, 90));
 
+        snickersPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         snickersPrice.setText("₱ 24");
         snickersPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         snickersPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        chocolatesPanel.add(snickersPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 50, 20));
+        chocolatesPanel.add(snickersPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 100, 20));
 
         flyingNoir.setText("FLYING NOIR");
         flyingNoir.setMaximumSize(new java.awt.Dimension(118, 118));
@@ -953,20 +996,23 @@ public class Main extends JFrame {
         });
         chocolatesPanel.add(esthechoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 100, 90));
 
+        flyingNoirPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         flyingNoirPrice.setText("₱ 300");
         flyingNoirPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         flyingNoirPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        chocolatesPanel.add(flyingNoirPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, 50, 20));
+        chocolatesPanel.add(flyingNoirPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 100, 20));
 
+        ferreroRocherPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ferreroRocherPrice.setText("₱ 120");
         ferreroRocherPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         ferreroRocherPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        chocolatesPanel.add(ferreroRocherPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, 50, 20));
+        chocolatesPanel.add(ferreroRocherPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 100, 20));
 
+        esthechocPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         esthechocPrice.setText("₱ 240");
         esthechocPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         esthechocPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        chocolatesPanel.add(esthechocPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, 50, 20));
+        chocolatesPanel.add(esthechocPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 100, 20));
 
         droste.setText("DROSTE");
         droste.setMaximumSize(new java.awt.Dimension(118, 118));
@@ -1018,30 +1064,35 @@ public class Main extends JFrame {
         });
         chocolatesPanel.add(richart, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, 100, 90));
 
+        richartPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         richartPrice.setText("₱ 50.12");
         richartPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         richartPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        chocolatesPanel.add(richartPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, 50, 20));
+        chocolatesPanel.add(richartPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, 100, 20));
 
+        jacquesGeninPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jacquesGeninPrice.setText("₱ 240");
         jacquesGeninPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jacquesGeninPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        chocolatesPanel.add(jacquesGeninPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, 50, 20));
+        chocolatesPanel.add(jacquesGeninPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 210, 100, 20));
 
+        amedeiPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         amedeiPrice.setText("₱ 260.69");
         amedeiPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         amedeiPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        chocolatesPanel.add(amedeiPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, 50, 20));
+        chocolatesPanel.add(amedeiPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 100, 20));
 
+        wittakersPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         wittakersPrice.setText("₱ 126");
         wittakersPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         wittakersPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        chocolatesPanel.add(wittakersPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 50, 20));
+        chocolatesPanel.add(wittakersPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 100, 20));
 
+        drostePrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         drostePrice.setText("₱ 120.54");
         drostePrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         drostePrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        chocolatesPanel.add(drostePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 50, 20));
+        chocolatesPanel.add(drostePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 100, 20));
 
         patchi.setText("PATCHI");
         patchi.setMaximumSize(new java.awt.Dimension(118, 118));
@@ -1093,30 +1144,35 @@ public class Main extends JFrame {
         });
         chocolatesPanel.add(russelStover, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, 100, 90));
 
+        russelStoverPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         russelStoverPrice.setText("₱ 130.12");
         russelStoverPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         russelStoverPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        chocolatesPanel.add(russelStoverPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 320, 50, 20));
+        chocolatesPanel.add(russelStoverPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 320, 100, 20));
 
+        dovePrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         dovePrice.setText("₱ 150.12");
         dovePrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         dovePrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        chocolatesPanel.add(dovePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 320, 50, 20));
+        chocolatesPanel.add(dovePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, 100, 20));
 
+        valrhonaPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         valrhonaPrice.setText("₱ 150.78");
         valrhonaPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         valrhonaPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        chocolatesPanel.add(valrhonaPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, 50, 20));
+        chocolatesPanel.add(valrhonaPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 320, 100, 20));
 
+        teuscherPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         teuscherPrice.setText("₱ 120.12");
         teuscherPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         teuscherPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        chocolatesPanel.add(teuscherPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, 50, 20));
+        chocolatesPanel.add(teuscherPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, 100, 20));
 
+        patchiPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         patchiPrice.setText("₱ 320.69");
         patchiPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         patchiPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        chocolatesPanel.add(patchiPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 50, 20));
+        chocolatesPanel.add(patchiPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 100, 20));
 
         ritterSport.setText("RITTER SPORT");
         ritterSport.setMaximumSize(new java.awt.Dimension(118, 118));
@@ -1168,30 +1224,35 @@ public class Main extends JFrame {
         });
         chocolatesPanel.add(toblerone, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 340, 100, 90));
 
+        godivaPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         godivaPrice.setText("₱ 100");
         godivaPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         godivaPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        chocolatesPanel.add(godivaPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 540, 50, 20));
+        chocolatesPanel.add(godivaPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 540, 100, 20));
 
+        marsPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         marsPrice.setText("₱ 32.12");
         marsPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         marsPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        chocolatesPanel.add(marsPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 430, 50, 20));
+        chocolatesPanel.add(marsPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 430, 100, 20));
 
+        kinderPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         kinderPrice.setText("₱ 121.61");
         kinderPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         kinderPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        chocolatesPanel.add(kinderPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 430, 50, 20));
+        chocolatesPanel.add(kinderPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 430, 100, 20));
 
+        guyLianPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         guyLianPrice.setText("₱ 150.12");
         guyLianPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         guyLianPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        chocolatesPanel.add(guyLianPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 430, 50, 20));
+        chocolatesPanel.add(guyLianPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 430, 100, 20));
 
+        ritterSportPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ritterSportPrice.setText("₱ 170.12");
         ritterSportPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         ritterSportPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        chocolatesPanel.add(ritterSportPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 50, 20));
+        chocolatesPanel.add(ritterSportPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 100, 20));
 
         godiva.setText("GODIVA");
         godiva.setMaximumSize(new java.awt.Dimension(118, 118));
@@ -1243,30 +1304,35 @@ public class Main extends JFrame {
         });
         chocolatesPanel.add(cadbury, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 450, 100, 90));
 
+        cadburyPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cadburyPrice.setText("₱ 80");
         cadburyPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         cadburyPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        chocolatesPanel.add(cadburyPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 540, 50, 20));
+        chocolatesPanel.add(cadburyPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 540, 100, 20));
 
+        ghirardellPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ghirardellPrice.setText("₱ 310.78");
         ghirardellPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         ghirardellPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        chocolatesPanel.add(ghirardellPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 540, 50, 20));
+        chocolatesPanel.add(ghirardellPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 540, 100, 20));
 
+        milkaPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         milkaPrice.setText("₱ 240.12");
         milkaPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         milkaPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        chocolatesPanel.add(milkaPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 540, 50, 20));
+        chocolatesPanel.add(milkaPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 540, 100, 20));
 
+        nestlePrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nestlePrice.setText("₱ 143.53");
         nestlePrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         nestlePrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        chocolatesPanel.add(nestlePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 540, 50, 20));
+        chocolatesPanel.add(nestlePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 540, 100, 20));
 
+        tobleronePrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tobleronePrice.setText("₱ 150.12");
         tobleronePrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         tobleronePrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        chocolatesPanel.add(tobleronePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 430, 50, 20));
+        chocolatesPanel.add(tobleronePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 430, 100, 20));
 
         chocolatesScroller.setViewportView(chocolatesPanel);
 
