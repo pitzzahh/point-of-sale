@@ -4,8 +4,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.pos.repository.ProductRepository;
-
-import java.io.File;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -17,6 +15,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import com.pos.Checker;
 import java.util.List;
+import java.io.File;
 
 @Transactional
 @Service("productService")
