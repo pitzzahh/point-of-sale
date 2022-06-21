@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.pos.ui;
 
 import com.pos.Main;
@@ -13,12 +9,12 @@ import javax.swing.UnsupportedLookAndFeelException;
  *
  * @author peter
  */
-public class ExpiredProducts extends javax.swing.JFrame {
+public class ViewSales extends javax.swing.JFrame {
 
     /**
-     * Creates new form ExpiredProducts
+     * Creates new form ViewSales
      */
-    public ExpiredProducts() {
+    public ViewSales() {
         initComponents();
     }
 
@@ -31,20 +27,30 @@ public class ExpiredProducts extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        mainPanel = new javax.swing.JPanel();
+        headerPanel = new javax.swing.JPanel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
+
+        mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        headerPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        mainPanel.add(headerPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 530, 70));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 756, Short.MAX_VALUE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 515, Short.MAX_VALUE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -76,14 +82,15 @@ public class ExpiredProducts extends javax.swing.JFrame {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new ExpiredProducts().setVisible(true);
+            new ViewSales().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel headerPanel;
+    private javax.swing.JPanel mainPanel;
     // End of variables declaration//GEN-END:variables
 }

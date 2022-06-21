@@ -11,6 +11,7 @@ import com.pos.entity.Category;
 import java.text.NumberFormat;
 import com.pos.entity.Product;
 import com.pos.entity.Order;
+import com.pos.ui.ManageProducts;
 import java.text.DateFormat;
 import java.time.LocalDate;
 import com.pos.ui.Prompt;
@@ -25,9 +26,9 @@ import java.util.*;
 public class Main extends JFrame {
     
     private final AbstractApplicationContext CONTEXT=  new AnnotationConfigApplicationContext(Config.class);
-    private final ProductService PRODUCT_SERVICE = CONTEXT.getBean(ProductService.class);
+    public final ProductService PRODUCT_SERVICE = CONTEXT.getBean(ProductService.class);
     
-    private final SalesService SALES_SERVICE = CONTEXT.getBean(SalesService.class);
+    public final SalesService SALES_SERVICE = CONTEXT.getBean(SalesService.class);
 
     public static final String OS_NAME = System.getProperty("os.name", "").toUpperCase();
     private final List<Order> ORDERS_LIST = new ArrayList<>();
@@ -283,7 +284,7 @@ public class Main extends JFrame {
                 .filter(product -> (product.getDiscount() != 0.0))
                 .map(order -> (order.getDiscount() * order.getQuantity()))
                 .reduce(0.0, Double::sum);
-
+        
         total.setText(String.valueOf(NUMBER_FORMAT.format(TOTAL_PRICE)));
         subTotal.setText(String.valueOf(NUMBER_FORMAT.format(SUB_TOTAL)));
         totalDiscount.setText(String.valueOf(NUMBER_FORMAT.format(TOTAL_DISCOUNT)));
@@ -321,7 +322,7 @@ public class Main extends JFrame {
         informationPanel = new javax.swing.JPanel();
         expiredProductsInformationPanel = new javax.swing.JPanel();
         expiredProductsLabel = new javax.swing.JLabel();
-        viewExpiredProducts = new javax.swing.JButton();
+        manageProducts = new javax.swing.JButton();
         numberOfExpiredProducts = new javax.swing.JLabel();
         datePanel = new javax.swing.JPanel();
         dateLabel = new javax.swing.JLabel();
@@ -540,14 +541,14 @@ public class Main extends JFrame {
         expiredProductsLabel.setText("EXPIRED PRODUCTS");
         expiredProductsInformationPanel.add(expiredProductsLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
 
-        viewExpiredProducts.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        viewExpiredProducts.setText("VIEW EXPIRED PRODUCTS");
-        viewExpiredProducts.addActionListener(new java.awt.event.ActionListener() {
+        manageProducts.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        manageProducts.setText("MANAGE PRODUCTS");
+        manageProducts.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewExpiredProductsActionPerformed(evt);
+                manageProductsActionPerformed(evt);
             }
         });
-        expiredProductsInformationPanel.add(viewExpiredProducts, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 230, -1));
+        expiredProductsInformationPanel.add(manageProducts, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 180, -1));
 
         numberOfExpiredProducts.setFont(new java.awt.Font("Segoe UI", 1, 34)); // NOI18N
         numberOfExpiredProducts.setForeground((getExpiredProductsCount() > 0) ? new java.awt.Color(255, 0, 0) : new java.awt.Color(0, 0, 255));
@@ -619,8 +620,8 @@ public class Main extends JFrame {
         headerPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         header.setFont(new java.awt.Font("Yu Gothic", 1, 36)); // NOI18N
-        header.setText("PITZZAHH STORE");
-        headerPanel.add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, -1, -1));
+        header.setText("POINT OF SALES");
+        headerPanel.add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, -1, -1));
 
         mainPanel.add(headerPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 1080, 70));
 
@@ -1892,9 +1893,9 @@ public class Main extends JFrame {
         handleOrder(16);
     }//GEN-LAST:event_hersheysActionPerformed
 
-    private void viewExpiredProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewExpiredProductsActionPerformed
-
-    }//GEN-LAST:event_viewExpiredProductsActionPerformed
+    private void manageProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageProductsActionPerformed
+        new ManageProducts().setVisible(true);
+    }//GEN-LAST:event_manageProductsActionPerformed
 
     private void cleanFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleanFirstActionPerformed
         handleOrder(1);
@@ -2337,6 +2338,7 @@ public class Main extends JFrame {
     private javax.swing.JButton lysol;
     private javax.swing.JLabel lysolPrice;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JButton manageProducts;
     private javax.swing.JButton mars;
     private javax.swing.JLabel marsPrice;
     private javax.swing.JButton mead;
@@ -2423,7 +2425,6 @@ public class Main extends JFrame {
     private javax.swing.JLabel tropicanaPrice;
     private javax.swing.JButton valrhona;
     private javax.swing.JLabel valrhonaPrice;
-    private javax.swing.JButton viewExpiredProducts;
     private javax.swing.JButton viewSales;
     private javax.swing.JButton vodka;
     private javax.swing.JLabel vodkaPrice;
