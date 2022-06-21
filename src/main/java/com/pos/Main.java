@@ -1350,15 +1350,17 @@ public class Main extends JFrame {
         });
         beveragesPanel.add(dole, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, 100, 90));
 
+        dolePrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         dolePrice.setText("₱ 32");
         dolePrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         dolePrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(dolePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, 50, 20));
+        beveragesPanel.add(dolePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, 100, 20));
 
+        tropicanaPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tropicanaPrice.setText("₱ 80");
         tropicanaPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         tropicanaPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(tropicanaPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, 50, 20));
+        beveragesPanel.add(tropicanaPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 210, 100, 20));
 
         tropicana.setText("TROPICANA");
         tropicana.setMaximumSize(new java.awt.Dimension(118, 118));
@@ -1380,15 +1382,17 @@ public class Main extends JFrame {
         });
         beveragesPanel.add(minuteMaid, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 100, 90));
 
+        minuteMaidPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         minuteMaidPrice.setText("₱ 25");
         minuteMaidPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         minuteMaidPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(minuteMaidPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, 50, 20));
+        beveragesPanel.add(minuteMaidPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 100, 20));
 
+        spritePrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         spritePrice.setText("₱ 65");
         spritePrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         spritePrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(spritePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 50, 20));
+        beveragesPanel.add(spritePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 100, 20));
 
         sprite.setText("SPRITE");
         sprite.setMaximumSize(new java.awt.Dimension(118, 118));
@@ -1400,10 +1404,11 @@ public class Main extends JFrame {
         });
         beveragesPanel.add(sprite, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 100, 90));
 
+        gatoradePrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gatoradePrice.setText("₱ 35");
         gatoradePrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         gatoradePrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(gatoradePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 50, 20));
+        beveragesPanel.add(gatoradePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 100, 20));
 
         gatorade.setText("GATORADE");
         gatorade.setMaximumSize(new java.awt.Dimension(118, 118));
@@ -1415,30 +1420,35 @@ public class Main extends JFrame {
         });
         beveragesPanel.add(gatorade, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 100, 90));
 
+        cocaColaPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cocaColaPrice.setText("₱ 75");
         cocaColaPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         cocaColaPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(cocaColaPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 50, 20));
+        beveragesPanel.add(cocaColaPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 100, 20));
 
+        pepsiPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pepsiPrice.setText("₱ 50");
         pepsiPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         pepsiPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(pepsiPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 50, 20));
+        beveragesPanel.add(pepsiPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 100, 20));
 
+        redBullPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         redBullPrice.setText("₱ 67.12");
         redBullPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         redBullPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(redBullPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, 50, 20));
+        beveragesPanel.add(redBullPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 100, 20));
 
+        budWeiserPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         budWeiserPrice.setText("₱ 120.43");
         budWeiserPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         budWeiserPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(budWeiserPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, 50, 20));
+        beveragesPanel.add(budWeiserPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 100, 20));
 
+        heinekenPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         heinekenPrice.setText("₱ 45");
         heinekenPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         heinekenPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(heinekenPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, 50, 20));
+        beveragesPanel.add(heinekenPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 100, 20));
 
         heineken.setText("HEINEKEN");
         heineken.setMaximumSize(new java.awt.Dimension(118, 118));
@@ -1540,30 +1550,35 @@ public class Main extends JFrame {
         });
         beveragesPanel.add(lipton, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, 100, 90));
 
+        sunkistPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         sunkistPrice.setText("₱ 76");
         sunkistPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         sunkistPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(sunkistPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 320, 50, 20));
+        beveragesPanel.add(sunkistPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 320, 100, 20));
 
+        liptonPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         liptonPrice.setText("₱ 43");
         liptonPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         liptonPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(liptonPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 320, 50, 20));
+        beveragesPanel.add(liptonPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, 100, 20));
 
+        mountainDewPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         mountainDewPrice.setText("₱ 15");
         mountainDewPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         mountainDewPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(mountainDewPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, 50, 20));
+        beveragesPanel.add(mountainDewPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 320, 100, 20));
 
+        sevenUpPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         sevenUpPrice.setText("₱ 65");
         sevenUpPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         sevenUpPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(sevenUpPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, 50, 20));
+        beveragesPanel.add(sevenUpPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, 100, 20));
 
+        koolAidPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         koolAidPrice.setText("₱ 20");
         koolAidPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         koolAidPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(koolAidPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 50, 20));
+        beveragesPanel.add(koolAidPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 100, 20));
 
         appleJuice.setText("APPLE JUICE");
         appleJuice.setMaximumSize(new java.awt.Dimension(118, 118));
@@ -1595,20 +1610,23 @@ public class Main extends JFrame {
         });
         beveragesPanel.add(blackCher, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 100, 90));
 
+        blackCherPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         blackCherPrice.setText("₱ 25");
         blackCherPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         blackCherPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(blackCherPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 430, 50, 20));
+        beveragesPanel.add(blackCherPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 430, 100, 20));
 
+        pineAppleJuicePrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pineAppleJuicePrice.setText("₱ 25");
         pineAppleJuicePrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         pineAppleJuicePrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(pineAppleJuicePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 430, 50, 20));
+        beveragesPanel.add(pineAppleJuicePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 430, 100, 20));
 
+        appleJuicePrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         appleJuicePrice.setText("₱ 25");
         appleJuicePrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         appleJuicePrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(appleJuicePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 50, 20));
+        beveragesPanel.add(appleJuicePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 100, 20));
 
         liquorsLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         liquorsLabel.setText("LIQUORS");
@@ -1664,30 +1682,35 @@ public class Main extends JFrame {
         });
         beveragesPanel.add(tequila, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 100, 90));
 
+        tequilaPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tequilaPrice.setText("₱ 2200.69");
         tequilaPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         tequilaPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(tequilaPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 590, 50, 20));
+        beveragesPanel.add(tequilaPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 590, 100, 20));
 
+        beerPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         beerPrice.setText("₱ 150");
         beerPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         beerPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(beerPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 590, 50, 20));
+        beveragesPanel.add(beerPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 590, 100, 20));
 
+        winePrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         winePrice.setText("₱ 2000");
         winePrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         winePrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(winePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 590, 50, 20));
+        beveragesPanel.add(winePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 590, 100, 20));
 
+        hardCiderPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         hardCiderPrice.setText("₱ 500");
         hardCiderPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         hardCiderPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(hardCiderPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 590, 50, 20));
+        beveragesPanel.add(hardCiderPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 590, 100, 20));
 
+        meadPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         meadPrice.setText("₱ 400");
         meadPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         meadPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(meadPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 590, 50, 20));
+        beveragesPanel.add(meadPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 590, 100, 20));
 
         vodka.setText("VODKA");
         vodka.setMaximumSize(new java.awt.Dimension(118, 118));
@@ -1739,30 +1762,35 @@ public class Main extends JFrame {
         });
         beveragesPanel.add(gin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 610, 100, 90));
 
+        ginPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ginPrice.setText("₱ 90");
         ginPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         ginPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(ginPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 700, 50, 20));
+        beveragesPanel.add(ginPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 700, 100, 20));
 
+        brandyPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         brandyPrice.setText("₱ 760");
         brandyPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         brandyPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(brandyPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 700, 50, 20));
+        beveragesPanel.add(brandyPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 700, 100, 20));
 
+        whiskyPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         whiskyPrice.setText("₱ 300");
         whiskyPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         whiskyPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(whiskyPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 700, 50, 20));
+        beveragesPanel.add(whiskyPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 700, 100, 20));
 
+        rumPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         rumPrice.setText("₱ 320");
         rumPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         rumPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(rumPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 700, 50, 20));
+        beveragesPanel.add(rumPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 700, 100, 20));
 
+        vodkaPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         vodkaPrice.setText("₱ 240");
         vodkaPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         vodkaPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(vodkaPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 700, 50, 20));
+        beveragesPanel.add(vodkaPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 700, 100, 20));
 
         beveragesScroller.setViewportView(beveragesPanel);
 

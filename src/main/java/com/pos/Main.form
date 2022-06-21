@@ -1781,25 +1781,27 @@
                             </Component>
                             <Component class="javax.swing.JLabel" name="dolePrice">
                               <Properties>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 32"/>
                                 <Property name="verticalAlignment" type="int" value="1"/>
                                 <Property name="verticalTextPosition" type="int" value="1"/>
                               </Properties>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="480" y="210" width="50" height="20"/>
+                                  <AbsoluteConstraints x="450" y="210" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
                             <Component class="javax.swing.JLabel" name="tropicanaPrice">
                               <Properties>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 80"/>
                                 <Property name="verticalAlignment" type="int" value="1"/>
                                 <Property name="verticalTextPosition" type="int" value="1"/>
                               </Properties>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="370" y="210" width="50" height="20"/>
+                                  <AbsoluteConstraints x="340" y="210" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
@@ -1843,25 +1845,27 @@
                             </Component>
                             <Component class="javax.swing.JLabel" name="minuteMaidPrice">
                               <Properties>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 25"/>
                                 <Property name="verticalAlignment" type="int" value="1"/>
                                 <Property name="verticalTextPosition" type="int" value="1"/>
                               </Properties>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="260" y="210" width="50" height="20"/>
+                                  <AbsoluteConstraints x="230" y="210" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
                             <Component class="javax.swing.JLabel" name="spritePrice">
                               <Properties>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 65"/>
                                 <Property name="verticalAlignment" type="int" value="1"/>
                                 <Property name="verticalTextPosition" type="int" value="1"/>
                               </Properties>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="150" y="210" width="50" height="20"/>
+                                  <AbsoluteConstraints x="120" y="210" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
@@ -1886,13 +1890,14 @@
                             </Component>
                             <Component class="javax.swing.JLabel" name="gatoradePrice">
                               <Properties>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 35"/>
                                 <Property name="verticalAlignment" type="int" value="1"/>
                                 <Property name="verticalTextPosition" type="int" value="1"/>
                               </Properties>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="40" y="210" width="50" height="20"/>
+                                  <AbsoluteConstraints x="10" y="210" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
@@ -1917,61 +1922,66 @@
                             </Component>
                             <Component class="javax.swing.JLabel" name="cocaColaPrice">
                               <Properties>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 75"/>
                                 <Property name="verticalAlignment" type="int" value="1"/>
                                 <Property name="verticalTextPosition" type="int" value="1"/>
                               </Properties>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="40" y="100" width="50" height="20"/>
+                                  <AbsoluteConstraints x="10" y="100" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
                             <Component class="javax.swing.JLabel" name="pepsiPrice">
                               <Properties>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 50"/>
                                 <Property name="verticalAlignment" type="int" value="1"/>
                                 <Property name="verticalTextPosition" type="int" value="1"/>
                               </Properties>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="150" y="100" width="50" height="20"/>
+                                  <AbsoluteConstraints x="120" y="100" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
                             <Component class="javax.swing.JLabel" name="redBullPrice">
                               <Properties>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 67.12"/>
                                 <Property name="verticalAlignment" type="int" value="1"/>
                                 <Property name="verticalTextPosition" type="int" value="1"/>
                               </Properties>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="260" y="100" width="50" height="20"/>
+                                  <AbsoluteConstraints x="230" y="100" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
                             <Component class="javax.swing.JLabel" name="budWeiserPrice">
                               <Properties>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 120.43"/>
                                 <Property name="verticalAlignment" type="int" value="1"/>
                                 <Property name="verticalTextPosition" type="int" value="1"/>
                               </Properties>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="370" y="100" width="50" height="20"/>
+                                  <AbsoluteConstraints x="340" y="100" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
                             <Component class="javax.swing.JLabel" name="heinekenPrice">
                               <Properties>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 45"/>
                                 <Property name="verticalAlignment" type="int" value="1"/>
                                 <Property name="verticalTextPosition" type="int" value="1"/>
                               </Properties>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="480" y="100" width="50" height="20"/>
+                                  <AbsoluteConstraints x="450" y="100" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
@@ -2167,61 +2177,66 @@
                             </Component>
                             <Component class="javax.swing.JLabel" name="sunkistPrice">
                               <Properties>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 76"/>
                                 <Property name="verticalAlignment" type="int" value="1"/>
                                 <Property name="verticalTextPosition" type="int" value="1"/>
                               </Properties>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="480" y="320" width="50" height="20"/>
+                                  <AbsoluteConstraints x="450" y="320" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
                             <Component class="javax.swing.JLabel" name="liptonPrice">
                               <Properties>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 43"/>
                                 <Property name="verticalAlignment" type="int" value="1"/>
                                 <Property name="verticalTextPosition" type="int" value="1"/>
                               </Properties>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="370" y="320" width="50" height="20"/>
+                                  <AbsoluteConstraints x="340" y="320" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
                             <Component class="javax.swing.JLabel" name="mountainDewPrice">
                               <Properties>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 15"/>
                                 <Property name="verticalAlignment" type="int" value="1"/>
                                 <Property name="verticalTextPosition" type="int" value="1"/>
                               </Properties>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="260" y="320" width="50" height="20"/>
+                                  <AbsoluteConstraints x="230" y="320" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
                             <Component class="javax.swing.JLabel" name="sevenUpPrice">
                               <Properties>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 65"/>
                                 <Property name="verticalAlignment" type="int" value="1"/>
                                 <Property name="verticalTextPosition" type="int" value="1"/>
                               </Properties>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="150" y="320" width="50" height="20"/>
+                                  <AbsoluteConstraints x="120" y="320" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
                             <Component class="javax.swing.JLabel" name="koolAidPrice">
                               <Properties>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 20"/>
                                 <Property name="verticalAlignment" type="int" value="1"/>
                                 <Property name="verticalTextPosition" type="int" value="1"/>
                               </Properties>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="40" y="320" width="50" height="20"/>
+                                  <AbsoluteConstraints x="10" y="320" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
@@ -2284,37 +2299,40 @@
                             </Component>
                             <Component class="javax.swing.JLabel" name="blackCherPrice">
                               <Properties>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 25"/>
                                 <Property name="verticalAlignment" type="int" value="1"/>
                                 <Property name="verticalTextPosition" type="int" value="1"/>
                               </Properties>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="260" y="430" width="50" height="20"/>
+                                  <AbsoluteConstraints x="230" y="430" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
                             <Component class="javax.swing.JLabel" name="pineAppleJuicePrice">
                               <Properties>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 25"/>
                                 <Property name="verticalAlignment" type="int" value="1"/>
                                 <Property name="verticalTextPosition" type="int" value="1"/>
                               </Properties>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="150" y="430" width="50" height="20"/>
+                                  <AbsoluteConstraints x="120" y="430" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
                             <Component class="javax.swing.JLabel" name="appleJuicePrice">
                               <Properties>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 25"/>
                                 <Property name="verticalAlignment" type="int" value="1"/>
                                 <Property name="verticalTextPosition" type="int" value="1"/>
                               </Properties>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="40" y="430" width="50" height="20"/>
+                                  <AbsoluteConstraints x="10" y="430" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
@@ -2428,61 +2446,66 @@
                             </Component>
                             <Component class="javax.swing.JLabel" name="tequilaPrice">
                               <Properties>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 2200.69"/>
                                 <Property name="verticalAlignment" type="int" value="1"/>
                                 <Property name="verticalTextPosition" type="int" value="1"/>
                               </Properties>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="40" y="590" width="50" height="20"/>
+                                  <AbsoluteConstraints x="10" y="590" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
                             <Component class="javax.swing.JLabel" name="beerPrice">
                               <Properties>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 150"/>
                                 <Property name="verticalAlignment" type="int" value="1"/>
                                 <Property name="verticalTextPosition" type="int" value="1"/>
                               </Properties>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="150" y="590" width="50" height="20"/>
+                                  <AbsoluteConstraints x="120" y="590" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
                             <Component class="javax.swing.JLabel" name="winePrice">
                               <Properties>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 2000"/>
                                 <Property name="verticalAlignment" type="int" value="1"/>
                                 <Property name="verticalTextPosition" type="int" value="1"/>
                               </Properties>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="260" y="590" width="50" height="20"/>
+                                  <AbsoluteConstraints x="230" y="590" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
                             <Component class="javax.swing.JLabel" name="hardCiderPrice">
                               <Properties>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 500"/>
                                 <Property name="verticalAlignment" type="int" value="1"/>
                                 <Property name="verticalTextPosition" type="int" value="1"/>
                               </Properties>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="370" y="590" width="50" height="20"/>
+                                  <AbsoluteConstraints x="340" y="590" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
                             <Component class="javax.swing.JLabel" name="meadPrice">
                               <Properties>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 400"/>
                                 <Property name="verticalAlignment" type="int" value="1"/>
                                 <Property name="verticalTextPosition" type="int" value="1"/>
                               </Properties>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="480" y="590" width="50" height="20"/>
+                                  <AbsoluteConstraints x="450" y="590" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
@@ -2583,61 +2606,66 @@
                             </Component>
                             <Component class="javax.swing.JLabel" name="ginPrice">
                               <Properties>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 90"/>
                                 <Property name="verticalAlignment" type="int" value="1"/>
                                 <Property name="verticalTextPosition" type="int" value="1"/>
                               </Properties>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="40" y="700" width="50" height="20"/>
+                                  <AbsoluteConstraints x="10" y="700" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
                             <Component class="javax.swing.JLabel" name="brandyPrice">
                               <Properties>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 760"/>
                                 <Property name="verticalAlignment" type="int" value="1"/>
                                 <Property name="verticalTextPosition" type="int" value="1"/>
                               </Properties>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="150" y="700" width="50" height="20"/>
+                                  <AbsoluteConstraints x="120" y="700" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
                             <Component class="javax.swing.JLabel" name="whiskyPrice">
                               <Properties>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 300"/>
                                 <Property name="verticalAlignment" type="int" value="1"/>
                                 <Property name="verticalTextPosition" type="int" value="1"/>
                               </Properties>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="260" y="700" width="50" height="20"/>
+                                  <AbsoluteConstraints x="230" y="700" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
                             <Component class="javax.swing.JLabel" name="rumPrice">
                               <Properties>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 320"/>
                                 <Property name="verticalAlignment" type="int" value="1"/>
                                 <Property name="verticalTextPosition" type="int" value="1"/>
                               </Properties>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="370" y="700" width="50" height="20"/>
+                                  <AbsoluteConstraints x="340" y="700" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
                             <Component class="javax.swing.JLabel" name="vodkaPrice">
                               <Properties>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 240"/>
                                 <Property name="verticalAlignment" type="int" value="1"/>
                                 <Property name="verticalTextPosition" type="int" value="1"/>
                               </Properties>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="480" y="700" width="50" height="20"/>
+                                  <AbsoluteConstraints x="450" y="700" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
