@@ -13,6 +13,9 @@ import com.pos.entity.Product;
 import com.pos.entity.Order;
 import com.pos.entity.Sales;
 import com.pos.service.SalesService;
+import com.pos.validation.ProductValidator;
+import static com.pos.validation.ProductValidator.ValidationResult.EXPIRED;
+import static com.pos.validation.ProductValidator.ValidationResult.NOT_AVAILABLE;
 import java.text.DateFormat;
 import java.time.LocalDate;
 import javax.swing.*;
@@ -40,6 +43,7 @@ public class Main extends JFrame {
 
     public static final Prompt PROMPT = new Prompt();
     
+    
     // <editor-fold defaultstate="collapsed" desc="Creates a main form.">//
     public Main() {
         PRODUCT_SERVICE.insertAllProductsToDatabase();
@@ -55,8 +59,24 @@ public class Main extends JFrame {
         ordersTable.getColumnModel().getColumn(2).setCellRenderer(RENDERER);
         ordersTable.getColumnModel().getColumn(3).setCellRenderer(RENDERER);
         ordersTable.getColumnModel().getColumn(4).setCellRenderer(RENDERER);
-    } // </editor-fold>//
-
+    } // </editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="Creates a Hashtable of expired products.">//
+    private static Hashtable<Integer, Boolean> getExpiredProducts() {
+        return PRODUCT_SERVICE.getAllProducts()
+                .get()
+                .stream()
+                .filter(Product::getExpired)
+                .collect(Collectors.toMap(
+                        Product::getId, Product::getExpired,
+                        (key, value) -> {
+                            throw new IllegalStateException(
+                                    String.format("Cannot have 2 values (%s, %s) for the same key", key, value)
+                            );
+                        }, Hashtable::new
+                ));
+    } // </editor-fold>
+    
     // <editor-fold defaultstate="collapsed" desc="Method that refresh the orders table for every button click of a product.">//
     private void refreshOrdersTable() {
         DefaultTableModel defaultTableModel = (DefaultTableModel) ordersTable.getModel();
@@ -126,19 +146,7 @@ public class Main extends JFrame {
                         }, Hashtable::new
                 ));
         
-        Hashtable<Integer, Boolean> expiredProducts = PRODUCT_SERVICE.getAllProducts()
-                .get()
-                .stream()
-                .filter(Product::getExpired)
-                .collect(Collectors.toMap(
-                        Product::getId, Product::getExpired,
-                        (key, value) -> {
-                            throw new IllegalStateException(
-                                    String.format("Cannot have 2 values (%s, %s) for the same key", key, value)
-                            );
-                        }, Hashtable::new
-                ));
-
+        Hashtable<Integer, Boolean> expiredProducts = getExpiredProducts();
         /*
             Setting prices label for cleaning products
         */
@@ -303,6 +311,13 @@ public class Main extends JFrame {
         }
     } // </editor-fold>//
 
+    private boolean isProductNotAvailable(Product product) {
+        return ProductValidator.isProductNotAvailable().apply(PRODUCT_SERVICE.getProductById().apply(product.getId())) == NOT_AVAILABLE;
+    }
+    
+    private boolean isProductExpired(Product product) {
+        return ProductValidator.isProductExpired().apply(PRODUCT_SERVICE.getProductById().apply(product.getId())) == EXPIRED;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -1979,19 +1994,48 @@ public class Main extends JFrame {
         LOADING.start(LOADING.LOADING_PRODUCTS);
     }//GEN-LAST:event_manageProductsActionPerformed
     private void cleanFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleanFirstActionPerformed
-        handleOrder(1);
+        try {
+            Product product = PRODUCT_SERVICE.getProductById().apply(1);
+            if(isProductExpired(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
+            if(isProductNotAvailable(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS NOT AVAILABLE");
+            handleOrder(1);
+        } catch(RuntimeException runtimeException) {
+            PROMPT.show.accept(runtimeException.getMessage(), true);
+        }
+
     }//GEN-LAST:event_cleanFirstActionPerformed
 
     private void myCleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myCleanActionPerformed
-        handleOrder(6);
+        try {
+            Product product = PRODUCT_SERVICE.getProductById().apply(6);
+            if(isProductExpired(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
+            if(isProductNotAvailable(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS NOT AVAILABLE");
+            handleOrder(6);
+        } catch(RuntimeException runtimeException) {
+            PROMPT.show.accept(runtimeException.getMessage(), true);
+        } 
     }//GEN-LAST:event_myCleanActionPerformed
 
     private void gatoradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gatoradeActionPerformed
-        handleOrder(46);
+        try {
+            Product product = PRODUCT_SERVICE.getProductById().apply(46);
+            if(isProductExpired(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
+            if(isProductNotAvailable(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
+            handleOrder(46);
+        } catch(RuntimeException runtimeException) {
+            PROMPT.show.accept(runtimeException.getMessage(), true);
+        }
     }//GEN-LAST:event_gatoradeActionPerformed
 
     private void cocaColaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocaColaActionPerformed
-        handleOrder(41);
+        try {
+            Product product = PRODUCT_SERVICE.getProductById().apply(41);
+            if(isProductExpired(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
+            if(isProductNotAvailable(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
+            handleOrder(41);
+        } catch(RuntimeException runtimeException) {
+            PROMPT.show.accept(runtimeException.getMessage(), true);
+        }
     }//GEN-LAST:event_cocaColaActionPerformed
 
     private void cashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cashActionPerformed
@@ -2040,35 +2084,95 @@ public class Main extends JFrame {
     }//GEN-LAST:event_smartActionPerformed
 
     private void hydroSafeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hydroSafeActionPerformed
-        handleOrder(2);
+        try {
+            Product product = PRODUCT_SERVICE.getProductById().apply(2);
+            if(isProductExpired(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
+            if(isProductNotAvailable(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS NOT AVAILABLE");
+            handleOrder(2);
+        } catch(RuntimeException runtimeException) {
+            PROMPT.show.accept(runtimeException.getMessage(), true);
+        }
     }//GEN-LAST:event_hydroSafeActionPerformed
 
     private void rightFlexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightFlexActionPerformed
-        handleOrder(3);
+        try {
+            Product product = PRODUCT_SERVICE.getProductById().apply(3);
+            if(isProductExpired(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
+            if(isProductNotAvailable(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS NOT AVAILABLE");
+            handleOrder(3);
+        } catch(RuntimeException runtimeException) {
+            PROMPT.show.accept(runtimeException.getMessage(), true);
+        }
     }//GEN-LAST:event_rightFlexActionPerformed
 
     private void cloroxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cloroxActionPerformed
-        handleOrder(4);
+        try {
+            Product product = PRODUCT_SERVICE.getProductById().apply(4);
+            if(isProductExpired(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
+            if(isProductNotAvailable(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS NOT AVAILABLE");
+            handleOrder(4);
+        } catch(RuntimeException runtimeException) {
+            PROMPT.show.accept(runtimeException.getMessage(), true);
+        }
     }//GEN-LAST:event_cloroxActionPerformed
 
     private void dirtBusterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dirtBusterActionPerformed
-        handleOrder(5);
+        try {
+            Product product = PRODUCT_SERVICE.getProductById().apply(5);
+            if(isProductExpired(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
+            if(isProductNotAvailable(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS NOT AVAILABLE");
+            handleOrder(5);
+        } catch(RuntimeException runtimeException) {
+            PROMPT.show.accept(runtimeException.getMessage(), true);
+        }
     }//GEN-LAST:event_dirtBusterActionPerformed
 
     private void cleanCutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleanCutActionPerformed
-        handleOrder(7);
+        try {
+            Product product = PRODUCT_SERVICE.getProductById().apply(7);
+            
+            if(isProductExpired(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
+            if(isProductNotAvailable(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS NOT AVAILABLE");
+            handleOrder(7);
+        } catch(RuntimeException runtimeException) {
+            PROMPT.show.accept(runtimeException.getMessage(), true);
+        }
     }//GEN-LAST:event_cleanCutActionPerformed
 
     private void sureCleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sureCleanActionPerformed
-        handleOrder(8);
+        try {
+            Product product = PRODUCT_SERVICE.getProductById().apply(8);
+            
+            if(isProductExpired(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
+            if(isProductNotAvailable(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS NOT AVAILABLE");
+            handleOrder(8);
+        } catch(RuntimeException runtimeException) {
+            PROMPT.show.accept(runtimeException.getMessage(), true);
+        }
     }//GEN-LAST:event_sureCleanActionPerformed
 
     private void mrCleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mrCleanActionPerformed
-        handleOrder(9);
+        try {
+            Product product = PRODUCT_SERVICE.getProductById().apply(9);
+            
+            if(isProductExpired(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
+            if(isProductNotAvailable(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS NOT AVAILABLE");
+            handleOrder(9);
+        } catch(RuntimeException runtimeException) {
+            PROMPT.show.accept(runtimeException.getMessage(), true);
+        }
     }//GEN-LAST:event_mrCleanActionPerformed
 
     private void joyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joyActionPerformed
-         handleOrder(10);
+        try {
+            Product product = PRODUCT_SERVICE.getProductById().apply(10);
+            
+            if(isProductExpired(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
+            if(isProductNotAvailable(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS NOT AVAILABLE");
+            handleOrder(10);
+        } catch(RuntimeException runtimeException) {
+            PROMPT.show.accept(runtimeException.getMessage(), true);
+        }
     }//GEN-LAST:event_joyActionPerformed
 
     private void domexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_domexActionPerformed
@@ -2172,7 +2276,15 @@ public class Main extends JFrame {
     }//GEN-LAST:event_cadburyActionPerformed
 
     private void godivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_godivaActionPerformed
-        handleOrder(40);
+        try {
+            Product product = PRODUCT_SERVICE.getProductById().apply(40);
+            
+            if(isProductExpired(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
+            if(isProductNotAvailable(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS NOT AVAILABLE");
+            handleOrder(40);
+        } catch(RuntimeException runtimeException) {
+            PROMPT.show.accept(runtimeException.getMessage(), true);
+        }
     }//GEN-LAST:event_godivaActionPerformed
 
     private void pepsiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pepsiActionPerformed
