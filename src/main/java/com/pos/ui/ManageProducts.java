@@ -239,6 +239,7 @@ public class ManageProducts extends javax.swing.JFrame {
         removeAllProducts = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -247,6 +248,7 @@ public class ManageProducts extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        mainPanel.setBackground(new java.awt.Color(0, 102, 102));
         mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         mainPanelTab.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -256,6 +258,7 @@ public class ManageProducts extends javax.swing.JFrame {
             }
         });
 
+        restockProductsPanel.setBackground(new java.awt.Color(51, 51, 0));
         restockProductsPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         availableProductsTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -293,10 +296,12 @@ public class ManageProducts extends javax.swing.JFrame {
         restockProductsPanel.add(avaialbleProductsTableScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 890, 400));
 
         availableProductsHeader.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        availableProductsHeader.setForeground(new java.awt.Color(255, 255, 255));
         availableProductsHeader.setText("AVAILABLE PRODUCTS ");
         restockProductsPanel.add(availableProductsHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, -1, -1));
 
         availableProductsSubHeader.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        availableProductsSubHeader.setForeground(new java.awt.Color(255, 255, 255));
         availableProductsSubHeader.setText("EXPIRED PRODUCTS ARE EXCLUDED");
         restockProductsPanel.add(availableProductsSubHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, -1, -1));
 
@@ -337,6 +342,7 @@ public class ManageProducts extends javax.swing.JFrame {
 
         mainPanelTab.addTab("EDIT PRODUCTS", restockProductsPanel);
 
+        expiredProductsPanel.setBackground(new java.awt.Color(51, 51, 0));
         expiredProductsPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         expiredProductsPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -362,7 +368,7 @@ public class ManageProducts extends javax.swing.JFrame {
         });
         expiredProductsScrollPane.setViewportView(expiredProductsTable);
 
-        expiredProductsPanel.add(expiredProductsScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 910, 420));
+        expiredProductsPanel.add(expiredProductsScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 880, 410));
 
         removeProduct.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         removeProduct.setText("REMOVE PRODUCT");
@@ -371,7 +377,7 @@ public class ManageProducts extends javax.swing.JFrame {
                 removeProductActionPerformed(evt);
             }
         });
-        expiredProductsPanel.add(removeProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 270, 40));
+        expiredProductsPanel.add(removeProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, 270, 40));
 
         removeAllProducts.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         removeAllProducts.setText("REMOVE ALL EXPIRED PRODUCTS");
@@ -380,7 +386,7 @@ public class ManageProducts extends javax.swing.JFrame {
                 removeAllProductsActionPerformed(evt);
             }
         });
-        expiredProductsPanel.add(removeAllProducts, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 490, 440, 40));
+        expiredProductsPanel.add(removeAllProducts, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 480, 440, 40));
 
         mainPanelTab.addTab("VIEW EXPIRED PRODUCTS", expiredProductsPanel);
 

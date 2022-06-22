@@ -1,5 +1,6 @@
 package com.pos.ui;
 
+import com.pos.Checker;
 import com.pos.Config;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
@@ -312,7 +313,11 @@ public class Main extends JFrame {
         }
     } // </editor-fold>//
 
-    
+    /**
+     * Method that returns a value from the invoked method from the {@code ProductValidor} that checks if the product is expired.
+     * @param product the product to test for.
+     * @return {@code true} if the product is expired.
+     */
     private boolean isProductExpired(Product product) {
         return ProductValidator.isProductExpired().apply(PRODUCT_SERVICE.getProductById().apply(product.getId()).get()) == EXPIRED;
     }
@@ -339,7 +344,7 @@ public class Main extends JFrame {
         timePanel = new javax.swing.JPanel();
         timeLabel = new javax.swing.JLabel();
         time = new javax.swing.JLabel();
-        logout = new javax.swing.JButton();
+        exit = new javax.swing.JButton();
         viewSales = new javax.swing.JButton();
         headerPanel = new javax.swing.JPanel();
         header = new javax.swing.JLabel();
@@ -522,7 +527,6 @@ public class Main extends JFrame {
         changeLabel = new javax.swing.JLabel();
         changePesoSignLabel = new javax.swing.JLabel();
         change = new javax.swing.JTextField();
-        printReceipt = new javax.swing.JButton();
         pay = new javax.swing.JButton();
         removeItem = new javax.swing.JButton();
         reset = new javax.swing.JButton();
@@ -538,15 +542,16 @@ public class Main extends JFrame {
         mainPanel.setPreferredSize(new java.awt.Dimension(1360, 718));
         mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        informationPanel.setBackground(new java.awt.Color(51, 0, 51));
+        informationPanel.setBackground(new java.awt.Color(51, 51, 0));
         informationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         informationPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        expiredProductsInformationPanel.setBackground(new java.awt.Color(0, 204, 204));
+        expiredProductsInformationPanel.setBackground(new java.awt.Color(0, 102, 102));
         expiredProductsInformationPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         expiredProductsInformationPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         expiredProductsLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        expiredProductsLabel.setForeground(new java.awt.Color(102, 255, 255));
         expiredProductsLabel.setText("EXPIRED PRODUCTS");
         expiredProductsInformationPanel.add(expiredProductsLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
 
@@ -567,7 +572,7 @@ public class Main extends JFrame {
 
         informationPanel.add(expiredProductsInformationPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 250, 130));
 
-        datePanel.setBackground(new java.awt.Color(0, 51, 0));
+        datePanel.setBackground(new java.awt.Color(0, 102, 102));
         datePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         datePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -584,7 +589,7 @@ public class Main extends JFrame {
 
         informationPanel.add(datePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 240, 140));
 
-        dayTodayPanel.setBackground(new java.awt.Color(0, 51, 0));
+        dayTodayPanel.setBackground(new java.awt.Color(0, 102, 102));
         dayTodayPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         dayTodayPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -601,7 +606,7 @@ public class Main extends JFrame {
 
         informationPanel.add(dayTodayPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 240, 140));
 
-        timePanel.setBackground(new java.awt.Color(0, 51, 0));
+        timePanel.setBackground(new java.awt.Color(0, 102, 102));
         timePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         timePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -618,15 +623,15 @@ public class Main extends JFrame {
 
         informationPanel.add(timePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 240, 140));
 
-        logout.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        logout.setForeground(new java.awt.Color(255, 0, 0));
-        logout.setText("LOGOUT");
-        logout.addActionListener(new java.awt.event.ActionListener() {
+        exit.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        exit.setForeground(new java.awt.Color(255, 0, 0));
+        exit.setText("EXIT");
+        exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutActionPerformed(evt);
+                exitActionPerformed(evt);
             }
         });
-        informationPanel.add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 640, -1, 30));
+        informationPanel.add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 640, -1, 30));
 
         viewSales.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         viewSales.setText("VIEW REVENUE");
@@ -639,15 +644,18 @@ public class Main extends JFrame {
 
         mainPanel.add(informationPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 260, 690));
 
+        headerPanel.setBackground(new java.awt.Color(51, 51, 0));
         headerPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         headerPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         header.setFont(new java.awt.Font("Yu Gothic", 1, 36)); // NOI18N
+        header.setForeground(new java.awt.Color(255, 255, 255));
         header.setText("POINT OF SALES");
         headerPanel.add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, -1, -1));
 
         mainPanel.add(headerPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 1080, 70));
 
+        productsPanel.setBackground(new java.awt.Color(51, 51, 0));
         productsPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         productsPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1815,6 +1823,7 @@ public class Main extends JFrame {
 
         mainPanel.add(productsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, 1080, 450));
 
+        transactionPanel.setBackground(new java.awt.Color(51, 51, 0));
         transactionPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         transactionPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1921,15 +1930,6 @@ public class Main extends JFrame {
 
         transactionPanel.add(changePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, 310, 30));
 
-        printReceipt.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        printReceipt.setText("PRINT RECEIPT");
-        printReceipt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                printReceiptActionPerformed(evt);
-            }
-        });
-        transactionPanel.add(printReceipt, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 20, 210, 40));
-
         pay.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         pay.setText("PAY");
         pay.addActionListener(new java.awt.event.ActionListener() {
@@ -1970,7 +1970,7 @@ public class Main extends JFrame {
         try {
             if (ORDERS_LIST.isEmpty()) throw new IllegalStateException("NO PRODUCTS TO PAY");
             if(cash.getText().trim().isEmpty()) throw new IllegalStateException("PLEASE INSERT YOUR CASH AMOUNT");
-
+            if(!Checker.isNumber(cash.getText().trim())) throw new IllegalStateException("THAT IS NOT A NUMBER");
             final double SUB_TOTAL = Double.parseDouble(subTotal.getText().trim().replaceAll(",", ""));
             final double CASH = Double.parseDouble(cash.getText().trim().replaceAll(",", ""));
             if (CASH < SUB_TOTAL) throw new IllegalStateException("CASH AMOUNT NOT ENOUGH");
@@ -2043,10 +2043,6 @@ public class Main extends JFrame {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_subTotalActionPerformed
-
-    private void printReceiptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printReceiptActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_printReceiptActionPerformed
 
     private void guyLianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guyLianActionPerformed
         try {
@@ -2820,10 +2816,10 @@ public class Main extends JFrame {
         }
     }//GEN-LAST:event_removeItemActionPerformed
 
-    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+    private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         ORDERS_LIST.clear();
         System.exit(0);
-    }//GEN-LAST:event_logoutActionPerformed
+    }//GEN-LAST:event_exitActionPerformed
 
     private void viewSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewSalesActionPerformed
         final ViewRevenue VIEW_REVENUE = new ViewRevenue();
@@ -2921,6 +2917,7 @@ public class Main extends JFrame {
     private static javax.swing.JLabel drostePrice;
     private javax.swing.JButton esthechoc;
     private static javax.swing.JLabel esthechocPrice;
+    private javax.swing.JButton exit;
     private javax.swing.JPanel expiredProductsInformationPanel;
     private javax.swing.JLabel expiredProductsLabel;
     private javax.swing.JButton ferreroRocher;
@@ -2959,7 +2956,6 @@ public class Main extends JFrame {
     private javax.swing.JButton lipton;
     private static javax.swing.JLabel liptonPrice;
     private javax.swing.JLabel liquorsLabel;
-    private javax.swing.JButton logout;
     private javax.swing.JButton lysol;
     private static javax.swing.JLabel lysolPrice;
     private javax.swing.JPanel mainPanel;
@@ -2994,7 +2990,6 @@ public class Main extends JFrame {
     private static javax.swing.JLabel pepsiPrice;
     private javax.swing.JButton pineAppleJuice;
     private static javax.swing.JLabel pineAppleJuicePrice;
-    private javax.swing.JButton printReceipt;
     private javax.swing.JPanel productsPanel;
     private javax.swing.JButton redBull;
     private static javax.swing.JLabel redBullPrice;
