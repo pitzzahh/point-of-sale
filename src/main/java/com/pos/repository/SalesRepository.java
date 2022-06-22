@@ -11,7 +11,7 @@ import com.pos.entity.Sales;
 @Repository("salesRepository")
 public interface SalesRepository extends JpaRepository<Sales, Integer> {
 
-    @Query("select s.sales from #{#entityName} s")
+    @Query("select s.salesNumber from #{#entityName} s")
     List<Sales> getAllSales();
 
     @Query("select s.profit from #{#entityName} s")

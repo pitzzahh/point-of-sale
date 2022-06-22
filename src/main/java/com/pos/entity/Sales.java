@@ -13,10 +13,6 @@ import static javax.persistence.GenerationType.SEQUENCE;
                 @UniqueConstraint(
                         name = "sales_number_unique",
                         columnNames = "sales_number"
-                ),
-                @UniqueConstraint(
-                        name = "product_id_unique",
-                        columnNames = "product_id"
                 )
         }
 )

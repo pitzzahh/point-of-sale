@@ -1,6 +1,8 @@
 package com.pos.entity;
 
 import static javax.persistence.GenerationType.SEQUENCE;
+
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 import javax.persistence.*;
@@ -19,6 +21,7 @@ import javax.persistence.*;
 @Entity
 public class Product implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id

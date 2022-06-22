@@ -29,6 +29,7 @@ public class Progress extends javax.swing.JFrame {
      * @param block the code block to wait for.
      * @param progressType the type of progress bar if logging out or printing receipt.
      */
+    // <editor-fold defaultstate="collapsed" desc="Method that stats the progress bar.">//
     public void startProgressBar(Runnable block, int progressType) {
         
         if(progressType == 1) message.setText("LOGGING OUT");
@@ -58,18 +59,14 @@ public class Progress extends javax.swing.JFrame {
         });
         TIME_THREAD.setPriority(Thread.MIN_PRIORITY);
         TIME_THREAD.start();
-    }
+    } // </editor-fold>//
 
-    /**
-     * Method that gets the time the JVM takes to execute a code block.
-     * @param block the code block to calculate the time for it to terminate.
-     * @return the time taken by a code block before terminating.
-     */
-    private long getTime() {
+    // <editor-fold defaultstate="collapsed" desc="Method that gets the time the JVM takes to execute a code block.">//
+    public long getTime() {
         long start = System.nanoTime();
         long end = System.nanoTime();
         return (long) ((end - start) / 1.0e9);
-    }
+    } // </editor-fold>//
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

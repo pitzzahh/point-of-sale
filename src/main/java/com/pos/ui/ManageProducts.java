@@ -13,6 +13,9 @@ import com.pos.Config;
 import java.util.List;
 import javax.swing.*;
 import com.pos.Main;
+import static com.pos.Main.getExpiredProductsCount;
+import static com.pos.Main.numberOfExpiredProducts;
+import static com.pos.Main.setProductsPrices;
 
 /**
  *
@@ -111,6 +114,8 @@ public class ManageProducts extends javax.swing.JFrame {
                 defaultTableModel.addRow(data);
             }
         }
+        setProductsPrices();
+        numberOfExpiredProducts.setForeground((getExpiredProductsCount() > 0) ? new java.awt.Color(255, 0, 0) : new java.awt.Color(0, 0, 255));
     }
 
     /**
@@ -161,14 +166,15 @@ public class ManageProducts extends javax.swing.JFrame {
 
                 if(whatToUpdate == 4) {
                     newPrice = Double.parseDouble(temporaryString);
+                    if (newPrice <= 0) throw new IllegalStateException("INVALID PRICE\nPRICE SHOULD NOT BE LESS THAN OR EQUAL TO 0");
                     PRODUCT_SERVICE.updateProductPriceById().accept(newPrice, selectedProduct);
                 }
 
                 if(whatToUpdate == 5) {
                     newDiscount = Double.parseDouble(temporaryString);
-                    PRODUCT_SERVICE.updateProductDiscountById().accept(newDiscount, selectedProduct);
+                    if (newDiscount <= 0) PRODUCT_SERVICE.updateProductDiscountById().accept(null, selectedProduct);
+                    else PRODUCT_SERVICE.updateProductDiscountById().accept(newDiscount, selectedProduct);
                 }
-
                 AVAILABLE_PRODUCTS.clear();
                 loadAvailableProducts();
                 refreshTable(AVAILABLE_PRODUCTS_TABLE);
