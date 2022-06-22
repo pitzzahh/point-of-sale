@@ -1,9 +1,11 @@
 package com.pos.ui;
 
-import com.pos.Config;
 import static com.pos.ui.Main.OS_NAME;
-import com.pos.entity.Sales;
 import com.pos.service.SalesService;
+import com.pos.entity.Sales;
+import com.pos.Config;
+
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
@@ -30,6 +32,7 @@ public class ViewRevenue extends javax.swing.JFrame {
      */
     public ViewRevenue() {
         initComponents();
+        Toolkit.getDefaultToolkit().getImage(getClass().getResource("src/main/resources/view.png"));
         final DefaultTableCellRenderer RENDERER = new DefaultTableCellRenderer();
         RENDERER.setHorizontalAlignment(JLabel.CENTER);
         salesTable.getColumnModel().getColumn(0).setCellRenderer(RENDERER);

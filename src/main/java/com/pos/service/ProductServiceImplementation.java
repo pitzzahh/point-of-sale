@@ -4,17 +4,16 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.pos.repository.ProductRepository;
-
-import java.util.function.*;
 import java.util.stream.Collectors;
 import com.pos.entity.Category;
 import com.pos.entity.Product;
+import java.util.function.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Optional;
 import com.pos.Checker;
 import java.util.List;
 import java.io.File;
-import java.util.Optional;
 
 @Transactional
 @Service("productService")

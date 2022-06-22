@@ -1,10 +1,9 @@
 package com.pos.service;
 
-import java.util.function.*;
-
 import com.pos.entity.Product;
-import java.util.List;
+import java.util.function.*;
 import java.util.Optional;
+import java.util.List;
 
 public interface ProductService {
 

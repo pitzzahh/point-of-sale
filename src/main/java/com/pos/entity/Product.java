@@ -1,13 +1,14 @@
 package com.pos.entity;
 
 import static javax.persistence.GenerationType.SEQUENCE;
-
-import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 import javax.persistence.*;
+import java.io.Serial;
 
-
+/**
+ * Class used to make a table for products.
+ */
 @Table(
         name = "products",
         uniqueConstraints = {

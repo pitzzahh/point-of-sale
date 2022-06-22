@@ -4,13 +4,13 @@
  */
 package com.pos;
 
-import com.pos.ui.Main;
+import javax.swing.UnsupportedLookAndFeelException;
 import static com.pos.ui.Main.OS_NAME;
-import java.awt.Color;
-import java.util.Random;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+import java.awt.*;
+import java.util.Random;
+import com.pos.ui.Main;
 
 /**
  *
@@ -23,6 +23,7 @@ public class App extends javax.swing.JFrame {
      */
     public App() {
         initComponents();
+        Toolkit.getDefaultToolkit().getImage(getClass().getResource("src/main/resources/ico.png"));
     }
 
     /**

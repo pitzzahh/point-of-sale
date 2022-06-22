@@ -1,9 +1,11 @@
 package com.pos.ui;
 
-import com.pos.Checker;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
+import static com.pos.ui.Main.getExpiredProductsCount;
+import static com.pos.ui.Main.numberOfExpiredProducts;
 import javax.swing.table.DefaultTableCellRenderer;
+import static com.pos.ui.Main.setProductsPrices;
 import javax.swing.table.DefaultTableModel;
 import com.pos.service.ProductService;
 import static com.pos.ui.Main.OS_NAME;
@@ -12,9 +14,7 @@ import java.util.ArrayList;
 import com.pos.Config;
 import java.util.List;
 import javax.swing.*;
-import static com.pos.ui.Main.getExpiredProductsCount;
-import static com.pos.ui.Main.numberOfExpiredProducts;
-import static com.pos.ui.Main.setProductsPrices;
+import java.awt.*;
 
 /**
  *
@@ -41,6 +41,7 @@ public class ManageProducts extends javax.swing.JFrame {
      */
     public ManageProducts() {
         initComponents();
+        Toolkit.getDefaultToolkit().getImage(getClass().getResource("src/main/resources/edit.png"));
         final DefaultTableCellRenderer RENDERER = new DefaultTableCellRenderer();
         RENDERER.setHorizontalAlignment(JLabel.CENTER);
         availableProductsTable.getColumnModel().getColumn(0).setCellRenderer(RENDERER);
@@ -68,6 +69,7 @@ public class ManageProducts extends javax.swing.JFrame {
                 .forEach(AVAILABLE_PRODUCTS::add);
 
     }
+
     /**
      * Method that loads the expired products from the database to the {@code List<Product>} EXPIRED_PRODUCTS.
      */
@@ -488,7 +490,7 @@ public class ManageProducts extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
-        /* Create and display the form */
+        /* displays the form */
         java.awt.EventQueue.invokeLater(() -> {
             this.setVisible(true);
         });

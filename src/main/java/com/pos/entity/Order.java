@@ -1,7 +1,9 @@
 package com.pos.entity;
 
-
-
+/**
+ * Class for making orders.
+ * Not an entity.
+ */
 public final class Order {
     private String name;
     private double price;
