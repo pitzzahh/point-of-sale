@@ -4,6 +4,11 @@
  */
 package com.pos.ui;
 
+import com.pos.Main;
+import static com.pos.Main.OS_NAME;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 /**
  *
  * @author peter
@@ -26,72 +31,135 @@ public class Loading extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        mainPanel = new javax.swing.JPanel();
+        progressBar = new javax.swing.JProgressBar();
+        message = new javax.swing.JLabel();
+        percentage = new javax.swing.JLabel();
+        headerPanel = new javax.swing.JPanel();
+        header = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 449, Short.MAX_VALUE)
+        mainPanel.setBackground(new java.awt.Color(0, 102, 102));
+        mainPanel.setForeground(new java.awt.Color(153, 0, 51));
+        mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        progressBar.setBackground(new java.awt.Color(153, 204, 0));
+        progressBar.setForeground(new java.awt.Color(0, 0, 255));
+        mainPanel.add(progressBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(-1, 180, 460, 30));
+
+        message.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        message.setText("Loading");
+        mainPanel.add(message, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 270, 30));
+
+        percentage.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        percentage.setText("100 %");
+        mainPanel.add(percentage, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 150, 50, 30));
+
+        headerPanel.setBackground(new java.awt.Color(102, 102, 0));
+        headerPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+
+        header.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
+        header.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        header.setText("POINT OF SALE");
+
+        javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
+        headerPanel.setLayout(headerPanelLayout);
+        headerPanelLayout.setHorizontalGroup(
+            headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerPanelLayout.createSequentialGroup()
+                .addContainerGap(15, Short.MAX_VALUE)
+                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 284, Short.MAX_VALUE)
+        headerPanelLayout.setVerticalGroup(
+            headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerPanelLayout.createSequentialGroup()
+                .addContainerGap(19, Short.MAX_VALUE)
+                .addComponent(header)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
+
+        mainPanel.add(headerPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 310, 100));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    public static void main(String[] args) {
+        
+        // Checks if the current operating system is a Windows operating system
+        // Windows theme for Windows machines
+        // Nimbus theme for non Windows machines
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+            if (OS_NAME.startsWith("WINDOWS")) {
+                for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                    if ("Windows".equals(info.getName())) {
+                        UIManager.setLookAndFeel(info.getClassName());
+                        break;
+                    }
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Loading.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Loading.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Loading.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Loading.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Loading().setVisible(true);
+            else {
+                for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                    if ("Nimbus".equals(info.getName())) {
+                        UIManager.setLookAndFeel(info.getClassName());
+                        break;
+                    }
+                }
             }
-        });
+
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        
+        Loading loading = new Loading();
+        loading.setVisible(true);
+        final int START = 0;
+        final int END = 80;
+        
+        try {
+            for(int i = START; i <= END; i++ ) {
+                Thread.sleep(100);
+                loading.percentage.setText(i + " %");
+                switch(i) {
+                    case 20 -> loading.message.setText("INITIALIZING POINT OF SALES...");
+                    case 40 -> loading.message.setText("CONNECTING TO DATABASE...");
+                    case 60 -> loading.message.setText("CONNECTED SUCCESSFULLY...");
+                    case 70 -> loading.message.setText("READING PRODUCTS LIST...");
+                    case 90 -> loading.message.setText("SUCCESS...");
+                    case 100 -> loading.message.setText("OPENING POINT OF SALES...");
+                }
+                loading.progressBar.setValue(i);
+            }
+            new Main().setVisible(true);
+        } catch(InterruptedException interruptedException) {
+            interruptedException.printStackTrace();
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel header;
+    private javax.swing.JPanel headerPanel;
+    private javax.swing.JPanel mainPanel;
+    private javax.swing.JLabel message;
+    private javax.swing.JLabel percentage;
+    private javax.swing.JProgressBar progressBar;
     // End of variables declaration//GEN-END:variables
 }

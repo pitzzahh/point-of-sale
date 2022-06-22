@@ -155,8 +155,6 @@ public class ManageProducts extends javax.swing.JFrame {
             int newStocks;
             double newPrice;
             double newDiscount;
-            JOptionPane.showMessageDialog(null, "TEMPORARY STRING: " + temporaryString);
-            JOptionPane.showMessageDialog(null, "IF CHECK: " + (checkInput(temporaryString, whatToUpdate) || ((whatToUpdate == EDIT_DISCOUNT)) && temporaryString.equals("0")));
             
             if (checkInput(temporaryString, whatToUpdate) || ((whatToUpdate == EDIT_DISCOUNT)) && temporaryString.equals("0")) {
 
@@ -173,11 +171,8 @@ public class ManageProducts extends javax.swing.JFrame {
                 }
 
                 if(whatToUpdate == EDIT_DISCOUNT) {
-                    JOptionPane.showMessageDialog(null, "TEMPORARY STRING IF: " + temporaryString);
-
                     if(temporaryString.equals("0")) newDiscount = 0;
                     else newDiscount = Double.parseDouble(temporaryString);
-                    JOptionPane.showMessageDialog(null, "NEW DISCOUNT <= 0 : " + (newDiscount <= 0));
                     if (newDiscount <= 0) PRODUCT_SERVICE.updateProductDiscountById().accept(0.0, selectedProductId);
                     else PRODUCT_SERVICE.updateProductDiscountById().accept(newDiscount, selectedProductId);
                 }

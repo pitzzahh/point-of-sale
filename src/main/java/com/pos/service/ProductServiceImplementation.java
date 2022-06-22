@@ -135,7 +135,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CLEANING_PRODUCT,
                         LocalDate.of(2023, 1, 1),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2023, 1, 1).isBefore(LocalDate.now())
                 )
         );
@@ -146,7 +146,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CLEANING_PRODUCT,
                         LocalDate.of(2023, 1, 1),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2023, 1, 1).isBefore(LocalDate.now())
                 )
         );
@@ -157,7 +157,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CLEANING_PRODUCT,
                         LocalDate.of(2023, 1, 1),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2023, 1, 1).isBefore(LocalDate.now())
                 )
         );
@@ -168,7 +168,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CLEANING_PRODUCT,
                         LocalDate.of(2023, 1, 1),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2023, 1, 1).isBefore(LocalDate.now())
                 )
         );
@@ -179,7 +179,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CLEANING_PRODUCT,
                         LocalDate.of(2023, 1, 1),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2023, 1, 1).isBefore(LocalDate.now())
                 )
         );
@@ -190,7 +190,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CLEANING_PRODUCT,
                         LocalDate.of(2023, 1, 1),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2023, 1, 1).isBefore(LocalDate.now())
                 )
         );
@@ -201,7 +201,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CLEANING_PRODUCT,
                         LocalDate.of(2023, 1, 1),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2023, 1, 1).isBefore(LocalDate.now())
                 )
         );
@@ -212,7 +212,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CLEANING_PRODUCT,
                         LocalDate.of(2023, 1, 1),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2023, 1, 1).isBefore(LocalDate.now())
                 )
         );
@@ -223,7 +223,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CLEANING_PRODUCT,
                         LocalDate.of(2023, 1, 1),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2023, 1, 1).isBefore(LocalDate.now())
                 )
         );
@@ -234,7 +234,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CLEANING_PRODUCT,
                         LocalDate.of(2023, 1, 1),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2023, 1, 1).isBefore(LocalDate.now())
                 )
         );
@@ -245,7 +245,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CLEANING_PRODUCT,
                         LocalDate.of(2023, 1, 1),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2023, 1, 1).isBefore(LocalDate.now())
                 )
         );
@@ -256,7 +256,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CLEANING_PRODUCT,
                         LocalDate.of(2023, 1, 1),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2023, 1, 1).isBefore(LocalDate.now())
                 )
         );
@@ -267,7 +267,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CLEANING_PRODUCT,
                         LocalDate.of(2023, 1, 1),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2023, 1, 1).isBefore(LocalDate.now())
                 )
         );
@@ -278,7 +278,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CLEANING_PRODUCT,
                         LocalDate.of(2023, 1, 1),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2023, 1, 1).isBefore(LocalDate.now())
                 )
         );
@@ -289,7 +289,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CLEANING_PRODUCT,
                         LocalDate.of(2023, 1, 1),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2023, 1, 1).isBefore(LocalDate.now())
                 )
         );
@@ -300,7 +300,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CHOCOLATE,
                         LocalDate.of(2022, 7, 3),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 7, 3).isBefore(LocalDate.now())
                 )
         );
@@ -314,7 +314,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CHOCOLATE,
                         LocalDate.of(2022, 7, 14),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 7, 14).isBefore(LocalDate.now())
                 )
         );
@@ -325,7 +325,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CHOCOLATE,
                         LocalDate.of(2022, 8, 12),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 8, 12).isBefore(LocalDate.now())
                 )
         );
@@ -336,7 +336,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CHOCOLATE,
                         LocalDate.of(2022, 7, 3),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 7, 3).isBefore(LocalDate.now())
                 )
         );
@@ -347,7 +347,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CHOCOLATE,
                         LocalDate.of(2022, 6, 22),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 6, 22).isBefore(LocalDate.now())
                 )
         );
@@ -358,7 +358,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CHOCOLATE,
                         LocalDate.of(2022, 6, 21),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 6, 21).isBefore(LocalDate.now())
                 )
         );
@@ -369,7 +369,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CHOCOLATE,
                         LocalDate.of(2022, 7, 25),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 7, 25).isBefore(LocalDate.now())
                 )
         );
@@ -380,7 +380,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CHOCOLATE,
                         LocalDate.of(2022, 12, 12),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 12, 12).isBefore(LocalDate.now())
                 )
         );
@@ -391,7 +391,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CHOCOLATE,
                         LocalDate.of(2022, 7, 3),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 7, 3).isBefore(LocalDate.now())
                 )
         );
@@ -402,7 +402,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CHOCOLATE,
                         LocalDate.of(2022, 5, 12),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 5, 12).isBefore(LocalDate.now())
                 )
         );
@@ -413,7 +413,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CHOCOLATE,
                         LocalDate.of(2023, 5, 12),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2023, 5, 12).isBefore(LocalDate.now())
                 )
         );
@@ -424,7 +424,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CHOCOLATE,
                         LocalDate.of(2022, 3, 12),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 3, 12).isBefore(LocalDate.now())
                 )
         );
@@ -435,7 +435,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CHOCOLATE,
                         LocalDate.of(2022, 3, 24),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 3, 24).isBefore(LocalDate.now())
                 )
         );
@@ -446,7 +446,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CHOCOLATE,
                         LocalDate.of(2022, 4, 30),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 4, 30).isBefore(LocalDate.now())
                 )
         );
@@ -457,7 +457,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CHOCOLATE,
                         LocalDate.of(2022, 8, 12),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 3, 12).isBefore(LocalDate.now())
                 )
         );
@@ -468,7 +468,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CHOCOLATE,
                         LocalDate.of(2022, 9, 14),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 9, 14).isBefore(LocalDate.now())
                 )
         );
@@ -479,7 +479,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CHOCOLATE,
                         LocalDate.of(2022, 4, 30),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 4, 30).isBefore(LocalDate.now())
                 )
         );
@@ -490,7 +490,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CHOCOLATE,
                         LocalDate.of(2022, 12, 21),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 12, 21).isBefore(LocalDate.now())
                 )
         );
@@ -501,7 +501,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CHOCOLATE,
                         LocalDate.of(2022, 2, 12),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 2, 12).isBefore(LocalDate.now())
                 )
         );
@@ -512,7 +512,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CHOCOLATE,
                         LocalDate.of(2022, 9, 30),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 9, 30).isBefore(LocalDate.now())
                 )
         );
@@ -534,7 +534,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CHOCOLATE,
                         LocalDate.of(2022, 8, 19),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 8, 19).isBefore(LocalDate.now())
                 )
         );
@@ -545,7 +545,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.CHOCOLATE,
                         LocalDate.of(2022, 9, 4),
                         100,
-                        null,
+                        15.12,
                         LocalDate.of(2022, 9, 4).isBefore(LocalDate.now())
                 )
         );
@@ -626,7 +626,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.BEVERAGE,
                         LocalDate.of(2022, 8, 22),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 8, 22).isBefore(LocalDate.now())
                 )
         );
@@ -637,7 +637,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.BEVERAGE,
                         LocalDate.of(2022, 8, 25),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 8, 25).isBefore(LocalDate.now())
                 )
         );
@@ -648,7 +648,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.BEVERAGE,
                         LocalDate.of(2022, 8, 21),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 8, 21).isBefore(LocalDate.now())
                 )
         );
@@ -659,7 +659,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.BEVERAGE,
                         LocalDate.of(2022, 8, 21),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 8, 21).isBefore(LocalDate.now())
                 )
         );
@@ -670,7 +670,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.BEVERAGE,
                         LocalDate.of(2022, 8, 21),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 8, 21).isBefore(LocalDate.now())
                 )
         );
@@ -681,7 +681,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.BEVERAGE,
                         LocalDate.of(2022, 6, 21),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 6, 21).isBefore(LocalDate.now())
                 )
         );
@@ -692,7 +692,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.BEVERAGE,
                         LocalDate.of(2022, 6, 21),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 6, 21).isBefore(LocalDate.now())
                 )
         );
@@ -703,7 +703,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.BEVERAGE,
                         LocalDate.of(2022, 8, 21),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 8, 21).isBefore(LocalDate.now())
                 )
         );
@@ -714,7 +714,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.BEVERAGE,
                         LocalDate.of(2022, 8, 21),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 8, 21).isBefore(LocalDate.now())
                 )
         );
@@ -725,7 +725,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.BEVERAGE,
                         LocalDate.of(2022, 8, 21),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 8, 21).isBefore(LocalDate.now())
                 )
         );
@@ -736,7 +736,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.BEVERAGE,
                         LocalDate.of(2022, 10, 21),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 10, 21).isBefore(LocalDate.now())
                 )
         );
@@ -747,7 +747,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.BEVERAGE,
                         LocalDate.of(2022, 8, 21),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 8, 21).isBefore(LocalDate.now())
                 )
         );
@@ -758,7 +758,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.BEVERAGE,
                         LocalDate.of(2022, 8, 21),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 8, 21).isBefore(LocalDate.now())
                 )
         );
@@ -769,7 +769,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.BEVERAGE,
                         LocalDate.of(2022, 8, 21),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 8, 21).isBefore(LocalDate.now())
                 )
         );
@@ -781,7 +781,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.BEVERAGE,
                         LocalDate.of(2022, 10, 21),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 10, 21).isBefore(LocalDate.now())
                 )
         );
@@ -792,7 +792,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.BEVERAGE,
                         LocalDate.of(2022, 10, 21),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 10, 21).isBefore(LocalDate.now())
                 )
         );
@@ -803,7 +803,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.BEVERAGE,
                         LocalDate.of(2022, 10, 21),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 10, 21).isBefore(LocalDate.now())
                 )
         );
@@ -814,7 +814,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.BEVERAGE,
                         LocalDate.of(2022, 10, 21),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 10, 21).isBefore(LocalDate.now())
                 )
         );
@@ -825,7 +825,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.BEVERAGE,
                         LocalDate.of(2022, 10, 21),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 10, 21).isBefore(LocalDate.now())
                 )
         );
@@ -836,7 +836,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.BEVERAGE,
                         LocalDate.of(2022, 10, 21),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 10, 21).isBefore(LocalDate.now())
                 )
         );
@@ -847,7 +847,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.BEVERAGE,
                         LocalDate.of(2022, 10, 21),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 10, 21).isBefore(LocalDate.now())
                 )
         );
@@ -858,7 +858,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.BEVERAGE,
                         LocalDate.of(2022, 10, 29),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 10, 29).isBefore(LocalDate.now())
                 )
         );
@@ -869,7 +869,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.BEVERAGE,
                         LocalDate.of(2022, 7, 21),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 7, 21).isBefore(LocalDate.now())
                 )
         );
@@ -880,7 +880,7 @@ public class ProductServiceImplementation implements ProductService {
                         Category.BEVERAGE,
                         LocalDate.of(2022, 10, 15),
                         100,
-                        null,
+                        0.0,
                         LocalDate.of(2022, 10, 15).isBefore(LocalDate.now())
                 )
         );
