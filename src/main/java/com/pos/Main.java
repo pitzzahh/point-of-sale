@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 public class Main extends JFrame {
     
     private final AbstractApplicationContext CONTEXT=  new AnnotationConfigApplicationContext(Config.class);
-    public final ProductService PRODUCT_SERVICE = CONTEXT.getBean(ProductService.class);
+    private final ProductService PRODUCT_SERVICE = CONTEXT.getBean(ProductService.class);
     
     public final SalesService SALES_SERVICE = CONTEXT.getBean(SalesService.class);
 
