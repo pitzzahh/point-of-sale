@@ -50,7 +50,8 @@ public class Main extends JFrame {
     public Main() {
         PRODUCT_SERVICE.insertAllProductsToDatabase();
         initComponents();
-        Toolkit.getDefaultToolkit().getImage(getClass().getResource("src/main/resources/ico.png"));
+
+
         initializeDate();
         initializeTime();
         day.setText(LocalDate.now().getDayOfWeek().name());

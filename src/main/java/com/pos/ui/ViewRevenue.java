@@ -8,9 +8,8 @@ import com.pos.Config;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JLabel;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+import java.util.Objects;
+import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -32,7 +31,6 @@ public class ViewRevenue extends javax.swing.JFrame {
      */
     public ViewRevenue() {
         initComponents();
-        Toolkit.getDefaultToolkit().getImage(getClass().getResource("src/main/resources/view.png"));
         final DefaultTableCellRenderer RENDERER = new DefaultTableCellRenderer();
         RENDERER.setHorizontalAlignment(JLabel.CENTER);
         salesTable.getColumnModel().getColumn(0).setCellRenderer(RENDERER);

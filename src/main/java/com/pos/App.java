@@ -4,11 +4,12 @@
  */
 package com.pos;
 
-import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.*;
+
 import static com.pos.ui.Main.OS_NAME;
-import javax.swing.JOptionPane;
-import javax.swing.UIManager;
+
 import java.awt.*;
+import java.util.Objects;
 import java.util.Random;
 import com.pos.ui.Main;
 
@@ -23,9 +24,7 @@ public class App extends javax.swing.JFrame {
      */
     public App() {
         initComponents();
-        Toolkit.getDefaultToolkit().getImage(getClass().getResource("src/main/resources/ico.png"));
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

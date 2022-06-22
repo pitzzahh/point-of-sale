@@ -15,6 +15,7 @@ import com.pos.Config;
 import java.util.List;
 import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 
 /**
  *
@@ -41,7 +42,8 @@ public class ManageProducts extends javax.swing.JFrame {
      */
     public ManageProducts() {
         initComponents();
-        Toolkit.getDefaultToolkit().getImage(getClass().getResource("src/main/resources/edit.png"));
+
+
         final DefaultTableCellRenderer RENDERER = new DefaultTableCellRenderer();
         RENDERER.setHorizontalAlignment(JLabel.CENTER);
         availableProductsTable.getColumnModel().getColumn(0).setCellRenderer(RENDERER);
