@@ -138,8 +138,9 @@ public class Main extends JFrame {
         Hashtable<Integer, Boolean> expiredProducts = PRODUCT_SERVICE.getAllProducts()
                 .get()
                 .stream()
+                .filter(Product::getExpired)
                 .collect(Collectors.toMap(
-                        Product::getId, p -> p.getExpired() == true,
+                        Product::getId, Product::getExpired,
                         (key, value) -> {
                             throw new IllegalStateException(
                                     String.format("Cannot have 2 values (%s, %s) for the same key", key, value)
@@ -147,10 +148,14 @@ public class Main extends JFrame {
                         }, Hashtable::new
                 ));
 
+        expiredProducts.forEach((key, value) -> System.out.println("key = " + key + "\n" + "value = " + value));
+
         /*
             Setting prices label for cleaning products
         */
-        cleanFirstPrice.setText((expiredProducts.containsKey(1) ? "EXPIRED" : (priceList.containsKey(1) ? PESO_SIGN + " " + priceList.get(1) : "NOT AVAILABLE")));
+        cleanFirstPrice.setText(
+                (expiredProducts.containsKey(1)) ? "EXPIRED" : (priceList.containsKey(1)) ? PESO_SIGN + " " + priceList.get(1) : "NOT AVAILABLE"
+        );
         hydroSafePrice.setText((expiredProducts.containsKey(2) ? "EXPIRED" : (priceList.containsKey(2) ? PESO_SIGN + " " + priceList.get(2) : "NOT AVAILABLE")));
         rightFlexPrice.setText((expiredProducts.containsKey(3) ? "EXPIRED" : (priceList.containsKey(3) ? PESO_SIGN + " " + priceList.get(3) : "NOT AVAILABLE")));
         cloroxPrice.setText((expiredProducts.containsKey(4) ? "EXPIRED" : (priceList.containsKey(4) ? PESO_SIGN + " " + priceList.get(4) : "NOT AVAILABLE")));
