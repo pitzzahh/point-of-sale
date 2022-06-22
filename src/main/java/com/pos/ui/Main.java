@@ -2531,7 +2531,8 @@ public class Main extends JFrame {
 
             if(!product.isPresent()) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS NOT AVAILABLE");
             if(isProductExpired(product.get())) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
-39        } catch(RuntimeException runtimeException) {
+            handleOrder(39);
+        } catch(RuntimeException runtimeException) {
             PROMPT.show.accept(runtimeException.getMessage(), true);
         }
     }//GEN-LAST:event_cadburyActionPerformed
