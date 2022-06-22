@@ -6,6 +6,7 @@ package com.pos;
 
 import com.pos.ui.Main;
 import static com.pos.ui.Main.OS_NAME;
+import java.awt.Color;
 import java.util.Random;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -41,6 +42,7 @@ public class App extends javax.swing.JFrame {
         header = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setAlwaysOnTop(true);
         setUndecorated(true);
         setResizable(false);
 
@@ -50,19 +52,19 @@ public class App extends javax.swing.JFrame {
 
         progressBar.setBackground(new java.awt.Color(153, 204, 0));
         progressBar.setForeground(new java.awt.Color(0, 0, 255));
-        mainPanel.add(progressBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 450, 30));
+        mainPanel.add(progressBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 450, 20));
 
         message.setBackground(new java.awt.Color(255, 255, 255));
         message.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         message.setForeground(new java.awt.Color(255, 255, 255));
         message.setText("Loading");
-        mainPanel.add(message, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 270, 30));
+        mainPanel.add(message, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 270, 30));
 
         percentage.setBackground(new java.awt.Color(255, 255, 255));
         percentage.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         percentage.setForeground(new java.awt.Color(255, 255, 255));
         percentage.setText("100 %");
-        mainPanel.add(percentage, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 50, 30));
+        mainPanel.add(percentage, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 130, 50, 30));
 
         headerPanel.setBackground(new java.awt.Color(102, 102, 0));
         headerPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -135,42 +137,55 @@ public class App extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         
-        App loading = new App();
+        App app = new App();
         final Random RANDOM = new Random();
-        loading.setVisible(true);
+        app.setVisible(true);
         final int START = 0;
         final int END = 100;
-        
+        Main MAIN = null;
         try {
-            for(int i = START; i <= END; i++ ) {
+            for(int i = 0; i <= 100; i++ ) {
                 Thread.sleep(RANDOM.nextInt(100) + 1);
-                loading.percentage.setText(i + " %");
+                app.percentage.setText(i + " %");
                 switch(i) {
-                    case 5 -> loading.message.setText("LOADING.");
-                    case 6 -> loading.message.setText("LOADING..");
-                    case 7 -> loading.message.setText("LOADING...");
-                    case 20 -> loading.message.setText("INITIALIZING POINT OF SALES.");
-                    case 30 -> loading.message.setText("INITIALIZING POINT OF SALES..");
-                    case 35 -> loading.message.setText("INITIALIZING POINT OF SALES...");
-                    case 40 -> loading.message.setText("CONNECTING TO DATABASE.");
-                    case 45 -> loading.message.setText("CONNECTING TO DATABASE..");
-                    case 50 -> loading.message.setText("CONNECTING TO DATABASE...");
-                    case 64 -> loading.message.setText("CONNECTED SUCCESSFULLY...");
-                    case 70 -> loading.message.setText("READING PRODUCTS LIST.");
+                    case 5 -> {
+                        app.message.setText("LOADING.");
+                        app.progressBar.setBackground(Color.red);
+                    }
+                    case 6 -> app.message.setText("LOADING..");
+                    case 7 -> app.message.setText("LOADING...");
+                    case 20 -> {
+                        app.message.setText("INITIALIZING POINT OF SALES.");
+                        app.progressBar.setBackground(Color.yellow);
+                    }
+                    case 30 -> app.message.setText("INITIALIZING POINT OF SALES..");
+                    case 35 -> app.message.setText("INITIALIZING POINT OF SALES...");
+                    case 40 -> app.message.setText("CONNECTING TO DATABASE.");
+                    case 45 -> app.message.setText("CONNECTING TO DATABASE..");
+                    case 50 -> app.message.setText("CONNECTING TO DATABASE...");
+                    case 64 -> {
+                        app.message.setText("CONNECTED SUCCESSFULLY");
+                        app.progressBar.setBackground(Color.blue);
+                    }
+                    case 70 -> app.message.setText("READING PRODUCTS LIST.");
                     case 72 -> {
-                        loading.message.setText("READING PRODUCTS LIST.");
+                        app.message.setText("READING PRODUCTS LIST.");
                         i+=new Random().nextInt(4) + 1;
                     }
-                    case 74 -> loading.message.setText("READING PRODUCTS LIST.");
-                    case 90 -> loading.message.setText("SUCCESS");
-                    case 94 -> loading.message.setText("OPENING POINT OF SALES.");
-                    case 98 -> loading.message.setText("OPENING POINT OF SALES..");
-                    case 100 -> loading.message.setText("OPENING POINT OF SALES...");
+                    case 80 -> {
+                        app.message.setText("READING PRODUCTS LIST..");
+                        MAIN = new Main();
+                    }
+                    case 90 -> app.message.setText("SUCCESS");
+                    case 94 -> app.message.setText("OPENING POINT OF SALES.");
+                    case 98 -> app.message.setText("OPENING POINT OF SALES..");
+                    case 100 -> app.message.setText("OPENING POINT OF SALES...");
                 }
-                loading.progressBar.setValue(i);
+                app.progressBar.setValue(i);
             }
-            loading.dispose();
-            final Main MAIN = new Main();
+            app.dispose();
+
+            assert MAIN != null;
             MAIN.run();
         } catch(InterruptedException interruptedException) {
             JOptionPane.showMessageDialog(null, interruptedException.getMessage());

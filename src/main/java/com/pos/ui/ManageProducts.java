@@ -144,17 +144,17 @@ public class ManageProducts extends javax.swing.JFrame {
      * @param whatToUpdate used for checking of what to update on the product info.
      */
     private void updateProduct(int whatToUpdate) {
+        String temporaryString = "";
         try {
             int selectedProductId = getProductFromTable(AVAILABLE_PRODUCTS_TABLE);
             if (AVAILABLE_PRODUCTS.isEmpty()) throw new IllegalStateException("THERE ARE NO AVAILABLE PRODUCTS");
             String options = (whatToUpdate == 3) ? "STOCKS" : (whatToUpdate == 4) ? "PRICE" : (whatToUpdate == 5) ? "DISCOUNT" : "NULL";
             if (selectedProductId == 0) throw new IllegalStateException("TO ADD " + options + "  TO A PRODUCT\nPLEASE SELECT A ROW FROM THE TABLE AND CLICK " + options);
-            String temporaryString = String.valueOf(JOptionPane.showInputDialog("ENTER NEW " + options));
+            temporaryString = String.valueOf(JOptionPane.showInputDialog("ENTER NEW " + options));
 
             int newStocks;
             double newPrice;
             double newDiscount;
-            
             if (checkInput(temporaryString, whatToUpdate) || ((whatToUpdate == EDIT_DISCOUNT)) && temporaryString.equals("0")) {
 
                 if(whatToUpdate == EDIT_STOCKS) {
@@ -178,11 +178,11 @@ public class ManageProducts extends javax.swing.JFrame {
                 AVAILABLE_PRODUCTS.clear();
                 loadAvailableProducts();
                 refreshTable(AVAILABLE_PRODUCTS_TABLE);
-                Main.PROMPT.show.accept(options + " UPDATED SUCCESSFULLY", false);
+                if(!temporaryString.trim().isEmpty()) Main.PROMPT.show.accept(options + " UPDATED SUCCESSFULLY", false);
             }
             else throw new IllegalStateException("INVALID " + options);
         } catch (RuntimeException runtimeException) {
-            Main.PROMPT.show.accept(runtimeException.getMessage(), true);
+            if(temporaryString != null) Main.PROMPT.show.accept(runtimeException.getMessage(), true);
         }
     }
     
@@ -230,6 +230,7 @@ public class ManageProducts extends javax.swing.JFrame {
         editStocks = new javax.swing.JButton();
         editPrice = new javax.swing.JButton();
         editDiscount = new javax.swing.JButton();
+        close = new javax.swing.JButton();
         expiredProductsPanel = new javax.swing.JPanel();
         expiredProductsHeader = new javax.swing.JLabel();
         expiredProductsScrollPane = new javax.swing.JScrollPane();
@@ -325,6 +326,14 @@ public class ManageProducts extends javax.swing.JFrame {
             }
         });
         restockProductsPanel.add(editDiscount, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 490, 140, 30));
+
+        close.setText("CLOSE");
+        close.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeActionPerformed(evt);
+            }
+        });
+        restockProductsPanel.add(close, new org.netbeans.lib.awtextra.AbsoluteConstraints(812, 492, 80, 30));
 
         mainPanelTab.addTab("EDIT PRODUCTS", restockProductsPanel);
 
@@ -439,6 +448,10 @@ public class ManageProducts extends javax.swing.JFrame {
         updateProduct(EDIT_DISCOUNT);
     }//GEN-LAST:event_editDiscountActionPerformed
 
+    private void closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_closeActionPerformed
+
     /**
      * Runs this frame.
      */
@@ -480,6 +493,7 @@ public class ManageProducts extends javax.swing.JFrame {
     private javax.swing.JLabel availableProductsHeader;
     private javax.swing.JLabel availableProductsSubHeader;
     private javax.swing.JTable availableProductsTable;
+    private javax.swing.JButton close;
     private javax.swing.JButton editDiscount;
     private javax.swing.JButton editPrice;
     private javax.swing.JButton editStocks;

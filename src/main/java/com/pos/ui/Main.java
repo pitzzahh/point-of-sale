@@ -1974,8 +1974,9 @@ public class Main extends JFrame {
         handleOrder(16);
     }//GEN-LAST:event_hersheysActionPerformed
     private void manageProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageProductsActionPerformed
-        final ManageProducts MANAGE_PRODUCTS = new ManageProducts();
-        MANAGE_PRODUCTS.run();
+        final Loading LOADING = new Loading();
+        LOADING.setVisible(true);
+        LOADING.start(LOADING.LOADING_PRODUCTS);
     }//GEN-LAST:event_manageProductsActionPerformed
     private void cleanFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleanFirstActionPerformed
         handleOrder(1);
@@ -2277,16 +2278,19 @@ public class Main extends JFrame {
         } catch (RuntimeException runtimeException) {
             PROMPT.show.accept(runtimeException.getMessage(), true);
         }
-
     }//GEN-LAST:event_removeItemActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
-        System.exit(0);
+        ORDERS_LIST.clear();
+        final Loading LOADING = new Loading();
+        LOADING.setVisible(true);
+        LOADING.start(LOADING.LOGGING_OUT);
     }//GEN-LAST:event_logoutActionPerformed
 
     private void viewSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewSalesActionPerformed
-        final ViewRevenue VIEW_REVENUE = new ViewRevenue();
-        VIEW_REVENUE.run();
+        final Loading LOADING = new Loading();
+        LOADING.setVisible(true);
+        LOADING.start(LOADING.LOADING_REVENUE);
     }//GEN-LAST:event_viewSalesActionPerformed
 
     /**
