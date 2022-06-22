@@ -6,16 +6,15 @@ import org.springframework.context.support.AbstractApplicationContext;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import com.pos.service.ProductService;
-import static com.pos.Main.OS_NAME;
+import static com.pos.ui.Main.OS_NAME;
 import com.pos.entity.Product;
 import java.util.ArrayList;
 import com.pos.Config;
 import java.util.List;
 import javax.swing.*;
-import com.pos.Main;
-import static com.pos.Main.getExpiredProductsCount;
-import static com.pos.Main.numberOfExpiredProducts;
-import static com.pos.Main.setProductsPrices;
+import static com.pos.ui.Main.getExpiredProductsCount;
+import static com.pos.ui.Main.numberOfExpiredProducts;
+import static com.pos.ui.Main.setProductsPrices;
 
 /**
  *
@@ -441,10 +440,9 @@ public class ManageProducts extends javax.swing.JFrame {
     }//GEN-LAST:event_editDiscountActionPerformed
 
     /**
-     * main method.
-     * @param args the command line arguments
+     * Runs this frame.
      */
-    public static void main(String[] args) {
+    public void run() {
 
         // Checks if the current operating system is a Windows operating system
         // Windows theme for Windows machines
@@ -473,7 +471,7 @@ public class ManageProducts extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new ManageProducts().setVisible(true);
+            this.setVisible(true);
         });
     }
 

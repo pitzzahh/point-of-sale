@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.pos.ui;
+package com.pos;
 
-import com.pos.Main;
-import static com.pos.Main.OS_NAME;
+import com.pos.ui.Main;
+import static com.pos.ui.Main.OS_NAME;
 import java.util.Random;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -15,12 +15,12 @@ import javax.swing.UnsupportedLookAndFeelException;
  *
  * @author peter
  */
-public class Loading extends javax.swing.JFrame {
+public class App extends javax.swing.JFrame {
 
     /**
      * Creates new form Progress
      */
-    public Loading() {
+    public App() {
         initComponents();
     }
 
@@ -105,6 +105,7 @@ public class Loading extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
+     * Starting point.
      * @param args the command line arguments
      */
     public static void main(String[] args) {
@@ -134,7 +135,7 @@ public class Loading extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         
-        Loading loading = new Loading();
+        App loading = new App();
         final Random RANDOM = new Random();
         loading.setVisible(true);
         final int START = 0;
@@ -142,7 +143,7 @@ public class Loading extends javax.swing.JFrame {
         
         try {
             for(int i = START; i <= END; i++ ) {
-                Thread.sleep(RANDOM.nextInt(80) + 1);
+                Thread.sleep(RANDOM.nextInt(100) + 1);
                 loading.percentage.setText(i + " %");
                 switch(i) {
                     case 5 -> loading.message.setText("LOADING.");
@@ -169,7 +170,8 @@ public class Loading extends javax.swing.JFrame {
                 loading.progressBar.setValue(i);
             }
             loading.dispose();
-            new Main().setVisible(true);
+            final Main MAIN = new Main();
+            MAIN.run();
         } catch(InterruptedException interruptedException) {
             JOptionPane.showMessageDialog(null, interruptedException.getMessage());
         }

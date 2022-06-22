@@ -1,8 +1,7 @@
 package com.pos.ui;
 
 import com.pos.Config;
-import com.pos.Main;
-import static com.pos.Main.OS_NAME;
+import static com.pos.ui.Main.OS_NAME;
 import com.pos.entity.Sales;
 import com.pos.service.SalesService;
 import java.util.ArrayList;
@@ -60,11 +59,11 @@ public class ViewRevenue extends javax.swing.JFrame {
     }
     
     private void getTotalRevenue() {
-        Double totalProfit = SALES_SERVICE.getAllProfit()
+        double totalProfit = SALES_SERVICE.getAllProfit()
                 .get()
                 .stream()
                 .reduce(0.0, Double::sum);
-        totalRevenue.setText(String.valueOf(totalProfit));
+        totalRevenue.setText(String.valueOf(Main.NUMBER_FORMAT.format(totalProfit)));
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -170,9 +169,9 @@ public class ViewRevenue extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * @param args the command line arguments
+     * Runs this frame.
      */
-    public static void main(String[] args) {
+    public void run() {
 
         // Checks if the current operating system is a Windows operating system
         // Windows theme for Windows machines
@@ -201,7 +200,7 @@ public class ViewRevenue extends javax.swing.JFrame {
         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new ViewRevenue().setVisible(true);
+            this.setVisible(true);
         });
     }
 

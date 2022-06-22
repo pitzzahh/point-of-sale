@@ -1,5 +1,6 @@
-package com.pos;
+package com.pos.ui;
 
+import com.pos.Config;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -12,11 +13,8 @@ import com.pos.entity.Product;
 import com.pos.entity.Order;
 import com.pos.entity.Sales;
 import com.pos.service.SalesService;
-import com.pos.ui.ManageProducts;
 import java.text.DateFormat;
 import java.time.LocalDate;
-import com.pos.ui.Prompt;
-import com.pos.ui.ViewRevenue;
 import javax.swing.*;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -38,7 +36,7 @@ public class Main extends JFrame {
     
     private final List<Order> ORDERS_LIST = new ArrayList<>();
 
-    private final NumberFormat NUMBER_FORMAT = NumberFormat.getInstance(Locale.ENGLISH);
+    public static final NumberFormat NUMBER_FORMAT = NumberFormat.getInstance(Locale.ENGLISH);
 
     public static final Prompt PROMPT = new Prompt();
     
@@ -518,6 +516,7 @@ public class Main extends JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1366, 718));
+        setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(1366, 718));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -526,9 +525,11 @@ public class Main extends JFrame {
         mainPanel.setPreferredSize(new java.awt.Dimension(1360, 718));
         mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        informationPanel.setBackground(new java.awt.Color(51, 0, 51));
         informationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         informationPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        expiredProductsInformationPanel.setBackground(new java.awt.Color(0, 204, 204));
         expiredProductsInformationPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         expiredProductsInformationPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -553,44 +554,53 @@ public class Main extends JFrame {
 
         informationPanel.add(expiredProductsInformationPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 250, 130));
 
+        datePanel.setBackground(new java.awt.Color(0, 51, 0));
         datePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         datePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         dateLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        dateLabel.setForeground(new java.awt.Color(102, 255, 255));
         dateLabel.setText("DATE");
         datePanel.add(dateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, -1));
 
+        date.setBackground(new java.awt.Color(255, 255, 255));
         date.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        date.setForeground(new java.awt.Color(255, 255, 255));
         date.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        date.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         datePanel.add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 180, 50));
 
         informationPanel.add(datePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 240, 140));
 
+        dayTodayPanel.setBackground(new java.awt.Color(0, 51, 0));
         dayTodayPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         dayTodayPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         dayTodayLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        dayTodayLabel.setForeground(new java.awt.Color(102, 255, 255));
         dayTodayLabel.setText("DAY TODAY");
         dayTodayPanel.add(dayTodayLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, -1, -1));
 
+        day.setBackground(new java.awt.Color(255, 255, 255));
         day.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        day.setForeground(new java.awt.Color(255, 255, 255));
         day.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        day.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         dayTodayPanel.add(day, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 180, 50));
 
         informationPanel.add(dayTodayPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 240, 140));
 
+        timePanel.setBackground(new java.awt.Color(0, 51, 0));
         timePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         timePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         timeLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        timeLabel.setForeground(new java.awt.Color(102, 255, 255));
         timeLabel.setText("TIME");
         timePanel.add(timeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, -1));
 
+        time.setBackground(new java.awt.Color(255, 255, 255));
         time.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        time.setForeground(new java.awt.Color(255, 255, 255));
         time.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        time.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         timePanel.add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 180, 50));
 
         informationPanel.add(timePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 240, 140));
@@ -614,7 +624,7 @@ public class Main extends JFrame {
         });
         informationPanel.add(viewSales, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 170, 30));
 
-        mainPanel.add(informationPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 260, 680));
+        mainPanel.add(informationPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 260, 690));
 
         headerPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         headerPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1790,7 +1800,7 @@ public class Main extends JFrame {
 
         productsPanel.add(ordersPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, 470, 420));
 
-        mainPanel.add(productsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, 1080, 440));
+        mainPanel.add(productsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, 1080, 450));
 
         transactionPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         transactionPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1934,7 +1944,7 @@ public class Main extends JFrame {
         });
         transactionPanel.add(reset, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 90, 110, 40));
 
-        mainPanel.add(transactionPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 540, 1080, 150));
+        mainPanel.add(transactionPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 550, 1080, 150));
 
         getContentPane().add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1368, 720));
 
@@ -1964,10 +1974,8 @@ public class Main extends JFrame {
         handleOrder(16);
     }//GEN-LAST:event_hersheysActionPerformed
     private void manageProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageProductsActionPerformed
-//        ProgressBar progressBar = new ProgressBar();
-//        progressBar.setVisible(true);
-//        progressBar.startProgressBar(progressBar, ProgressBar.LOADING);
-        new ManageProducts().setVisible(true);
+        final ManageProducts MANAGE_PRODUCTS = new ManageProducts();
+        MANAGE_PRODUCTS.run();
     }//GEN-LAST:event_manageProductsActionPerformed
     private void cleanFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleanFirstActionPerformed
         handleOrder(1);
@@ -2273,25 +2281,18 @@ public class Main extends JFrame {
     }//GEN-LAST:event_removeItemActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
-//        ProgressBar progressBar = new ProgressBar();
-//        progressBar.setVisible(true);
-//        progressBar.startProgressBar(progressBar, ProgressBar.LOGGING_OUT);
-//        progressBar.setVisible(true);
         System.exit(0);
     }//GEN-LAST:event_logoutActionPerformed
 
     private void viewSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewSalesActionPerformed
-//        ProgressBar progressBar = new ProgressBar();
-//        progressBar.setVisible(true);
-//        progressBar.startProgressBar(progressBar, ProgressBar.LOADING);
-//        progressBar.setVisible(true);
-        new ViewRevenue().setVisible(true);
+        final ViewRevenue VIEW_REVENUE = new ViewRevenue();
+        VIEW_REVENUE.run();
     }//GEN-LAST:event_viewSalesActionPerformed
 
     /**
-     * @param args the command line arguments
+     * Runs this frame.
      */
-    public static void main(String[] args) {
+    public void run() {
 
         // Checks if the current operating system is a Windows operating system
         // Windows theme for Windows machines
@@ -2319,7 +2320,7 @@ public class Main extends JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new Main().setVisible(true);
+            this.setVisible(true);
         });
     }
 
