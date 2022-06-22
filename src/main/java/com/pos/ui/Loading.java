@@ -6,6 +6,8 @@ package com.pos.ui;
 
 import com.pos.Main;
 import static com.pos.Main.OS_NAME;
+import java.util.Random;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -48,20 +50,24 @@ public class Loading extends javax.swing.JFrame {
 
         progressBar.setBackground(new java.awt.Color(153, 204, 0));
         progressBar.setForeground(new java.awt.Color(0, 0, 255));
-        mainPanel.add(progressBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(-1, 180, 460, 30));
+        mainPanel.add(progressBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 450, 30));
 
+        message.setBackground(new java.awt.Color(255, 255, 255));
         message.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        message.setForeground(new java.awt.Color(255, 255, 255));
         message.setText("Loading");
-        mainPanel.add(message, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 270, 30));
+        mainPanel.add(message, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 270, 30));
 
+        percentage.setBackground(new java.awt.Color(255, 255, 255));
         percentage.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        percentage.setForeground(new java.awt.Color(255, 255, 255));
         percentage.setText("100 %");
-        mainPanel.add(percentage, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 150, 50, 30));
+        mainPanel.add(percentage, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 50, 30));
 
         headerPanel.setBackground(new java.awt.Color(102, 102, 0));
         headerPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-        header.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
+        header.setFont(new java.awt.Font("Consolas", 1, 36)); // NOI18N
         header.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         header.setText("POINT OF SALE");
 
@@ -76,23 +82,22 @@ public class Loading extends javax.swing.JFrame {
         );
         headerPanelLayout.setVerticalGroup(
             headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(headerPanelLayout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
-                .addComponent(header)
-                .addContainerGap(27, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerPanelLayout.createSequentialGroup()
+                .addGap(0, 11, Short.MAX_VALUE)
+                .addComponent(header))
         );
 
-        mainPanel.add(headerPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 310, 100));
+        mainPanel.add(headerPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 310, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -130,27 +135,43 @@ public class Loading extends javax.swing.JFrame {
         }
         
         Loading loading = new Loading();
+        final Random RANDOM = new Random();
         loading.setVisible(true);
         final int START = 0;
-        final int END = 80;
+        final int END = 100;
         
         try {
             for(int i = START; i <= END; i++ ) {
-                Thread.sleep(100);
+                Thread.sleep(RANDOM.nextInt(80) + 1);
                 loading.percentage.setText(i + " %");
                 switch(i) {
-                    case 20 -> loading.message.setText("INITIALIZING POINT OF SALES...");
-                    case 40 -> loading.message.setText("CONNECTING TO DATABASE...");
-                    case 60 -> loading.message.setText("CONNECTED SUCCESSFULLY...");
-                    case 70 -> loading.message.setText("READING PRODUCTS LIST...");
-                    case 90 -> loading.message.setText("SUCCESS...");
+                    case 5 -> loading.message.setText("LOADING.");
+                    case 6 -> loading.message.setText("LOADING..");
+                    case 7 -> loading.message.setText("LOADING...");
+                    case 20 -> loading.message.setText("INITIALIZING POINT OF SALES.");
+                    case 30 -> loading.message.setText("INITIALIZING POINT OF SALES..");
+                    case 35 -> loading.message.setText("INITIALIZING POINT OF SALES...");
+                    case 40 -> loading.message.setText("CONNECTING TO DATABASE.");
+                    case 45 -> loading.message.setText("CONNECTING TO DATABASE..");
+                    case 50 -> loading.message.setText("CONNECTING TO DATABASE...");
+                    case 64 -> loading.message.setText("CONNECTED SUCCESSFULLY...");
+                    case 70 -> loading.message.setText("READING PRODUCTS LIST.");
+                    case 72 -> {
+                        loading.message.setText("READING PRODUCTS LIST.");
+                        i+=new Random().nextInt(4) + 1;
+                    }
+                    case 74 -> loading.message.setText("READING PRODUCTS LIST.");
+                    case 90 -> loading.message.setText("SUCCESS");
+                    case 94 -> loading.message.setText("OPENING POINT OF SALES.");
+                    case 98 -> loading.message.setText("OPENING POINT OF SALES..");
                     case 100 -> loading.message.setText("OPENING POINT OF SALES...");
                 }
                 loading.progressBar.setValue(i);
             }
+            loading.dispose();
             new Main().setVisible(true);
         } catch(InterruptedException interruptedException) {
-            interruptedException.printStackTrace();
+            JOptionPane.showMessageDialog(null, interruptedException.getMessage());
         }
     }
 
