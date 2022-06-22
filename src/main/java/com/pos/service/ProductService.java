@@ -4,6 +4,7 @@ import java.util.function.*;
 
 import com.pos.entity.Product;
 import java.util.List;
+import java.util.Optional;
 
 public interface ProductService {
 
@@ -15,7 +16,8 @@ public interface ProductService {
 
     Consumer<List<Product>> saveAllProducts();
 
-    Function<Integer, Product> getProductById();
+    Function<Integer, Optional<Product>> getProductById();
+    
     Function<String, Product> getProductByName();
 
     Function<Integer, Integer> getProductStocksById();

@@ -260,11 +260,12 @@ public class Main extends JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Method that handles orders.">//
     private void handleOrder(int productId) {
-        Product product = PRODUCT_SERVICE.getProductById().apply(productId);
+        Optional<Product> product = PRODUCT_SERVICE.getProductById().apply(productId);
+        
         boolean alreadyAdded = ORDERS_LIST.stream()
-                .anyMatch(order -> order.getName().equals(product.getName()));
-        if (alreadyAdded) modifyOrder(product, false);
-        else makeOrder(product);
+                .anyMatch(order -> order.getName().equals(product.get().getName()));
+        if (alreadyAdded) modifyOrder(product.get(), false);
+        else makeOrder(product.get());
         refreshOrdersTable();
     } // </editor-fold>//
 
@@ -311,12 +312,9 @@ public class Main extends JFrame {
         }
     } // </editor-fold>//
 
-    private boolean isProductNotAvailable(Product product) {
-        return ProductValidator.isProductNotAvailable().apply(PRODUCT_SERVICE.getProductById().apply(product.getId())) == NOT_AVAILABLE;
-    }
     
     private boolean isProductExpired(Product product) {
-        return ProductValidator.isProductExpired().apply(PRODUCT_SERVICE.getProductById().apply(product.getId())) == EXPIRED;
+        return ProductValidator.isProductExpired().apply(PRODUCT_SERVICE.getProductById().apply(product.getId()).get()) == EXPIRED;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -1989,15 +1987,14 @@ public class Main extends JFrame {
         handleOrder(16);
     }//GEN-LAST:event_hersheysActionPerformed
     private void manageProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageProductsActionPerformed
-        final Loading LOADING = new Loading();
-        LOADING.setVisible(true);
-        LOADING.start(LOADING.LOADING_PRODUCTS);
+        final ManageProducts MANAGE_PRODUCTS = new ManageProducts();
+        MANAGE_PRODUCTS.run();
     }//GEN-LAST:event_manageProductsActionPerformed
     private void cleanFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleanFirstActionPerformed
         try {
-            Product product = PRODUCT_SERVICE.getProductById().apply(1);
-            if(isProductExpired(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
-            if(isProductNotAvailable(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS NOT AVAILABLE");
+            Optional<Product> product = PRODUCT_SERVICE.getProductById().apply(1);
+            
+            if(isProductExpired(product.get())) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
             handleOrder(1);
         } catch(RuntimeException runtimeException) {
             PROMPT.show.accept(runtimeException.getMessage(), true);
@@ -2007,9 +2004,9 @@ public class Main extends JFrame {
 
     private void myCleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myCleanActionPerformed
         try {
-            Product product = PRODUCT_SERVICE.getProductById().apply(6);
-            if(isProductExpired(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
-            if(isProductNotAvailable(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS NOT AVAILABLE");
+            Optional<Product> product = PRODUCT_SERVICE.getProductById().apply(6);
+            
+            if(isProductExpired(product.get())) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
             handleOrder(6);
         } catch(RuntimeException runtimeException) {
             PROMPT.show.accept(runtimeException.getMessage(), true);
@@ -2018,9 +2015,9 @@ public class Main extends JFrame {
 
     private void gatoradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gatoradeActionPerformed
         try {
-            Product product = PRODUCT_SERVICE.getProductById().apply(46);
-            if(isProductExpired(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
-            if(isProductNotAvailable(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
+            Optional<Product> product = PRODUCT_SERVICE.getProductById().apply(46);
+            
+            if(isProductExpired(product.get())) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
             handleOrder(46);
         } catch(RuntimeException runtimeException) {
             PROMPT.show.accept(runtimeException.getMessage(), true);
@@ -2029,9 +2026,9 @@ public class Main extends JFrame {
 
     private void cocaColaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cocaColaActionPerformed
         try {
-            Product product = PRODUCT_SERVICE.getProductById().apply(41);
-            if(isProductExpired(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
-            if(isProductNotAvailable(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
+            Optional<Product> product = PRODUCT_SERVICE.getProductById().apply(41);
+            
+            if(isProductExpired(product.get())) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
             handleOrder(41);
         } catch(RuntimeException runtimeException) {
             PROMPT.show.accept(runtimeException.getMessage(), true);
@@ -2085,9 +2082,9 @@ public class Main extends JFrame {
 
     private void hydroSafeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hydroSafeActionPerformed
         try {
-            Product product = PRODUCT_SERVICE.getProductById().apply(2);
-            if(isProductExpired(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
-            if(isProductNotAvailable(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS NOT AVAILABLE");
+            Optional<Product> product = PRODUCT_SERVICE.getProductById().apply(2);
+                    
+            if(isProductExpired(product.get())) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
             handleOrder(2);
         } catch(RuntimeException runtimeException) {
             PROMPT.show.accept(runtimeException.getMessage(), true);
@@ -2096,9 +2093,9 @@ public class Main extends JFrame {
 
     private void rightFlexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightFlexActionPerformed
         try {
-            Product product = PRODUCT_SERVICE.getProductById().apply(3);
-            if(isProductExpired(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
-            if(isProductNotAvailable(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS NOT AVAILABLE");
+            Optional<Product> product = PRODUCT_SERVICE.getProductById().apply(3);
+            
+            if(isProductExpired(product.get())) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
             handleOrder(3);
         } catch(RuntimeException runtimeException) {
             PROMPT.show.accept(runtimeException.getMessage(), true);
@@ -2107,9 +2104,9 @@ public class Main extends JFrame {
 
     private void cloroxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cloroxActionPerformed
         try {
-            Product product = PRODUCT_SERVICE.getProductById().apply(4);
-            if(isProductExpired(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
-            if(isProductNotAvailable(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS NOT AVAILABLE");
+            Optional<Product> product = PRODUCT_SERVICE.getProductById().apply(4);
+            
+            if(isProductExpired(product.get())) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
             handleOrder(4);
         } catch(RuntimeException runtimeException) {
             PROMPT.show.accept(runtimeException.getMessage(), true);
@@ -2118,9 +2115,9 @@ public class Main extends JFrame {
 
     private void dirtBusterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dirtBusterActionPerformed
         try {
-            Product product = PRODUCT_SERVICE.getProductById().apply(5);
-            if(isProductExpired(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
-            if(isProductNotAvailable(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS NOT AVAILABLE");
+            Optional<Product> product = PRODUCT_SERVICE.getProductById().apply(5);
+            
+            if(isProductExpired(product.get())) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
             handleOrder(5);
         } catch(RuntimeException runtimeException) {
             PROMPT.show.accept(runtimeException.getMessage(), true);
@@ -2129,10 +2126,9 @@ public class Main extends JFrame {
 
     private void cleanCutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleanCutActionPerformed
         try {
-            Product product = PRODUCT_SERVICE.getProductById().apply(7);
+            Optional<Product> product = PRODUCT_SERVICE.getProductById().apply(7);
             
-            if(isProductExpired(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
-            if(isProductNotAvailable(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS NOT AVAILABLE");
+            if(isProductExpired(product.get())) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
             handleOrder(7);
         } catch(RuntimeException runtimeException) {
             PROMPT.show.accept(runtimeException.getMessage(), true);
@@ -2141,10 +2137,9 @@ public class Main extends JFrame {
 
     private void sureCleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sureCleanActionPerformed
         try {
-            Product product = PRODUCT_SERVICE.getProductById().apply(8);
+            Optional<Product> product = PRODUCT_SERVICE.getProductById().apply(8);
             
-            if(isProductExpired(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
-            if(isProductNotAvailable(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS NOT AVAILABLE");
+            if(isProductExpired(product.get())) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
             handleOrder(8);
         } catch(RuntimeException runtimeException) {
             PROMPT.show.accept(runtimeException.getMessage(), true);
@@ -2153,10 +2148,9 @@ public class Main extends JFrame {
 
     private void mrCleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mrCleanActionPerformed
         try {
-            Product product = PRODUCT_SERVICE.getProductById().apply(9);
+            Optional<Product> product = PRODUCT_SERVICE.getProductById().apply(9);
             
-            if(isProductExpired(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
-            if(isProductNotAvailable(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS NOT AVAILABLE");
+            if(isProductExpired(product.get())) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
             handleOrder(9);
         } catch(RuntimeException runtimeException) {
             PROMPT.show.accept(runtimeException.getMessage(), true);
@@ -2165,11 +2159,10 @@ public class Main extends JFrame {
 
     private void joyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joyActionPerformed
         try {
-            Product product = PRODUCT_SERVICE.getProductById().apply(10);
+            Optional<Product> product = PRODUCT_SERVICE.getProductById().apply(9);
             
-            if(isProductExpired(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
-            if(isProductNotAvailable(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS NOT AVAILABLE");
-            handleOrder(10);
+            if(isProductExpired(product.get())) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
+            handleOrder(9);
         } catch(RuntimeException runtimeException) {
             PROMPT.show.accept(runtimeException.getMessage(), true);
         }
@@ -2277,10 +2270,10 @@ public class Main extends JFrame {
 
     private void godivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_godivaActionPerformed
         try {
-            Product product = PRODUCT_SERVICE.getProductById().apply(40);
+            Optional<Product> product = PRODUCT_SERVICE.getProductById().apply(40);
             
-            if(isProductExpired(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
-            if(isProductNotAvailable(product)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS NOT AVAILABLE");
+            if(!product.isPresent()) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS NOT AVAILABLE");
+            if(isProductExpired(product.get())) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
             handleOrder(40);
         } catch(RuntimeException runtimeException) {
             PROMPT.show.accept(runtimeException.getMessage(), true);
@@ -2394,15 +2387,12 @@ public class Main extends JFrame {
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         ORDERS_LIST.clear();
-        final Loading LOADING = new Loading();
-        LOADING.setVisible(true);
-        LOADING.start(LOADING.LOGGING_OUT);
+        System.exit(0);
     }//GEN-LAST:event_logoutActionPerformed
 
     private void viewSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewSalesActionPerformed
-        final Loading LOADING = new Loading();
-        LOADING.setVisible(true);
-        LOADING.start(LOADING.LOADING_REVENUE);
+        final ViewRevenue VIEW_REVENUE = new ViewRevenue();
+        VIEW_REVENUE.run();
     }//GEN-LAST:event_viewSalesActionPerformed
 
     /**

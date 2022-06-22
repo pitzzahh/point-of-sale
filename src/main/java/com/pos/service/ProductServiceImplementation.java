@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import com.pos.Checker;
 import java.util.List;
 import java.io.File;
+import java.util.Optional;
 
 @Transactional
 @Service("productService")
@@ -42,8 +43,8 @@ public class ProductServiceImplementation implements ProductService {
     }
 
     @Override
-    public Function<Integer, Product> getProductById() {
-        return productRepository::getProductById;
+    public Function<Integer, Optional<Product>> getProductById() {
+        return id -> Optional.ofNullable(productRepository.getProductById(id));
     }
 
     @Override
