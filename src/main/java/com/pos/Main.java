@@ -30,9 +30,8 @@ public class Main extends JFrame {
     private final AbstractApplicationContext CONTEXT=  new AnnotationConfigApplicationContext(Config.class);
     private final ProductService PRODUCT_SERVICE = CONTEXT.getBean(ProductService.class);
     
-    public final SalesService SALES_SERVICE = CONTEXT.getBean(SalesService.class);
-
     public static final String OS_NAME = System.getProperty("os.name", "").toUpperCase();
+    
     private final List<Order> ORDERS_LIST = new ArrayList<>();
 
     private final NumberFormat NUMBER_FORMAT = NumberFormat.getInstance(Locale.ENGLISH);
@@ -148,14 +147,10 @@ public class Main extends JFrame {
                         }, Hashtable::new
                 ));
 
-        expiredProducts.forEach((key, value) -> System.out.println("key = " + key + "\n" + "value = " + value));
-
         /*
             Setting prices label for cleaning products
         */
-        cleanFirstPrice.setText(
-                (expiredProducts.containsKey(1)) ? "EXPIRED" : (priceList.containsKey(1)) ? PESO_SIGN + " " + priceList.get(1) : "NOT AVAILABLE"
-        );
+        cleanFirstPrice.setText((expiredProducts.containsKey(1)) ? "EXPIRED" : (priceList.containsKey(1)) ? PESO_SIGN + " " + priceList.get(1) : "NOT AVAILABLE");
         hydroSafePrice.setText((expiredProducts.containsKey(2) ? "EXPIRED" : (priceList.containsKey(2) ? PESO_SIGN + " " + priceList.get(2) : "NOT AVAILABLE")));
         rightFlexPrice.setText((expiredProducts.containsKey(3) ? "EXPIRED" : (priceList.containsKey(3) ? PESO_SIGN + " " + priceList.get(3) : "NOT AVAILABLE")));
         cloroxPrice.setText((expiredProducts.containsKey(4) ? "EXPIRED" : (priceList.containsKey(4) ? PESO_SIGN + " " + priceList.get(4) : "NOT AVAILABLE")));
@@ -296,10 +291,7 @@ public class Main extends JFrame {
         totalDiscount.setText(String.valueOf(NUMBER_FORMAT.format(TOTAL_DISCOUNT)));
     } // </editor-fold>//
 
-    /**
-     * Method that makes an Order object based from the selection from the order table.
-     * @return
-     */
+    // <editor-fold defaultstate="collapsed" desc="Method that makes an Order object based from the selection from the order table and returns it.">//
     private Order getOrderFromTableSelection() {
         try{
             return new Order(
@@ -317,7 +309,7 @@ public class Main extends JFrame {
         } catch (RuntimeException ignored) {
             return null;
         }
-    }
+    } // </editor-fold>//
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -620,7 +612,7 @@ public class Main extends JFrame {
         informationPanel.add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 640, -1, 30));
 
         viewSales.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        viewSales.setText("VIEW SALES");
+        viewSales.setText("VIEW REVENUE");
         viewSales.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewSalesActionPerformed(evt);
@@ -1978,6 +1970,7 @@ public class Main extends JFrame {
     private void manageProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageProductsActionPerformed
         new ManageProducts().setVisible(true);
         setProductsPrices();
+        numberOfExpiredProducts.setForeground((getExpiredProductsCount() > 0) ? new java.awt.Color(255, 0, 0) : new java.awt.Color(0, 0, 255));
     }//GEN-LAST:event_manageProductsActionPerformed
     /**
      * Method that gets the time the JVM takes to execute a code block.

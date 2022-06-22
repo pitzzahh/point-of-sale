@@ -4,14 +4,18 @@
  */
 package com.pos.service;
 
+import com.pos.entity.Product;
 import com.pos.entity.Sales;
 import java.util.List;
+import java.util.function.Supplier;
 
 /**
  *
  * @author peter
  */
 public interface SalesService {
-    
-    List<Sales> getAllSales();
+
+    Supplier<List<Sales>>  getAllSales();
+
+    Supplier<List<Double>> getAllProfit();
 }

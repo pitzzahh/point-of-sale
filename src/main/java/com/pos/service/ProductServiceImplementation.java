@@ -27,7 +27,7 @@ public class ProductServiceImplementation implements ProductService {
         updateAllProductsExpirationDate();
         return () -> (int) productRepository.getAllProducts()
                 .stream()
-                .filter(p -> p.getExpired() == true)
+                .filter(Product::getExpired)
                 .count();
     }
 
@@ -69,6 +69,11 @@ public class ProductServiceImplementation implements ProductService {
     @Override
     public BiConsumer<Integer, Integer> updateProductStocksById() {
         return (newStock, id) -> productRepository.updateProductStocksById(newStock, id);
+    }
+
+    @Override
+    public BiConsumer<Double, Integer> updateProductDiscountById() {
+        return (newDiscount, id) -> productRepository.updateProductDiscountById(newDiscount, id);
     }
 
     @Override

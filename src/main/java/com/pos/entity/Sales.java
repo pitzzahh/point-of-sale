@@ -3,6 +3,7 @@ package com.pos.entity;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.io.Serial;
+import java.time.LocalDate;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
@@ -44,52 +45,46 @@ public class Sales implements Serializable {
     private Integer salesNumber;
 
     @Column(
-            name = "product_id",
+            name = "date_processed",
             nullable = false,
-            columnDefinition = "INT",
-            unique = true
+            columnDefinition = "DATE"
     )
-    private Integer productId;
+    private LocalDate dateProcessed;
 
     @Column(
-            name = "product_name",
-            nullable = false,
-            columnDefinition = "TEXT"
-    )
-    private String productName;
-
-    @Column(
-            name = "sales",
+            name = "profit",
             nullable = false
     )
-    private Double sales;
+    private Double profit;
 
     public Sales() {
     }
 
-    public Sales(Integer productId, String productName, Double sales) {
-        this.productId = productId;
-        this.productName = productName;
-        this.sales = sales;
+    public Sales(Integer salesNumber, LocalDate date_processed, Double profit) {
+        this.salesNumber = salesNumber;
+        this.dateProcessed = date_processed;
+        this.profit = profit;
     }
 
-    public Integer getProductId() {
-        return productId;
+    public Integer getSalesNumber() {
+        return salesNumber;
     }
 
-    public String getProductName() {
-        return productName;
+    public LocalDate getDateProcessed() {
+        return dateProcessed;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setDateProcessed(LocalDate dateProcessed) {
+        this.dateProcessed = dateProcessed;
     }
 
-    public Double getSales() {
-        return sales;
+    public Double getProfit() {
+        return profit;
     }
 
-    public void setSales(Double sales) {
-        this.sales = sales;
+    public void setProfit(Double profit) {
+        this.profit = profit;
     }
+    
+    
 }

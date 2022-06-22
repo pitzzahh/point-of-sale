@@ -29,6 +29,10 @@ public class ManageProducts extends javax.swing.JFrame {
     
     private static final int AVAILABLE_PRODUCTS_TABLE = 1;
     private static final int EXPIRED_PRODUCTS_TABLE = 2;
+    
+    private static final int EDIT_STOCKS = 3;
+    private static final int EDIT_PRICE = 4;
+    private static final int EDIT_DISCOUNT = 5;
 
     /**
      * Creates new form ExpiredProducts
@@ -129,6 +133,66 @@ public class ManageProducts extends javax.swing.JFrame {
             }
         }
         return 0;
+    }
+    
+    /**
+     * Method that update the product information.
+     * @param whatToUpdate used for checking of what to update on the product info.
+     */
+    private void updateProduct(int whatToUpdate) {
+        try {
+            int selectedProduct = getProductFromTable(AVAILABLE_PRODUCTS_TABLE);
+            if (AVAILABLE_PRODUCTS.isEmpty()) throw new IllegalStateException("THERE ARE NO AVAILABLE PRODUCTS");
+            String options = (whatToUpdate == 3) ? "STOCKS" : (whatToUpdate == 4) ? "PRICE" : (whatToUpdate == 5) ? "DISCOUNT" : "NULL";
+            if (selectedProduct == 0) throw new IllegalStateException("TO ADD " + options + "  TO A PRODUCT\nPLEASE SELECT A ROW FROM THE TABLE AND CLICK " + options);
+            String temporaryString = String.valueOf(JOptionPane.showInputDialog("ENTER NEW " + options));
+
+            int newStocks;
+            double newPrice;
+            double newDiscount;
+            
+            if (checkInput(temporaryString, whatToUpdate)) {
+
+                if(whatToUpdate == 3) {
+                    newStocks = Integer.parseInt(temporaryString);
+                    if(PRODUCT_SERVICE.getProductStocksById().apply(selectedProduct) > newStocks) throw new IllegalStateException("NEW STOCKS SHOULD NOT BE LESS THAN CURRENT STOCKS");
+                    PRODUCT_SERVICE.updateProductStocksById().accept(newStocks, selectedProduct);
+                }
+
+                if(whatToUpdate == 4) {
+                    newPrice = Double.parseDouble(temporaryString);
+                    PRODUCT_SERVICE.updateProductPriceById().accept(newPrice, selectedProduct);
+                }
+
+                if(whatToUpdate == 5) {
+                    newDiscount = Double.parseDouble(temporaryString);
+                    PRODUCT_SERVICE.updateProductDiscountById().accept(newDiscount, selectedProduct);
+                }
+
+                AVAILABLE_PRODUCTS.clear();
+                loadAvailableProducts();
+                refreshTable(AVAILABLE_PRODUCTS_TABLE);
+                Main.PROMPT.show.accept(options + " UPDATED SUCCESSFULLY", false);
+            }
+            else throw new IllegalStateException("INVALID " + options);
+        } catch (RuntimeException runtimeException) {
+            Main.PROMPT.show.accept(runtimeException.getMessage(), true);
+        }
+    }
+    
+    /**
+     * Method that checks if the inputs of new product details is valid.
+     * @param stringToCheck the {@code String} that contains a possible {@code Integer} or {@code Double} value.
+     * @param whatToUpdate used for checking of what to update on the product info.
+     * @return {@code true} if {@code String} stringToCheck is a valid {@code Integer} or {@code Double} value.  
+     */
+    private boolean checkInput(String stringToCheck, int whatToUpdate) {
+        try {
+            if(whatToUpdate == 3) Integer.parseInt(stringToCheck);
+            else if(whatToUpdate == 4 || whatToUpdate == 5) Double.parseDouble(stringToCheck);
+            return true;
+        } catch(RuntimeException ignored) {}
+        return false;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -238,6 +302,11 @@ public class ManageProducts extends javax.swing.JFrame {
 
         editDiscount.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         editDiscount.setText("EDIT DISCOUNT");
+        editDiscount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editDiscountActionPerformed(evt);
+            }
+        });
         restockProductsPanel.add(editDiscount, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 490, 140, 30));
 
         mainPanelTab.addTab("EDIT PRODUCTS", restockProductsPanel);
@@ -337,25 +406,7 @@ public class ManageProducts extends javax.swing.JFrame {
     }//GEN-LAST:event_mainPanelTabComponentShown
 
     private void editStocksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editStocksActionPerformed
-        try {
-            int selectedProduct = getProductFromTable(AVAILABLE_PRODUCTS_TABLE);
-            if (AVAILABLE_PRODUCTS.isEmpty()) throw new IllegalStateException("THERE ARE NO AVAILABLE PRODUCTS");
-            if (selectedProduct == 0) throw new IllegalStateException("TO ADD STOCKS TO A PRODUCT\nPLEASE SELECT A ROW FROM THE TABLE AND CLICK EDIT STOCKS");
-            String newStocksInStrings = String.valueOf(JOptionPane.showInputDialog("ENTER NEW STOCKS"));
-            int newStocks;
-            if (Checker.isNumber(newStocksInStrings)) {
-                newStocks = Integer.parseInt(newStocksInStrings);
-                if(PRODUCT_SERVICE.getProductStocksById().apply(selectedProduct) > newStocks) throw new IllegalStateException("NEW STOCKS SHOULD NOT BE LESS THAN CURRENT STOCKS");
-                PRODUCT_SERVICE.updateProductStocksById().accept(newStocks, selectedProduct);
-                AVAILABLE_PRODUCTS.clear();
-                loadAvailableProducts();
-                refreshTable(AVAILABLE_PRODUCTS_TABLE);
-                Main.PROMPT.show.accept("STOCKS EDITED SUCCESSFULLY", false);
-            }
-            else throw new IllegalStateException("INVALID STOCKS");
-        } catch (RuntimeException runtimeException) {
-            Main.PROMPT.show.accept(runtimeException.getMessage(), true);
-        }
+        updateProduct(EDIT_STOCKS);
     }//GEN-LAST:event_editStocksActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
@@ -364,25 +415,13 @@ public class ManageProducts extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosed
 
     private void editPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPriceActionPerformed
-        try {
-            int selectedProduct = getProductFromTable(AVAILABLE_PRODUCTS_TABLE);
-            if (AVAILABLE_PRODUCTS.isEmpty()) throw new IllegalStateException("THERE ARE NO AVAILABLE PRODUCTS");
-            if (selectedProduct == 0) throw new IllegalStateException("TO ADD STOCKS TO A PRODUCT\nPLEASE SELECT A ROW FROM THE TABLE AND CLICK EDIT STOCKS");
-            String newPriceString = String.valueOf(JOptionPane.showInputDialog("ENTER NEW PRICE"));
-            double newPrice;
-            if (Checker.isNumber(newPriceString) || Checker.isNumberWithDecimal(newPriceString)) {
-                newPrice = Double.parseDouble(newPriceString);
-                PRODUCT_SERVICE.updateProductPriceById().accept(newPrice, selectedProduct);
-                AVAILABLE_PRODUCTS.clear();
-                loadAvailableProducts();
-                refreshTable(AVAILABLE_PRODUCTS_TABLE);
-                Main.PROMPT.show.accept("PRICE EDITED SUCCESSFULLY", false);
-            }
-            else throw new IllegalStateException("INVALID PRICE");
-        } catch (RuntimeException runtimeException) {
-            Main.PROMPT.show.accept(runtimeException.getMessage(), true);
-        }
+        updateProduct(EDIT_PRICE);
     }//GEN-LAST:event_editPriceActionPerformed
+
+    private void editDiscountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editDiscountActionPerformed
+
+        updateProduct(EDIT_DISCOUNT);
+    }//GEN-LAST:event_editDiscountActionPerformed
 
     /**
      * main method.

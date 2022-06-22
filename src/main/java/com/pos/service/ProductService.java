@@ -24,6 +24,8 @@ public interface ProductService {
 
     BiConsumer<Integer, Integer> updateProductStocksById();
 
+    BiConsumer<Double, Integer> updateProductDiscountById();
+
     Consumer<Integer> deleteProductById();
 
     void deleteAllExpiredProducts();
