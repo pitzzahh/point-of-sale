@@ -1,9 +1,7 @@
 package com.pos.service;
 
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Supplier;
+import java.util.function.*;
+
 import com.pos.entity.Product;
 import java.util.List;
 
@@ -22,7 +20,9 @@ public interface ProductService {
 
     Function<Integer, Integer> getProductStocksById();
     
-    BiConsumer<Integer, Double> updateProductPriceById();
+    BiConsumer<Double, Integer> updateProductPriceById();
+
+    BiConsumer<Integer, Integer> updateProductStocksById();
 
     Consumer<Integer> deleteProductById();
 

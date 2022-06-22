@@ -4,10 +4,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.pos.repository.ProductRepository;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Supplier;
+
+import java.util.function.*;
 import java.util.stream.Collectors;
 import com.pos.entity.Category;
 import com.pos.entity.Product;
@@ -64,8 +62,13 @@ public class ProductServiceImplementation implements ProductService {
     }
 
     @Override
-    public BiConsumer<Integer, Double> updateProductPriceById() {
-        return (id, newPrice) -> productRepository.updateProductPriceById(id, newPrice);
+    public BiConsumer<Double, Integer> updateProductPriceById() {
+        return (newPrice, id) -> productRepository.updateProductPriceById(newPrice, id);
+    }
+
+    @Override
+    public BiConsumer<Integer, Integer> updateProductStocksById() {
+        return (newStock, id) -> productRepository.updateProductStocksById(newStock, id);
     }
 
     @Override
