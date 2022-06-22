@@ -97,7 +97,7 @@ public class ManageProducts extends javax.swing.JFrame {
                 data[3] = product.getCategory();
                 data[4] = product.getExpirationDate();
                 data[5] = product.getStocks();
-                data[6] = (product.getDiscount() == null) ? "" : String.valueOf(product.getDiscount());
+                data[6] = (product.getDiscount() == null || product.getDiscount() == 0.0) ? "" : String.valueOf(product.getDiscount());
 
                 defaultTableModel.addRow(data);
             }
@@ -146,34 +146,40 @@ public class ManageProducts extends javax.swing.JFrame {
      */
     private void updateProduct(int whatToUpdate) {
         try {
-            int selectedProduct = getProductFromTable(AVAILABLE_PRODUCTS_TABLE);
+            int selectedProductId = getProductFromTable(AVAILABLE_PRODUCTS_TABLE);
             if (AVAILABLE_PRODUCTS.isEmpty()) throw new IllegalStateException("THERE ARE NO AVAILABLE PRODUCTS");
             String options = (whatToUpdate == 3) ? "STOCKS" : (whatToUpdate == 4) ? "PRICE" : (whatToUpdate == 5) ? "DISCOUNT" : "NULL";
-            if (selectedProduct == 0) throw new IllegalStateException("TO ADD " + options + "  TO A PRODUCT\nPLEASE SELECT A ROW FROM THE TABLE AND CLICK " + options);
+            if (selectedProductId == 0) throw new IllegalStateException("TO ADD " + options + "  TO A PRODUCT\nPLEASE SELECT A ROW FROM THE TABLE AND CLICK " + options);
             String temporaryString = String.valueOf(JOptionPane.showInputDialog("ENTER NEW " + options));
 
             int newStocks;
             double newPrice;
             double newDiscount;
+            JOptionPane.showMessageDialog(null, "TEMPORARY STRING: " + temporaryString);
+            JOptionPane.showMessageDialog(null, "IF CHECK: " + (checkInput(temporaryString, whatToUpdate) || ((whatToUpdate == EDIT_DISCOUNT)) && temporaryString.equals("0")));
             
-            if (checkInput(temporaryString, whatToUpdate)) {
+            if (checkInput(temporaryString, whatToUpdate) || ((whatToUpdate == EDIT_DISCOUNT)) && temporaryString.equals("0")) {
 
-                if(whatToUpdate == 3) {
+                if(whatToUpdate == EDIT_STOCKS) {
                     newStocks = Integer.parseInt(temporaryString);
-                    if(PRODUCT_SERVICE.getProductStocksById().apply(selectedProduct) > newStocks) throw new IllegalStateException("NEW STOCKS SHOULD NOT BE LESS THAN CURRENT STOCKS");
-                    PRODUCT_SERVICE.updateProductStocksById().accept(newStocks, selectedProduct);
+                    if(PRODUCT_SERVICE.getProductStocksById().apply(selectedProductId) > newStocks) throw new IllegalStateException("NEW STOCKS SHOULD NOT BE LESS THAN CURRENT STOCKS");
+                    PRODUCT_SERVICE.updateProductStocksById().accept(newStocks, selectedProductId);
                 }
 
-                if(whatToUpdate == 4) {
+                if(whatToUpdate == EDIT_PRICE) {
                     newPrice = Double.parseDouble(temporaryString);
                     if (newPrice <= 0) throw new IllegalStateException("INVALID PRICE\nPRICE SHOULD NOT BE LESS THAN OR EQUAL TO 0");
-                    PRODUCT_SERVICE.updateProductPriceById().accept(newPrice, selectedProduct);
+                    PRODUCT_SERVICE.updateProductPriceById().accept(newPrice, selectedProductId);
                 }
 
-                if(whatToUpdate == 5) {
-                    newDiscount = Double.parseDouble(temporaryString);
-                    if (newDiscount <= 0) PRODUCT_SERVICE.updateProductDiscountById().accept(null, selectedProduct);
-                    else PRODUCT_SERVICE.updateProductDiscountById().accept(newDiscount, selectedProduct);
+                if(whatToUpdate == EDIT_DISCOUNT) {
+                    JOptionPane.showMessageDialog(null, "TEMPORARY STRING IF: " + temporaryString);
+
+                    if(temporaryString.equals("0")) newDiscount = 0;
+                    else newDiscount = Double.parseDouble(temporaryString);
+                    JOptionPane.showMessageDialog(null, "NEW DISCOUNT <= 0 : " + (newDiscount <= 0));
+                    if (newDiscount <= 0) PRODUCT_SERVICE.updateProductDiscountById().accept(0.0, selectedProductId);
+                    else PRODUCT_SERVICE.updateProductDiscountById().accept(newDiscount, selectedProductId);
                 }
                 AVAILABLE_PRODUCTS.clear();
                 loadAvailableProducts();
@@ -194,8 +200,19 @@ public class ManageProducts extends javax.swing.JFrame {
      */
     private boolean checkInput(String stringToCheck, int whatToUpdate) {
         try {
-            if(whatToUpdate == 3) Integer.parseInt(stringToCheck);
-            else if(whatToUpdate == 4 || whatToUpdate == 5) Double.parseDouble(stringToCheck);
+            if(whatToUpdate == EDIT_STOCKS) Integer.parseInt(stringToCheck);
+            else {
+                switch (whatToUpdate) {
+                    case EDIT_DISCOUNT -> {
+                        if(stringToCheck.equals("0"));
+                        return true;
+                    }
+                    case EDIT_PRICE -> Double.parseDouble(stringToCheck);
+                    default -> {
+                            return false;
+                    }
+                }
+            }
             return true;
         } catch(RuntimeException ignored) {}
         return false;
@@ -425,7 +442,6 @@ public class ManageProducts extends javax.swing.JFrame {
     }//GEN-LAST:event_editPriceActionPerformed
 
     private void editDiscountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editDiscountActionPerformed
-
         updateProduct(EDIT_DISCOUNT);
     }//GEN-LAST:event_editDiscountActionPerformed
 

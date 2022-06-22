@@ -10,11 +10,12 @@ import com.pos.entity.Category;
 import java.text.NumberFormat;
 import com.pos.entity.Product;
 import com.pos.entity.Order;
+import com.pos.entity.Sales;
+import com.pos.service.SalesService;
 import com.pos.ui.ManageProducts;
 import java.text.DateFormat;
 import java.time.LocalDate;
 import com.pos.ui.Prompt;
-import com.pos.ui.Progress;
 import com.pos.ui.ViewRevenue;
 import javax.swing.*;
 import java.util.*;
@@ -28,8 +29,11 @@ import java.util.stream.Collectors;
 public class Main extends JFrame {
     
     private static final AbstractApplicationContext CONTEXT=  new AnnotationConfigApplicationContext(Config.class);
+    
     private static final ProductService PRODUCT_SERVICE = CONTEXT.getBean(ProductService.class);
     
+    private final SalesService SALES_SERVICE = CONTEXT.getBean(SalesService.class);
+
     public static final String OS_NAME = System.getProperty("os.name", "").toUpperCase();
     
     private final List<Order> ORDERS_LIST = new ArrayList<>();
@@ -1948,6 +1952,8 @@ public class Main extends JFrame {
             final double CASH = Double.parseDouble(cash.getText().trim().replaceAll(",", ""));
             if (CASH < SUB_TOTAL) throw new IllegalStateException("CASH AMOUNT NOT ENOUGH");
             change.setText(NUMBER_FORMAT.format(CASH - SUB_TOTAL));
+            Sales sales = new Sales(LocalDate.now(), SUB_TOTAL);
+            SALES_SERVICE.saveSales().accept(sales);
             PROMPT.show.accept("SUCCESS", false);
         } catch(RuntimeException runtimeException) {
             PROMPT.show.accept(runtimeException.getMessage(), true);
@@ -1958,8 +1964,10 @@ public class Main extends JFrame {
         handleOrder(16);
     }//GEN-LAST:event_hersheysActionPerformed
     private void manageProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageProductsActionPerformed
+//        ProgressBar progressBar = new ProgressBar();
+//        progressBar.setVisible(true);
+//        progressBar.startProgressBar(progressBar, ProgressBar.LOADING);
         new ManageProducts().setVisible(true);
- 
     }//GEN-LAST:event_manageProductsActionPerformed
     private void cleanFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleanFirstActionPerformed
         handleOrder(1);
@@ -2265,17 +2273,18 @@ public class Main extends JFrame {
     }//GEN-LAST:event_removeItemActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
-        var progress = new Progress();
-        progress.startProgressBar( () -> {
-                    ORDERS_LIST.clear();
-                    ManageProducts.AVAILABLE_PRODUCTS.clear();
-                    ManageProducts.EXPIRED_PRODUCTS.clear();
-                }
-        , Progress.LOGGING_OUT);
-
+//        ProgressBar progressBar = new ProgressBar();
+//        progressBar.setVisible(true);
+//        progressBar.startProgressBar(progressBar, ProgressBar.LOGGING_OUT);
+//        progressBar.setVisible(true);
+        System.exit(0);
     }//GEN-LAST:event_logoutActionPerformed
 
     private void viewSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewSalesActionPerformed
+//        ProgressBar progressBar = new ProgressBar();
+//        progressBar.setVisible(true);
+//        progressBar.startProgressBar(progressBar, ProgressBar.LOADING);
+//        progressBar.setVisible(true);
         new ViewRevenue().setVisible(true);
     }//GEN-LAST:event_viewSalesActionPerformed
 

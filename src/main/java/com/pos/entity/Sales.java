@@ -56,8 +56,7 @@ public class Sales implements Serializable {
     public Sales() {
     }
 
-    public Sales(Integer salesNumber, LocalDate date_processed, Double profit) {
-        this.salesNumber = salesNumber;
+    public Sales(LocalDate date_processed, Double profit) {
         this.dateProcessed = date_processed;
         this.profit = profit;
     }

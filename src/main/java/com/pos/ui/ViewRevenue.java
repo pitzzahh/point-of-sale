@@ -37,6 +37,7 @@ public class ViewRevenue extends javax.swing.JFrame {
         salesTable.getColumnModel().getColumn(1).setCellRenderer(RENDERER);
         salesTable.getColumnModel().getColumn(2).setCellRenderer(RENDERER);
         loadSales();
+        getTotalRevenue();
     }
 
     private void loadSales() {
