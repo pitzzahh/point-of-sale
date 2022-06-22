@@ -1977,6 +1977,7 @@ public class Main extends JFrame {
 
     private void manageProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageProductsActionPerformed
         new ManageProducts().setVisible(true);
+        setProductsPrices();
     }//GEN-LAST:event_manageProductsActionPerformed
     /**
      * Method that gets the time the JVM takes to execute a code block.
