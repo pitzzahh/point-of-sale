@@ -1,15 +1,18 @@
 package com.pos;
 
+import com.pos.service.ProductService;
 import java.io.*;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 
 /**
  * Class used to check whether the products have been added to the table in the database.
  * Also used for some input checking.
- * Used to fix the bug that makes the program add more products to the database everytime the program is re executed.
+ * Used to fix the bug that makes the program add more products to the database every time the program is re executed.
  * @author peter
  */
 public class Checker {
-
+    
     /**
      * Creates a file that denotes that the products have been added to the table from the database.
      */
@@ -23,9 +26,10 @@ public class Checker {
     private static void writeToFile(File file) throws IOException {
         boolean created = file.createNewFile();
         if (created) {
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
-            bufferedWriter.write("This file is used to check whether the products are in the database, just checks if this files exists.");
-            bufferedWriter.close();
+            try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file))) {
+                bufferedWriter.write("This file is used to check whether the products are in the database, just checks if this file exists.");
+                bufferedWriter.close();
+            }
         }
     }
 

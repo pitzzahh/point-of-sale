@@ -127,7 +127,19 @@ public class Main extends JFrame {
                 .get()
                 .stream()
                 .collect(Collectors.toMap(
-                        product -> product.getId(), s -> s.getPrice(),
+                        Product::getId, Product::getPrice,
+                        (key, value) -> {
+                            throw new IllegalStateException(
+                                    String.format("Cannot have 2 values (%s, %s) for the same key", key, value)
+                            );
+                        }, Hashtable::new
+                ));
+        
+        Hashtable<Integer, Boolean> expiredProducts = PRODUCT_SERVICE.getAllProducts()
+                .get()
+                .stream()
+                .collect(Collectors.toMap(
+                        Product::getId, p -> p.getExpired() == true,
                         (key, value) -> {
                             throw new IllegalStateException(
                                     String.format("Cannot have 2 values (%s, %s) for the same key", key, value)
@@ -138,83 +150,83 @@ public class Main extends JFrame {
         /*
             Setting prices label for cleaning products
         */
-        cleanFirstPrice.setText((priceList.containsKey(1) ? PESO_SIGN + " " + priceList.get(1) : "EXPIRED"));
-        hydroSafePrice.setText((priceList.containsKey(2) ? PESO_SIGN + " " + priceList.get(2) : "EXPIRED"));
-        rightFlexPrice.setText((priceList.containsKey(3) ? PESO_SIGN + " " + priceList.get(3) : "EXPIRED"));
-        cloroxPrice.setText((priceList.containsKey(4) ? PESO_SIGN + " " + priceList.get(4) : "EXPIRED"));
-        dirtBustersPrice.setText((priceList.containsKey(5) ? PESO_SIGN + " " + priceList.get(5) : "EXPIRED"));
-        myCleanPrice.setText((priceList.containsKey(6) ? PESO_SIGN + " " + priceList.get(6) : "EXPIRED"));
-        cleanCutPrice.setText((priceList.containsKey(7) ? PESO_SIGN + " " + priceList.get(7) : "EXPIRED"));
-        sureCleanPrice.setText((priceList.containsKey(8) ? PESO_SIGN + " " + priceList.get(8) : "EXPIRED"));
-        arielPrice.setText((priceList.containsKey(9) ? PESO_SIGN + " " + priceList.get(9) : "EXPIRED"));
-        joyPrice.setText((priceList.containsKey(10) ? PESO_SIGN + " " + priceList.get(10) : "EXPIRED"));
-        smartPrice.setText((priceList.containsKey(11) ? PESO_SIGN + " " + priceList.get(11) : "EXPIRED"));
-        domexPrice.setText((priceList.containsKey(12) ? PESO_SIGN + " " + priceList.get(12) : "EXPIRED"));
-        mrMusclePrice.setText((priceList.containsKey(13) ? PESO_SIGN + " " + priceList.get(13) : "EXPIRED"));
-        lysolPrice.setText((priceList.containsKey(14) ? PESO_SIGN + " " + priceList.get(14) : "EXPIRED"));
-        surfPrice.setText((priceList.containsKey(15) ? PESO_SIGN + " " + priceList.get(15) : "EXPIRED"));
+        cleanFirstPrice.setText((priceList.containsKey(1) ? PESO_SIGN + " " + priceList.get(1) : (expiredProducts.containsKey(1) ? "EXPIRED" : "NOT AVAILABLE")));
+        hydroSafePrice.setText((priceList.containsKey(2) ? PESO_SIGN + " " + priceList.get(2) : (expiredProducts.containsKey(2) ? "EXPIRED" : "NOT AVAILABLE")));
+        rightFlexPrice.setText((priceList.containsKey(3) ? PESO_SIGN + " " + priceList.get(3) : (expiredProducts.containsKey(3) ? "EXPIRED" : "NOT AVAILABLE")));
+        cloroxPrice.setText((priceList.containsKey(4) ? PESO_SIGN + " " + priceList.get(4) : (expiredProducts.containsKey(4) ? "EXPIRED" : "NOT AVAILABLE")));
+        dirtBustersPrice.setText((priceList.containsKey(5) ? PESO_SIGN + " " + priceList.get(5) : (expiredProducts.containsKey(5) ? "EXPIRED" : "NOT AVAILABLE")));
+        myCleanPrice.setText((priceList.containsKey(6) ? PESO_SIGN + " " + priceList.get(6) : (expiredProducts.containsKey(6) ? "EXPIRED" : "NOT AVAILABLE")));
+        cleanCutPrice.setText((priceList.containsKey(7) ? PESO_SIGN + " " + priceList.get(7) : (expiredProducts.containsKey(7) ? "EXPIRED" : "NOT AVAILABLE")));
+        sureCleanPrice.setText((priceList.containsKey(8) ? PESO_SIGN + " " + priceList.get(8) : (expiredProducts.containsKey(8) ? "EXPIRED" : "NOT AVAILABLE")));
+        arielPrice.setText((priceList.containsKey(9) ? PESO_SIGN + " " + priceList.get(9) : (expiredProducts.containsKey(9) ? "EXPIRED" : "NOT AVAILABLE")));
+        joyPrice.setText((priceList.containsKey(10) ? PESO_SIGN + " " + priceList.get(10) : (expiredProducts.containsKey(10) ? "EXPIRED" : "NOT AVAILABLE")));
+        smartPrice.setText((priceList.containsKey(11) ? PESO_SIGN + " " + priceList.get(11) : (expiredProducts.containsKey(11) ? "EXPIRED" : "NOT AVAILABLE")));
+        domexPrice.setText((priceList.containsKey(12) ? PESO_SIGN + " " + priceList.get(12) : (expiredProducts.containsKey(12) ? "EXPIRED" : "NOT AVAILABLE")));
+        mrMusclePrice.setText((priceList.containsKey(13) ? PESO_SIGN + " " + priceList.get(13) : (expiredProducts.containsKey(13) ? "EXPIRED" : "NOT AVAILABLE")));
+        lysolPrice.setText((priceList.containsKey(14) ? PESO_SIGN + " " + priceList.get(14) : (expiredProducts.containsKey(14) ? "EXPIRED" : "NOT AVAILABLE")));
+        surfPrice.setText((priceList.containsKey(15) ? PESO_SIGN + " " + priceList.get(15) : (expiredProducts.containsKey(15) ? "EXPIRED" : "NOT AVAILABLE")));
         
         /*
             Setting prices label for chcolates
         */
-        hersheysPrice.setText((priceList.containsKey(16) ? PESO_SIGN + " " + priceList.get(16) : "EXPIRED"));
-        snickersPrice.setText((priceList.containsKey(17) ? PESO_SIGN + " " + priceList.get(17) : "EXPIRED"));
-        ferreroRocherPrice.setText((priceList.containsKey(18) ? PESO_SIGN + " " + priceList.get(18) : "EXPIRED"));
-        esthechocPrice.setText((priceList.containsKey(19) ? PESO_SIGN + " " + priceList.get(19) : "EXPIRED"));
-        flyingNoirPrice.setText((priceList.containsKey(20) ? PESO_SIGN + " " + priceList.get(20) : "EXPIRED"));
-        drostePrice.setText((priceList.containsKey(21) ? PESO_SIGN + " " + priceList.get(21) : "EXPIRED"));
-        wittakersPrice.setText((priceList.containsKey(22) ? PESO_SIGN + " " + priceList.get(22) : "EXPIRED"));
-        amedeiPrice.setText((priceList.containsKey(23) ? PESO_SIGN + " " + priceList.get(23) : "EXPIRED"));
-        jacquesGeninPrice.setText((priceList.containsKey(24) ? PESO_SIGN + " " + priceList.get(24) : "EXPIRED"));
-        richartPrice.setText((priceList.containsKey(25) ? PESO_SIGN + " " + priceList.get(25) : "EXPIRED"));
-        patchiPrice.setText((priceList.containsKey(26) ? PESO_SIGN + " " + priceList.get(26) : "EXPIRED"));
-        teuscherPrice.setText((priceList.containsKey(27) ? PESO_SIGN + " " + priceList.get(27) : "EXPIRED"));
-        valrhonaPrice.setText((priceList.containsKey(28) ? PESO_SIGN + " " + priceList.get(28) : "EXPIRED"));
-        dovePrice.setText((priceList.containsKey(29) ? PESO_SIGN + " " + priceList.get(29) : "EXPIRED"));
-        russelStoverPrice.setText((priceList.containsKey(30) ? PESO_SIGN + " " + priceList.get(30) : "EXPIRED"));
-        ritterSportPrice.setText((priceList.containsKey(31) ? PESO_SIGN + " " + priceList.get(31) : "EXPIRED"));
-        guyLianPrice.setText((priceList.containsKey(32) ? PESO_SIGN + " " + priceList.get(32) : "EXPIRED"));
-        kinderPrice.setText((priceList.containsKey(33) ? PESO_SIGN + " " + priceList.get(33) : "EXPIRED"));
-        marsPrice.setText((priceList.containsKey(34) ? PESO_SIGN + " " + priceList.get(34) : "EXPIRED"));
-        tobleronePrice.setText((priceList.containsKey(35) ? PESO_SIGN + " " + priceList.get(35) : "EXPIRED"));
-        nestlePrice.setText((priceList.containsKey(36) ? PESO_SIGN + " " + priceList.get(36) : "EXPIRED"));
-        milkaPrice.setText((priceList.containsKey(37) ? PESO_SIGN + " " + priceList.get(37) : "EXPIRED"));
-        ghirardellPrice.setText((priceList.containsKey(38) ? PESO_SIGN + " " + priceList.get(38) : "EXPIRED"));
-        cadburyPrice.setText((priceList.containsKey(39) ? PESO_SIGN + " " + priceList.get(39) : "EXPIRED"));
-        godivaPrice.setText((priceList.containsKey(40) ? PESO_SIGN + " " + priceList.get(400) : "EXPIRED"));
+        hersheysPrice.setText((priceList.containsKey(16) ? PESO_SIGN + " " + priceList.get(16) : (expiredProducts.containsKey(16) ? "EXPIRED" : "NOT AVAILABLE")));
+        snickersPrice.setText((priceList.containsKey(17) ? PESO_SIGN + " " + priceList.get(17) : (expiredProducts.containsKey(17) ? "EXPIRED" : "NOT AVAILABLE")));
+        ferreroRocherPrice.setText((priceList.containsKey(18) ? PESO_SIGN + " " + priceList.get(18) : (expiredProducts.containsKey(18) ? "EXPIRED" : "NOT AVAILABLE")));
+        esthechocPrice.setText((priceList.containsKey(19) ? PESO_SIGN + " " + priceList.get(19) : (expiredProducts.containsKey(19) ? "EXPIRED" : "NOT AVAILABLE")));
+        flyingNoirPrice.setText((priceList.containsKey(20) ? PESO_SIGN + " " + priceList.get(20) : (expiredProducts.containsKey(20) ? "EXPIRED" : "NOT AVAILABLE")));
+        drostePrice.setText((priceList.containsKey(21) ? PESO_SIGN + " " + priceList.get(21) : (expiredProducts.containsKey(21) ? "EXPIRED" : "NOT AVAILABLE")));
+        wittakersPrice.setText((priceList.containsKey(22) ? PESO_SIGN + " " + priceList.get(22) : (expiredProducts.containsKey(22) ? "EXPIRED" : "NOT AVAILABLE")));
+        amedeiPrice.setText((priceList.containsKey(23) ? PESO_SIGN + " " + priceList.get(23) : (expiredProducts.containsKey(23) ? "EXPIRED" : "NOT AVAILABLE")));
+        jacquesGeninPrice.setText((priceList.containsKey(24) ? PESO_SIGN + " " + priceList.get(24) : (expiredProducts.containsKey(24) ? "EXPIRED" : "NOT AVAILABLE")));
+        richartPrice.setText((priceList.containsKey(25) ? PESO_SIGN + " " + priceList.get(25) : (expiredProducts.containsKey(25) ? "EXPIRED" : "NOT AVAILABLE")));
+        patchiPrice.setText((priceList.containsKey(26) ? PESO_SIGN + " " + priceList.get(26) : (expiredProducts.containsKey(26) ? "EXPIRED" : "NOT AVAILABLE")));
+        teuscherPrice.setText((priceList.containsKey(27) ? PESO_SIGN + " " + priceList.get(27) : (expiredProducts.containsKey(27) ? "EXPIRED" : "NOT AVAILABLE")));
+        valrhonaPrice.setText((priceList.containsKey(28) ? PESO_SIGN + " " + priceList.get(28) : (expiredProducts.containsKey(28) ? "EXPIRED" : "NOT AVAILABLE")));
+        dovePrice.setText((priceList.containsKey(29) ? PESO_SIGN + " " + priceList.get(29) : (expiredProducts.containsKey(29) ? "EXPIRED" : "NOT AVAILABLE")));
+        russelStoverPrice.setText((priceList.containsKey(30) ? PESO_SIGN + " " + priceList.get(30) : (expiredProducts.containsKey(30) ? "EXPIRED" : "NOT AVAILABLE")));
+        ritterSportPrice.setText((priceList.containsKey(31) ? PESO_SIGN + " " + priceList.get(31) : (expiredProducts.containsKey(31) ? "EXPIRED" : "NOT AVAILABLE")));
+        guyLianPrice.setText((priceList.containsKey(32) ? PESO_SIGN + " " + priceList.get(32) : (expiredProducts.containsKey(32) ? "EXPIRED" : "NOT AVAILABLE")));
+        kinderPrice.setText((priceList.containsKey(33) ? PESO_SIGN + " " + priceList.get(33) : (expiredProducts.containsKey(33) ? "EXPIRED" : "NOT AVAILABLE")));
+        marsPrice.setText((priceList.containsKey(34) ? PESO_SIGN + " " + priceList.get(34) : (expiredProducts.containsKey(34) ? "EXPIRED" : "NOT AVAILABLE")));
+        tobleronePrice.setText((priceList.containsKey(35) ? PESO_SIGN + " " + priceList.get(35) : (expiredProducts.containsKey(35) ? "EXPIRED" : "NOT AVAILABLE")));
+        nestlePrice.setText((priceList.containsKey(36) ? PESO_SIGN + " " + priceList.get(36) : (expiredProducts.containsKey(36) ? "EXPIRED" : "NOT AVAILABLE")));
+        milkaPrice.setText((priceList.containsKey(37) ? PESO_SIGN + " " + priceList.get(37) : (expiredProducts.containsKey(37) ? "EXPIRED" : "NOT AVAILABLE")));
+        ghirardellPrice.setText((priceList.containsKey(38) ? PESO_SIGN + " " + priceList.get(38) : (expiredProducts.containsKey(38) ? "EXPIRED" : "NOT AVAILABLE")));
+        cadburyPrice.setText((priceList.containsKey(39) ? PESO_SIGN + " " + priceList.get(39) : (expiredProducts.containsKey(39) ? "EXPIRED" : "NOT AVAILABLE")));
+        godivaPrice.setText((priceList.containsKey(40) ? PESO_SIGN + " " + priceList.get(40) : (expiredProducts.containsKey(40) ? "EXPIRED" : "NOT AVAILABLE")));
         
         /*
             Setting price labels for beverages
         */
-        cocaColaPrice.setText((priceList.containsKey(41) ? PESO_SIGN + " " + priceList.get(41) : "EXPIRED"));
-        pepsiPrice.setText((priceList.containsKey(42) ? PESO_SIGN + " " + priceList.get(42) : "EXPIRED"));
-        redBullPrice.setText((priceList.containsKey(43) ? PESO_SIGN + " " + priceList.get(43) : "EXPIRED"));
-        budWeiserPrice.setText((priceList.containsKey(44) ? PESO_SIGN + " " + priceList.get(44) : "EXPIRED"));
-        heinekenPrice.setText((priceList.containsKey(45) ? PESO_SIGN + " " + priceList.get(45) : "EXPIRED"));
-        gatoradePrice.setText((priceList.containsKey(46) ? PESO_SIGN + " " + priceList.get(46) : "EXPIRED"));
-        spritePrice.setText((priceList.containsKey(47) ? PESO_SIGN + " " + priceList.get(47) : "EXPIRED"));
-        minuteMaidPrice.setText((priceList.containsKey(48) ? PESO_SIGN + " " + priceList.get(48) : "EXPIRED"));
-        tropicanaPrice.setText((priceList.containsKey(49) ? PESO_SIGN + " " + priceList.get(49) : "EXPIRED"));
-        dolePrice.setText((priceList.containsKey(50) ? PESO_SIGN + " " + priceList.get(50) : "EXPIRED"));
-        koolAidPrice.setText((priceList.containsKey(51) ? PESO_SIGN + " " + priceList.get(51) : "EXPIRED"));
-        sevenUpPrice.setText((priceList.containsKey(52) ? PESO_SIGN + " " + priceList.get(52) : "EXPIRED"));
-        mountainDewPrice.setText((priceList.containsKey(53) ? PESO_SIGN + " " + priceList.get(53) : "EXPIRED"));
-        liptonPrice.setText((priceList.containsKey(54) ? PESO_SIGN + " " + priceList.get(54) : "EXPIRED"));
-        sunkistPrice.setText((priceList.containsKey(55) ? PESO_SIGN + " " + priceList.get(55) : "EXPIRED"));
-        appleJuicePrice.setText((priceList.containsKey(56) ? PESO_SIGN + " " + priceList.get(56) : "EXPIRED"));
-        pineAppleJuicePrice.setText((priceList.containsKey(57) ? PESO_SIGN + " " + priceList.get(57) : "EXPIRED"));
-        blackCherPrice.setText((priceList.containsKey(58) ? PESO_SIGN + " " + priceList.get(58) : "EXPIRED"));
+        cocaColaPrice.setText((priceList.containsKey(41) ? PESO_SIGN + " " + priceList.get(41) : (expiredProducts.containsKey(41) ? "EXPIRED" : "NOT AVAILABLE")));
+        pepsiPrice.setText((priceList.containsKey(42) ? PESO_SIGN + " " + priceList.get(42) : (expiredProducts.containsKey(42) ? "EXPIRED" : "NOT AVAILABLE")));
+        redBullPrice.setText((priceList.containsKey(43) ? PESO_SIGN + " " + priceList.get(43) : (expiredProducts.containsKey(43) ? "EXPIRED" : "NOT AVAILABLE")));
+        budWeiserPrice.setText((priceList.containsKey(44) ? PESO_SIGN + " " + priceList.get(44) : (expiredProducts.containsKey(44) ? "EXPIRED" : "NOT AVAILABLE")));
+        heinekenPrice.setText((priceList.containsKey(45) ? PESO_SIGN + " " + priceList.get(45) : (expiredProducts.containsKey(45) ? "EXPIRED" : "NOT AVAILABLE")));
+        gatoradePrice.setText((priceList.containsKey(46) ? PESO_SIGN + " " + priceList.get(46) : (expiredProducts.containsKey(46) ? "EXPIRED" : "NOT AVAILABLE")));
+        spritePrice.setText((priceList.containsKey(47) ? PESO_SIGN + " " + priceList.get(47) : (expiredProducts.containsKey(47) ? "EXPIRED" : "NOT AVAILABLE")));
+        minuteMaidPrice.setText((priceList.containsKey(48) ? PESO_SIGN + " " + priceList.get(48) : (expiredProducts.containsKey(48) ? "EXPIRED" : "NOT AVAILABLE")));
+        tropicanaPrice.setText((priceList.containsKey(49) ? PESO_SIGN + " " + priceList.get(49) : (expiredProducts.containsKey(49) ? "EXPIRED" : "NOT AVAILABLE")));
+        dolePrice.setText((priceList.containsKey(50) ? PESO_SIGN + " " + priceList.get(50) : (expiredProducts.containsKey(50) ? "EXPIRED" : "NOT AVAILABLE")));
+        koolAidPrice.setText((priceList.containsKey(51) ? PESO_SIGN + " " + priceList.get(51) : (expiredProducts.containsKey(51) ? "EXPIRED" : "NOT AVAILABLE")));
+        sevenUpPrice.setText((priceList.containsKey(52) ? PESO_SIGN + " " + priceList.get(52) : (expiredProducts.containsKey(52) ? "EXPIRED" : "NOT AVAILABLE")));
+        mountainDewPrice.setText((priceList.containsKey(53) ? PESO_SIGN + " " + priceList.get(53) : (expiredProducts.containsKey(53) ? "EXPIRED" : "NOT AVAILABLE")));
+        liptonPrice.setText((priceList.containsKey(54) ? PESO_SIGN + " " + priceList.get(54) : (expiredProducts.containsKey(54) ? "EXPIRED" : "NOT AVAILABLE")));
+        sunkistPrice.setText((priceList.containsKey(55) ? PESO_SIGN + " " + priceList.get(55) : (expiredProducts.containsKey(55) ? "EXPIRED" : "NOT AVAILABLE")));
+        appleJuicePrice.setText((priceList.containsKey(56) ? PESO_SIGN + " " + priceList.get(56) : (expiredProducts.containsKey(56) ? "EXPIRED" : "NOT AVAILABLE")));
+        pineAppleJuicePrice.setText((priceList.containsKey(57) ? PESO_SIGN + " " + priceList.get(57) : (expiredProducts.containsKey(57) ? "EXPIRED" : "NOT AVAILABLE")));
+        blackCherPrice.setText((priceList.containsKey(58) ? PESO_SIGN + " " + priceList.get(58) : (expiredProducts.containsKey(58) ? "EXPIRED" : "NOT AVAILABLE")));
         // liquors
-        tequilaPrice.setText((priceList.containsKey(59) ? PESO_SIGN + " " + priceList.get(59) : "EXPIRED"));
-        beerPrice.setText((priceList.containsKey(60) ? PESO_SIGN + " " + priceList.get(60) : "EXPIRED"));
-        winePrice.setText((priceList.containsKey(61) ? PESO_SIGN + " " + priceList.get(61) : "EXPIRED"));
-        hardCiderPrice.setText((priceList.containsKey(62) ? PESO_SIGN + " " + priceList.get(62) : "EXPIRED"));
-        meadPrice.setText((priceList.containsKey(63) ? PESO_SIGN + " " + priceList.get(63) : "EXPIRED"));
-        ginPrice.setText((priceList.containsKey(64) ? PESO_SIGN + " " + priceList.get(64) : "EXPIRED"));
-        brandyPrice.setText((priceList.containsKey(65) ? PESO_SIGN + " " + priceList.get(65) : "EXPIRED"));
-        whiskyPrice.setText((priceList.containsKey(66) ? PESO_SIGN + " " + priceList.get(66) : "EXPIRED"));
-        rumPrice.setText((priceList.containsKey(67) ? PESO_SIGN + " " + priceList.get(67) : "EXPIRED"));
-        vodkaPrice.setText((priceList.containsKey(68) ? PESO_SIGN + " " + priceList.get(68) : "EXPIRED"));
+        tequilaPrice.setText((priceList.containsKey(59) ? PESO_SIGN + " " + priceList.get(59) : (expiredProducts.containsKey(59) ? "EXPIRED" : "NOT AVAILABLE")));
+        beerPrice.setText((priceList.containsKey(60) ? PESO_SIGN + " " + priceList.get(60) : (expiredProducts.containsKey(60) ? "EXPIRED" : "NOT AVAILABLE")));
+        winePrice.setText((priceList.containsKey(61) ? PESO_SIGN + " " + priceList.get(61) : (expiredProducts.containsKey(61) ? "EXPIRED" : "NOT AVAILABLE")));
+        hardCiderPrice.setText((priceList.containsKey(62) ? PESO_SIGN + " " + priceList.get(62) : (expiredProducts.containsKey(62) ? "EXPIRED" : "NOT AVAILABLE")));
+        meadPrice.setText((priceList.containsKey(63) ? PESO_SIGN + " " + priceList.get(63) : (expiredProducts.containsKey(63) ? "EXPIRED" : "NOT AVAILABLE")));
+        ginPrice.setText((priceList.containsKey(64) ? PESO_SIGN + " " + priceList.get(64) : (expiredProducts.containsKey(64) ? "EXPIRED" : "NOT AVAILABLE")));
+        brandyPrice.setText((priceList.containsKey(65) ? PESO_SIGN + " " + priceList.get(65) : (expiredProducts.containsKey(65) ? "EXPIRED" : "NOT AVAILABLE")));
+        whiskyPrice.setText((priceList.containsKey(66) ? PESO_SIGN + " " + priceList.get(66) : (expiredProducts.containsKey(66) ? "EXPIRED" : "NOT AVAILABLE")));
+        rumPrice.setText((priceList.containsKey(67) ? PESO_SIGN + " " + priceList.get(67) : (expiredProducts.containsKey(67) ? "EXPIRED" : "NOT AVAILABLE")));
+        vodkaPrice.setText((priceList.containsKey(68) ? PESO_SIGN + " " + priceList.get(68) : (expiredProducts.containsKey(68) ? "EXPIRED" : "NOT AVAILABLE")));
     }// </editor-fold>//
 
     // <editor-fold defaultstate="collapsed" desc="Method that gets the number expired products and returns it.">//
@@ -307,7 +319,6 @@ public class Main extends JFrame {
      * WARNING: Do NOT modify this code. The content of this method is always
      * regenerated by the Form Editor.
      */
-    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
