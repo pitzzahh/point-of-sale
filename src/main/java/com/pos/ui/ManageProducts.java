@@ -46,6 +46,8 @@ public class ManageProducts extends javax.swing.JFrame {
         expiredProductsTable.getColumnModel().getColumn(0).setCellRenderer(RENDERER);
         loadAvailableProducts();
         loadExpiredProducts();
+        refreshTable(AVAILABLE_PRODUCTS_TABLE);
+        refreshTable(EXPIRED_PRODUCTS_TABLE);
     }
 
     /**
@@ -58,6 +60,7 @@ public class ManageProducts extends javax.swing.JFrame {
                 .stream()
                 .filter(product -> !product.getExpired())
                 .forEach(AVAILABLE_PRODUCTS::add);
+
     }
     /**
      * Method that loads the expired products from the database to the {@code List<Product>} EXPIRED_PRODUCTS.
@@ -338,14 +341,12 @@ public class ManageProducts extends javax.swing.JFrame {
             int selectedProduct = getProductFromTable(AVAILABLE_PRODUCTS_TABLE);
             if (AVAILABLE_PRODUCTS.isEmpty()) throw new IllegalStateException("THERE ARE NO AVAILABLE PRODUCTS");
             if (selectedProduct == 0) throw new IllegalStateException("TO ADD STOCKS TO A PRODUCT\nPLEASE SELECT A ROW FROM THE TABLE AND CLICK EDIT STOCKS");
-            String newStocksInStrings = JOptionPane.showInputDialog("ENTER NEW STOCKS");
+            String newStocksInStrings = String.valueOf(JOptionPane.showInputDialog("ENTER NEW STOCKS"));
             int newStocks;
             if (Checker.isNumber(newStocksInStrings)) {
                 newStocks = Integer.parseInt(newStocksInStrings);
                 if(PRODUCT_SERVICE.getProductStocksById().apply(selectedProduct) > newStocks) throw new IllegalStateException("NEW STOCKS SHOULD NOT BE LESS THAN CURRENT STOCKS");
-                PRODUCT_SERVICE.getProductById()
-                        .apply(selectedProduct)
-                        .setStocks(newStocks);
+                PRODUCT_SERVICE.updateProductStocksById().accept(newStocks, selectedProduct);
                 AVAILABLE_PRODUCTS.clear();
                 loadAvailableProducts();
                 refreshTable(AVAILABLE_PRODUCTS_TABLE);
@@ -367,11 +368,11 @@ public class ManageProducts extends javax.swing.JFrame {
             int selectedProduct = getProductFromTable(AVAILABLE_PRODUCTS_TABLE);
             if (AVAILABLE_PRODUCTS.isEmpty()) throw new IllegalStateException("THERE ARE NO AVAILABLE PRODUCTS");
             if (selectedProduct == 0) throw new IllegalStateException("TO ADD STOCKS TO A PRODUCT\nPLEASE SELECT A ROW FROM THE TABLE AND CLICK EDIT STOCKS");
-            String newPriceString = JOptionPane.showInputDialog("ENTER NEW PRICE");
+            String newPriceString = String.valueOf(JOptionPane.showInputDialog("ENTER NEW PRICE"));
             double newPrice;
             if (Checker.isNumber(newPriceString) || Checker.isNumberWithDecimal(newPriceString)) {
                 newPrice = Double.parseDouble(newPriceString);
-                PRODUCT_SERVICE.updateProductPriceById().accept(selectedProduct, newPrice);
+                PRODUCT_SERVICE.updateProductPriceById().accept(newPrice, selectedProduct);
                 AVAILABLE_PRODUCTS.clear();
                 loadAvailableProducts();
                 refreshTable(AVAILABLE_PRODUCTS_TABLE);
