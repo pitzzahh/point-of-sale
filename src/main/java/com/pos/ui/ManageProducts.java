@@ -25,8 +25,8 @@ public class ManageProducts extends javax.swing.JFrame {
     public static List<Product> EXPIRED_PRODUCTS = new ArrayList<>();
 
     private final AbstractApplicationContext CONTEXT=  new AnnotationConfigApplicationContext(Config.class);
-    public final ProductService PRODUCT_SERVICE = CONTEXT.getBean(ProductService.class);
-
+    private final ProductService PRODUCT_SERVICE = CONTEXT.getBean(ProductService.class);
+    
     private static final int AVAILABLE_PRODUCTS_TABLE = 1;
     private static final int EXPIRED_PRODUCTS_TABLE = 2;
 
