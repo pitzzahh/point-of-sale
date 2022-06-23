@@ -90,6 +90,17 @@ public class Product implements Serializable {
     public Product() {
     }
 
+    public Product(Integer id, String name, Double price, Category category, LocalDate expirationDate, Integer stocks, Double discount, Boolean expired) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.category = category;
+        this.expirationDate = expirationDate;
+        this.stocks = stocks;
+        this.discount = discount;
+        this.expired = expired;
+    }
+
     public Product(String name, Double price, Category category, LocalDate expirationDate, Integer stocks, Double discount, Boolean expired) {
         this.name = name;
         this.price = price;

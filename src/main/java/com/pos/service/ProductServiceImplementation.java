@@ -67,8 +67,8 @@ public class ProductServiceImplementation implements ProductService {
     }
 
     @Override
-    public BiConsumer<Integer, Integer> updateProductStocksById() {
-        return (newStock, id) -> productRepository.updateProductStocksById(newStock, id);
+    public BiConsumer<Integer, String> updateProductStocksByName() {
+        return (newStock, name) -> productRepository.updateProductStocksByName(newStock, name);
     }
 
     @Override

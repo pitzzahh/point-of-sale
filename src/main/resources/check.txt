@@ -1,0 +1,2 @@
+This file is used to check whether the products are in the database, just checks if this file exists.
+DO NOT REMOVE THIS FILE, IF THIS FIL IS REMOVED, THE PROGRAM WILL KEEP INSERTING PRODUCTS TO THE TABLE

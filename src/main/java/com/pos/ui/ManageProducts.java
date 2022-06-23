@@ -1,19 +1,18 @@
 package com.pos.ui;
 
-import com.pos.Config;
-import com.pos.entity.Product;
-import com.pos.service.ProductService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
-
-import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
-
+import com.pos.service.ProductService;
 import static com.pos.ui.Main.*;
+import com.pos.entity.Product;
+import java.util.ArrayList;
+import java.util.Optional;
+import java.util.List;
+import com.pos.Config;
+import javax.swing.*;
+import java.awt.*;
 
 /**
  *
@@ -48,6 +47,8 @@ public class ManageProducts extends javax.swing.JFrame {
         availableProductsTable.getColumnModel().getColumn(5).setCellRenderer(RENDERER);
         availableProductsTable.getColumnModel().getColumn(6).setCellRenderer(RENDERER);
         expiredProductsTable.getColumnModel().getColumn(0).setCellRenderer(RENDERER);
+        AVAILABLE_PRODUCTS.clear();
+        EXPIRED_PRODUCTS.clear();
         loadAvailableProducts();
         loadExpiredProducts();
         refreshTable(AVAILABLE_PRODUCTS_TABLE);
@@ -106,7 +107,7 @@ public class ManageProducts extends javax.swing.JFrame {
                 defaultTableModel.addRow(data);
             }
         }
-        setProductsPrices();
+        setProductsInfo();
         numberOfExpiredProducts.setText(String.valueOf(getExpiredProductsCount()));
         numberOfExpiredProducts.setForeground((getExpiredProductsCount() > 0) ? new java.awt.Color(255, 0, 0) : new java.awt.Color(0, 0, 255));
     } // </editor-fold>//
@@ -144,11 +145,13 @@ public class ManageProducts extends javax.swing.JFrame {
             double newPrice;
             double newDiscount;
             if (checkInput(temporaryString, whatToUpdate) || ((whatToUpdate == EDIT_DISCOUNT)) && temporaryString.equals("0")) {
+                Optional<Product> product = PRODUCT_SERVICE.getProductById().apply(selectedProductId);
 
                 if(whatToUpdate == EDIT_STOCKS) {
                     newStocks = Integer.parseInt(temporaryString);
+                    if (newStocks <= 0) throw new IllegalStateException("NEW STOCK SHOULD NOT BE LESS THAN OR EQUAL TO 0");
                     if(PRODUCT_SERVICE.getProductStocksById().apply(selectedProductId) > newStocks) throw new IllegalStateException("NEW STOCKS SHOULD NOT BE LESS THAN CURRENT STOCKS");
-                    PRODUCT_SERVICE.updateProductStocksById().accept(newStocks, selectedProductId);
+                    PRODUCT_SERVICE.updateProductStocksByName().accept(newStocks, product.get().getName());
                 }
 
                 if(whatToUpdate == EDIT_PRICE) {

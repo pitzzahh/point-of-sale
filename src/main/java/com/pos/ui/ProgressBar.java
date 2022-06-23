@@ -20,7 +20,6 @@ public class ProgressBar extends javax.swing.JFrame {
      */
     public ProgressBar() {
         initComponents();
-
     }
 
 
@@ -104,7 +103,7 @@ public class ProgressBar extends javax.swing.JFrame {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        Thread exit_thread = new Thread(() -> {
+        final Thread PROGRESS_BAR_THREAD = new Thread(() -> {
             ProgressBar loggingOutProgress = new ProgressBar();
 
             final Random RANDOM = new Random();
@@ -164,8 +163,8 @@ public class ProgressBar extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, interruptedException.getMessage());
             }
         });
-        exit_thread.setPriority(Thread.MIN_PRIORITY);
-        exit_thread.start();
+        PROGRESS_BAR_THREAD.setPriority(Thread.MIN_PRIORITY);
+        PROGRESS_BAR_THREAD.start();
     } // </editor-fold>
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

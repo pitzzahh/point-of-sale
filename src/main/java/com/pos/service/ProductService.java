@@ -23,7 +23,7 @@ public interface ProductService {
     
     BiConsumer<Double, Integer> updateProductPriceById();
 
-    BiConsumer<Integer, Integer> updateProductStocksById();
+    BiConsumer<Integer, String> updateProductStocksByName();
 
     BiConsumer<Double, Integer> updateProductDiscountById();
 
