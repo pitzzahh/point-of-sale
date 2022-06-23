@@ -1,7 +1,7 @@
 package com.pos.validation;
 
-import static com.pos.validation.ProductValidator.ValidationResult;
 import static com.pos.validation.ProductValidator.ValidationResult.*;
+import static com.pos.validation.ProductValidator.ValidationResult;
 import java.util.function.Function;
 import com.pos.entity.Product;
 

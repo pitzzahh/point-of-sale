@@ -11,7 +11,7 @@ import java.util.function.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
-import com.pos.Checker;
+import com.pos.validation.Checker;
 import java.util.List;
 import java.io.File;
 
