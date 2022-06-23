@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.pos;
 
 import static com.pos.ui.Main.OS_NAME;
@@ -26,7 +22,7 @@ public class App extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Method that sets the icon for this frame.">//
     private void setIcon() {
-        ImageIcon img = new ImageIcon("ico.png");
+        ImageIcon img = new ImageIcon("src/main/resources/ico.png");
         this.setIconImage(img.getImage());
     } // </editor-fold>//
 
@@ -59,13 +55,13 @@ public class App extends javax.swing.JFrame {
         mainPanel.add(progressBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 450, 20));
 
         message.setBackground(new java.awt.Color(255, 255, 255));
-        message.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        message.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 14)); // NOI18N
         message.setForeground(new java.awt.Color(255, 255, 255));
         message.setText("Loading");
         mainPanel.add(message, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 270, 30));
 
         percentage.setBackground(new java.awt.Color(255, 255, 255));
-        percentage.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        percentage.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 14)); // NOI18N
         percentage.setForeground(new java.awt.Color(255, 255, 255));
         percentage.setText("100 %");
         mainPanel.add(percentage, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 130, 50, 30));
@@ -73,7 +69,7 @@ public class App extends javax.swing.JFrame {
         headerPanel.setBackground(new java.awt.Color(102, 102, 0));
         headerPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-        header.setFont(new java.awt.Font("Consolas", 1, 36)); // NOI18N
+        header.setFont(new java.awt.Font("Consolas", Font.BOLD, 36)); // NOI18N
         header.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         header.setText("POINT OF SALE");
 
