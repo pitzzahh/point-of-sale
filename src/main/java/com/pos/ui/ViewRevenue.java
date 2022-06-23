@@ -145,7 +145,7 @@ public class ViewRevenue extends javax.swing.JFrame {
             salesTable.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        tablePanel.add(salesTableScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 790, 370));
+        tablePanel.add(salesTableScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 780, 370));
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 0));
         jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
@@ -177,7 +177,7 @@ public class ViewRevenue extends javax.swing.JFrame {
 
         tablePanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 790, 50));
 
-        mainPanel.add(tablePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 810, 450));
+        mainPanel.add(tablePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 800, 450));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

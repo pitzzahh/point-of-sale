@@ -373,7 +373,7 @@ public class ManageProducts extends javax.swing.JFrame {
             expiredProductsTable.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        expiredProductsPanel.add(expiredProductsScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 880, 410));
+        expiredProductsPanel.add(expiredProductsScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 890, 410));
 
         removeProduct.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         removeProduct.setText("REMOVE PRODUCT");
