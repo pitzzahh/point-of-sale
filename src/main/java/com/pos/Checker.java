@@ -27,8 +27,7 @@ public class Checker {
         boolean created = file.createNewFile();
         if (created) {
             try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file))) {
-                bufferedWriter.write("This file is used to check whether the products are in the database, just checks if this file exists.");
-                bufferedWriter.close();
+                bufferedWriter.write("This file is used to check whether the products are in the database, just checks if this file exists.\nDO NOT REMOVE THIS FILE, IF THIS FIL IS REMOVED, THE PROGRAM WILL KEEP INSERTING PRODUCTS TO THE TABLE");
             }
         }
     }

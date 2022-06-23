@@ -1,1 +1,0 @@
-This file is used to check whether the products are in the database, just checks if this file exists.

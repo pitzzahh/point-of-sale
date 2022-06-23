@@ -150,15 +150,17 @@ public class ProgressBar extends javax.swing.JFrame {
                     }
                     loggingOutProgress.progressBar.setValue(i);
                 }
+
                 if (whatProgress == LOGGING_OUT) System.exit(0);
                 else if (whatProgress == EDITING_PRODUCTS || whatProgress == VIEWING_REVENUE) {
+                    loggingOutProgress.setVisible(false);
+                    loggingOutProgress.dispose();
                     if (whatProgress == EDITING_PRODUCTS) {
-                        this.dispose();
                         assert manageProducts != null;
                         manageProducts.run();
                     }
                     if (whatProgress == VIEWING_REVENUE) {
-                        assert false;
+                        assert viewRevenue != null;
                         viewRevenue.run();
                     }
                 }
