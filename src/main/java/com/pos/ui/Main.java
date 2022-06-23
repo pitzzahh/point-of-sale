@@ -50,8 +50,7 @@ public class Main extends JFrame {
     public Main() {
         PRODUCT_SERVICE.insertAllProductsToDatabase();
         initComponents();
-
-
+        setIcon();
         initializeDate();
         initializeTime();
         day.setText(LocalDate.now().getDayOfWeek().name());
@@ -321,9 +320,17 @@ public class Main extends JFrame {
      * @param product the product to test for.
      * @return {@code true} if the product is expired.
      */
+    // <editor-fold defaultstate="collapsed" desc="Method that returns a value from the invoked method from the {@code ProductValidator} that checks if the product is expired.">//
     private boolean isProductExpired(Product product) {
         return ProductValidator.isProductExpired().apply(PRODUCT_SERVICE.getProductById().apply(product.getId()).get()) == EXPIRED;
-    }
+    } // </editor-fold>//
+
+    // <editor-fold defaultstate="collapsed" desc="Method that sets the icon for this frame.">//
+    private void setIcon() {
+        ImageIcon img = new ImageIcon("src/main/resources/ico.png");
+        this.setIconImage(img.getImage());
+    } // </editor-fold>//
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -24,7 +24,15 @@ public class App extends javax.swing.JFrame {
      */
     public App() {
         initComponents();
+        setIcon();
     }
+
+    // <editor-fold defaultstate="collapsed" desc="Method that sets the icon for this frame.">//
+    private void setIcon() {
+        ImageIcon img = new ImageIcon("src/main/resources/ico.png");
+        this.setIconImage(img.getImage());
+    } // </editor-fold>//
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -140,8 +148,6 @@ public class App extends javax.swing.JFrame {
         App app = new App();
         final Random RANDOM = new Random();
         app.setVisible(true);
-        final int START = 0;
-        final int END = 100;
         Main MAIN = null;
         try {
             for(int i = 0; i <= 100; i++ ) {
