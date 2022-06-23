@@ -133,7 +133,7 @@ public class Main extends JFrame {
         }
     } // </editor-fold>//
 
-    // <editor-fold defaultstate="collapsed" desc="Method that sets the prices ont product labels.">//
+    // <editor-fold defaultstate="collapsed" desc="Method that sets the product information on the labels.">//
     public static void setProductsInfo() {
         final char PESO_SIGN = '₱';
 
