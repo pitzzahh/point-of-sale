@@ -71,7 +71,7 @@ public class ViewRevenue extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Method that sets the icon for this frame.">//
     private void setIcon() {
-        ImageIcon img = new ImageIcon("src/main/resources/view.png");
+        ImageIcon img = new ImageIcon("view.png");
         this.setIconImage(img.getImage());
     } // </editor-fold>//
 
@@ -129,9 +129,16 @@ public class ViewRevenue extends javax.swing.JFrame {
                 "SALES_NUMBER", "DATE_PROCESSED", "PROFIT"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Double.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -145,7 +152,7 @@ public class ViewRevenue extends javax.swing.JFrame {
             salesTable.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        tablePanel.add(salesTableScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 780, 370));
+        tablePanel.add(salesTableScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 750, 370));
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 0));
         jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
@@ -173,11 +180,11 @@ public class ViewRevenue extends javax.swing.JFrame {
                 closeActionPerformed(evt);
             }
         });
-        jPanel1.add(close, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 12, -1, 30));
+        jPanel1.add(close, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 10, -1, 30));
 
-        tablePanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 790, 50));
+        tablePanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 750, 50));
 
-        mainPanel.add(tablePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 800, 450));
+        mainPanel.add(tablePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 770, 450));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

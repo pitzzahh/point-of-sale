@@ -327,7 +327,7 @@ public class Main extends JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Method that sets the icon for this frame.">//
     private void setIcon() {
-        ImageIcon img = new ImageIcon("src/main/resources/ico.png");
+        ImageIcon img = new ImageIcon("ico.png");
         this.setIconImage(img.getImage());
     } // </editor-fold>//
 
