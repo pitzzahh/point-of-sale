@@ -1693,8 +1693,8 @@ public class Main extends JFrame {
         handleOrder(16);
     }//GEN-LAST:event_hersheysActionPerformed
     private void manageProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageProductsActionPerformed
-        final ManageProducts MANAGE_PRODUCTS = new ManageProducts();
-        MANAGE_PRODUCTS.run();
+        final ProgressBar PROGRESS = new ProgressBar();
+        PROGRESS.run(Main.this, PROGRESS.EDITING_PRODUCTS);
     }//GEN-LAST:event_manageProductsActionPerformed
     private void cleanFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleanFirstActionPerformed
         try {
@@ -2524,12 +2524,13 @@ public class Main extends JFrame {
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         ORDERS_LIST.clear();
-        System.exit(0);
+        final ProgressBar PROGRESS = new ProgressBar();
+        PROGRESS.run(Main.this, PROGRESS.LOGGING_OUT);
     }//GEN-LAST:event_exitActionPerformed
 
     private void viewSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewSalesActionPerformed
-        final ViewRevenue VIEW_REVENUE = new ViewRevenue();
-        VIEW_REVENUE.run();
+        final ProgressBar PROGRESS = new ProgressBar();
+        PROGRESS.run(Main.this, PROGRESS.VIEWING_REVENUE);
     }//GEN-LAST:event_viewSalesActionPerformed
 
     /**

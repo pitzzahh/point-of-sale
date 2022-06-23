@@ -214,7 +214,7 @@ public class ManageProducts extends javax.swing.JFrame {
         mainPanel = new javax.swing.JPanel();
         mainPanelTab = new javax.swing.JTabbedPane();
         restockProductsPanel = new javax.swing.JPanel();
-        availableProductsTableScrollPane = new javax.swing.JScrollPane();
+        avaialbleProductsTableScrollPane = new javax.swing.JScrollPane();
         availableProductsTable = new javax.swing.JTable();
         availableProductsHeader = new javax.swing.JLabel();
         availableProductsSubHeader = new javax.swing.JLabel();
@@ -243,7 +243,7 @@ public class ManageProducts extends javax.swing.JFrame {
         mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         mainPanelTab.setForeground(new java.awt.Color(0, 0, 0));
-        mainPanelTab.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 18)); // NOI18N
+        mainPanelTab.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         mainPanelTab.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 mainPanelTabComponentShown(evt);
@@ -261,10 +261,10 @@ public class ManageProducts extends javax.swing.JFrame {
                 "product_id", "product_name", "price", "category", "expiration_date", "stocks", "discount"
             }
         ) {
-            final Class[] types = new Class [] {
+            Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.String.class
             };
-            final boolean[] canEdit = new boolean [] {
+            boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false
             };
 
@@ -276,7 +276,7 @@ public class ManageProducts extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        availableProductsTableScrollPane.setViewportView(availableProductsTable);
+        avaialbleProductsTableScrollPane.setViewportView(availableProductsTable);
         if (availableProductsTable.getColumnModel().getColumnCount() > 0) {
             availableProductsTable.getColumnModel().getColumn(0).setResizable(false);
             availableProductsTable.getColumnModel().getColumn(1).setResizable(false);
@@ -285,35 +285,51 @@ public class ManageProducts extends javax.swing.JFrame {
             availableProductsTable.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        restockProductsPanel.add(availableProductsTableScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 890, 400));
+        restockProductsPanel.add(avaialbleProductsTableScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 890, 400));
 
-        availableProductsHeader.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 24)); // NOI18N
+        availableProductsHeader.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         availableProductsHeader.setForeground(new java.awt.Color(255, 255, 255));
         availableProductsHeader.setText("AVAILABLE PRODUCTS ");
         restockProductsPanel.add(availableProductsHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, -1, -1));
 
-        availableProductsSubHeader.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        availableProductsSubHeader.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         availableProductsSubHeader.setForeground(new java.awt.Color(255, 255, 255));
         availableProductsSubHeader.setText("EXPIRED PRODUCTS ARE EXCLUDED");
         restockProductsPanel.add(availableProductsSubHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, -1, -1));
 
-        editStocks.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14)); // NOI18N
+        editStocks.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         editStocks.setText("EDIT STOCKS");
-        editStocks.addActionListener(this::editStocksActionPerformed);
+        editStocks.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editStocksActionPerformed(evt);
+            }
+        });
         restockProductsPanel.add(editStocks, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 120, 30));
 
-        editPrice.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14)); // NOI18N
+        editPrice.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         editPrice.setText("EDIT PRICE");
-        editPrice.addActionListener(this::editPriceActionPerformed);
+        editPrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editPriceActionPerformed(evt);
+            }
+        });
         restockProductsPanel.add(editPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 490, 110, 30));
 
-        editDiscount.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14)); // NOI18N
+        editDiscount.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         editDiscount.setText("EDIT DISCOUNT");
-        editDiscount.addActionListener(this::editDiscountActionPerformed);
+        editDiscount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editDiscountActionPerformed(evt);
+            }
+        });
         restockProductsPanel.add(editDiscount, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 490, 140, 30));
 
         close.setText("CLOSE");
-        close.addActionListener(this::closeActionPerformed);
+        close.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeActionPerformed(evt);
+            }
+        });
         restockProductsPanel.add(close, new org.netbeans.lib.awtextra.AbsoluteConstraints(812, 492, 80, 30));
 
         mainPanelTab.addTab("EDIT PRODUCTS", restockProductsPanel);
@@ -322,7 +338,8 @@ public class ManageProducts extends javax.swing.JFrame {
         expiredProductsPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         expiredProductsPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        expiredProductsHeader.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 36)); // NOI18N
+        expiredProductsHeader.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        expiredProductsHeader.setForeground(new java.awt.Color(255, 255, 255));
         expiredProductsHeader.setText("EXPIRED PRODUCTS");
         expiredProductsPanel.add(expiredProductsHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, -1, -1));
 
@@ -334,26 +351,46 @@ public class ManageProducts extends javax.swing.JFrame {
                 "product_id", "product_name"
             }
         ) {
-            final Class[] types = new Class [] {
+            Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
+        expiredProductsTable.getTableHeader().setReorderingAllowed(false);
         expiredProductsScrollPane.setViewportView(expiredProductsTable);
+        if (expiredProductsTable.getColumnModel().getColumnCount() > 0) {
+            expiredProductsTable.getColumnModel().getColumn(0).setResizable(false);
+            expiredProductsTable.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         expiredProductsPanel.add(expiredProductsScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 880, 410));
 
-        removeProduct.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 24)); // NOI18N
+        removeProduct.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         removeProduct.setText("REMOVE PRODUCT");
-        removeProduct.addActionListener(this::removeProductActionPerformed);
+        removeProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeProductActionPerformed(evt);
+            }
+        });
         expiredProductsPanel.add(removeProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, 270, 40));
 
-        removeAllProducts.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 24)); // NOI18N
+        removeAllProducts.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         removeAllProducts.setText("REMOVE ALL EXPIRED PRODUCTS");
-        removeAllProducts.addActionListener(this::removeAllProductsActionPerformed);
+        removeAllProducts.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeAllProductsActionPerformed(evt);
+            }
+        });
         expiredProductsPanel.add(removeAllProducts, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 480, 440, 40));
 
         mainPanelTab.addTab("VIEW EXPIRED PRODUCTS", expiredProductsPanel);
@@ -459,7 +496,7 @@ public class ManageProducts extends javax.swing.JFrame {
     } // </editor-fold>//
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane availableProductsTableScrollPane;
+    private javax.swing.JScrollPane avaialbleProductsTableScrollPane;
     private javax.swing.JLabel availableProductsHeader;
     private javax.swing.JLabel availableProductsSubHeader;
     private javax.swing.JTable availableProductsTable;

@@ -106,7 +106,7 @@ public class ViewRevenue extends javax.swing.JFrame {
         headerPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         headerPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("POINT OF SALE");
@@ -129,7 +129,7 @@ public class ViewRevenue extends javax.swing.JFrame {
                 "SALES_NUMBER", "DATE_PROCESSED", "PROFIT"
             }
         ) {
-            final boolean[] canEdit = new boolean [] {
+            boolean[] canEdit = new boolean [] {
                 false, false, false
             };
 
@@ -151,23 +151,28 @@ public class ViewRevenue extends javax.swing.JFrame {
         jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        totalRevenueLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        totalRevenueLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         totalRevenueLabel.setForeground(new java.awt.Color(255, 255, 255));
         totalRevenueLabel.setText("TOTAL REVENUE :");
         jPanel1.add(totalRevenueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         totalRevenue.setEditable(false);
-        totalRevenue.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        totalRevenue.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         totalRevenue.setText("0.00");
         totalRevenue.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.add(totalRevenue, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 220, 30));
 
-        totalRevenuePesoSignLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        totalRevenuePesoSignLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        totalRevenuePesoSignLabel.setForeground(new java.awt.Color(255, 255, 255));
         totalRevenuePesoSignLabel.setText("₱");
         jPanel1.add(totalRevenuePesoSignLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, -1, -1));
 
         close.setText("CLOSE");
-        close.addActionListener(this::closeActionPerformed);
+        close.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeActionPerformed(evt);
+            }
+        });
         jPanel1.add(close, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 12, -1, 30));
 
         tablePanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 790, 50));
