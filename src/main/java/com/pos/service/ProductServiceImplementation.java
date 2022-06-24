@@ -107,8 +107,11 @@ public class ProductServiceImplementation implements ProductService {
      */
     @Override
     public void insertAllProductsToDatabase() {
-        if (!new File("src/main/resources/check.txt").exists()) productRepository.saveAll(initializeAllProducts());
-        Checker.createFile();
+//        if (!new File("src/main/resources/check.txt").exists()) productRepository.saveAll(initializeAllProducts());
+//        Checker.createFile();
+        try {
+            productRepository.saveAll(initializeAllProducts());
+        } catch (Exception ignored) {}
     }
 
     /**
@@ -130,6 +133,7 @@ public class ProductServiceImplementation implements ProductService {
         List<Product> products = new ArrayList<>();
         products.add(
                 new Product(
+                        1,
                         "CLEAN FIRST",
                         45.69,
                         Category.CLEANING_PRODUCT,
@@ -141,6 +145,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        2,
                         "HYDRO SAFE",
                         40.41,
                         Category.CLEANING_PRODUCT,
@@ -152,6 +157,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        3,
                         "RIGHT FLEX",
                         34.12,
                         Category.CLEANING_PRODUCT,
@@ -163,6 +169,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        4,
                         "CLOROX",
                         35.00,
                         Category.CLEANING_PRODUCT,
@@ -174,6 +181,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        5,
                         "DIRTBUSTERS",
                         45.69,
                         Category.CLEANING_PRODUCT,
@@ -185,6 +193,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        6,
                         "MY CLEAN",
                         89.60,
                         Category.CLEANING_PRODUCT,
@@ -196,6 +205,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        7,
                         "CLEAN CUT",
                         120.12,
                         Category.CLEANING_PRODUCT,
@@ -207,6 +217,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        8,
                         "SURE CLEAN",
                         150.00,
                         Category.CLEANING_PRODUCT,
@@ -218,6 +229,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        9,
                         "ARIEL",
                         50.00,
                         Category.CLEANING_PRODUCT,
@@ -229,6 +241,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        10,
                         "JOY",
                         10.00,
                         Category.CLEANING_PRODUCT,
@@ -240,6 +253,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        11,
                         "SMART DISHWASHING PASTE",
                         35.00,
                         Category.CLEANING_PRODUCT,
@@ -251,6 +265,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        12,
                         "DOMEX",
                         36.00,
                         Category.CLEANING_PRODUCT,
@@ -262,6 +277,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        13,
                         "MR MUSCLE",
                         69.00,
                         Category.CLEANING_PRODUCT,
@@ -273,6 +289,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        14,
                         "LYSOL",
                         45.69,
                         Category.CLEANING_PRODUCT,
@@ -284,6 +301,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        15,
                         "SURF POWDER",
                         7.00,
                         Category.CLEANING_PRODUCT,
@@ -295,6 +313,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        16,
                         "HERSHEYS",
                         32.00,
                         Category.CHOCOLATE,
@@ -309,6 +328,7 @@ public class ProductServiceImplementation implements ProductService {
          */
         products.add(
                 new Product(
+                        17,
                         "SNICKERS",
                         24.00,
                         Category.CHOCOLATE,
@@ -320,6 +340,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        18,
                         "FERRERO ROCHER",
                         120.00,
                         Category.CHOCOLATE,
@@ -331,6 +352,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        19,
                         "ESTHECHOC",
                         240.00,
                         Category.CHOCOLATE,
@@ -342,6 +364,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        20,
                         "FLYING NOIR",
                         300.00,
                         Category.CHOCOLATE,
@@ -353,6 +376,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        21,
                         "DROSTE",
                         120.54,
                         Category.CHOCOLATE,
@@ -364,6 +388,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        22,
                         "WITTAKER'S",
                         126.00,
                         Category.CHOCOLATE,
@@ -375,6 +400,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        23,
                         "AMEDEI",
                         260.69,
                         Category.CHOCOLATE,
@@ -386,6 +412,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        24,
                         "JACQUES GENIN",
                         240.00,
                         Category.CHOCOLATE,
@@ -397,6 +424,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        25,
                         "RICHART",
                         50.12,
                         Category.CHOCOLATE,
@@ -408,6 +436,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        26,
                         "PATCHI",
                         320.69,
                         Category.CHOCOLATE,
@@ -419,6 +448,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        27,
                         "TEUSCHER",
                         120.12,
                         Category.CHOCOLATE,
@@ -430,6 +460,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        28,
                         "VALRHONA",
                         150.78,
                         Category.CHOCOLATE,
@@ -441,6 +472,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        29,
                         "DOVE",
                         150.12,
                         Category.CHOCOLATE,
@@ -452,6 +484,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        30,
                         "RUSSEL STOVER",
                         130.12,
                         Category.CHOCOLATE,
@@ -463,6 +496,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        31,
                         "RITTER SPORT",
                         170.12,
                         Category.CHOCOLATE,
@@ -474,6 +508,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        32,
                         "GUYLIAN",
                         150.12,
                         Category.CHOCOLATE,
@@ -485,6 +520,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        33,
                         "KINDER",
                         121.61,
                         Category.CHOCOLATE,
@@ -496,6 +532,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        34,
                         "MARS",
                         32.12,
                         Category.CHOCOLATE,
@@ -507,6 +544,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        35,
                         "TOBLERONE",
                         150.12,
                         Category.CHOCOLATE,
@@ -518,6 +556,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        36,
                         "NESTLE",
                         143.53,
                         Category.CHOCOLATE,
@@ -529,6 +568,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        37,
                         "MILKA",
                         240.12,
                         Category.CHOCOLATE,
@@ -540,6 +580,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        38,
                         "GHIRARDELLI",
                         310.78,
                         Category.CHOCOLATE,
@@ -551,6 +592,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        39,
                         "CADBURY",
                         80.00,
                         Category.CHOCOLATE,
@@ -562,6 +604,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        40,
                         "GODIVA",
                         100.00,
                         Category.CHOCOLATE,
@@ -576,6 +619,7 @@ public class ProductServiceImplementation implements ProductService {
          */
         products.add(
                 new Product(
+                        41,
                         "COCA-COLA",
                         75.00,
                         Category.BEVERAGE,
@@ -588,6 +632,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        42,
                         "PEPSI",
                         50.00,
                         Category.BEVERAGE,
@@ -599,6 +644,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        43,
                         "RED BULL",
                         67.12,
                         Category.BEVERAGE,
@@ -610,6 +656,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        44,
                         "BUD WISER",
                         120.43,
                         Category.BEVERAGE,
@@ -621,6 +668,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        45,
                         "HEINEKEN",
                         45.00,
                         Category.BEVERAGE,
@@ -632,6 +680,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        46,
                         "GATORADE",
                         35.00,
                         Category.BEVERAGE,
@@ -643,6 +692,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        47,
                         "SPRITE",
                         65.00,
                         Category.BEVERAGE,
@@ -654,6 +704,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        48,
                         "MINUTE MAID",
                         25.00,
                         Category.BEVERAGE,
@@ -665,6 +716,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        49,
                         "TROPICANA",
                         80.00,
                         Category.BEVERAGE,
@@ -676,6 +728,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        50,
                         "DOLE",
                         32.00,
                         Category.BEVERAGE,
@@ -687,6 +740,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        51,
                         "KOOL AID",
                         20.00,
                         Category.BEVERAGE,
@@ -698,6 +752,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        52,
                         "7 UP",
                         65.00,
                         Category.BEVERAGE,
@@ -709,6 +764,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        53,
                         "MOUNTAIN DEW",
                         15.00,
                         Category.BEVERAGE,
@@ -720,6 +776,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        54,
                         "LIPTON",
                         43.00,
                         Category.BEVERAGE,
@@ -731,6 +788,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        55,
                         "SUNKIST",
                         76.00,
                         Category.BEVERAGE,
@@ -742,6 +800,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        56,
                         "APPLE JUICE",
                         25.00,
                         Category.BEVERAGE,
@@ -753,6 +812,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        57,
                         "PINEAPPLE JUICE",
                         25.00,
                         Category.BEVERAGE,
@@ -764,6 +824,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        58,
                         "BLACK CHERRY",
                         25.00,
                         Category.BEVERAGE,
@@ -776,6 +837,7 @@ public class ProductServiceImplementation implements ProductService {
         // liquors
         products.add(
                 new Product(
+                        59,
                         "TEQUILA",
                         2200.69,
                         Category.BEVERAGE,
@@ -787,6 +849,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        60,
                         "BEER",
                         150.00,
                         Category.BEVERAGE,
@@ -798,6 +861,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        61,
                         "WINE",
                         2000.00,
                         Category.BEVERAGE,
@@ -809,6 +873,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        62,
                         "HARD CIDER",
                         500.00,
                         Category.BEVERAGE,
@@ -820,6 +885,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        63,
                         "MEAD",
                         400.00,
                         Category.BEVERAGE,
@@ -831,6 +897,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        64,
                         "GIN",
                         90.00,
                         Category.BEVERAGE,
@@ -842,6 +909,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        65,
                         "BRANDY",
                         760.00,
                         Category.BEVERAGE,
@@ -853,6 +921,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        66,
                         "WHISKY",
                         300.00,
                         Category.BEVERAGE,
@@ -864,6 +933,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        67,
                         "RUM",
                         320.00,
                         Category.BEVERAGE,
@@ -875,6 +945,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
+                        68,
                         "VODKA",
                         240.00,
                         Category.BEVERAGE,

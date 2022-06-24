@@ -69,7 +69,7 @@ public class ViewRevenue extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Method that sets the icon for this frame.">//
     private void setIcon() {
-        ImageIcon img = new ImageIcon("src/main/resources/view.png");
+        ImageIcon img = new ImageIcon("BOOT-INFO\\classes\\view.png");
         this.setIconImage(img.getImage());
     } // </editor-fold>//
 

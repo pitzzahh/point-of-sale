@@ -200,7 +200,7 @@ public class ManageProducts extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Method that sets the icon for this frame.">//
     private void setIcon() {
-        ImageIcon img = new ImageIcon("src/main/resources/edit.png");
+        ImageIcon img = new ImageIcon("BOOT-INFO\\classes\\edit.png");
         this.setIconImage(img.getImage());
     } // </editor-fold>//
 

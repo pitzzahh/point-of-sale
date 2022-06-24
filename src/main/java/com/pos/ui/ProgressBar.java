@@ -20,8 +20,14 @@ public class ProgressBar extends javax.swing.JFrame {
      */
     public ProgressBar() {
         initComponents();
+        setIcon();
     }
 
+    // <editor-fold defaultstate="collapsed" desc="Method that sets the icon for this frame.">//
+    private void setIcon() {
+        ImageIcon img = new ImageIcon("BOOT-INFO\\classes\\loading.png");
+        this.setIconImage(img.getImage());
+    } // </editor-fold>//
 
     /**
      * This method is called from within the constructor to initialize the form.
