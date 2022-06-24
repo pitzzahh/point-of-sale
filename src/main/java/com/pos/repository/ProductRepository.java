@@ -12,34 +12,34 @@ import java.util.List;
 @Repository("productRepository")
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 
-    @Query("select p from #{#entityName} p")
+    @Query("SELECT p FROM #{#entityName} p")
     List<Product> getAllProducts();
 
-    @Query("select p from #{#entityName} p where p.id = ?1")
+    @Query("SELECT p FROM #{#entityName} p WHERE p.id = ?1")
     Product getProductById(int id);
 
-    @Query("select p from #{#entityName} p where p.name = ?1")
+    @Query("SELECT p FROM #{#entityName} p WHERE p.name = ?1")
     Product getProductByName(String name);
 
-    @Query("select p.stocks from #{#entityName} p where id = ?1")
+    @Query("SELECT p.stocks from #{#entityName} p WHERE id = ?1")
     int getProductStocksById(int id);
 
-    @Query("select p.expirationDate from #{#entityName} p")
+    @Query("SELECT p.expirationDate FROM #{#entityName} p")
     List<LocalDate> getAllProductsExpirationDate();
 
     @Modifying
     @Transactional
-    @Query("update #{#entityName} p set p.expired = ?1 where p.id = ?2")
+    @Query("UPDATE #{#entityName} p SET p.expired = ?1 WHERE p.id = ?2")
     void updateProductExpiredStatusById(boolean isExpired, int id);
 
     @Modifying
     @Transactional
-    @Query("update #{#entityName} p set p.price = ?1 where p.id = ?2")
+    @Query("UPDATE #{#entityName} p SET p.price = ?1 WHERE p.id = ?2")
     void updateProductPriceById(double newPrice, int id);
 
     @Modifying
     @Transactional
-    @Query("update #{#entityName} p set p.stocks = ?1 where p.name = ?2")
+    @Query("UPDATE #{#entityName} p SET p.stocks = ?1 WHERE p.name = ?2")
     void updateProductStocksByName(int newStocks, String name);
 
 

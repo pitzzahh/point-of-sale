@@ -9,9 +9,9 @@ import java.util.List;
 @Repository("salesRepository")
 public interface SalesRepository extends JpaRepository<Sales, Integer> {
 
-    @Query("select s from #{#entityName} s")
+    @Query("SELECT s FROM #{#entityName} s")
     List<Sales> getAllSales();
 
-    @Query("select s.profit from #{#entityName} s")
+    @Query("SELECT s.profit FROM #{#entityName} s")
     List<Double> getAllProfit();
 }
