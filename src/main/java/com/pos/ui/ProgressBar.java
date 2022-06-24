@@ -1,13 +1,10 @@
 package com.pos.ui;
 
 import static com.pos.ui.Main.OS_NAME;
-
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.URL;
-import java.util.Random;
 import javax.imageio.ImageIO;
+import java.util.Random;
 import javax.swing.*;
+import java.net.URL;
 import java.awt.*;
 
 /**
@@ -51,7 +48,7 @@ public class ProgressBar extends javax.swing.JFrame {
         message = new javax.swing.JLabel();
         header = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
 
