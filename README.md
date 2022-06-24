@@ -6,24 +6,24 @@
 
 - JDK 17 LTS or JDK 18 (JDK 1.8 would probably work)
 - PostgreSQL database named 'pos' (can change to any DBMS (h2 database doesn't seem to work))
-- Change username and password in application.properties (username and password of your DBMS).
-- Change the url of the database, based on the url of your own DBMS.
+- Change username and password in the application.properties (username and password of your DBMS).
+- Change the URL of the database based on the URL of your DBMS.
 
 ### Functions
 
-- Edit product stocks
-- Edit product price
-- Edit product discount
-- Can't purchase product if product is; EXPIRED, OUT OF STOCK, REMOVED
+- Edit product stocks.
+- Edit product price.
+- Edit product discount.
+- Can't purchase a product if a product is; EXPIRED, OUT OF STOCK, REMOVED.
 - Stocks are subtracted based on the quantity of the product purchased.
-- Remove expired product.
+- Remove expired products.
 - Remove all expired products.
 - View total revenue.
 
 # Note
 
-- At start, a text file will be created and stored in ```C:\Users\Public\check.txt``` 
-- The file denotes that the products has been inserted to the table.
-- If you delete the file and try to rerun the application, the products will be inserted again to the table in the database, which should not happen.
+- At the first start of the application, a text file will be created and stored in ```C:\Users\Public\check.txt```
+- The file denotes that the products have been inserted into the table.
+- If you delete the file and try to rerun the application, the products will be inserted again into the table in the database, which should not happen.
 - The text file is harmless.
-- The icons of the application will only appear when internet connection is available (can't set icon with local files)
+- The icons of the application will only appear when an internet connection is available (can't set icon with local files)
