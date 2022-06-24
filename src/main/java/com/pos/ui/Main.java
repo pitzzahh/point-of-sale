@@ -3,25 +3,20 @@ package com.pos.ui;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import static com.pos.validation.ProductValidator.ValidationResult.EXPIRED;
 import org.springframework.context.support.AbstractApplicationContext;
-
+import com.formdev.flatlaf.FlatDarkLaf;
 import javax.imageio.ImageIO;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import com.pos.validation.ProductValidator;
 import com.pos.service.ProductService;
 import com.pos.service.SalesService;
-
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.net.URL;
 import java.util.stream.Collectors;
-import java.text.SimpleDateFormat;
 import com.pos.entity.Category;
 import java.text.NumberFormat;
 import com.pos.entity.Product;
 import com.pos.entity.Order;
 import com.pos.entity.Sales;
-import java.text.DateFormat;
 import java.time.LocalDate;
 import com.pos.validation.Checker;
 import java.util.List;
@@ -55,10 +50,10 @@ public class Main extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Creates a main form.">//
     public Main() {
         PRODUCT_SERVICE.insertAllProductsToDatabase();
+        FlatDarkLaf.setup();
         initComponents();
         setIcon();
         initializeDate();
-        initializeTime();
         day.setText(LocalDate.now().getDayOfWeek().name());
         setProductsInfo();
         final DefaultTableCellRenderer RENDERER = new DefaultTableCellRenderer();
@@ -106,12 +101,11 @@ public class Main extends JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Method that makes a new order. Takes a product to be searched for order modification">//
     private void makeOrder(Product product) {
-        final int CLICK_COUNT = 1;
         ORDERS_LIST.add(new Order(
                 product.getName(),
-                (product.getDiscount() != null) ? (product.getPrice() - product.getDiscount()) : product.getPrice(),
+                product.getPrice(),
                 product.getCategory(),
-                CLICK_COUNT,
+                1,
                 (product.getDiscount() != null) ? product.getDiscount() : 0.0
         ));
     } // </editor-fold>//
@@ -263,24 +257,6 @@ public class Main extends JFrame {
         date.setText(LOCALDATE.getMonth().name() + " " + LOCALDATE.getDayOfMonth() + ", " + LOCALDATE.getYear());
     } // </editor-fold>//
 
-    // <editor-fold defaultstate="collapsed" desc="Method that displays a live current time to the graphical user interface. Starts a new Thread only for displaying a live time.">//
-    private void initializeTime() {
-        final DateFormat TIME_FORMAT = new SimpleDateFormat("hh : mm : ss aa");
-        final Thread TIME_THREAD = new Thread(() -> {
-            while(true) {
-                final String LIVE_TIME = TIME_FORMAT.format(new Date().getTime());
-                time.setText(LIVE_TIME);
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        });
-        TIME_THREAD.setPriority(Thread.MIN_PRIORITY);
-        TIME_THREAD.start();
-    }// </editor-fold>//
-
     // <editor-fold defaultstate="collapsed" desc="Method that handles orders.">//
     private void handleOrder(int productId) {
         Optional<Product> product = PRODUCT_SERVICE.getProductById().apply(productId);
@@ -389,9 +365,6 @@ public class Main extends JFrame {
         dayTodayPanel = new javax.swing.JPanel();
         dayTodayLabel = new javax.swing.JLabel();
         day = new javax.swing.JLabel();
-        timePanel = new javax.swing.JPanel();
-        timeLabel = new javax.swing.JLabel();
-        time = new javax.swing.JLabel();
         exit = new javax.swing.JButton();
         viewSales = new javax.swing.JButton();
         headerPanel = new javax.swing.JPanel();
@@ -605,10 +578,14 @@ public class Main extends JFrame {
 
         manageProducts.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14)); // NOI18N
         manageProducts.setText("MANAGE PRODUCTS");
-        manageProducts.addActionListener(this::manageProductsActionPerformed);
+        manageProducts.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageProductsActionPerformed(evt);
+            }
+        });
         expiredProductsInformationPanel.add(manageProducts, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 180, -1));
 
-        numberOfExpiredProducts.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 34)); // NOI18N
+        numberOfExpiredProducts.setFont(new java.awt.Font("Segoe UI", 1, 34)); // NOI18N
         numberOfExpiredProducts.setForeground((getExpiredProductsCount() > 0) ? new java.awt.Color(255, 0, 0) : new java.awt.Color(0, 0, 255));
         numberOfExpiredProducts.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         numberOfExpiredProducts.setText(String.valueOf(getExpiredProductsCount()));
@@ -620,13 +597,13 @@ public class Main extends JFrame {
         datePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         datePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        dateLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 24)); // NOI18N
+        dateLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         dateLabel.setForeground(new java.awt.Color(102, 255, 255));
         dateLabel.setText("DATE");
         datePanel.add(dateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, -1));
 
         date.setBackground(new java.awt.Color(255, 255, 255));
-        date.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 24)); // NOI18N
+        date.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         date.setForeground(new java.awt.Color(255, 255, 255));
         date.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         datePanel.add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 180, 50));
@@ -637,45 +614,36 @@ public class Main extends JFrame {
         dayTodayPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         dayTodayPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        dayTodayLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 24)); // NOI18N
+        dayTodayLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         dayTodayLabel.setForeground(new java.awt.Color(102, 255, 255));
         dayTodayLabel.setText("DAY TODAY");
         dayTodayPanel.add(dayTodayLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, -1, -1));
 
         day.setBackground(new java.awt.Color(255, 255, 255));
-        day.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 24)); // NOI18N
+        day.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         day.setForeground(new java.awt.Color(255, 255, 255));
         day.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         dayTodayPanel.add(day, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 180, 50));
 
-        informationPanel.add(dayTodayPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 240, 140));
+        informationPanel.add(dayTodayPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 240, 140));
 
-        timePanel.setBackground(new java.awt.Color(0, 102, 102));
-        timePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        timePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        timeLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 24)); // NOI18N
-        timeLabel.setForeground(new java.awt.Color(102, 255, 255));
-        timeLabel.setText("TIME");
-        timePanel.add(timeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, -1));
-
-        time.setBackground(new java.awt.Color(255, 255, 255));
-        time.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 24)); // NOI18N
-        time.setForeground(new java.awt.Color(255, 255, 255));
-        time.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        timePanel.add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 180, 50));
-
-        informationPanel.add(timePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 240, 140));
-
-        exit.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 24)); // NOI18N
+        exit.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         exit.setForeground(new java.awt.Color(255, 0, 0));
         exit.setText("EXIT");
-        exit.addActionListener(this::exitActionPerformed);
+        exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitActionPerformed(evt);
+            }
+        });
         informationPanel.add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 640, -1, 30));
 
-        viewSales.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        viewSales.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         viewSales.setText("VIEW REVENUE");
-        viewSales.addActionListener(this::viewSalesActionPerformed);
+        viewSales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewSalesActionPerformed(evt);
+            }
+        });
         informationPanel.add(viewSales, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 170, 30));
 
         mainPanel.add(informationPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 260, 690));
@@ -684,7 +652,7 @@ public class Main extends JFrame {
         headerPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         headerPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        header.setFont(new java.awt.Font("Yu Gothic", Font.BOLD, 36)); // NOI18N
+        header.setFont(new java.awt.Font("Yu Gothic", 1, 36)); // NOI18N
         header.setForeground(new java.awt.Color(255, 255, 255));
         header.setText("POINT OF SALES");
         headerPanel.add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, -1, -1));
@@ -698,38 +666,58 @@ public class Main extends JFrame {
         menuPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         menuPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        menuTabs.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 18)); // NOI18N
+        menuTabs.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         cleaningProductsPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cleanFirst.setText("CLEAN FIRST");
         cleanFirst.setMaximumSize(new java.awt.Dimension(118, 118));
         cleanFirst.setMinimumSize(new java.awt.Dimension(118, 118));
-        cleanFirst.addActionListener(this::cleanFirstActionPerformed);
+        cleanFirst.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cleanFirstActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(cleanFirst, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, 90));
 
         hydroSafe.setText("HYDROSAFE");
         hydroSafe.setMaximumSize(new java.awt.Dimension(118, 118));
         hydroSafe.setMinimumSize(new java.awt.Dimension(118, 118));
-        hydroSafe.addActionListener(this::hydroSafeActionPerformed);
+        hydroSafe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hydroSafeActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(hydroSafe, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 100, 90));
 
         rightFlex.setText("RIGHTFLEX");
         rightFlex.setMaximumSize(new java.awt.Dimension(118, 118));
         rightFlex.setMinimumSize(new java.awt.Dimension(118, 118));
-        rightFlex.addActionListener(this::rightFlexActionPerformed);
+        rightFlex.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rightFlexActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(rightFlex, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 100, 90));
 
         clorox.setText("CLOROX");
         clorox.setMaximumSize(new java.awt.Dimension(118, 118));
         clorox.setMinimumSize(new java.awt.Dimension(118, 118));
-        clorox.addActionListener(this::cloroxActionPerformed);
+        clorox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cloroxActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(clorox, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 100, 90));
 
         dirtBuster.setText("DIRTBUSTERS");
         dirtBuster.setMaximumSize(new java.awt.Dimension(118, 118));
         dirtBuster.setMinimumSize(new java.awt.Dimension(118, 118));
-        dirtBuster.addActionListener(this::dirtBusterActionPerformed);
+        dirtBuster.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dirtBusterActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(dirtBuster, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 100, 90));
 
         dirtBustersPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -765,31 +753,51 @@ public class Main extends JFrame {
         myClean.setText("MY CLEAN");
         myClean.setMaximumSize(new java.awt.Dimension(118, 118));
         myClean.setMinimumSize(new java.awt.Dimension(118, 118));
-        myClean.addActionListener(this::myCleanActionPerformed);
+        myClean.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                myCleanActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(myClean, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 100, 90));
 
         cleanCut.setText("CLEAN CUT");
         cleanCut.setMaximumSize(new java.awt.Dimension(118, 118));
         cleanCut.setMinimumSize(new java.awt.Dimension(118, 118));
-        cleanCut.addActionListener(this::cleanCutActionPerformed);
+        cleanCut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cleanCutActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(cleanCut, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 100, 90));
 
         sureClean.setText("SURE CLEAN");
         sureClean.setMaximumSize(new java.awt.Dimension(118, 118));
         sureClean.setMinimumSize(new java.awt.Dimension(118, 118));
-        sureClean.addActionListener(this::sureCleanActionPerformed);
+        sureClean.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sureCleanActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(sureClean, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 100, 90));
 
         mrClean.setText("ARIEL");
         mrClean.setMaximumSize(new java.awt.Dimension(118, 118));
         mrClean.setMinimumSize(new java.awt.Dimension(118, 118));
-        mrClean.addActionListener(this::mrCleanActionPerformed);
+        mrClean.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mrCleanActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(mrClean, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 100, 90));
 
         joy.setText("JOY");
         joy.setMaximumSize(new java.awt.Dimension(118, 118));
         joy.setMinimumSize(new java.awt.Dimension(118, 118));
-        joy.addActionListener(this::joyActionPerformed);
+        joy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                joyActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(joy, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, 100, 90));
 
         joyPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -825,7 +833,11 @@ public class Main extends JFrame {
         smart.setText("SMART");
         smart.setMaximumSize(new java.awt.Dimension(118, 118));
         smart.setMinimumSize(new java.awt.Dimension(118, 118));
-        smart.addActionListener(this::smartActionPerformed);
+        smart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                smartActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(smart, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 100, 90));
 
         smartPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -837,7 +849,11 @@ public class Main extends JFrame {
         domex.setText("DOMEX");
         domex.setMaximumSize(new java.awt.Dimension(118, 118));
         domex.setMinimumSize(new java.awt.Dimension(118, 118));
-        domex.addActionListener(this::domexActionPerformed);
+        domex.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                domexActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(domex, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 100, 90));
 
         domexPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -849,7 +865,11 @@ public class Main extends JFrame {
         mrMuscle.setText("MR MUSCLE");
         mrMuscle.setMaximumSize(new java.awt.Dimension(118, 118));
         mrMuscle.setMinimumSize(new java.awt.Dimension(118, 118));
-        mrMuscle.addActionListener(this::mrMuscleActionPerformed);
+        mrMuscle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mrMuscleActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(mrMuscle, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 100, 90));
 
         mrMusclePrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -861,7 +881,11 @@ public class Main extends JFrame {
         lysol.setText("LYSOL");
         lysol.setMaximumSize(new java.awt.Dimension(118, 118));
         lysol.setMinimumSize(new java.awt.Dimension(118, 118));
-        lysol.addActionListener(this::lysolActionPerformed);
+        lysol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lysolActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(lysol, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, 100, 90));
 
         lysolPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -873,7 +897,11 @@ public class Main extends JFrame {
         surf.setText("SURF");
         surf.setMaximumSize(new java.awt.Dimension(118, 118));
         surf.setMinimumSize(new java.awt.Dimension(118, 118));
-        surf.addActionListener(this::surfActionPerformed);
+        surf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                surfActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(surf, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, 100, 90));
 
         surfPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -893,7 +921,11 @@ public class Main extends JFrame {
         hersheys.setText("HERSHEY'S");
         hersheys.setMaximumSize(new java.awt.Dimension(118, 118));
         hersheys.setMinimumSize(new java.awt.Dimension(118, 118));
-        hersheys.addActionListener(this::hersheysActionPerformed);
+        hersheys.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hersheysActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(hersheys, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, 90));
 
         hersheysPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -905,7 +937,11 @@ public class Main extends JFrame {
         snickers.setText("SNICKERS");
         snickers.setMaximumSize(new java.awt.Dimension(118, 118));
         snickers.setMinimumSize(new java.awt.Dimension(118, 118));
-        snickers.addActionListener(this::snickersActionPerformed);
+        snickers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                snickersActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(snickers, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 100, 90));
 
         snickersPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -917,19 +953,31 @@ public class Main extends JFrame {
         flyingNoir.setText("FLYING NOIR");
         flyingNoir.setMaximumSize(new java.awt.Dimension(118, 118));
         flyingNoir.setMinimumSize(new java.awt.Dimension(118, 118));
-        flyingNoir.addActionListener(this::flyingNoirActionPerformed);
+        flyingNoir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                flyingNoirActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(flyingNoir, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 100, 90));
 
         ferreroRocher.setText("FERRERO ROCHER");
         ferreroRocher.setMaximumSize(new java.awt.Dimension(118, 118));
         ferreroRocher.setMinimumSize(new java.awt.Dimension(118, 118));
-        ferreroRocher.addActionListener(this::ferreroRocherActionPerformed);
+        ferreroRocher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ferreroRocherActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(ferreroRocher, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 100, 90));
 
         esthechoc.setText("ESTHECHOC");
         esthechoc.setMaximumSize(new java.awt.Dimension(118, 118));
         esthechoc.setMinimumSize(new java.awt.Dimension(118, 118));
-        esthechoc.addActionListener(this::esthechocActionPerformed);
+        esthechoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                esthechocActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(esthechoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 100, 90));
 
         flyingNoirPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -953,31 +1001,51 @@ public class Main extends JFrame {
         droste.setText("DROSTE");
         droste.setMaximumSize(new java.awt.Dimension(118, 118));
         droste.setMinimumSize(new java.awt.Dimension(118, 118));
-        droste.addActionListener(this::drosteActionPerformed);
+        droste.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                drosteActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(droste, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 100, 90));
 
         wittakers.setText("WITTAKER'S");
         wittakers.setMaximumSize(new java.awt.Dimension(118, 118));
         wittakers.setMinimumSize(new java.awt.Dimension(118, 118));
-        wittakers.addActionListener(this::wittakersActionPerformed);
+        wittakers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wittakersActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(wittakers, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 100, 90));
 
         amedei.setText("AMEDEI");
         amedei.setMaximumSize(new java.awt.Dimension(118, 118));
         amedei.setMinimumSize(new java.awt.Dimension(118, 118));
-        amedei.addActionListener(this::amedeiActionPerformed);
+        amedei.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                amedeiActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(amedei, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 100, 90));
 
         jacquesGenin.setText("JACQUES GENIN");
         jacquesGenin.setMaximumSize(new java.awt.Dimension(118, 118));
         jacquesGenin.setMinimumSize(new java.awt.Dimension(118, 118));
-        jacquesGenin.addActionListener(this::jacquesGeninActionPerformed);
+        jacquesGenin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jacquesGeninActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(jacquesGenin, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 100, 90));
 
         richart.setText("RICHART");
         richart.setMaximumSize(new java.awt.Dimension(118, 118));
         richart.setMinimumSize(new java.awt.Dimension(118, 118));
-        richart.addActionListener(this::richartActionPerformed);
+        richart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                richartActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(richart, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, 100, 90));
 
         richartPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1013,31 +1081,51 @@ public class Main extends JFrame {
         patchi.setText("PATCHI");
         patchi.setMaximumSize(new java.awt.Dimension(118, 118));
         patchi.setMinimumSize(new java.awt.Dimension(118, 118));
-        patchi.addActionListener(this::patchiActionPerformed);
+        patchi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                patchiActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(patchi, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 100, 90));
 
         teuscher.setText("TEUSCHER");
         teuscher.setMaximumSize(new java.awt.Dimension(118, 118));
         teuscher.setMinimumSize(new java.awt.Dimension(118, 118));
-        teuscher.addActionListener(this::teuscherActionPerformed);
+        teuscher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                teuscherActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(teuscher, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 100, 90));
 
         valrhona.setText("VALRHONA");
         valrhona.setMaximumSize(new java.awt.Dimension(118, 118));
         valrhona.setMinimumSize(new java.awt.Dimension(118, 118));
-        valrhona.addActionListener(this::valrhonaActionPerformed);
+        valrhona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                valrhonaActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(valrhona, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 100, 90));
 
         dove.setText("DOVE");
         dove.setMaximumSize(new java.awt.Dimension(118, 118));
         dove.setMinimumSize(new java.awt.Dimension(118, 118));
-        dove.addActionListener(this::doveActionPerformed);
+        dove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                doveActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(dove, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, 100, 90));
 
         russelStover.setText("RUSSEL STOVER");
         russelStover.setMaximumSize(new java.awt.Dimension(118, 118));
         russelStover.setMinimumSize(new java.awt.Dimension(118, 118));
-        russelStover.addActionListener(this::russelStoverActionPerformed);
+        russelStover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                russelStoverActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(russelStover, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, 100, 90));
 
         russelStoverPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1073,31 +1161,51 @@ public class Main extends JFrame {
         ritterSport.setText("RITTER SPORT");
         ritterSport.setMaximumSize(new java.awt.Dimension(118, 118));
         ritterSport.setMinimumSize(new java.awt.Dimension(118, 118));
-        ritterSport.addActionListener(this::ritterSportActionPerformed);
+        ritterSport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ritterSportActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(ritterSport, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 100, 90));
 
         guyLian.setText("GUYLIAN");
         guyLian.setMaximumSize(new java.awt.Dimension(118, 118));
         guyLian.setMinimumSize(new java.awt.Dimension(118, 118));
-        guyLian.addActionListener(this::guyLianActionPerformed);
+        guyLian.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guyLianActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(guyLian, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, 100, 90));
 
         kinder.setText("KINDER");
         kinder.setMaximumSize(new java.awt.Dimension(118, 118));
         kinder.setMinimumSize(new java.awt.Dimension(118, 118));
-        kinder.addActionListener(this::kinderActionPerformed);
+        kinder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kinderActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(kinder, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 100, 90));
 
         mars.setText("MARS");
         mars.setMaximumSize(new java.awt.Dimension(118, 118));
         mars.setMinimumSize(new java.awt.Dimension(118, 118));
-        mars.addActionListener(this::marsActionPerformed);
+        mars.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marsActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(mars, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 340, 100, 90));
 
         toblerone.setText("TOBLERONE");
         toblerone.setMaximumSize(new java.awt.Dimension(118, 118));
         toblerone.setMinimumSize(new java.awt.Dimension(118, 118));
-        toblerone.addActionListener(this::tobleroneActionPerformed);
+        toblerone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tobleroneActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(toblerone, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 340, 100, 90));
 
         godivaPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1133,31 +1241,51 @@ public class Main extends JFrame {
         godiva.setText("GODIVA");
         godiva.setMaximumSize(new java.awt.Dimension(118, 118));
         godiva.setMinimumSize(new java.awt.Dimension(118, 118));
-        godiva.addActionListener(this::godivaActionPerformed);
+        godiva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                godivaActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(godiva, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 450, 100, 90));
 
         nestle.setText("NESTLE");
         nestle.setMaximumSize(new java.awt.Dimension(118, 118));
         nestle.setMinimumSize(new java.awt.Dimension(118, 118));
-        nestle.addActionListener(this::nestleActionPerformed);
+        nestle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nestleActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(nestle, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 100, 90));
 
         milka.setText("MILKA");
         milka.setMaximumSize(new java.awt.Dimension(118, 118));
         milka.setMinimumSize(new java.awt.Dimension(118, 118));
-        milka.addActionListener(this::milkaActionPerformed);
+        milka.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                milkaActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(milka, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 450, 100, 90));
 
         ghirardell.setText("GHIRARDELLI");
         ghirardell.setMaximumSize(new java.awt.Dimension(118, 118));
         ghirardell.setMinimumSize(new java.awt.Dimension(118, 118));
-        ghirardell.addActionListener(this::ghirardellActionPerformed);
+        ghirardell.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ghirardellActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(ghirardell, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 450, 100, 90));
 
         cadbury.setText("CADBURY");
         cadbury.setMaximumSize(new java.awt.Dimension(118, 118));
         cadbury.setMinimumSize(new java.awt.Dimension(118, 118));
-        cadbury.addActionListener(this::cadburyActionPerformed);
+        cadbury.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadburyActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(cadbury, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 450, 100, 90));
 
         cadburyPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1199,7 +1327,11 @@ public class Main extends JFrame {
         dole.setText("DOLE");
         dole.setMaximumSize(new java.awt.Dimension(118, 118));
         dole.setMinimumSize(new java.awt.Dimension(118, 118));
-        dole.addActionListener(this::doleActionPerformed);
+        dole.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                doleActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(dole, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, 100, 90));
 
         dolePrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1217,13 +1349,21 @@ public class Main extends JFrame {
         tropicana.setText("TROPICANA");
         tropicana.setMaximumSize(new java.awt.Dimension(118, 118));
         tropicana.setMinimumSize(new java.awt.Dimension(118, 118));
-        tropicana.addActionListener(this::tropicanaActionPerformed);
+        tropicana.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tropicanaActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(tropicana, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 100, 90));
 
         minuteMaid.setText("MINUTE MAID");
         minuteMaid.setMaximumSize(new java.awt.Dimension(118, 118));
         minuteMaid.setMinimumSize(new java.awt.Dimension(118, 118));
-        minuteMaid.addActionListener(this::minuteMaidActionPerformed);
+        minuteMaid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                minuteMaidActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(minuteMaid, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 100, 90));
 
         minuteMaidPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1241,7 +1381,11 @@ public class Main extends JFrame {
         sprite.setText("SPRITE");
         sprite.setMaximumSize(new java.awt.Dimension(118, 118));
         sprite.setMinimumSize(new java.awt.Dimension(118, 118));
-        sprite.addActionListener(this::spriteActionPerformed);
+        sprite.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                spriteActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(sprite, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 100, 90));
 
         gatoradePrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1253,7 +1397,11 @@ public class Main extends JFrame {
         gatorade.setText("GATORADE");
         gatorade.setMaximumSize(new java.awt.Dimension(118, 118));
         gatorade.setMinimumSize(new java.awt.Dimension(118, 118));
-        gatorade.addActionListener(this::gatoradeActionPerformed);
+        gatorade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gatoradeActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(gatorade, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 100, 90));
 
         cocaColaPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1289,61 +1437,101 @@ public class Main extends JFrame {
         heineken.setText("HEINEKEN");
         heineken.setMaximumSize(new java.awt.Dimension(118, 118));
         heineken.setMinimumSize(new java.awt.Dimension(118, 118));
-        heineken.addActionListener(this::heinekenActionPerformed);
+        heineken.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                heinekenActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(heineken, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 100, 90));
 
         budWeiser.setText("BUD WEISER");
         budWeiser.setMaximumSize(new java.awt.Dimension(118, 118));
         budWeiser.setMinimumSize(new java.awt.Dimension(118, 118));
-        budWeiser.addActionListener(this::budWeiserActionPerformed);
+        budWeiser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                budWeiserActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(budWeiser, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 100, 90));
 
         redBull.setText("RED BULL");
         redBull.setMaximumSize(new java.awt.Dimension(118, 118));
         redBull.setMinimumSize(new java.awt.Dimension(118, 118));
-        redBull.addActionListener(this::redBullActionPerformed);
+        redBull.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                redBullActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(redBull, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 100, 90));
 
         pepsi.setText("PEPSI");
         pepsi.setMaximumSize(new java.awt.Dimension(118, 118));
         pepsi.setMinimumSize(new java.awt.Dimension(118, 118));
-        pepsi.addActionListener(this::pepsiActionPerformed);
+        pepsi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pepsiActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(pepsi, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 100, 90));
 
         cocaCola.setText("COCA-COLA");
         cocaCola.setMaximumSize(new java.awt.Dimension(118, 118));
         cocaCola.setMinimumSize(new java.awt.Dimension(118, 118));
-        cocaCola.addActionListener(this::cocaColaActionPerformed);
+        cocaCola.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cocaColaActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(cocaCola, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, 90));
 
         sunkist.setText("SUNKIST");
         sunkist.setMaximumSize(new java.awt.Dimension(118, 118));
         sunkist.setMinimumSize(new java.awt.Dimension(118, 118));
-        sunkist.addActionListener(this::sunkistActionPerformed);
+        sunkist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sunkistActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(sunkist, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, 100, 90));
 
         koolAid.setText("KOOL AID");
         koolAid.setMaximumSize(new java.awt.Dimension(118, 118));
         koolAid.setMinimumSize(new java.awt.Dimension(118, 118));
-        koolAid.addActionListener(this::koolAidActionPerformed);
+        koolAid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                koolAidActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(koolAid, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 100, 90));
 
         sevenUp.setText("7 UP");
         sevenUp.setMaximumSize(new java.awt.Dimension(118, 118));
         sevenUp.setMinimumSize(new java.awt.Dimension(118, 118));
-        sevenUp.addActionListener(this::sevenUpActionPerformed);
+        sevenUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sevenUpActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(sevenUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 100, 90));
 
         mountainDew.setText("MOUNTAIN DEW");
         mountainDew.setMaximumSize(new java.awt.Dimension(118, 118));
         mountainDew.setMinimumSize(new java.awt.Dimension(118, 118));
-        mountainDew.addActionListener(this::mountainDewActionPerformed);
+        mountainDew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mountainDewActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(mountainDew, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 100, 90));
 
         lipton.setText("LIPTON");
         lipton.setMaximumSize(new java.awt.Dimension(118, 118));
         lipton.setMinimumSize(new java.awt.Dimension(118, 118));
-        lipton.addActionListener(this::liptonActionPerformed);
+        lipton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                liptonActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(lipton, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, 100, 90));
 
         sunkistPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1379,19 +1567,31 @@ public class Main extends JFrame {
         appleJuice.setText("APPLE JUICE");
         appleJuice.setMaximumSize(new java.awt.Dimension(118, 118));
         appleJuice.setMinimumSize(new java.awt.Dimension(118, 118));
-        appleJuice.addActionListener(this::appleJuiceActionPerformed);
+        appleJuice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                appleJuiceActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(appleJuice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 100, 90));
 
         pineAppleJuice.setText("PINEAPPLE JUICE");
         pineAppleJuice.setMaximumSize(new java.awt.Dimension(118, 118));
         pineAppleJuice.setMinimumSize(new java.awt.Dimension(118, 118));
-        pineAppleJuice.addActionListener(this::pineAppleJuiceActionPerformed);
+        pineAppleJuice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pineAppleJuiceActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(pineAppleJuice, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, 100, 90));
 
         blackCher.setText("BLACK CHERRY");
         blackCher.setMaximumSize(new java.awt.Dimension(118, 118));
         blackCher.setMinimumSize(new java.awt.Dimension(118, 118));
-        blackCher.addActionListener(this::blackCherActionPerformed);
+        blackCher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                blackCherActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(blackCher, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 100, 90));
 
         blackCherPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1412,38 +1612,58 @@ public class Main extends JFrame {
         appleJuicePrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         beveragesPanel.add(appleJuicePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 100, 20));
 
-        liquorsLabel.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 24)); // NOI18N
+        liquorsLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         liquorsLabel.setText("LIQUORS");
         beveragesPanel.add(liquorsLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 460, -1, -1));
 
         mead.setText("MEAD");
         mead.setMaximumSize(new java.awt.Dimension(118, 118));
         mead.setMinimumSize(new java.awt.Dimension(118, 118));
-        mead.addActionListener(this::meadActionPerformed);
+        mead.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                meadActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(mead, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 500, 100, 90));
 
         hardCider.setText("HARD CIDER");
         hardCider.setMaximumSize(new java.awt.Dimension(118, 118));
         hardCider.setMinimumSize(new java.awt.Dimension(118, 118));
-        hardCider.addActionListener(this::hardCiderActionPerformed);
+        hardCider.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hardCiderActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(hardCider, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 500, 100, 90));
 
         wine.setText("WINE");
         wine.setMaximumSize(new java.awt.Dimension(118, 118));
         wine.setMinimumSize(new java.awt.Dimension(118, 118));
-        wine.addActionListener(this::wineActionPerformed);
+        wine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wineActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(wine, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 500, 100, 90));
 
         beer.setText("BEER");
         beer.setMaximumSize(new java.awt.Dimension(118, 118));
         beer.setMinimumSize(new java.awt.Dimension(118, 118));
-        beer.addActionListener(this::beerActionPerformed);
+        beer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                beerActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(beer, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 500, 100, 90));
 
         tequila.setText("TEQUILA");
         tequila.setMaximumSize(new java.awt.Dimension(118, 118));
         tequila.setMinimumSize(new java.awt.Dimension(118, 118));
-        tequila.addActionListener(this::tequilaActionPerformed);
+        tequila.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tequilaActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(tequila, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 100, 90));
 
         tequilaPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1479,31 +1699,51 @@ public class Main extends JFrame {
         vodka.setText("VODKA");
         vodka.setMaximumSize(new java.awt.Dimension(118, 118));
         vodka.setMinimumSize(new java.awt.Dimension(118, 118));
-        vodka.addActionListener(this::vodkaActionPerformed);
+        vodka.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vodkaActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(vodka, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 610, 100, 90));
 
         rum.setText("RUM");
         rum.setMaximumSize(new java.awt.Dimension(118, 118));
         rum.setMinimumSize(new java.awt.Dimension(118, 118));
-        rum.addActionListener(this::rumActionPerformed);
+        rum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rumActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(rum, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 610, 100, 90));
 
         whisky.setText("WHISKY");
         whisky.setMaximumSize(new java.awt.Dimension(118, 118));
         whisky.setMinimumSize(new java.awt.Dimension(118, 118));
-        whisky.addActionListener(this::whiskyActionPerformed);
+        whisky.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                whiskyActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(whisky, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 610, 100, 90));
 
         brandy.setText("BRANDY");
         brandy.setMaximumSize(new java.awt.Dimension(118, 118));
         brandy.setMinimumSize(new java.awt.Dimension(118, 118));
-        brandy.addActionListener(this::brandyActionPerformed);
+        brandy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                brandyActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(brandy, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 610, 100, 90));
 
         gin.setText("GIN");
         gin.setMaximumSize(new java.awt.Dimension(118, 118));
         gin.setMinimumSize(new java.awt.Dimension(118, 118));
-        gin.addActionListener(this::ginActionPerformed);
+        gin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ginActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(gin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 610, 100, 90));
 
         ginPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1556,10 +1796,10 @@ public class Main extends JFrame {
                 "NAME", "PRICE", "CATEGORY", "QUANTITY", "DISCOUNT"
             }
         ) {
-            final Class[] types = new Class[] {
-                String.class, Double.class, Object.class, Integer.class, String.class
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Double.class, java.lang.Object.class, java.lang.Integer.class, java.lang.String.class
             };
-            final boolean[] canEdit = new boolean [] {
+            boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
             };
 
@@ -1594,16 +1834,16 @@ public class Main extends JFrame {
         totalPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         totalPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        totalLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        totalLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         totalLabel.setText("TOTAL:");
         totalPanel.add(totalLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
 
-        totalPesoSignLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        totalPesoSignLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         totalPesoSignLabel.setText("₱");
         totalPanel.add(totalPesoSignLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, -1, -1));
 
         total.setEditable(false);
-        total.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        total.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         total.setText("0.00");
         total.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         totalPanel.add(total, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 170, 30));
@@ -1613,16 +1853,16 @@ public class Main extends JFrame {
         subTotalPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         subTotalPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        subTotalLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        subTotalLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         subTotalLabel.setText("SUB TOTAL:");
         subTotalPanel.add(subTotalLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
 
-        subTotalPesoSignLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        subTotalPesoSignLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         subTotalPesoSignLabel.setText("₱");
         subTotalPanel.add(subTotalPesoSignLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, -1, -1));
 
         subTotal.setEditable(false);
-        subTotal.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        subTotal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         subTotal.setText("0.00");
         subTotal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         subTotalPanel.add(subTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 170, 30));
@@ -1632,17 +1872,17 @@ public class Main extends JFrame {
         totalDiscountPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         totalDiscountPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        totalDiscountPesoSignLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        totalDiscountPesoSignLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         totalDiscountPesoSignLabel.setText("₱");
         totalDiscountPanel.add(totalDiscountPesoSignLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, -1, -1));
 
         totalDiscount.setEditable(false);
-        totalDiscount.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        totalDiscount.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         totalDiscount.setText("0.00");
         totalDiscount.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         totalDiscountPanel.add(totalDiscount, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 170, 30));
 
-        totalDiscountLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        totalDiscountLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         totalDiscountLabel.setText("TOTAL DISCOUNT:");
         totalDiscountPanel.add(totalDiscountLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
 
@@ -1651,15 +1891,15 @@ public class Main extends JFrame {
         chashPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         chashPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        cashLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        cashLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         cashLabel.setText("CASH:");
         chashPanel.add(cashLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
 
-        cashPesoSignLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        cashPesoSignLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         cashPesoSignLabel.setText("₱");
         chashPanel.add(cashPesoSignLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, -1, -1));
 
-        cash.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        cash.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         cash.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         chashPanel.add(cash, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 160, 30));
 
@@ -1668,35 +1908,47 @@ public class Main extends JFrame {
         changePanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         changePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        changeLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        changeLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         changeLabel.setText("CHANGE:");
         changePanel.add(changeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
 
-        changePesoSignLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        changePesoSignLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         changePesoSignLabel.setText("₱");
         changePanel.add(changePesoSignLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, -1, -1));
 
         change.setEditable(false);
-        change.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        change.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         change.setText("0.00");
         change.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         changePanel.add(change, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 160, 30));
 
         transactionPanel.add(changePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, 310, 30));
 
-        pay.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 24)); // NOI18N
+        pay.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         pay.setText("PAY");
-        pay.addActionListener(this::payActionPerformed);
+        pay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                payActionPerformed(evt);
+            }
+        });
         transactionPanel.add(pay, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 20, 110, 40));
 
-        removeItem.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 24)); // NOI18N
+        removeItem.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         removeItem.setText("REMOVE ITEM");
-        removeItem.addActionListener(this::removeItemActionPerformed);
+        removeItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeItemActionPerformed(evt);
+            }
+        });
         transactionPanel.add(removeItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 90, 210, 40));
 
-        reset.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 24)); // NOI18N
+        reset.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         reset.setText("RESET");
-        reset.addActionListener(this::resetActionPerformed);
+        reset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resetActionPerformed(evt);
+            }
+        });
         transactionPanel.add(reset, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 90, 110, 40));
 
         mainPanel.add(transactionPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 550, 1080, 150));
@@ -1717,6 +1969,7 @@ public class Main extends JFrame {
             final double CASH = Double.parseDouble(cash.getText().trim().replaceAll(",", ""));
             if (CASH < SUB_TOTAL) throw new IllegalStateException("CASH AMOUNT NOT ENOUGH");
             change.setText(NUMBER_FORMAT.format(CASH - SUB_TOTAL));
+
             Sales sales = new Sales(LocalDate.now(), SUB_TOTAL);
             ORDERS_LIST.forEach(
                     (order) -> {
@@ -1725,12 +1978,11 @@ public class Main extends JFrame {
                     }
             );
             SALES_SERVICE.saveSales().accept(sales);
-            reset();
             PROMPT.show.accept("SUCCESS", false);
         } catch(RuntimeException runtimeException) {
             PROMPT.show.accept(runtimeException.getMessage(), true);
         }
-    }
+    } // </editor-fold>//
 
     private void hersheysActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hersheysActionPerformed
         try {
@@ -2585,27 +2837,9 @@ public class Main extends JFrame {
      */
     public void run() {
 
-        // Checks if the current operating system is a Windows operating system
-        // Windows theme for Windows machines
-        // Nimbus theme for non Windows machines
         try {
-            if (OS_NAME.startsWith("WINDOWS")) {
-                for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                    if ("Windows".equals(info.getName())) {
-                        UIManager.setLookAndFeel(info.getClassName());
-                        break;
-                    }
-                }
-            }
-            else {
-                for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                    if ("Nimbus".equals(info.getName())) {
-                        UIManager.setLookAndFeel(info.getClassName());
-                        break;
-                    }
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+            UIManager.setLookAndFeel(new FlatDarkLaf());
+        } catch (UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
@@ -2697,8 +2931,8 @@ public class Main extends JFrame {
     private javax.swing.JButton hydroSafe;
     private static javax.swing.JLabel hydroSafePrice;
     private javax.swing.JPanel informationPanel;
-    private static javax.swing.JLabel jacquesGeninPrice;
     private javax.swing.JButton jacquesGenin;
+    private static javax.swing.JLabel jacquesGeninPrice;
     private javax.swing.JButton joy;
     private static javax.swing.JLabel joyPrice;
     private javax.swing.JButton kinder;
@@ -2779,9 +3013,6 @@ public class Main extends JFrame {
     private static javax.swing.JLabel tequilaPrice;
     private javax.swing.JButton teuscher;
     private static javax.swing.JLabel teuscherPrice;
-    private javax.swing.JLabel time;
-    private javax.swing.JLabel timeLabel;
-    private javax.swing.JPanel timePanel;
     private javax.swing.JButton toblerone;
     private static javax.swing.JLabel tobleronePrice;
     private javax.swing.JTextField total;

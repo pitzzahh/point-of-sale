@@ -1,5 +1,6 @@
 package com.pos.ui;
 
+import com.formdev.flatlaf.FlatDarkLaf;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import javax.imageio.ImageIO;
@@ -29,6 +30,7 @@ public class ViewRevenue extends javax.swing.JFrame {
     
     // <editor-fold defaultstate="collapsed" desc="Creates new form ViewSales">//
     public ViewRevenue() {
+        FlatDarkLaf.setup();
         initComponents();
         setIcon();
         final DefaultTableCellRenderer RENDERER = new DefaultTableCellRenderer();
@@ -214,28 +216,9 @@ public class ViewRevenue extends javax.swing.JFrame {
      */
     public void run() {
 
-        // Checks if the current operating system is a Windows operating system
-        // Windows theme for Windows machines
-        // Nimbus theme for non Windows machines
         try {
-            if (OS_NAME.startsWith("WINDOWS")) {
-                for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                    if ("Windows".equals(info.getName())) {
-                        UIManager.setLookAndFeel(info.getClassName());
-                        break;
-                    }
-                }
-            }
-            else {
-                for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                    if ("Nimbus".equals(info.getName())) {
-                        UIManager.setLookAndFeel(info.getClassName());
-                        break;
-                    }
-                }
-            }
-
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+            UIManager.setLookAndFeel(new FlatDarkLaf());
+        } catch (UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         

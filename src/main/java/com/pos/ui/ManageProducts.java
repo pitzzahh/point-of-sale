@@ -1,5 +1,6 @@
 package com.pos.ui;
 
+import com.formdev.flatlaf.FlatDarkLaf;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 
@@ -42,6 +43,7 @@ public class ManageProducts extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Creates new form ExpiredProducts">//
     public ManageProducts() {
+        FlatDarkLaf.setup();
         initComponents();
         setIcon();
         final DefaultTableCellRenderer RENDERER = new DefaultTableCellRenderer();
@@ -247,7 +249,7 @@ public class ManageProducts extends javax.swing.JFrame {
         mainPanel.setBackground(new java.awt.Color(204, 204, 0));
         mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        mainPanelTab.setForeground(new java.awt.Color(0, 0, 0));
+        mainPanelTab.setForeground(new java.awt.Color(255, 255, 255));
         mainPanelTab.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         mainPanelTab.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -466,28 +468,9 @@ public class ManageProducts extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Runs this frame.">//
     public void run() {
 
-        // Checks if the current operating system is a Windows operating system
-        // Windows theme for Windows machines
-        // Nimbus theme for non Windows machines
         try {
-            if (OS_NAME.startsWith("WINDOWS")) {
-                for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                    if ("Windows".equals(info.getName())) {
-                        UIManager.setLookAndFeel(info.getClassName());
-                        break;
-                    }
-                }
-            }
-            else {
-                for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                    if ("Nimbus".equals(info.getName())) {
-                        UIManager.setLookAndFeel(info.getClassName());
-                        break;
-                    }
-                }
-            }
-
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+            UIManager.setLookAndFeel(new FlatDarkLaf());
+        } catch (UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 

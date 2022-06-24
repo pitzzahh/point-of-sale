@@ -1,15 +1,11 @@
 package com.pos;
 
-import static com.pos.ui.Main.OS_NAME;
-
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.URL;
+import com.formdev.flatlaf.FlatDarkLaf;
+import javax.imageio.ImageIO;
 import java.util.Random;
 import com.pos.ui.Main;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.net.URL;
 import java.awt.*;
 
 /**
@@ -22,6 +18,7 @@ public class App extends javax.swing.JFrame {
      * Creates new form Progress
      */
     public App() {
+        FlatDarkLaf.setup();
         initComponents();
         setIcon();
     }
@@ -60,18 +57,17 @@ public class App extends javax.swing.JFrame {
         mainPanel.setForeground(new java.awt.Color(153, 0, 51));
         mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        progressBar.setBackground(new java.awt.Color(153, 204, 0));
-        progressBar.setForeground(new java.awt.Color(0, 0, 255));
+        progressBar.setForeground(new java.awt.Color(244, 0, 0));
         mainPanel.add(progressBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 450, 20));
 
         message.setBackground(new java.awt.Color(255, 255, 255));
-        message.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 14)); // NOI18N
+        message.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         message.setForeground(new java.awt.Color(255, 255, 255));
         message.setText("Loading");
         mainPanel.add(message, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 270, 30));
 
         percentage.setBackground(new java.awt.Color(255, 255, 255));
-        percentage.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 14)); // NOI18N
+        percentage.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         percentage.setForeground(new java.awt.Color(255, 255, 255));
         percentage.setText("100 %");
         mainPanel.add(percentage, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 130, 50, 30));
@@ -79,7 +75,8 @@ public class App extends javax.swing.JFrame {
         headerPanel.setBackground(new java.awt.Color(102, 102, 0));
         headerPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-        header.setFont(new java.awt.Font("Consolas", Font.BOLD, 36)); // NOI18N
+        header.setFont(new java.awt.Font("Consolas", 1, 36)); // NOI18N
+        header.setForeground(new java.awt.Color(255, 255, 255));
         header.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         header.setText("POINT OF SALE");
 
@@ -122,28 +119,9 @@ public class App extends javax.swing.JFrame {
      */
     public static void main(String[] args) {
         
-        // Checks if the current operating system is a Windows operating system
-        // Windows theme for Windows machines
-        // Nimbus theme for non Windows machines
         try {
-            if (OS_NAME.startsWith("WINDOWS")) {
-                for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                    if ("Windows".equals(info.getName())) {
-                        UIManager.setLookAndFeel(info.getClassName());
-                        break;
-                    }
-                }
-            }
-            else {
-                for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                    if ("Nimbus".equals(info.getName())) {
-                        UIManager.setLookAndFeel(info.getClassName());
-                        break;
-                    }
-                }
-            }
-
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+            UIManager.setLookAndFeel(new FlatDarkLaf());
+        } catch (UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         
@@ -158,22 +136,20 @@ public class App extends javax.swing.JFrame {
                 switch(i) {
                     case 5 -> {
                         app.message.setText("LOADING.");
-                        app.progressBar.setBackground(Color.red);
+                        app.progressBar.setForeground(Color.red);
                     }
                     case 6 -> app.message.setText("LOADING..");
                     case 7 -> app.message.setText("LOADING...");
-                    case 20 -> {
-                        app.message.setText("INITIALIZING POINT OF SALES.");
-                        app.progressBar.setBackground(Color.yellow);
-                    }
+                    case 20 -> app.message.setText("INITIALIZING POINT OF SALES.");
+                        
                     case 30 -> app.message.setText("INITIALIZING POINT OF SALES..");
                     case 35 -> app.message.setText("INITIALIZING POINT OF SALES...");
                     case 40 -> app.message.setText("CONNECTING TO DATABASE.");
                     case 45 -> app.message.setText("CONNECTING TO DATABASE..");
                     case 50 -> app.message.setText("CONNECTING TO DATABASE...");
                     case 64 -> {
+                        app.progressBar.setForeground(Color.yellow);
                         app.message.setText("CONNECTED SUCCESSFULLY");
-                        app.progressBar.setBackground(Color.blue);
                     }
                     case 70 -> app.message.setText("READING PRODUCTS LIST.");
                     case 72 -> {
@@ -184,7 +160,10 @@ public class App extends javax.swing.JFrame {
                         app.message.setText("READING PRODUCTS LIST..");
                         MAIN = new Main();
                     }
-                    case 90 -> app.message.setText("SUCCESS");
+                    case 90 -> {
+                        app.message.setText("SUCCESS");
+                        app.progressBar.setForeground(Color.blue);
+                    }
                     case 94 -> app.message.setText("OPENING POINT OF SALES.");
                     case 98 -> app.message.setText("OPENING POINT OF SALES..");
                     case 100 -> app.message.setText("OPENING POINT OF SALES...");
