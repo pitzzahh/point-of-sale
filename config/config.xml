@@ -6,7 +6,7 @@
   <outfile>D:\Documents\COMPUTER PROGRAMMING\FINALS\Point of Sale.exe</outfile>
   <errTitle>Please download jdk 17 first before running the application</errTitle>
   <cmdLine>hello world</cmdLine>
-  <chdir>.</chdir>
+  <chdir></chdir>
   <priority>normal</priority>
   <downloadUrl>https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html</downloadUrl>
   <supportUrl></supportUrl>
