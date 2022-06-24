@@ -1,8 +1,14 @@
 package com.pos;
 
 import static com.pos.ui.Main.OS_NAME;
+
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
 import java.util.Random;
 import com.pos.ui.Main;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 
@@ -16,14 +22,18 @@ public class App extends javax.swing.JFrame {
      * Creates new form Progress
      */
     public App() {
-        setIcon();
         initComponents();
+        setIcon();
     }
 
     // <editor-fold defaultstate="collapsed" desc="Method that sets the icon for this frame.">//
     private void setIcon() {
-        ImageIcon img = new ImageIcon("src/main/resources/ico.png");
-        this.setIconImage(img.getImage());
+        try {
+            Image img = ImageIO.read(new URL("https://github.com/pitzzahh/point-of-sale/blob/220ccaa9681f18faa17a76b38ed6d91764303c5b/src/main/resources/loading.png?raw=true"));
+            setIconImage(new ImageIcon(img).getImage());
+        }
+        catch(Exception ignored) {}
+
     } // </editor-fold>//
 
     /**

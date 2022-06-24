@@ -2,11 +2,17 @@ package com.pos.ui;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
+
+import javax.imageio.ImageIO;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import static com.pos.ui.Main.OS_NAME;
 import com.pos.service.SalesService;
 import com.pos.entity.Sales;
+
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import com.pos.Config;
 import java.util.List;
@@ -69,8 +75,11 @@ public class ViewRevenue extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Method that sets the icon for this frame.">//
     private void setIcon() {
-        ImageIcon img = new ImageIcon("BOOT-INFO\\classes\\view.png");
-        this.setIconImage(img.getImage());
+        try {
+            Image img = ImageIO.read(new URL("https://github.com/pitzzahh/point-of-sale/blob/220ccaa9681f18faa17a76b38ed6d91764303c5b/src/main/resources/view.png?raw=true"));
+            setIconImage(new ImageIcon(img).getImage());
+        }
+        catch(Exception ignored) {}
     } // </editor-fold>//
 
     /**

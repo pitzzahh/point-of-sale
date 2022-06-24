@@ -2,10 +2,10 @@
 <launch4jConfig>
   <dontWrapJar>false</dontWrapJar>
   <headerType>gui</headerType>
-  <jar>D:\myJavaProjects\point-of-sale\target\Point of Sales.jar</jar>
+  <jar>D:\myJavaProjects\point-of-sale\target\pos-1.0-SNAPSHOT.jar</jar>
   <outfile>D:\Documents\COMPUTER PROGRAMMING\FINALS\Point of Sale.exe</outfile>
   <errTitle>Please download jdk 17 first before running the application</errTitle>
-  <cmdLine></cmdLine>
+  <cmdLine>hello world</cmdLine>
   <chdir>.</chdir>
   <priority>normal</priority>
   <downloadUrl>https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html</downloadUrl>
@@ -46,7 +46,7 @@
     <startupErr>Database pos not found, please create a database pos</startupErr>
     <bundledJreErr>This application requires a Java Runtime Environment.</bundledJreErr>
     <jreVersionErr>This application requires a Java Runtime Environment</jreVersionErr>
-    <launcherErr>The registry refers to a nonexisten</launcherErr>
+    <launcherErr>The registry refers to a nonexistence</launcherErr>
     <instanceAlreadyExistsMsg>An application instance is already running.</instanceAlreadyExistsMsg>
   </messages>
 </launch4jConfig>
