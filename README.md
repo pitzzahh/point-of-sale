@@ -14,4 +14,4 @@
 - The file denotes that the products has been inserted to the table.
 - If you delete the file and try to rerun the application, the products will be inserted again to the table in the database, which should not happen.
 - The text file is harmless.
-
+- The icons of the application will only appear when internet connection is available (can't set icon with local files)
