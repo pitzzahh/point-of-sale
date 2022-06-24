@@ -10,7 +10,7 @@
 - Change the url of the database, based on the url of your own DBMS.
 ## Note
 
-- At start, a text file will be created and stored in ```C:\User\Public\check.txt``` 
+- At start, a text file will be created and stored in ```C:\Users\Public\check.txt``` 
 - The file denotes that the products has been inserted to the table.
 - If you delete the file and try to rerun the application, the products will be inserted again to the table in the database, which should not happen.
 - The text file is harmless.
