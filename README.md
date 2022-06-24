@@ -7,7 +7,7 @@
 - JDK 17 LTS or JDK 18 (JDK 1.8 would probably work)
 - PostgreSQL database named 'pos' (can change to any DBMS (h2 database doesn't seem to work))
 - Change username and password in application.properties (username and password of your DBMS).
-
+- Change the url of the database, based on the url of your own DBMS.
 ## Note
 
 - At start, a text file will be created and stored in ```C:\User\Public\check.txt``` 
