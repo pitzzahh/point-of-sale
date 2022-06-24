@@ -2,16 +2,12 @@ package com.pos.ui;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
-
 import javax.imageio.ImageIO;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import static com.pos.ui.Main.OS_NAME;
 import com.pos.service.SalesService;
 import com.pos.entity.Sales;
-
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import com.pos.Config;
@@ -28,6 +24,7 @@ public class ViewRevenue extends javax.swing.JFrame {
     private final List<Sales> SALES = new ArrayList<>();
     
     private final AbstractApplicationContext CONTEXT=  new AnnotationConfigApplicationContext(Config.class);
+    
     private final SalesService SALES_SERVICE = CONTEXT.getBean(SalesService.class);
     
     // <editor-fold defaultstate="collapsed" desc="Creates new form ViewSales">//
@@ -113,13 +110,13 @@ public class ViewRevenue extends javax.swing.JFrame {
         headerPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         headerPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("POINT OF SALE");
         headerPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, -1, 30));
 
-        mainPanel.add(headerPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 530, 50));
+        mainPanel.add(headerPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 530, 50));
 
         tablePanel.setBackground(new java.awt.Color(0, 153, 153));
         tablePanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -136,10 +133,10 @@ public class ViewRevenue extends javax.swing.JFrame {
                 "SALES_NUMBER", "DATE_PROCESSED", "PROFIT"
             }
         ) {
-            final Class[] types = new Class [] {
+            Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.Object.class, java.lang.Double.class
             };
-            final boolean[] canEdit = new boolean [] {
+            boolean[] canEdit = new boolean [] {
                 false, false, false
             };
 
@@ -165,24 +162,28 @@ public class ViewRevenue extends javax.swing.JFrame {
         jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        totalRevenueLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        totalRevenueLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         totalRevenueLabel.setForeground(new java.awt.Color(255, 255, 255));
         totalRevenueLabel.setText("TOTAL REVENUE :");
         jPanel1.add(totalRevenueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         totalRevenue.setEditable(false);
-        totalRevenue.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        totalRevenue.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         totalRevenue.setText("0.00");
         totalRevenue.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.add(totalRevenue, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 220, 30));
 
-        totalRevenuePesoSignLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        totalRevenuePesoSignLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         totalRevenuePesoSignLabel.setForeground(new java.awt.Color(255, 255, 255));
         totalRevenuePesoSignLabel.setText("₱");
         jPanel1.add(totalRevenuePesoSignLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, -1, -1));
 
         close.setText("CLOSE");
-        close.addActionListener(this::closeActionPerformed);
+        close.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeActionPerformed(evt);
+            }
+        });
         jPanel1.add(close, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 10, -1, 30));
 
         tablePanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 750, 50));
@@ -193,7 +194,7 @@ public class ViewRevenue extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 791, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
