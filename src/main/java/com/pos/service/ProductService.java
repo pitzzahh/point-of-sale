@@ -16,6 +16,7 @@ public interface ProductService {
     Consumer<List<Product>> saveAllProducts();
 
     Function<Integer, Optional<Product>> getProductById();
+    Function<Integer, Double> getProductPriceById();
     
     Function<String, Product> getProductByName();
 

@@ -47,6 +47,11 @@ public class ProductServiceImplementation implements ProductService {
     }
 
     @Override
+    public Function<Integer, Double> getProductPriceById() {
+        return id -> productRepository.getProductPriceById(id);
+    }
+
+    @Override
     public Function<String, Product> getProductByName() {
         return productRepository::getProductByName;
     }

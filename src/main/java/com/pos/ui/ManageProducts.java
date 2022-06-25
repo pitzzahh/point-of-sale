@@ -167,8 +167,10 @@ public class ManageProducts extends javax.swing.JFrame {
                 if(whatToUpdate == EDIT_DISCOUNT) {
                     if(temporaryString.equals("0")) newDiscount = 0;
                     else newDiscount = Double.parseDouble(temporaryString);
-                    if (newDiscount <= 0) PRODUCT_SERVICE.updateProductDiscountById().accept(0.0, selectedProductId);
-                    else PRODUCT_SERVICE.updateProductDiscountById().accept(newDiscount, selectedProductId);
+                    double product_price = PRODUCT_SERVICE.getProductPriceById().apply(selectedProductId);
+                    if (newDiscount >= product_price) throw new IllegalStateException("DISCOUNT SHOULD NOT BE GREATER THAN OR EQUAL TO THE PRICE OF THE PRODUCT");
+                    else if (newDiscount <= 0) PRODUCT_SERVICE.updateProductDiscountById().accept(0.0, selectedProductId);
+                    PRODUCT_SERVICE.updateProductDiscountById().accept(newDiscount, selectedProductId);
                 }
                 AVAILABLE_PRODUCTS.clear();
                 loadAvailableProducts();
