@@ -1,8 +1,6 @@
 package com.pos.ui;
 
 import com.formdev.flatlaf.FlatDarkLaf;
-
-import static com.pos.ui.Main.OS_NAME;
 import javax.imageio.ImageIO;
 import java.util.Random;
 import javax.swing.*;
@@ -61,18 +59,18 @@ public class ProgressBar extends javax.swing.JFrame {
         progressBar.setForeground(new java.awt.Color(244, 0, 0));
         mainPanel.add(progressBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 390, 10));
 
-        percentage.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        percentage.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 14)); // NOI18N
         percentage.setForeground(new java.awt.Color(255, 255, 255));
         percentage.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         percentage.setText("0 %");
         mainPanel.add(percentage, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 70, 40, -1));
 
-        message.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        message.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 14)); // NOI18N
         message.setForeground(new java.awt.Color(255, 255, 255));
         message.setText("Loading");
         mainPanel.add(message, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 280, 20));
 
-        header.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        header.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 24)); // NOI18N
         header.setForeground(new java.awt.Color(255, 255, 255));
         header.setText("PLEASE WAIT");
         mainPanel.add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, -1, -1));
