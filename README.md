@@ -1,5 +1,5 @@
 # point-of-sale
-![1](https://github.com/pitzzahh/point-of-sale/blob/f911914a475a02cc6e7450485fef70fec63f1d30/main_ui.png?raw=true)
+![1](https://github.com/pitzzahh/point-of-sale/blob/6462a1c1efcf6c9de1feb6983b5e1b5d0e482891/main_ui.png?raw=true)
 
 # How to run the application
 ## Requirements
