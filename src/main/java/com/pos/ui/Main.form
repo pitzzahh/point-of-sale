@@ -334,11 +334,11 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="POINT OF SALES"/>
+                <Property name="text" type="java.lang.String" value="MINI STORE"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="410" y="20" width="-1" height="-1"/>
+                  <AbsoluteConstraints x="430" y="20" width="-1" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -419,7 +419,9 @@
                           <SubComponents>
                             <Component class="javax.swing.JButton" name="cleanFirst">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="CLEAN FIRST"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/cleaning products/clean_first.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -436,9 +438,11 @@
                                 </Constraint>
                               </Constraints>
                             </Component>
-                            <Component class="javax.swing.JButton" name="hydroSafe">
+                            <Component class="javax.swing.JButton" name="spinMop">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="HYDROSAFE"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/cleaning products/spin_mop.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -447,7 +451,7 @@
                                 </Property>
                               </Properties>
                               <Events>
-                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hydroSafeActionPerformed"/>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="spinMopActionPerformed"/>
                               </Events>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -455,9 +459,11 @@
                                 </Constraint>
                               </Constraints>
                             </Component>
-                            <Component class="javax.swing.JButton" name="rightFlex">
+                            <Component class="javax.swing.JButton" name="windex">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="RIGHTFLEX"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/cleaning products/windex.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -466,7 +472,7 @@
                                 </Property>
                               </Properties>
                               <Events>
-                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rightFlexActionPerformed"/>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="windexActionPerformed"/>
                               </Events>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -476,7 +482,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="clorox">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="CLOROX"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/cleaning products/clorox.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -493,9 +501,11 @@
                                 </Constraint>
                               </Constraints>
                             </Component>
-                            <Component class="javax.swing.JButton" name="dirtBuster">
+                            <Component class="javax.swing.JButton" name="dyson">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="DIRTBUSTERS"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/cleaning products/dyson.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -504,7 +514,7 @@
                                 </Property>
                               </Properties>
                               <Events>
-                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dirtBusterActionPerformed"/>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dysonActionPerformed"/>
                               </Events>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -512,7 +522,7 @@
                                 </Constraint>
                               </Constraints>
                             </Component>
-                            <Component class="javax.swing.JLabel" name="dirtBustersPrice">
+                            <Component class="javax.swing.JLabel" name="dysonPrice">
                               <Properties>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 777"/>
@@ -544,7 +554,7 @@
                                 </Constraint>
                               </Constraints>
                             </Component>
-                            <Component class="javax.swing.JLabel" name="rightFlexPrice">
+                            <Component class="javax.swing.JLabel" name="windexPrice">
                               <Properties>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 777"/>
@@ -560,7 +570,7 @@
                                 </Constraint>
                               </Constraints>
                             </Component>
-                            <Component class="javax.swing.JLabel" name="hydroSafePrice">
+                            <Component class="javax.swing.JLabel" name="spinMopPrice">
                               <Properties>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 777"/>
@@ -592,9 +602,11 @@
                                 </Constraint>
                               </Constraints>
                             </Component>
-                            <Component class="javax.swing.JButton" name="myClean">
+                            <Component class="javax.swing.JButton" name="roomba">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="MY CLEAN"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/cleaning products/roomba.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -603,7 +615,7 @@
                                 </Property>
                               </Properties>
                               <Events>
-                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="myCleanActionPerformed"/>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="roombaActionPerformed"/>
                               </Events>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -613,7 +625,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="cleanCut">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="CLEAN CUT"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/cleaning products/clean_cut.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -632,7 +646,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="sureClean">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="SURE CLEAN"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/cleaning products/sure_clean.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -651,7 +667,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="mrClean">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="ARIEL"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/cleaning products/ariel.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -670,7 +688,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="joy">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="JOY"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/cleaning products/joy.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -751,7 +771,7 @@
                                 </Constraint>
                               </Constraints>
                             </Component>
-                            <Component class="javax.swing.JLabel" name="myCleanPrice">
+                            <Component class="javax.swing.JLabel" name="roombaPrice">
                               <Properties>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 777"/>
@@ -769,7 +789,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="smart">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="SMART"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/cleaning products/smart.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -804,7 +826,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="domex">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="DOMEX"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/cleaning products/domex.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -839,7 +863,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="mrMuscle">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="MR MUSCLE"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/cleaning products/mr_muscle.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -874,7 +900,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="lysol">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="LYSOL"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/cleaning products/lysol.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -909,7 +937,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="surf">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="SURF"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/cleaning products/surf.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -971,7 +1001,9 @@
                           <SubComponents>
                             <Component class="javax.swing.JButton" name="hersheys">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="HERSHEY&apos;S"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/chocolates/hersheys.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -1006,7 +1038,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="snickers">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="SNICKERS"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/chocolates/snickers.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -1041,7 +1075,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="flyingNoir">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="FLYING NOIR"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/chocolates/flying_noir.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -1060,7 +1096,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="ferreroRocher">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="FERRERO ROCHER"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/chocolates/ferrero_rocher.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -1079,7 +1117,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="esthechoc">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="ESTHECHOC"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/chocolates/esthechoc.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -1146,7 +1186,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="droste">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="DROSTE"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/chocolates/droste.png"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -1163,9 +1205,11 @@
                                 </Constraint>
                               </Constraints>
                             </Component>
-                            <Component class="javax.swing.JButton" name="wittakers">
+                            <Component class="javax.swing.JButton" name="whittakers">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="WITTAKER&apos;S"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/chocolates/whittakers.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -1174,7 +1218,7 @@
                                 </Property>
                               </Properties>
                               <Events>
-                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="wittakersActionPerformed"/>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="whittakersActionPerformed"/>
                               </Events>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -1184,7 +1228,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="amedei">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="AMEDEI"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/chocolates/amedei.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -1203,7 +1249,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="jacquesGenin">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="JACQUES GENIN"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/chocolates/jacques_genin.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -1222,7 +1270,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="richart">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="RICHART"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/chocolates/richart.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -1287,7 +1337,7 @@
                                 </Constraint>
                               </Constraints>
                             </Component>
-                            <Component class="javax.swing.JLabel" name="wittakersPrice">
+                            <Component class="javax.swing.JLabel" name="whittakersPrice">
                               <Properties>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 777"/>
@@ -1321,7 +1371,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="patchi">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="PATCHI"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/chocolates/patchi.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -1340,7 +1392,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="teuscher">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="TEUSCHER"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/chocolates/teuscher.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -1359,7 +1413,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="valrhona">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="VALRHONA"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/chocolates/valrhona.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -1378,7 +1434,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="dove">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="DOVE"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/chocolates/dove.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -1397,7 +1455,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="russelStover">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="RUSSEL STOVER"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/chocolates/russell_stover.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -1496,7 +1556,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="ritterSport">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="RITTER SPORT"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/chocolates/ritter_sport.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -1515,7 +1577,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="guyLian">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="GUYLIAN"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/chocolates/guylian.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -1534,7 +1598,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="kinder">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="KINDER"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/chocolates/kinder.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -1553,7 +1619,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="mars">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="MARS"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/chocolates/mars.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -1572,7 +1640,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="toblerone">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="TOBLERONE"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/chocolates/toblerone.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -1671,7 +1741,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="godiva">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="GODIVA"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/chocolates/godiva.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -1690,7 +1762,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="nestle">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="NESTLE"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/chocolates/nestle.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -1709,7 +1783,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="milka">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="MILKA"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/chocolates/milka.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -1726,9 +1802,11 @@
                                 </Constraint>
                               </Constraints>
                             </Component>
-                            <Component class="javax.swing.JButton" name="ghirardell">
+                            <Component class="javax.swing.JButton" name="ghirardelli">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="GHIRARDELLI"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/chocolates/ghirardelli.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -1737,7 +1815,7 @@
                                 </Property>
                               </Properties>
                               <Events>
-                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ghirardellActionPerformed"/>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ghirardelliActionPerformed"/>
                               </Events>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -1747,7 +1825,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="cadbury">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="CADBURY"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/chocolates/cadbury.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -1780,7 +1860,7 @@
                                 </Constraint>
                               </Constraints>
                             </Component>
-                            <Component class="javax.swing.JLabel" name="ghirardellPrice">
+                            <Component class="javax.swing.JLabel" name="ghirardelliPrice">
                               <Properties>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 777"/>
@@ -1870,7 +1950,9 @@
                           <SubComponents>
                             <Component class="javax.swing.JButton" name="dole">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="DOLE"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/beverages/dole.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -1921,7 +2003,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="tropicana">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="TROPICANA"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/beverages/tropicana.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -1940,7 +2024,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="minuteMaid">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="MINUTE MAID"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/beverages/minute_maid.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -1991,7 +2077,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="sprite">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="SPRITE"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/beverages/sprite.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -2026,7 +2114,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="gatorade">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="GATORADE"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/beverages/gatorade.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -2125,7 +2215,10 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="heineken">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="HEINEKEN"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/beverages/heineken.jpg"/>
+                                </Property>
+                                <Property name="toolTipText" type="java.lang.String" value=""/>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -2144,7 +2237,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="budWeiser">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="BUD WEISER"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/beverages/budweiser.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -2163,7 +2258,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="redBull">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="RED BULL"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/beverages/red_bull.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -2182,7 +2279,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="pepsi">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="PEPSI"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/beverages/pepsi.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -2201,7 +2300,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="cocaCola">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="COCA-COLA"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/beverages/coke.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -2220,7 +2321,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="sunkist">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="SUNKIST"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/beverages/sunkist.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -2239,7 +2342,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="koolAid">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="KOOL AID"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/beverages/kool_aid.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -2258,7 +2363,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="sevenUp">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="7 UP"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/beverages/seven_up.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -2277,7 +2384,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="mountainDew">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="MOUNTAIN DEW"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/beverages/mountain_dew.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -2296,7 +2405,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="lipton">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="LIPTON"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/beverages/lipton.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -2395,7 +2506,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="appleJuice">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="APPLE JUICE"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/beverages/apple_juice.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -2414,7 +2527,9 @@
                             </Component>
                             <Component class="javax.swing.JButton" name="pineAppleJuice">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="PINEAPPLE JUICE"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/beverages/pine_apple_juice.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -2431,9 +2546,11 @@
                                 </Constraint>
                               </Constraints>
                             </Component>
-                            <Component class="javax.swing.JButton" name="blackCher">
+                            <Component class="javax.swing.JButton" name="blackCherry">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="BLACK CHERRY"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/beverages/black_cherry.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -2442,7 +2559,7 @@
                                 </Property>
                               </Properties>
                               <Events>
-                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="blackCherActionPerformed"/>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="blackCherryActionPerformed"/>
                               </Events>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -2450,7 +2567,7 @@
                                 </Constraint>
                               </Constraints>
                             </Component>
-                            <Component class="javax.swing.JLabel" name="blackCherPrice">
+                            <Component class="javax.swing.JLabel" name="blackCherryPrice">
                               <Properties>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="&#x20b1; 777"/>
@@ -2498,22 +2615,11 @@
                                 </Constraint>
                               </Constraints>
                             </Component>
-                            <Component class="javax.swing.JLabel" name="liquorsLabel">
-                              <Properties>
-                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                  <Font name="Segoe UI" size="24" style="0"/>
-                                </Property>
-                                <Property name="text" type="java.lang.String" value="LIQUORS"/>
-                              </Properties>
-                              <Constraints>
-                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="240" y="460" width="-1" height="-1"/>
-                                </Constraint>
-                              </Constraints>
-                            </Component>
                             <Component class="javax.swing.JButton" name="mead">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="MEAD"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/beverages/mead.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -2526,13 +2632,15 @@
                               </Events>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="450" y="500" width="100" height="90"/>
+                                  <AbsoluteConstraints x="450" y="340" width="100" height="90"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
                             <Component class="javax.swing.JButton" name="hardCider">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="HARD CIDER"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/beverages/hard_cider.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -2545,13 +2653,15 @@
                               </Events>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="340" y="500" width="100" height="90"/>
+                                  <AbsoluteConstraints x="340" y="340" width="100" height="90"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
                             <Component class="javax.swing.JButton" name="wine">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="WINE"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/beverages/wine.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -2564,13 +2674,15 @@
                               </Events>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="230" y="500" width="100" height="90"/>
+                                  <AbsoluteConstraints x="230" y="450" width="100" height="90"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
                             <Component class="javax.swing.JButton" name="beer">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="BEER"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/beverages/beer.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -2583,13 +2695,15 @@
                               </Events>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="120" y="500" width="100" height="90"/>
+                                  <AbsoluteConstraints x="120" y="450" width="100" height="90"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
                             <Component class="javax.swing.JButton" name="tequila">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="TEQUILA"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/beverages/tequila.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -2602,7 +2716,7 @@
                               </Events>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="10" y="500" width="100" height="90"/>
+                                  <AbsoluteConstraints x="10" y="450" width="100" height="90"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
@@ -2618,7 +2732,7 @@
                               </AuxValues>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="10" y="590" width="100" height="20"/>
+                                  <AbsoluteConstraints x="10" y="540" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
@@ -2634,7 +2748,7 @@
                               </AuxValues>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="120" y="590" width="100" height="20"/>
+                                  <AbsoluteConstraints x="120" y="540" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
@@ -2650,7 +2764,7 @@
                               </AuxValues>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="230" y="590" width="100" height="20"/>
+                                  <AbsoluteConstraints x="230" y="540" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
@@ -2666,7 +2780,7 @@
                               </AuxValues>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="340" y="590" width="100" height="20"/>
+                                  <AbsoluteConstraints x="340" y="430" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
@@ -2682,13 +2796,15 @@
                               </AuxValues>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="450" y="590" width="100" height="20"/>
+                                  <AbsoluteConstraints x="450" y="430" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
                             <Component class="javax.swing.JButton" name="vodka">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="VODKA"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/beverages/vodka.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -2701,13 +2817,15 @@
                               </Events>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="450" y="610" width="100" height="90"/>
+                                  <AbsoluteConstraints x="450" y="450" width="100" height="90"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
                             <Component class="javax.swing.JButton" name="rum">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="RUM"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/beverages/rum.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -2720,13 +2838,15 @@
                               </Events>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="340" y="610" width="100" height="90"/>
+                                  <AbsoluteConstraints x="340" y="450" width="100" height="90"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
                             <Component class="javax.swing.JButton" name="whisky">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="WHISKY"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/beverages/whisky.png"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -2739,13 +2859,15 @@
                               </Events>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="230" y="610" width="100" height="90"/>
+                                  <AbsoluteConstraints x="230" y="560" width="100" height="90"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
                             <Component class="javax.swing.JButton" name="brandy">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="BRANDY"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/beverages/brandy.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -2758,13 +2880,15 @@
                               </Events>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="120" y="610" width="100" height="90"/>
+                                  <AbsoluteConstraints x="120" y="560" width="100" height="90"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
                             <Component class="javax.swing.JButton" name="gin">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="GIN"/>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/static/beverages/gin.jpg"/>
+                                </Property>
                                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[118, 118]"/>
                                 </Property>
@@ -2777,7 +2901,7 @@
                               </Events>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="10" y="610" width="100" height="90"/>
+                                  <AbsoluteConstraints x="10" y="560" width="100" height="90"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
@@ -2793,7 +2917,7 @@
                               </AuxValues>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="10" y="700" width="100" height="20"/>
+                                  <AbsoluteConstraints x="10" y="650" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
@@ -2809,7 +2933,7 @@
                               </AuxValues>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="120" y="700" width="100" height="20"/>
+                                  <AbsoluteConstraints x="120" y="650" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
@@ -2825,7 +2949,7 @@
                               </AuxValues>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="230" y="700" width="100" height="20"/>
+                                  <AbsoluteConstraints x="230" y="650" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
@@ -2841,7 +2965,7 @@
                               </AuxValues>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="340" y="700" width="100" height="20"/>
+                                  <AbsoluteConstraints x="340" y="540" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
@@ -2857,7 +2981,7 @@
                               </AuxValues>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="450" y="700" width="100" height="20"/>
+                                  <AbsoluteConstraints x="450" y="540" width="100" height="20"/>
                                 </Constraint>
                               </Constraints>
                             </Component>

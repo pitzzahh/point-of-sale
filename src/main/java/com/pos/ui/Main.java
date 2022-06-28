@@ -168,11 +168,11 @@ public class Main extends JFrame {
             Setting prices label for cleaning products
         */
         cleanFirstPrice.setText((expiredProducts.containsKey(1)) ? "EXPIRED" : (outOfStockProducts.containsKey(1)) ? "OUT OF STOCK" : (priceList.containsKey(1)) ? PESO_SIGN + " " + priceList.get(1) : "NOT AVAILABLE");
-        hydroSafePrice.setText((expiredProducts.containsKey(2) ? "EXPIRED" : (outOfStockProducts.containsKey(2)) ? "OUT OF STOCK" : (priceList.containsKey(2) ? PESO_SIGN + " " + priceList.get(2) : "NOT AVAILABLE")));
-        rightFlexPrice.setText((expiredProducts.containsKey(3) ? "EXPIRED" : (outOfStockProducts.containsKey(3)) ? "OUT OF STOCK" : (priceList.containsKey(3) ? PESO_SIGN + " " + priceList.get(3) : "NOT AVAILABLE")));
+        spinMopPrice.setText((expiredProducts.containsKey(2) ? "EXPIRED" : (outOfStockProducts.containsKey(2)) ? "OUT OF STOCK" : (priceList.containsKey(2) ? PESO_SIGN + " " + priceList.get(2) : "NOT AVAILABLE")));
+        windexPrice.setText((expiredProducts.containsKey(3) ? "EXPIRED" : (outOfStockProducts.containsKey(3)) ? "OUT OF STOCK" : (priceList.containsKey(3) ? PESO_SIGN + " " + priceList.get(3) : "NOT AVAILABLE")));
         cloroxPrice.setText((expiredProducts.containsKey(4) ? "EXPIRED" : (outOfStockProducts.containsKey(4)) ? "OUT OF STOCK" : (priceList.containsKey(4) ? PESO_SIGN + " " + priceList.get(4) : "NOT AVAILABLE")));
-        dirtBustersPrice.setText((expiredProducts.containsKey(5) ? "EXPIRED" : (outOfStockProducts.containsKey(5)) ? "OUT OF STOCK" : (priceList.containsKey(5) ? PESO_SIGN + " " + priceList.get(5) : "NOT AVAILABLE")));
-        myCleanPrice.setText((expiredProducts.containsKey(6) ? "EXPIRED" : (outOfStockProducts.containsKey(6)) ? "OUT OF STOCK" : (priceList.containsKey(6) ? PESO_SIGN + " " + priceList.get(6) : "NOT AVAILABLE")));
+        dysonPrice.setText((expiredProducts.containsKey(5) ? "EXPIRED" : (outOfStockProducts.containsKey(5)) ? "OUT OF STOCK" : (priceList.containsKey(5) ? PESO_SIGN + " " + priceList.get(5) : "NOT AVAILABLE")));
+        roombaPrice.setText((expiredProducts.containsKey(6) ? "EXPIRED" : (outOfStockProducts.containsKey(6)) ? "OUT OF STOCK" : (priceList.containsKey(6) ? PESO_SIGN + " " + priceList.get(6) : "NOT AVAILABLE")));
         cleanCutPrice.setText((expiredProducts.containsKey(7) ? "EXPIRED" : (outOfStockProducts.containsKey(7)) ? "OUT OF STOCK" : (priceList.containsKey(7) ? PESO_SIGN + " " + priceList.get(7) : "NOT AVAILABLE")));
         sureCleanPrice.setText((expiredProducts.containsKey(8) ? "EXPIRED" : (outOfStockProducts.containsKey(8)) ? "OUT OF STOCK" : (priceList.containsKey(8) ? PESO_SIGN + " " + priceList.get(8) : "NOT AVAILABLE")));
         arielPrice.setText((expiredProducts.containsKey(9) ? "EXPIRED" : (outOfStockProducts.containsKey(9)) ? "OUT OF STOCK" : (priceList.containsKey(9) ? PESO_SIGN + " " + priceList.get(9) : "NOT AVAILABLE")));
@@ -192,7 +192,7 @@ public class Main extends JFrame {
         esthechocPrice.setText((expiredProducts.containsKey(19) ? "EXPIRED" : (outOfStockProducts.containsKey(19)) ? "OUT OF STOCK" : (priceList.containsKey(19) ? PESO_SIGN + " " + priceList.get(19) : "NOT AVAILABLE")));
         flyingNoirPrice.setText((expiredProducts.containsKey(20) ? "EXPIRED" : (outOfStockProducts.containsKey(20)) ? "OUT OF STOCK" : (priceList.containsKey(20) ? PESO_SIGN + " " + priceList.get(20) : "NOT AVAILABLE")));
         drostePrice.setText((expiredProducts.containsKey(21) ? "EXPIRED" : (outOfStockProducts.containsKey(21)) ? "OUT OF STOCK" : (priceList.containsKey(21) ? PESO_SIGN + " " + priceList.get(21) : "NOT AVAILABLE")));
-        wittakersPrice.setText((expiredProducts.containsKey(22) ? "EXPIRED" : (outOfStockProducts.containsKey(22)) ? "OUT OF STOCK" : (priceList.containsKey(22) ? PESO_SIGN + " " + priceList.get(22) : "NOT AVAILABLE")));
+        whittakersPrice.setText((expiredProducts.containsKey(22) ? "EXPIRED" : (outOfStockProducts.containsKey(22)) ? "OUT OF STOCK" : (priceList.containsKey(22) ? PESO_SIGN + " " + priceList.get(22) : "NOT AVAILABLE")));
         amedeiPrice.setText((expiredProducts.containsKey(23) ? "EXPIRED" : (outOfStockProducts.containsKey(23)) ? "OUT OF STOCK" : (priceList.containsKey(23) ? PESO_SIGN + " " + priceList.get(23) : "NOT AVAILABLE")));
         jacquesGeninPrice.setText((expiredProducts.containsKey(24) ? "EXPIRED" : (outOfStockProducts.containsKey(24)) ? "OUT OF STOCK" : (priceList.containsKey(24) ? PESO_SIGN + " " + priceList.get(24) : "NOT AVAILABLE")));
         richartPrice.setText((expiredProducts.containsKey(25) ? "EXPIRED" : (outOfStockProducts.containsKey(25)) ? "OUT OF STOCK" : (priceList.containsKey(25) ? PESO_SIGN + " " + priceList.get(25) : "NOT AVAILABLE")));
@@ -208,7 +208,7 @@ public class Main extends JFrame {
         tobleronePrice.setText((expiredProducts.containsKey(35) ? "EXPIRED" : (outOfStockProducts.containsKey(35)) ? "OUT OF STOCK" : (priceList.containsKey(35) ? PESO_SIGN + " " + priceList.get(35) : "NOT AVAILABLE")));
         nestlePrice.setText((expiredProducts.containsKey(36) ? "EXPIRED" : (outOfStockProducts.containsKey(36)) ? "OUT OF STOCK" : (priceList.containsKey(36) ? PESO_SIGN + " " + priceList.get(36) : "NOT AVAILABLE")));
         milkaPrice.setText((expiredProducts.containsKey(37) ? "EXPIRED" : (outOfStockProducts.containsKey(37)) ? "OUT OF STOCK" : (priceList.containsKey(37) ? PESO_SIGN + " " + priceList.get(37) : "NOT AVAILABLE")));
-        ghirardellPrice.setText((expiredProducts.containsKey(38) ? "EXPIRED" : (outOfStockProducts.containsKey(38)) ? "OUT OF STOCK" : (priceList.containsKey(38) ? PESO_SIGN + " " + priceList.get(38) : "NOT AVAILABLE")));
+        ghirardelliPrice.setText((expiredProducts.containsKey(38) ? "EXPIRED" : (outOfStockProducts.containsKey(38)) ? "OUT OF STOCK" : (priceList.containsKey(38) ? PESO_SIGN + " " + priceList.get(38) : "NOT AVAILABLE")));
         cadburyPrice.setText((expiredProducts.containsKey(39) ? "EXPIRED" : (outOfStockProducts.containsKey(39)) ? "OUT OF STOCK" : (priceList.containsKey(39) ? PESO_SIGN + " " + priceList.get(39) : "NOT AVAILABLE")));
         godivaPrice.setText((expiredProducts.containsKey(40) ? "EXPIRED" : (outOfStockProducts.containsKey(40)) ? "OUT OF STOCK" : (priceList.containsKey(40) ? PESO_SIGN + " " + priceList.get(40) : "NOT AVAILABLE")));
 
@@ -232,7 +232,7 @@ public class Main extends JFrame {
         sunkistPrice.setText((expiredProducts.containsKey(55) ? "EXPIRED" : (outOfStockProducts.containsKey(55)) ? "OUT OF STOCK" : (priceList.containsKey(55) ? PESO_SIGN + " " + priceList.get(55) : "NOT AVAILABLE")));
         appleJuicePrice.setText((expiredProducts.containsKey(56) ? "EXPIRED" : (outOfStockProducts.containsKey(56)) ? "OUT OF STOCK" : (priceList.containsKey(56) ? PESO_SIGN + " " + priceList.get(56) : "NOT AVAILABLE")));
         pineAppleJuicePrice.setText((expiredProducts.containsKey(57) ? "EXPIRED" : (outOfStockProducts.containsKey(57)) ? "OUT OF STOCK" : (priceList.containsKey(57) ? PESO_SIGN + " " + priceList.get(57) : "NOT AVAILABLE")));
-        blackCherPrice.setText((expiredProducts.containsKey(58) ? "EXPIRED" : (outOfStockProducts.containsKey(58)) ? "OUT OF STOCK" : (priceList.containsKey(58) ? PESO_SIGN + " " + priceList.get(58) : "NOT AVAILABLE")));
+        blackCherryPrice.setText((expiredProducts.containsKey(58) ? "EXPIRED" : (outOfStockProducts.containsKey(58)) ? "OUT OF STOCK" : (priceList.containsKey(58) ? PESO_SIGN + " " + priceList.get(58) : "NOT AVAILABLE")));
         // liquors
         tequilaPrice.setText((expiredProducts.containsKey(59) ? "EXPIRED" : (outOfStockProducts.containsKey(59)) ? "OUT OF STOCK" : (priceList.containsKey(59) ? PESO_SIGN + " " + priceList.get(59) : "NOT AVAILABLE")));
         beerPrice.setText((expiredProducts.containsKey(60) ? "EXPIRED" : (outOfStockProducts.containsKey(60)) ? "OUT OF STOCK" : (priceList.containsKey(60) ? PESO_SIGN + " " + priceList.get(60) : "NOT AVAILABLE")));
@@ -378,16 +378,16 @@ public class Main extends JFrame {
             JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         cleaningProductsPanel = new javax.swing.JPanel();
         cleanFirst = new javax.swing.JButton();
-        hydroSafe = new javax.swing.JButton();
-        rightFlex = new javax.swing.JButton();
+        spinMop = new javax.swing.JButton();
+        windex = new javax.swing.JButton();
         clorox = new javax.swing.JButton();
-        dirtBuster = new javax.swing.JButton();
-        dirtBustersPrice = new javax.swing.JLabel();
+        dyson = new javax.swing.JButton();
+        dysonPrice = new javax.swing.JLabel();
         cloroxPrice = new javax.swing.JLabel();
-        rightFlexPrice = new javax.swing.JLabel();
-        hydroSafePrice = new javax.swing.JLabel();
+        windexPrice = new javax.swing.JLabel();
+        spinMopPrice = new javax.swing.JLabel();
         cleanFirstPrice = new javax.swing.JLabel();
-        myClean = new javax.swing.JButton();
+        roomba = new javax.swing.JButton();
         cleanCut = new javax.swing.JButton();
         sureClean = new javax.swing.JButton();
         mrClean = new javax.swing.JButton();
@@ -396,7 +396,7 @@ public class Main extends JFrame {
         arielPrice = new javax.swing.JLabel();
         sureCleanPrice = new javax.swing.JLabel();
         cleanCutPrice = new javax.swing.JLabel();
-        myCleanPrice = new javax.swing.JLabel();
+        roombaPrice = new javax.swing.JLabel();
         smart = new javax.swing.JButton();
         smartPrice = new javax.swing.JLabel();
         domex = new javax.swing.JButton();
@@ -423,14 +423,14 @@ public class Main extends JFrame {
         ferreroRocherPrice = new javax.swing.JLabel();
         esthechocPrice = new javax.swing.JLabel();
         droste = new javax.swing.JButton();
-        wittakers = new javax.swing.JButton();
+        whittakers = new javax.swing.JButton();
         amedei = new javax.swing.JButton();
         jacquesGenin = new javax.swing.JButton();
         richart = new javax.swing.JButton();
         richartPrice = new javax.swing.JLabel();
         jacquesGeninPrice = new javax.swing.JLabel();
         amedeiPrice = new javax.swing.JLabel();
-        wittakersPrice = new javax.swing.JLabel();
+        whittakersPrice = new javax.swing.JLabel();
         drostePrice = new javax.swing.JLabel();
         patchi = new javax.swing.JButton();
         teuscher = new javax.swing.JButton();
@@ -455,10 +455,10 @@ public class Main extends JFrame {
         godiva = new javax.swing.JButton();
         nestle = new javax.swing.JButton();
         milka = new javax.swing.JButton();
-        ghirardell = new javax.swing.JButton();
+        ghirardelli = new javax.swing.JButton();
         cadbury = new javax.swing.JButton();
         cadburyPrice = new javax.swing.JLabel();
-        ghirardellPrice = new javax.swing.JLabel();
+        ghirardelliPrice = new javax.swing.JLabel();
         milkaPrice = new javax.swing.JLabel();
         nestlePrice = new javax.swing.JLabel();
         tobleronePrice = new javax.swing.JLabel();
@@ -499,11 +499,10 @@ public class Main extends JFrame {
         koolAidPrice = new javax.swing.JLabel();
         appleJuice = new javax.swing.JButton();
         pineAppleJuice = new javax.swing.JButton();
-        blackCher = new javax.swing.JButton();
-        blackCherPrice = new javax.swing.JLabel();
+        blackCherry = new javax.swing.JButton();
+        blackCherryPrice = new javax.swing.JLabel();
         pineAppleJuicePrice = new javax.swing.JLabel();
         appleJuicePrice = new javax.swing.JLabel();
-        liquorsLabel = new javax.swing.JLabel();
         mead = new javax.swing.JButton();
         hardCider = new javax.swing.JButton();
         wine = new javax.swing.JButton();
@@ -642,7 +641,7 @@ public class Main extends JFrame {
 
         header.setFont(new java.awt.Font("Yu Gothic", Font.BOLD, 36)); // NOI18N
         header.setForeground(new java.awt.Color(255, 255, 255));
-        header.setText("POINT OF SALES");
+        header.setText("POINT OF SALE");
         headerPanel.add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, -1, -1));
 
         mainPanel.add(headerPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 1080, 70));
@@ -658,41 +657,57 @@ public class Main extends JFrame {
 
         cleaningProductsPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        cleanFirst.setText("CLEAN FIRST");
+        cleanFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/cleaning products/clean_first.jpg"))); // NOI18N
         cleanFirst.setMaximumSize(new java.awt.Dimension(118, 118));
         cleanFirst.setMinimumSize(new java.awt.Dimension(118, 118));
         cleanFirst.addActionListener(this::cleanFirstActionPerformed);
         cleaningProductsPanel.add(cleanFirst, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, 90));
 
-        hydroSafe.setText("HYDROSAFE");
-        hydroSafe.setMaximumSize(new java.awt.Dimension(118, 118));
-        hydroSafe.setMinimumSize(new java.awt.Dimension(118, 118));
-        hydroSafe.addActionListener(this::hydroSafeActionPerformed);
-        cleaningProductsPanel.add(hydroSafe, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 100, 90));
+        spinMop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/cleaning products/spin_mop.jpg"))); // NOI18N
+        spinMop.setMaximumSize(new java.awt.Dimension(118, 118));
+        spinMop.setMinimumSize(new java.awt.Dimension(118, 118));
+        spinMop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                spinMopActionPerformed(evt);
+            }
+        });
+        cleaningProductsPanel.add(spinMop, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 100, 90));
 
-        rightFlex.setText("RIGHTFLEX");
-        rightFlex.setMaximumSize(new java.awt.Dimension(118, 118));
-        rightFlex.setMinimumSize(new java.awt.Dimension(118, 118));
-        rightFlex.addActionListener(this::rightFlexActionPerformed);
-        cleaningProductsPanel.add(rightFlex, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 100, 90));
+        windex.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/cleaning products/windex.jpg"))); // NOI18N
+        windex.setMaximumSize(new java.awt.Dimension(118, 118));
+        windex.setMinimumSize(new java.awt.Dimension(118, 118));
+        windex.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                windexActionPerformed(evt);
+            }
+        });
+        cleaningProductsPanel.add(windex, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 100, 90));
 
-        clorox.setText("CLOROX");
+        clorox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/cleaning products/clorox.jpg"))); // NOI18N
         clorox.setMaximumSize(new java.awt.Dimension(118, 118));
         clorox.setMinimumSize(new java.awt.Dimension(118, 118));
-        clorox.addActionListener(this::cloroxActionPerformed);
+        clorox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cloroxActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(clorox, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 100, 90));
 
-        dirtBuster.setText("DIRTBUSTERS");
-        dirtBuster.setMaximumSize(new java.awt.Dimension(118, 118));
-        dirtBuster.setMinimumSize(new java.awt.Dimension(118, 118));
-        dirtBuster.addActionListener(this::dirtBusterActionPerformed);
-        cleaningProductsPanel.add(dirtBuster, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 100, 90));
+        dyson.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/cleaning products/dyson.jpg"))); // NOI18N
+        dyson.setMaximumSize(new java.awt.Dimension(118, 118));
+        dyson.setMinimumSize(new java.awt.Dimension(118, 118));
+        dyson.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dysonActionPerformed(evt);
+            }
+        });
+        cleaningProductsPanel.add(dyson, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 100, 90));
 
-        dirtBustersPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        dirtBustersPrice.setText("₱ 777");
-        dirtBustersPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        dirtBustersPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        cleaningProductsPanel.add(dirtBustersPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 100, 20));
+        dysonPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        dysonPrice.setText("₱ 777");
+        dysonPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        dysonPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        cleaningProductsPanel.add(dysonPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 100, 20));
 
         cloroxPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cloroxPrice.setText("₱ 777");
@@ -700,17 +715,17 @@ public class Main extends JFrame {
         cloroxPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         cleaningProductsPanel.add(cloroxPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 100, 20));
 
-        rightFlexPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        rightFlexPrice.setText("₱ 777");
-        rightFlexPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        rightFlexPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        cleaningProductsPanel.add(rightFlexPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 100, 20));
+        windexPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        windexPrice.setText("₱ 777");
+        windexPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        windexPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        cleaningProductsPanel.add(windexPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 100, 20));
 
-        hydroSafePrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        hydroSafePrice.setText("₱ 777");
-        hydroSafePrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        hydroSafePrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        cleaningProductsPanel.add(hydroSafePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 100, 20));
+        spinMopPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        spinMopPrice.setText("₱ 777");
+        spinMopPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        spinMopPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        cleaningProductsPanel.add(spinMopPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 100, 20));
 
         cleanFirstPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cleanFirstPrice.setText("₱ 777");
@@ -718,34 +733,54 @@ public class Main extends JFrame {
         cleanFirstPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         cleaningProductsPanel.add(cleanFirstPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 100, 20));
 
-        myClean.setText("MY CLEAN");
-        myClean.setMaximumSize(new java.awt.Dimension(118, 118));
-        myClean.setMinimumSize(new java.awt.Dimension(118, 118));
-        myClean.addActionListener(this::myCleanActionPerformed);
-        cleaningProductsPanel.add(myClean, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 100, 90));
+        roomba.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/cleaning products/roomba.jpg"))); // NOI18N
+        roomba.setMaximumSize(new java.awt.Dimension(118, 118));
+        roomba.setMinimumSize(new java.awt.Dimension(118, 118));
+        roomba.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roombaActionPerformed(evt);
+            }
+        });
+        cleaningProductsPanel.add(roomba, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 100, 90));
 
-        cleanCut.setText("CLEAN CUT");
+        cleanCut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/cleaning products/clean_cut.jpg"))); // NOI18N
         cleanCut.setMaximumSize(new java.awt.Dimension(118, 118));
         cleanCut.setMinimumSize(new java.awt.Dimension(118, 118));
-        cleanCut.addActionListener(this::cleanCutActionPerformed);
+        cleanCut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cleanCutActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(cleanCut, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 100, 90));
 
-        sureClean.setText("SURE CLEAN");
+        sureClean.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/cleaning products/sure_clean.jpg"))); // NOI18N
         sureClean.setMaximumSize(new java.awt.Dimension(118, 118));
         sureClean.setMinimumSize(new java.awt.Dimension(118, 118));
-        sureClean.addActionListener(this::sureCleanActionPerformed);
+        sureClean.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sureCleanActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(sureClean, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 100, 90));
 
-        mrClean.setText("ARIEL");
+        mrClean.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/cleaning products/ariel.jpg"))); // NOI18N
         mrClean.setMaximumSize(new java.awt.Dimension(118, 118));
         mrClean.setMinimumSize(new java.awt.Dimension(118, 118));
-        mrClean.addActionListener(this::mrCleanActionPerformed);
+        mrClean.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mrCleanActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(mrClean, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 100, 90));
 
-        joy.setText("JOY");
+        joy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/cleaning products/joy.jpg"))); // NOI18N
         joy.setMaximumSize(new java.awt.Dimension(118, 118));
         joy.setMinimumSize(new java.awt.Dimension(118, 118));
-        joy.addActionListener(this::joyActionPerformed);
+        joy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                joyActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(joy, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, 100, 90));
 
         joyPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -772,16 +807,20 @@ public class Main extends JFrame {
         cleanCutPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         cleaningProductsPanel.add(cleanCutPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 100, 20));
 
-        myCleanPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        myCleanPrice.setText("₱ 777");
-        myCleanPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        myCleanPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        cleaningProductsPanel.add(myCleanPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 100, 20));
+        roombaPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        roombaPrice.setText("₱ 777");
+        roombaPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        roombaPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        cleaningProductsPanel.add(roombaPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 100, 20));
 
-        smart.setText("SMART");
+        smart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/cleaning products/smart.jpg"))); // NOI18N
         smart.setMaximumSize(new java.awt.Dimension(118, 118));
         smart.setMinimumSize(new java.awt.Dimension(118, 118));
-        smart.addActionListener(this::smartActionPerformed);
+        smart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                smartActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(smart, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 100, 90));
 
         smartPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -790,10 +829,14 @@ public class Main extends JFrame {
         smartPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         cleaningProductsPanel.add(smartPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 100, 20));
 
-        domex.setText("DOMEX");
+        domex.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/cleaning products/domex.jpg"))); // NOI18N
         domex.setMaximumSize(new java.awt.Dimension(118, 118));
         domex.setMinimumSize(new java.awt.Dimension(118, 118));
-        domex.addActionListener(this::domexActionPerformed);
+        domex.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                domexActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(domex, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 100, 90));
 
         domexPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -802,10 +845,14 @@ public class Main extends JFrame {
         domexPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         cleaningProductsPanel.add(domexPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, 100, 20));
 
-        mrMuscle.setText("MR MUSCLE");
+        mrMuscle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/cleaning products/mr_muscle.jpg"))); // NOI18N
         mrMuscle.setMaximumSize(new java.awt.Dimension(118, 118));
         mrMuscle.setMinimumSize(new java.awt.Dimension(118, 118));
-        mrMuscle.addActionListener(this::mrMuscleActionPerformed);
+        mrMuscle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mrMuscleActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(mrMuscle, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 100, 90));
 
         mrMusclePrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -814,10 +861,14 @@ public class Main extends JFrame {
         mrMusclePrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         cleaningProductsPanel.add(mrMusclePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 320, 100, 20));
 
-        lysol.setText("LYSOL");
+        lysol.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/cleaning products/lysol.jpg"))); // NOI18N
         lysol.setMaximumSize(new java.awt.Dimension(118, 118));
         lysol.setMinimumSize(new java.awt.Dimension(118, 118));
-        lysol.addActionListener(this::lysolActionPerformed);
+        lysol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lysolActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(lysol, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, 100, 90));
 
         lysolPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -826,10 +877,14 @@ public class Main extends JFrame {
         lysolPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         cleaningProductsPanel.add(lysolPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, 100, 20));
 
-        surf.setText("SURF");
+        surf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/cleaning products/surf.jpg"))); // NOI18N
         surf.setMaximumSize(new java.awt.Dimension(118, 118));
         surf.setMinimumSize(new java.awt.Dimension(118, 118));
-        surf.addActionListener(this::surfActionPerformed);
+        surf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                surfActionPerformed(evt);
+            }
+        });
         cleaningProductsPanel.add(surf, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, 100, 90));
 
         surfPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -846,10 +901,14 @@ public class Main extends JFrame {
 
         chocolatesPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        hersheys.setText("HERSHEY'S");
+        hersheys.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/chocolates/hersheys.jpg"))); // NOI18N
         hersheys.setMaximumSize(new java.awt.Dimension(118, 118));
         hersheys.setMinimumSize(new java.awt.Dimension(118, 118));
-        hersheys.addActionListener(this::hersheysActionPerformed);
+        hersheys.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hersheysActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(hersheys, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, 90));
 
         hersheysPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -858,10 +917,14 @@ public class Main extends JFrame {
         hersheysPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         chocolatesPanel.add(hersheysPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 100, 20));
 
-        snickers.setText("SNICKERS");
+        snickers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/chocolates/snickers.jpg"))); // NOI18N
         snickers.setMaximumSize(new java.awt.Dimension(118, 118));
         snickers.setMinimumSize(new java.awt.Dimension(118, 118));
-        snickers.addActionListener(this::snickersActionPerformed);
+        snickers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                snickersActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(snickers, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 100, 90));
 
         snickersPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -870,22 +933,34 @@ public class Main extends JFrame {
         snickersPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         chocolatesPanel.add(snickersPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 100, 20));
 
-        flyingNoir.setText("FLYING NOIR");
+        flyingNoir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/chocolates/flying_noir.jpg"))); // NOI18N
         flyingNoir.setMaximumSize(new java.awt.Dimension(118, 118));
         flyingNoir.setMinimumSize(new java.awt.Dimension(118, 118));
-        flyingNoir.addActionListener(this::flyingNoirActionPerformed);
+        flyingNoir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                flyingNoirActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(flyingNoir, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 100, 90));
 
-        ferreroRocher.setText("FERRERO ROCHER");
+        ferreroRocher.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/chocolates/ferrero_rocher.jpg"))); // NOI18N
         ferreroRocher.setMaximumSize(new java.awt.Dimension(118, 118));
         ferreroRocher.setMinimumSize(new java.awt.Dimension(118, 118));
-        ferreroRocher.addActionListener(this::ferreroRocherActionPerformed);
+        ferreroRocher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ferreroRocherActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(ferreroRocher, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 100, 90));
 
-        esthechoc.setText("ESTHECHOC");
+        esthechoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/chocolates/esthechoc.jpg"))); // NOI18N
         esthechoc.setMaximumSize(new java.awt.Dimension(118, 118));
         esthechoc.setMinimumSize(new java.awt.Dimension(118, 118));
-        esthechoc.addActionListener(this::esthechocActionPerformed);
+        esthechoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                esthechocActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(esthechoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 100, 90));
 
         flyingNoirPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -906,34 +981,54 @@ public class Main extends JFrame {
         esthechocPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         chocolatesPanel.add(esthechocPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 100, 20));
 
-        droste.setText("DROSTE");
+        droste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/chocolates/droste.png"))); // NOI18N
         droste.setMaximumSize(new java.awt.Dimension(118, 118));
         droste.setMinimumSize(new java.awt.Dimension(118, 118));
-        droste.addActionListener(this::drosteActionPerformed);
+        droste.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                drosteActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(droste, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 100, 90));
 
-        wittakers.setText("WITTAKER'S");
-        wittakers.setMaximumSize(new java.awt.Dimension(118, 118));
-        wittakers.setMinimumSize(new java.awt.Dimension(118, 118));
-        wittakers.addActionListener(this::wittakersActionPerformed);
-        chocolatesPanel.add(wittakers, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 100, 90));
+        whittakers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/chocolates/whittakers.jpg"))); // NOI18N
+        whittakers.setMaximumSize(new java.awt.Dimension(118, 118));
+        whittakers.setMinimumSize(new java.awt.Dimension(118, 118));
+        whittakers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                whittakersActionPerformed(evt);
+            }
+        });
+        chocolatesPanel.add(whittakers, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 100, 90));
 
-        amedei.setText("AMEDEI");
+        amedei.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/chocolates/amedei.jpg"))); // NOI18N
         amedei.setMaximumSize(new java.awt.Dimension(118, 118));
         amedei.setMinimumSize(new java.awt.Dimension(118, 118));
-        amedei.addActionListener(this::amedeiActionPerformed);
+        amedei.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                amedeiActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(amedei, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 100, 90));
 
-        jacquesGenin.setText("JACQUES GENIN");
+        jacquesGenin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/chocolates/jacques_genin.jpg"))); // NOI18N
         jacquesGenin.setMaximumSize(new java.awt.Dimension(118, 118));
         jacquesGenin.setMinimumSize(new java.awt.Dimension(118, 118));
-        jacquesGenin.addActionListener(this::jacquesGeninActionPerformed);
+        jacquesGenin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jacquesGeninActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(jacquesGenin, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 100, 90));
 
-        richart.setText("RICHART");
+        richart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/chocolates/richart.jpg"))); // NOI18N
         richart.setMaximumSize(new java.awt.Dimension(118, 118));
         richart.setMinimumSize(new java.awt.Dimension(118, 118));
-        richart.addActionListener(this::richartActionPerformed);
+        richart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                richartActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(richart, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, 100, 90));
 
         richartPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -954,11 +1049,11 @@ public class Main extends JFrame {
         amedeiPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         chocolatesPanel.add(amedeiPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 100, 20));
 
-        wittakersPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        wittakersPrice.setText("₱ 777");
-        wittakersPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        wittakersPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        chocolatesPanel.add(wittakersPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 100, 20));
+        whittakersPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        whittakersPrice.setText("₱ 777");
+        whittakersPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        whittakersPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        chocolatesPanel.add(whittakersPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 100, 20));
 
         drostePrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         drostePrice.setText("₱ 777");
@@ -966,34 +1061,54 @@ public class Main extends JFrame {
         drostePrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         chocolatesPanel.add(drostePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 100, 20));
 
-        patchi.setText("PATCHI");
+        patchi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/chocolates/patchi.jpg"))); // NOI18N
         patchi.setMaximumSize(new java.awt.Dimension(118, 118));
         patchi.setMinimumSize(new java.awt.Dimension(118, 118));
-        patchi.addActionListener(this::patchiActionPerformed);
+        patchi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                patchiActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(patchi, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 100, 90));
 
-        teuscher.setText("TEUSCHER");
+        teuscher.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/chocolates/teuscher.jpg"))); // NOI18N
         teuscher.setMaximumSize(new java.awt.Dimension(118, 118));
         teuscher.setMinimumSize(new java.awt.Dimension(118, 118));
-        teuscher.addActionListener(this::teuscherActionPerformed);
+        teuscher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                teuscherActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(teuscher, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 100, 90));
 
-        valrhona.setText("VALRHONA");
+        valrhona.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/chocolates/valrhona.jpg"))); // NOI18N
         valrhona.setMaximumSize(new java.awt.Dimension(118, 118));
         valrhona.setMinimumSize(new java.awt.Dimension(118, 118));
-        valrhona.addActionListener(this::valrhonaActionPerformed);
+        valrhona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                valrhonaActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(valrhona, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 100, 90));
 
-        dove.setText("DOVE");
+        dove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/chocolates/dove.jpg"))); // NOI18N
         dove.setMaximumSize(new java.awt.Dimension(118, 118));
         dove.setMinimumSize(new java.awt.Dimension(118, 118));
-        dove.addActionListener(this::doveActionPerformed);
+        dove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                doveActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(dove, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, 100, 90));
 
-        russelStover.setText("RUSSEL STOVER");
+        russelStover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/chocolates/russell_stover.jpg"))); // NOI18N
         russelStover.setMaximumSize(new java.awt.Dimension(118, 118));
         russelStover.setMinimumSize(new java.awt.Dimension(118, 118));
-        russelStover.addActionListener(this::russelStoverActionPerformed);
+        russelStover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                russelStoverActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(russelStover, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, 100, 90));
 
         russelStoverPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1026,34 +1141,54 @@ public class Main extends JFrame {
         patchiPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         chocolatesPanel.add(patchiPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 100, 20));
 
-        ritterSport.setText("RITTER SPORT");
+        ritterSport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/chocolates/ritter_sport.jpg"))); // NOI18N
         ritterSport.setMaximumSize(new java.awt.Dimension(118, 118));
         ritterSport.setMinimumSize(new java.awt.Dimension(118, 118));
-        ritterSport.addActionListener(this::ritterSportActionPerformed);
+        ritterSport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ritterSportActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(ritterSport, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 100, 90));
 
-        guyLian.setText("GUYLIAN");
+        guyLian.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/chocolates/guylian.jpg"))); // NOI18N
         guyLian.setMaximumSize(new java.awt.Dimension(118, 118));
         guyLian.setMinimumSize(new java.awt.Dimension(118, 118));
-        guyLian.addActionListener(this::guyLianActionPerformed);
+        guyLian.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guyLianActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(guyLian, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, 100, 90));
 
-        kinder.setText("KINDER");
+        kinder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/chocolates/kinder.jpg"))); // NOI18N
         kinder.setMaximumSize(new java.awt.Dimension(118, 118));
         kinder.setMinimumSize(new java.awt.Dimension(118, 118));
-        kinder.addActionListener(this::kinderActionPerformed);
+        kinder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kinderActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(kinder, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 100, 90));
 
-        mars.setText("MARS");
+        mars.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/chocolates/mars.jpg"))); // NOI18N
         mars.setMaximumSize(new java.awt.Dimension(118, 118));
         mars.setMinimumSize(new java.awt.Dimension(118, 118));
-        mars.addActionListener(this::marsActionPerformed);
+        mars.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marsActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(mars, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 340, 100, 90));
 
-        toblerone.setText("TOBLERONE");
+        toblerone.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/chocolates/toblerone.jpg"))); // NOI18N
         toblerone.setMaximumSize(new java.awt.Dimension(118, 118));
         toblerone.setMinimumSize(new java.awt.Dimension(118, 118));
-        toblerone.addActionListener(this::tobleroneActionPerformed);
+        toblerone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tobleroneActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(toblerone, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 340, 100, 90));
 
         godivaPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1086,34 +1221,54 @@ public class Main extends JFrame {
         ritterSportPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         chocolatesPanel.add(ritterSportPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 100, 20));
 
-        godiva.setText("GODIVA");
+        godiva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/chocolates/godiva.jpg"))); // NOI18N
         godiva.setMaximumSize(new java.awt.Dimension(118, 118));
         godiva.setMinimumSize(new java.awt.Dimension(118, 118));
-        godiva.addActionListener(this::godivaActionPerformed);
+        godiva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                godivaActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(godiva, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 450, 100, 90));
 
-        nestle.setText("NESTLE");
+        nestle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/chocolates/nestle.jpg"))); // NOI18N
         nestle.setMaximumSize(new java.awt.Dimension(118, 118));
         nestle.setMinimumSize(new java.awt.Dimension(118, 118));
-        nestle.addActionListener(this::nestleActionPerformed);
+        nestle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nestleActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(nestle, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 100, 90));
 
-        milka.setText("MILKA");
+        milka.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/chocolates/milka.jpg"))); // NOI18N
         milka.setMaximumSize(new java.awt.Dimension(118, 118));
         milka.setMinimumSize(new java.awt.Dimension(118, 118));
-        milka.addActionListener(this::milkaActionPerformed);
+        milka.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                milkaActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(milka, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 450, 100, 90));
 
-        ghirardell.setText("GHIRARDELLI");
-        ghirardell.setMaximumSize(new java.awt.Dimension(118, 118));
-        ghirardell.setMinimumSize(new java.awt.Dimension(118, 118));
-        ghirardell.addActionListener(this::ghirardellActionPerformed);
-        chocolatesPanel.add(ghirardell, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 450, 100, 90));
+        ghirardelli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/chocolates/ghirardelli.jpg"))); // NOI18N
+        ghirardelli.setMaximumSize(new java.awt.Dimension(118, 118));
+        ghirardelli.setMinimumSize(new java.awt.Dimension(118, 118));
+        ghirardelli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ghirardelliActionPerformed(evt);
+            }
+        });
+        chocolatesPanel.add(ghirardelli, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 450, 100, 90));
 
-        cadbury.setText("CADBURY");
+        cadbury.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/chocolates/cadbury.jpg"))); // NOI18N
         cadbury.setMaximumSize(new java.awt.Dimension(118, 118));
         cadbury.setMinimumSize(new java.awt.Dimension(118, 118));
-        cadbury.addActionListener(this::cadburyActionPerformed);
+        cadbury.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadburyActionPerformed(evt);
+            }
+        });
         chocolatesPanel.add(cadbury, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 450, 100, 90));
 
         cadburyPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1122,11 +1277,11 @@ public class Main extends JFrame {
         cadburyPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         chocolatesPanel.add(cadburyPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 540, 100, 20));
 
-        ghirardellPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ghirardellPrice.setText("₱ 777");
-        ghirardellPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        ghirardellPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        chocolatesPanel.add(ghirardellPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 540, 100, 20));
+        ghirardelliPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ghirardelliPrice.setText("₱ 777");
+        ghirardelliPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        ghirardelliPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        chocolatesPanel.add(ghirardelliPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 540, 100, 20));
 
         milkaPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         milkaPrice.setText("₱ 777");
@@ -1152,10 +1307,14 @@ public class Main extends JFrame {
 
         beveragesPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        dole.setText("DOLE");
+        dole.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/beverages/dole.jpg"))); // NOI18N
         dole.setMaximumSize(new java.awt.Dimension(118, 118));
         dole.setMinimumSize(new java.awt.Dimension(118, 118));
-        dole.addActionListener(this::doleActionPerformed);
+        dole.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                doleActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(dole, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, 100, 90));
 
         dolePrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1170,16 +1329,24 @@ public class Main extends JFrame {
         tropicanaPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         beveragesPanel.add(tropicanaPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 210, 100, 20));
 
-        tropicana.setText("TROPICANA");
+        tropicana.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/beverages/tropicana.jpg"))); // NOI18N
         tropicana.setMaximumSize(new java.awt.Dimension(118, 118));
         tropicana.setMinimumSize(new java.awt.Dimension(118, 118));
-        tropicana.addActionListener(this::tropicanaActionPerformed);
+        tropicana.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tropicanaActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(tropicana, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 100, 90));
 
-        minuteMaid.setText("MINUTE MAID");
+        minuteMaid.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/beverages/minute_maid.jpg"))); // NOI18N
         minuteMaid.setMaximumSize(new java.awt.Dimension(118, 118));
         minuteMaid.setMinimumSize(new java.awt.Dimension(118, 118));
-        minuteMaid.addActionListener(this::minuteMaidActionPerformed);
+        minuteMaid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                minuteMaidActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(minuteMaid, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 100, 90));
 
         minuteMaidPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1194,10 +1361,14 @@ public class Main extends JFrame {
         spritePrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         beveragesPanel.add(spritePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 100, 20));
 
-        sprite.setText("SPRITE");
+        sprite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/beverages/sprite.jpg"))); // NOI18N
         sprite.setMaximumSize(new java.awt.Dimension(118, 118));
         sprite.setMinimumSize(new java.awt.Dimension(118, 118));
-        sprite.addActionListener(this::spriteActionPerformed);
+        sprite.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                spriteActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(sprite, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 100, 90));
 
         gatoradePrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1206,10 +1377,14 @@ public class Main extends JFrame {
         gatoradePrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         beveragesPanel.add(gatoradePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 100, 20));
 
-        gatorade.setText("GATORADE");
+        gatorade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/beverages/gatorade.jpg"))); // NOI18N
         gatorade.setMaximumSize(new java.awt.Dimension(118, 118));
         gatorade.setMinimumSize(new java.awt.Dimension(118, 118));
-        gatorade.addActionListener(this::gatoradeActionPerformed);
+        gatorade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gatoradeActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(gatorade, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 100, 90));
 
         cocaColaPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1242,64 +1417,105 @@ public class Main extends JFrame {
         heinekenPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         beveragesPanel.add(heinekenPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 100, 20));
 
-        heineken.setText("HEINEKEN");
+        heineken.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/beverages/heineken.jpg"))); // NOI18N
+        heineken.setToolTipText("");
         heineken.setMaximumSize(new java.awt.Dimension(118, 118));
         heineken.setMinimumSize(new java.awt.Dimension(118, 118));
-        heineken.addActionListener(this::heinekenActionPerformed);
+        heineken.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                heinekenActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(heineken, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 100, 90));
 
-        budWeiser.setText("BUD WEISER");
+        budWeiser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/beverages/budweiser.jpg"))); // NOI18N
         budWeiser.setMaximumSize(new java.awt.Dimension(118, 118));
         budWeiser.setMinimumSize(new java.awt.Dimension(118, 118));
-        budWeiser.addActionListener(this::budWeiserActionPerformed);
+        budWeiser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                budWeiserActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(budWeiser, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 100, 90));
 
-        redBull.setText("RED BULL");
+        redBull.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/beverages/red_bull.jpg"))); // NOI18N
         redBull.setMaximumSize(new java.awt.Dimension(118, 118));
         redBull.setMinimumSize(new java.awt.Dimension(118, 118));
-        redBull.addActionListener(this::redBullActionPerformed);
+        redBull.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                redBullActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(redBull, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 100, 90));
 
-        pepsi.setText("PEPSI");
+        pepsi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/beverages/pepsi.jpg"))); // NOI18N
         pepsi.setMaximumSize(new java.awt.Dimension(118, 118));
         pepsi.setMinimumSize(new java.awt.Dimension(118, 118));
-        pepsi.addActionListener(this::pepsiActionPerformed);
+        pepsi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pepsiActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(pepsi, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 100, 90));
 
-        cocaCola.setText("COCA-COLA");
+        cocaCola.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/beverages/coke.jpg"))); // NOI18N
         cocaCola.setMaximumSize(new java.awt.Dimension(118, 118));
         cocaCola.setMinimumSize(new java.awt.Dimension(118, 118));
-        cocaCola.addActionListener(this::cocaColaActionPerformed);
+        cocaCola.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cocaColaActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(cocaCola, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, 90));
 
-        sunkist.setText("SUNKIST");
+        sunkist.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/beverages/sunkist.jpg"))); // NOI18N
         sunkist.setMaximumSize(new java.awt.Dimension(118, 118));
         sunkist.setMinimumSize(new java.awt.Dimension(118, 118));
-        sunkist.addActionListener(this::sunkistActionPerformed);
+        sunkist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sunkistActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(sunkist, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, 100, 90));
 
-        koolAid.setText("KOOL AID");
+        koolAid.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/beverages/kool_aid.jpg"))); // NOI18N
         koolAid.setMaximumSize(new java.awt.Dimension(118, 118));
         koolAid.setMinimumSize(new java.awt.Dimension(118, 118));
-        koolAid.addActionListener(this::koolAidActionPerformed);
+        koolAid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                koolAidActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(koolAid, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 100, 90));
 
-        sevenUp.setText("7 UP");
+        sevenUp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/beverages/seven_up.jpg"))); // NOI18N
         sevenUp.setMaximumSize(new java.awt.Dimension(118, 118));
         sevenUp.setMinimumSize(new java.awt.Dimension(118, 118));
-        sevenUp.addActionListener(this::sevenUpActionPerformed);
+        sevenUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sevenUpActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(sevenUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 100, 90));
 
-        mountainDew.setText("MOUNTAIN DEW");
+        mountainDew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/beverages/mountain_dew.jpg"))); // NOI18N
         mountainDew.setMaximumSize(new java.awt.Dimension(118, 118));
         mountainDew.setMinimumSize(new java.awt.Dimension(118, 118));
-        mountainDew.addActionListener(this::mountainDewActionPerformed);
+        mountainDew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mountainDewActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(mountainDew, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 100, 90));
 
-        lipton.setText("LIPTON");
+        lipton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/beverages/lipton.jpg"))); // NOI18N
         lipton.setMaximumSize(new java.awt.Dimension(118, 118));
         lipton.setMinimumSize(new java.awt.Dimension(118, 118));
-        lipton.addActionListener(this::liptonActionPerformed);
+        lipton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                liptonActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(lipton, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, 100, 90));
 
         sunkistPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1332,29 +1548,41 @@ public class Main extends JFrame {
         koolAidPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         beveragesPanel.add(koolAidPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 100, 20));
 
-        appleJuice.setText("APPLE JUICE");
+        appleJuice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/beverages/apple_juice.jpg"))); // NOI18N
         appleJuice.setMaximumSize(new java.awt.Dimension(118, 118));
         appleJuice.setMinimumSize(new java.awt.Dimension(118, 118));
-        appleJuice.addActionListener(this::appleJuiceActionPerformed);
+        appleJuice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                appleJuiceActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(appleJuice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 100, 90));
 
-        pineAppleJuice.setText("PINEAPPLE JUICE");
+        pineAppleJuice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/beverages/pine_apple_juice.jpg"))); // NOI18N
         pineAppleJuice.setMaximumSize(new java.awt.Dimension(118, 118));
         pineAppleJuice.setMinimumSize(new java.awt.Dimension(118, 118));
-        pineAppleJuice.addActionListener(this::pineAppleJuiceActionPerformed);
+        pineAppleJuice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pineAppleJuiceActionPerformed(evt);
+            }
+        });
         beveragesPanel.add(pineAppleJuice, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, 100, 90));
 
-        blackCher.setText("BLACK CHERRY");
-        blackCher.setMaximumSize(new java.awt.Dimension(118, 118));
-        blackCher.setMinimumSize(new java.awt.Dimension(118, 118));
-        blackCher.addActionListener(this::blackCherActionPerformed);
-        beveragesPanel.add(blackCher, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 100, 90));
+        blackCherry.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/beverages/black_cherry.jpg"))); // NOI18N
+        blackCherry.setMaximumSize(new java.awt.Dimension(118, 118));
+        blackCherry.setMinimumSize(new java.awt.Dimension(118, 118));
+        blackCherry.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                blackCherryActionPerformed(evt);
+            }
+        });
+        beveragesPanel.add(blackCherry, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 100, 90));
 
-        blackCherPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        blackCherPrice.setText("₱ 777");
-        blackCherPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        blackCherPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(blackCherPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 430, 100, 20));
+        blackCherryPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        blackCherryPrice.setText("₱ 777");
+        blackCherryPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        blackCherryPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        beveragesPanel.add(blackCherryPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 430, 100, 20));
 
         pineAppleJuicePrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pineAppleJuicePrice.setText("₱ 777");
@@ -1368,129 +1596,165 @@ public class Main extends JFrame {
         appleJuicePrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         beveragesPanel.add(appleJuicePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 100, 20));
 
-        liquorsLabel.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 24)); // NOI18N
-        liquorsLabel.setText("LIQUORS");
-        beveragesPanel.add(liquorsLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 460, -1, -1));
-
-        mead.setText("MEAD");
+        mead.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/beverages/mead.jpg"))); // NOI18N
         mead.setMaximumSize(new java.awt.Dimension(118, 118));
         mead.setMinimumSize(new java.awt.Dimension(118, 118));
-        mead.addActionListener(this::meadActionPerformed);
-        beveragesPanel.add(mead, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 500, 100, 90));
+        mead.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                meadActionPerformed(evt);
+            }
+        });
+        beveragesPanel.add(mead, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 340, 100, 90));
 
-        hardCider.setText("HARD CIDER");
+        hardCider.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/beverages/hard_cider.jpg"))); // NOI18N
         hardCider.setMaximumSize(new java.awt.Dimension(118, 118));
         hardCider.setMinimumSize(new java.awt.Dimension(118, 118));
-        hardCider.addActionListener(this::hardCiderActionPerformed);
-        beveragesPanel.add(hardCider, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 500, 100, 90));
+        hardCider.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hardCiderActionPerformed(evt);
+            }
+        });
+        beveragesPanel.add(hardCider, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 340, 100, 90));
 
-        wine.setText("WINE");
+        wine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/beverages/wine.jpg"))); // NOI18N
         wine.setMaximumSize(new java.awt.Dimension(118, 118));
         wine.setMinimumSize(new java.awt.Dimension(118, 118));
-        wine.addActionListener(this::wineActionPerformed);
-        beveragesPanel.add(wine, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 500, 100, 90));
+        wine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wineActionPerformed(evt);
+            }
+        });
+        beveragesPanel.add(wine, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 450, 100, 90));
 
-        beer.setText("BEER");
+        beer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/beverages/beer.jpg"))); // NOI18N
         beer.setMaximumSize(new java.awt.Dimension(118, 118));
         beer.setMinimumSize(new java.awt.Dimension(118, 118));
-        beer.addActionListener(this::beerActionPerformed);
-        beveragesPanel.add(beer, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 500, 100, 90));
+        beer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                beerActionPerformed(evt);
+            }
+        });
+        beveragesPanel.add(beer, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 450, 100, 90));
 
-        tequila.setText("TEQUILA");
+        tequila.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/beverages/tequila.jpg"))); // NOI18N
         tequila.setMaximumSize(new java.awt.Dimension(118, 118));
         tequila.setMinimumSize(new java.awt.Dimension(118, 118));
-        tequila.addActionListener(this::tequilaActionPerformed);
-        beveragesPanel.add(tequila, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 100, 90));
+        tequila.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tequilaActionPerformed(evt);
+            }
+        });
+        beveragesPanel.add(tequila, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 100, 90));
 
         tequilaPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tequilaPrice.setText("₱ 777");
         tequilaPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         tequilaPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(tequilaPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 590, 100, 20));
+        beveragesPanel.add(tequilaPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 540, 100, 20));
 
         beerPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         beerPrice.setText("₱ 777");
         beerPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         beerPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(beerPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 590, 100, 20));
+        beveragesPanel.add(beerPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 540, 100, 20));
 
         winePrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         winePrice.setText("₱ 777");
         winePrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         winePrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(winePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 590, 100, 20));
+        beveragesPanel.add(winePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 540, 100, 20));
 
         hardCiderPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         hardCiderPrice.setText("₱ 777");
         hardCiderPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         hardCiderPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(hardCiderPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 590, 100, 20));
+        beveragesPanel.add(hardCiderPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 430, 100, 20));
 
         meadPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         meadPrice.setText("₱ 777");
         meadPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         meadPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(meadPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 590, 100, 20));
+        beveragesPanel.add(meadPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 430, 100, 20));
 
-        vodka.setText("VODKA");
+        vodka.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/beverages/vodka.jpg"))); // NOI18N
         vodka.setMaximumSize(new java.awt.Dimension(118, 118));
         vodka.setMinimumSize(new java.awt.Dimension(118, 118));
-        vodka.addActionListener(this::vodkaActionPerformed);
-        beveragesPanel.add(vodka, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 610, 100, 90));
+        vodka.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vodkaActionPerformed(evt);
+            }
+        });
+        beveragesPanel.add(vodka, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 450, 100, 90));
 
-        rum.setText("RUM");
+        rum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/beverages/rum.jpg"))); // NOI18N
         rum.setMaximumSize(new java.awt.Dimension(118, 118));
         rum.setMinimumSize(new java.awt.Dimension(118, 118));
-        rum.addActionListener(this::rumActionPerformed);
-        beveragesPanel.add(rum, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 610, 100, 90));
+        rum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rumActionPerformed(evt);
+            }
+        });
+        beveragesPanel.add(rum, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 450, 100, 90));
 
-        whisky.setText("WHISKY");
+        whisky.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/beverages/whisky.png"))); // NOI18N
         whisky.setMaximumSize(new java.awt.Dimension(118, 118));
         whisky.setMinimumSize(new java.awt.Dimension(118, 118));
-        whisky.addActionListener(this::whiskyActionPerformed);
-        beveragesPanel.add(whisky, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 610, 100, 90));
+        whisky.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                whiskyActionPerformed(evt);
+            }
+        });
+        beveragesPanel.add(whisky, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 560, 100, 90));
 
-        brandy.setText("BRANDY");
+        brandy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/beverages/brandy.jpg"))); // NOI18N
         brandy.setMaximumSize(new java.awt.Dimension(118, 118));
         brandy.setMinimumSize(new java.awt.Dimension(118, 118));
-        brandy.addActionListener(this::brandyActionPerformed);
-        beveragesPanel.add(brandy, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 610, 100, 90));
+        brandy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                brandyActionPerformed(evt);
+            }
+        });
+        beveragesPanel.add(brandy, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 560, 100, 90));
 
-        gin.setText("GIN");
+        gin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/static/beverages/gin.jpg"))); // NOI18N
         gin.setMaximumSize(new java.awt.Dimension(118, 118));
         gin.setMinimumSize(new java.awt.Dimension(118, 118));
-        gin.addActionListener(this::ginActionPerformed);
-        beveragesPanel.add(gin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 610, 100, 90));
+        gin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ginActionPerformed(evt);
+            }
+        });
+        beveragesPanel.add(gin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 560, 100, 90));
 
         ginPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ginPrice.setText("₱ 777");
         ginPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         ginPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(ginPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 700, 100, 20));
+        beveragesPanel.add(ginPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 650, 100, 20));
 
         brandyPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         brandyPrice.setText("₱ 777");
         brandyPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         brandyPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(brandyPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 700, 100, 20));
+        beveragesPanel.add(brandyPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 650, 100, 20));
 
         whiskyPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         whiskyPrice.setText("₱ 777");
         whiskyPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         whiskyPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(whiskyPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 700, 100, 20));
+        beveragesPanel.add(whiskyPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 650, 100, 20));
 
         rumPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         rumPrice.setText("₱ 777");
         rumPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         rumPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(rumPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 700, 100, 20));
+        beveragesPanel.add(rumPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 540, 100, 20));
 
         vodkaPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         vodkaPrice.setText("₱ 777");
         vodkaPrice.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         vodkaPrice.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        beveragesPanel.add(vodkaPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 700, 100, 20));
+        beveragesPanel.add(vodkaPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 540, 100, 20));
 
         beveragesScroller.setViewportView(beveragesPanel);
 
@@ -1512,10 +1776,10 @@ public class Main extends JFrame {
                 "NAME", "PRICE", "CATEGORY", "QUANTITY", "DISCOUNT"
             }
         ) {
-            final Class[] types = new Class [] {
+            Class[] types = new Class [] {
                 java.lang.String.class, java.lang.Double.class, java.lang.Object.class, java.lang.Integer.class, java.lang.String.class
             };
-            final boolean[] canEdit = new boolean [] {
+            boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
             };
 
@@ -1550,16 +1814,16 @@ public class Main extends JFrame {
         totalPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         totalPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        totalLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        totalLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         totalLabel.setText("TOTAL:");
         totalPanel.add(totalLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
 
-        totalPesoSignLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        totalPesoSignLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         totalPesoSignLabel.setText("₱");
         totalPanel.add(totalPesoSignLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, -1, -1));
 
         total.setEditable(false);
-        total.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        total.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         total.setText("0.00");
         total.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         totalPanel.add(total, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 170, 30));
@@ -1569,16 +1833,16 @@ public class Main extends JFrame {
         subTotalPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         subTotalPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        subTotalLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        subTotalLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         subTotalLabel.setText("SUB TOTAL:");
         subTotalPanel.add(subTotalLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
 
-        subTotalPesoSignLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        subTotalPesoSignLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         subTotalPesoSignLabel.setText("₱");
         subTotalPanel.add(subTotalPesoSignLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, -1, -1));
 
         subTotal.setEditable(false);
-        subTotal.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        subTotal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         subTotal.setText("0.00");
         subTotal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         subTotalPanel.add(subTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 170, 30));
@@ -1588,17 +1852,17 @@ public class Main extends JFrame {
         totalDiscountPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         totalDiscountPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        totalDiscountPesoSignLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        totalDiscountPesoSignLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         totalDiscountPesoSignLabel.setText("₱");
         totalDiscountPanel.add(totalDiscountPesoSignLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, -1, -1));
 
         totalDiscount.setEditable(false);
-        totalDiscount.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        totalDiscount.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         totalDiscount.setText("0.00");
         totalDiscount.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         totalDiscountPanel.add(totalDiscount, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 170, 30));
 
-        totalDiscountLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        totalDiscountLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         totalDiscountLabel.setText("TOTAL DISCOUNT:");
         totalDiscountPanel.add(totalDiscountLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
 
@@ -1607,15 +1871,15 @@ public class Main extends JFrame {
         chashPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         chashPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        cashLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        cashLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         cashLabel.setText("CASH:");
         chashPanel.add(cashLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
 
-        cashPesoSignLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        cashPesoSignLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         cashPesoSignLabel.setText("₱");
         chashPanel.add(cashPesoSignLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, -1, -1));
 
-        cash.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        cash.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         cash.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         chashPanel.add(cash, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 160, 30));
 
@@ -1624,35 +1888,47 @@ public class Main extends JFrame {
         changePanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         changePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        changeLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        changeLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         changeLabel.setText("CHANGE:");
         changePanel.add(changeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
 
-        changePesoSignLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        changePesoSignLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         changePesoSignLabel.setText("₱");
         changePanel.add(changePesoSignLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, -1, -1));
 
         change.setEditable(false);
-        change.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18)); // NOI18N
+        change.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         change.setText("0.00");
         change.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         changePanel.add(change, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 160, 30));
 
         transactionPanel.add(changePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, 310, 30));
 
-        pay.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 24)); // NOI18N
+        pay.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         pay.setText("PAY");
-        pay.addActionListener(this::payActionPerformed);
+        pay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                payActionPerformed(evt);
+            }
+        });
         transactionPanel.add(pay, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 20, 110, 40));
 
-        removeItem.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 24)); // NOI18N
+        removeItem.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         removeItem.setText("REMOVE ITEM");
-        removeItem.addActionListener(this::removeItemActionPerformed);
+        removeItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeItemActionPerformed(evt);
+            }
+        });
         transactionPanel.add(removeItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 90, 210, 40));
 
-        reset.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 24)); // NOI18N
+        reset.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         reset.setText("RESET");
-        reset.addActionListener(this::resetActionPerformed);
+        reset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resetActionPerformed(evt);
+            }
+        });
         transactionPanel.add(reset, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 90, 110, 40));
 
         mainPanel.add(transactionPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 550, 1080, 150));
@@ -1717,7 +1993,7 @@ public class Main extends JFrame {
         }
     }//GEN-LAST:event_cleanFirstActionPerformed
 
-    private void myCleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myCleanActionPerformed
+    private void roombaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roombaActionPerformed
         try {
             Optional<Product> product = PRODUCT_SERVICE.getProductById().apply(6);
             if(product.isEmpty()) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS NOT AVAILABLE");
@@ -1727,7 +2003,7 @@ public class Main extends JFrame {
         } catch(RuntimeException runtimeException) {
             PROMPT.show.accept(runtimeException.getMessage(), true);
         }
-    }//GEN-LAST:event_myCleanActionPerformed
+    }//GEN-LAST:event_roombaActionPerformed
 
     private void gatoradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gatoradeActionPerformed
         try {
@@ -1852,7 +2128,7 @@ public class Main extends JFrame {
         }
     }//GEN-LAST:event_smartActionPerformed
 
-    private void hydroSafeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hydroSafeActionPerformed
+    private void spinMopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spinMopActionPerformed
         try {
             Optional<Product> product = PRODUCT_SERVICE.getProductById().apply(2);
             if(product.isEmpty()) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS NOT AVAILABLE");
@@ -1862,9 +2138,9 @@ public class Main extends JFrame {
         } catch(RuntimeException runtimeException) {
             PROMPT.show.accept(runtimeException.getMessage(), true);
         }
-    }//GEN-LAST:event_hydroSafeActionPerformed
+    }//GEN-LAST:event_spinMopActionPerformed
 
-    private void rightFlexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightFlexActionPerformed
+    private void windexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_windexActionPerformed
         try {
             Optional<Product> product = PRODUCT_SERVICE.getProductById().apply(3);
             if(product.isEmpty()) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS NOT AVAILABLE");
@@ -1874,7 +2150,7 @@ public class Main extends JFrame {
         } catch(RuntimeException runtimeException) {
             PROMPT.show.accept(runtimeException.getMessage(), true);
         }
-    }//GEN-LAST:event_rightFlexActionPerformed
+    }//GEN-LAST:event_windexActionPerformed
 
     private void cloroxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cloroxActionPerformed
         try {
@@ -1888,7 +2164,7 @@ public class Main extends JFrame {
         }
     }//GEN-LAST:event_cloroxActionPerformed
 
-    private void dirtBusterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dirtBusterActionPerformed
+    private void dysonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dysonActionPerformed
         try {
             Optional<Product> product = PRODUCT_SERVICE.getProductById().apply(5);
             if(product.isEmpty()) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS NOT AVAILABLE");
@@ -1898,7 +2174,7 @@ public class Main extends JFrame {
         } catch(RuntimeException runtimeException) {
             PROMPT.show.accept(runtimeException.getMessage(), true);
         }
-    }//GEN-LAST:event_dirtBusterActionPerformed
+    }//GEN-LAST:event_dysonActionPerformed
 
     private void cleanCutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleanCutActionPerformed
         try {
@@ -2055,7 +2331,7 @@ public class Main extends JFrame {
         }
     }//GEN-LAST:event_drosteActionPerformed
 
-    private void wittakersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wittakersActionPerformed
+    private void whittakersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_whittakersActionPerformed
         try {
             Optional<Product> product = PRODUCT_SERVICE.getProductById().apply(22);
             if(product.isEmpty()) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS NOT AVAILABLE");
@@ -2064,7 +2340,7 @@ public class Main extends JFrame {
             handleOrder(22);
         } catch(RuntimeException runtimeException) {
             PROMPT.show.accept(runtimeException.getMessage(), true);
-        }    }//GEN-LAST:event_wittakersActionPerformed
+        }    }//GEN-LAST:event_whittakersActionPerformed
 
     private void amedeiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amedeiActionPerformed
         try {
@@ -2221,7 +2497,7 @@ public class Main extends JFrame {
         }
     }//GEN-LAST:event_nestleActionPerformed
 
-    private void ghirardellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ghirardellActionPerformed
+    private void ghirardelliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ghirardelliActionPerformed
         try {
             Optional<Product> product = PRODUCT_SERVICE.getProductById().apply(37);
             if(product.isEmpty()) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS NOT AVAILABLE");
@@ -2231,7 +2507,7 @@ public class Main extends JFrame {
         } catch(RuntimeException runtimeException) {
             PROMPT.show.accept(runtimeException.getMessage(), true);
         }
-    }//GEN-LAST:event_ghirardellActionPerformed
+    }//GEN-LAST:event_ghirardelliActionPerformed
 
     private void cadburyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadburyActionPerformed
         try {
@@ -2400,7 +2676,7 @@ public class Main extends JFrame {
         }
     }//GEN-LAST:event_pineAppleJuiceActionPerformed
 
-    private void blackCherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blackCherActionPerformed
+    private void blackCherryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blackCherryActionPerformed
         try {
             Optional<Product> product = PRODUCT_SERVICE.getProductById().apply(58);
             if(product.isEmpty()) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS NOT AVAILABLE");
@@ -2410,7 +2686,7 @@ public class Main extends JFrame {
         } catch(RuntimeException runtimeException) {
             PROMPT.show.accept(runtimeException.getMessage(), true);
         }
-    }//GEN-LAST:event_blackCherActionPerformed
+    }//GEN-LAST:event_blackCherryActionPerformed
 
     private void beerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beerActionPerformed
         try {
@@ -2561,8 +2837,8 @@ public class Main extends JFrame {
     private static javax.swing.JLabel beerPrice;
     private javax.swing.JPanel beveragesPanel;
     private javax.swing.JScrollPane beveragesScroller;
-    private javax.swing.JButton blackCher;
-    private static javax.swing.JLabel blackCherPrice;
+    private javax.swing.JButton blackCherry;
+    private static javax.swing.JLabel blackCherryPrice;
     private javax.swing.JButton brandy;
     private static javax.swing.JLabel brandyPrice;
     private javax.swing.JButton budWeiser;
@@ -2595,8 +2871,6 @@ public class Main extends JFrame {
     private javax.swing.JLabel day;
     private javax.swing.JLabel dayTodayLabel;
     private javax.swing.JPanel dayTodayPanel;
-    private javax.swing.JButton dirtBuster;
-    private static javax.swing.JLabel dirtBustersPrice;
     private javax.swing.JButton dole;
     private static javax.swing.JLabel dolePrice;
     private javax.swing.JButton domex;
@@ -2605,6 +2879,8 @@ public class Main extends JFrame {
     private static javax.swing.JLabel dovePrice;
     private javax.swing.JButton droste;
     private static javax.swing.JLabel drostePrice;
+    private javax.swing.JButton dyson;
+    private static javax.swing.JLabel dysonPrice;
     private javax.swing.JButton esthechoc;
     private static javax.swing.JLabel esthechocPrice;
     private javax.swing.JButton exit;
@@ -2616,8 +2892,8 @@ public class Main extends JFrame {
     private static javax.swing.JLabel flyingNoirPrice;
     private javax.swing.JButton gatorade;
     private static javax.swing.JLabel gatoradePrice;
-    private javax.swing.JButton ghirardell;
-    private static javax.swing.JLabel ghirardellPrice;
+    private javax.swing.JButton ghirardelli;
+    private static javax.swing.JLabel ghirardelliPrice;
     private javax.swing.JButton gin;
     private static javax.swing.JLabel ginPrice;
     private javax.swing.JButton godiva;
@@ -2632,8 +2908,6 @@ public class Main extends JFrame {
     private static javax.swing.JLabel heinekenPrice;
     private javax.swing.JButton hersheys;
     private static javax.swing.JLabel hersheysPrice;
-    private javax.swing.JButton hydroSafe;
-    private static javax.swing.JLabel hydroSafePrice;
     private javax.swing.JPanel informationPanel;
     private javax.swing.JButton jacquesGenin;
     private static javax.swing.JLabel jacquesGeninPrice;
@@ -2645,7 +2919,6 @@ public class Main extends JFrame {
     private static javax.swing.JLabel koolAidPrice;
     private javax.swing.JButton lipton;
     private static javax.swing.JLabel liptonPrice;
-    private javax.swing.JLabel liquorsLabel;
     private javax.swing.JButton lysol;
     private static javax.swing.JLabel lysolPrice;
     private javax.swing.JPanel mainPanel;
@@ -2665,8 +2938,6 @@ public class Main extends JFrame {
     private javax.swing.JButton mrClean;
     private javax.swing.JButton mrMuscle;
     private static javax.swing.JLabel mrMusclePrice;
-    private javax.swing.JButton myClean;
-    private static javax.swing.JLabel myCleanPrice;
     private javax.swing.JButton nestle;
     private static javax.swing.JLabel nestlePrice;
     public static javax.swing.JLabel numberOfExpiredProducts;
@@ -2687,10 +2958,10 @@ public class Main extends JFrame {
     private javax.swing.JButton reset;
     private javax.swing.JButton richart;
     private static javax.swing.JLabel richartPrice;
-    private javax.swing.JButton rightFlex;
-    private static javax.swing.JLabel rightFlexPrice;
     private javax.swing.JButton ritterSport;
     private static javax.swing.JLabel ritterSportPrice;
+    private javax.swing.JButton roomba;
+    private static javax.swing.JLabel roombaPrice;
     private javax.swing.JButton rum;
     private static javax.swing.JLabel rumPrice;
     private javax.swing.JButton russelStover;
@@ -2701,6 +2972,8 @@ public class Main extends JFrame {
     private static javax.swing.JLabel smartPrice;
     private javax.swing.JButton snickers;
     private static javax.swing.JLabel snickersPrice;
+    private javax.swing.JButton spinMop;
+    private static javax.swing.JLabel spinMopPrice;
     private javax.swing.JButton sprite;
     private static javax.swing.JLabel spritePrice;
     private javax.swing.JTextField subTotal;
@@ -2737,9 +3010,11 @@ public class Main extends JFrame {
     private static javax.swing.JLabel vodkaPrice;
     private javax.swing.JButton whisky;
     private static javax.swing.JLabel whiskyPrice;
+    private javax.swing.JButton whittakers;
+    private static javax.swing.JLabel whittakersPrice;
+    private javax.swing.JButton windex;
+    private static javax.swing.JLabel windexPrice;
     private javax.swing.JButton wine;
     private static javax.swing.JLabel winePrice;
-    private javax.swing.JButton wittakers;
-    private static javax.swing.JLabel wittakersPrice;
     // End of variables declaration//GEN-END:variables
 }
