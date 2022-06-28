@@ -5,13 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.pos.repository.ProductRepository;
 import java.util.stream.Collectors;
+import com.pos.validation.Checker;
 import com.pos.entity.Category;
 import com.pos.entity.Product;
 import java.util.function.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
-import com.pos.validation.Checker;
+import java.util.Arrays;
 import java.util.List;
 import java.io.File;
 
@@ -132,6 +133,7 @@ public class ProductServiceImplementation implements ProductService {
             expired
          */
         List<Product> products = new ArrayList<>();
+
         products.add(
                 new Product(
                         "CLEAN FIRST",
@@ -145,10 +147,10 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
-                        "HYDRO SAFE",
+                        "SPIN MOP",
                         40.41,
                         Category.CLEANING_PRODUCT,
-                        LocalDate.of(2023, 1, 1),
+                        LocalDate.of(2030, 1, 1),
                         100,
                         0.0,
                         LocalDate.of(2023, 1, 1).isBefore(LocalDate.now())
@@ -156,7 +158,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
-                        "RIGHT FLEX",
+                        "WINDEX",
                         34.12,
                         Category.CLEANING_PRODUCT,
                         LocalDate.of(2023, 1, 1),
@@ -178,10 +180,10 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
-                        "DIRTBUSTERS",
-                        45.69,
+                        "DYSON HAND VACUUM CLEANER",
+                        3000.00,
                         Category.CLEANING_PRODUCT,
-                        LocalDate.of(2023, 1, 1),
+                        LocalDate.of(2030, 1, 1),
                         100,
                         0.0,
                         LocalDate.of(2023, 1, 1).isBefore(LocalDate.now())
@@ -189,10 +191,10 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
-                        "MY CLEAN",
-                        89.60,
+                        "ROOMBA ROBOT VACUUM CLEANER",
+                        5069.99,
                         Category.CLEANING_PRODUCT,
-                        LocalDate.of(2023, 1, 1),
+                        LocalDate.of(2030, 1, 1),
                         100,
                         0.0,
                         LocalDate.of(2023, 1, 1).isBefore(LocalDate.now())
@@ -201,9 +203,9 @@ public class ProductServiceImplementation implements ProductService {
         products.add(
                 new Product(
                         "CLEAN CUT",
-                        120.12,
+                        260.12,
                         Category.CLEANING_PRODUCT,
-                        LocalDate.of(2023, 1, 1),
+                        LocalDate.of(2022, 7, 1),
                         100,
                         0.0,
                         LocalDate.of(2023, 1, 1).isBefore(LocalDate.now())
@@ -368,7 +370,7 @@ public class ProductServiceImplementation implements ProductService {
         );
         products.add(
                 new Product(
-                        "WITTAKER'S",
+                        "WHITTAKER'S",
                         126.00,
                         Category.CHOCOLATE,
                         LocalDate.of(2022, 7, 25),
