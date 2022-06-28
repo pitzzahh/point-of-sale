@@ -141,7 +141,7 @@ public class ManageProducts extends javax.swing.JFrame {
         try {
             int selectedProductId = getProductFromTable(AVAILABLE_PRODUCTS_TABLE);
             if (AVAILABLE_PRODUCTS.isEmpty()) throw new IllegalStateException("THERE ARE NO AVAILABLE PRODUCTS");
-            String options = (whatToUpdate == 3) ? "STOCKS" : (whatToUpdate == 4) ? "PRICE" : (whatToUpdate == 5) ? "DISCOUNT" : "NULL";
+            String options = (whatToUpdate == EDIT_STOCKS) ? "STOCKS" : (whatToUpdate == EDIT_PRICE) ? "PRICE" : (whatToUpdate == EDIT_DISCOUNT) ? "DISCOUNT" : "NULL";
             if (selectedProductId == 0) throw new IllegalStateException("TO ADD " + options + "  TO A PRODUCT\nPLEASE SELECT A ROW FROM THE TABLE AND CLICK " + options);
             temporaryString = String.valueOf(JOptionPane.showInputDialog("ENTER NEW " + options));
 
