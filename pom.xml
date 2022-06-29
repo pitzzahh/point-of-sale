@@ -30,12 +30,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-
-		<dependency>
 			<groupId>org.netbeans.external</groupId>
 			<artifactId>AbsoluteLayout</artifactId>
 			<version>RELEASE130</version>
@@ -51,64 +45,6 @@
 			<artifactId>postgresql</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>net.bytebuddy</groupId>
-			<artifactId>byte-buddy</artifactId>
-		</dependency>
-                
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		 <dependency>
-			  <groupId>org.eclipse.persistence</groupId>
-			  <artifactId>org.eclipse.persistence.core</artifactId>
-			  <version>3.0.2</version>
-		 </dependency>
-
-		 <dependency>
-			  <groupId>org.eclipse.persistence</groupId>
-			  <artifactId>org.eclipse.persistence.asm</artifactId>
-			  <version>9.2.0</version>
-		 </dependency>
-
-		 <dependency>
-			  <groupId>org.eclipse.persistence</groupId>
-			  <artifactId>org.eclipse.persistence.antlr</artifactId>
-			  <version>2.7.10</version>
-		 </dependency>
-
-		 <dependency>
-			  <groupId>org.eclipse.persistence</groupId>
-			  <artifactId>org.eclipse.persistence.jpa</artifactId>
-			  <version>3.0.2</version>
-		 </dependency>
-
-		 <dependency>
-			  <groupId>org.eclipse.persistence</groupId>
-			  <artifactId>org.eclipse.persistence.jpa.jpql</artifactId>
-			  <version>3.0.2</version>
-		 </dependency>
-
-		 <dependency>
-			  <groupId>org.eclipse.persistence</groupId>
-			  <artifactId>org.eclipse.persistence.moxy</artifactId>
-			  <version>3.0.2</version>
-		 </dependency>
-
-		 <dependency>
-			  <groupId>org.eclipse.persistence</groupId>
-			  <artifactId>javax.persistence</artifactId>
-			  <version>2.2.1</version>
-		 </dependency>
-	 <dependency>
-	  <groupId>org.junit.jupiter</groupId>
-	  <artifactId>junit-jupiter-api</artifactId>
-	  <version>5.8.2</version>
-	  <type>jar</type>
-	 </dependency>
 	</dependencies>
 
 	<build>
@@ -117,50 +53,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>16</source>
-					<target>16</target>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
-        
-	<repositories>
-		<repository>
-			<id>spring-snapshots</id>
-			<name>Spring Snapshots</name>
-			<url>https://repo.spring.io/snapshot</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
-		</repository>
-	</repositories>
-        
-	<pluginRepositories>
-            
-		<pluginRepository>
-			<id>spring-snapshots</id>
-			<name>Spring Snapshots</name>
-			<url>https://repo.spring.io/snapshot</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</pluginRepository>
-                
-		<pluginRepository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
-		</pluginRepository>
-                
-	</pluginRepositories>
-        
+
 </project>
