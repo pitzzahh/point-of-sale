@@ -14,6 +14,10 @@
   <restartOnCrash>false</restartOnCrash>
   <manifest></manifest>
   <icon>D:\myJavaProjects\app.ico</icon>
+  <singleInstance>
+    <mutexName>Poing Of Sale</mutexName>
+    <windowTitle>pointOfSale</windowTitle>
+  </singleInstance>
   <jre>
     <path></path>
     <bundledJre64Bit>false</bundledJre64Bit>
@@ -25,12 +29,12 @@
     <maxHeapSize>400</maxHeapSize>
   </jre>
   <versionInfo>
-    <fileVersion>1.0.0.0</fileVersion>
-    <txtFileVersion>1.0.0.0</txtFileVersion>
+    <fileVersion>1.2.0.0</fileVersion>
+    <txtFileVersion>1.2.0.0</txtFileVersion>
     <fileDescription>Point of sale system</fileDescription>
     <copyright>pitzzahh</copyright>
-    <productVersion>1.0.0.0</productVersion>
-    <txtProductVersion>1.0.0.0</txtProductVersion>
+    <productVersion>1.2.0.0</productVersion>
+    <txtProductVersion>1.2.0.0</txtProductVersion>
     <productName>Point of Sale</productName>
     <companyName>pitzzahh</companyName>
     <internalName>PointOfSale</internalName>
