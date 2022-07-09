@@ -1,4 +1,4 @@
-package com.pos.entity;
+package com.pos.enums;
 
 public enum Category {
     CLEANING_PRODUCT,

@@ -11,7 +11,7 @@ import com.pos.service.SalesService;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.pos.validation.Checker;
 import java.util.stream.Collectors;
-import com.pos.entity.Category;
+import com.pos.enums.Category;
 import java.text.NumberFormat;
 import com.pos.entity.Product;
 import javax.imageio.ImageIO;

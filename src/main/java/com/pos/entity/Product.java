@@ -1,5 +1,7 @@
 package com.pos.entity;
 
+import com.pos.enums.Category;
+
 import static javax.persistence.GenerationType.SEQUENCE;
 import java.io.Serializable;
 import java.time.LocalDate;

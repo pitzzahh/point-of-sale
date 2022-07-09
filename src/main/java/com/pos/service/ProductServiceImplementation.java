@@ -6,13 +6,12 @@ import org.springframework.stereotype.Service;
 import com.pos.repository.ProductRepository;
 import java.util.stream.Collectors;
 import com.pos.validation.Checker;
-import com.pos.entity.Category;
+import com.pos.enums.Category;
 import com.pos.entity.Product;
 import java.util.function.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
-import java.util.Arrays;
 import java.util.List;
 import java.io.File;
 

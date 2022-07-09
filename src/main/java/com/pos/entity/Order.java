@@ -1,5 +1,7 @@
 package com.pos.entity;
 
+import com.pos.enums.Category;
+
 /**
  * Class for making orders.
  * Not an entity.
