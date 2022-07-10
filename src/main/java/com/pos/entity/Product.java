@@ -2,10 +2,7 @@ package com.pos.entity;
 
 import com.pos.enums.Category;
 import java.time.LocalDate;
-import java.util.Optional;
-
 import lombok.*;
-
 
 
 /**
@@ -36,8 +33,5 @@ public class Product {
         this.discount = discount;
     }
 
-    public Product(Optional<Product> product) {
-
-    }
 }
 

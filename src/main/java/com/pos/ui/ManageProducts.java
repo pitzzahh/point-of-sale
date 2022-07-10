@@ -3,11 +3,11 @@ package com.pos.ui;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import com.formdev.flatlaf.FlatDarkLaf;
-import com.pos.enums.Status;
 import com.pos.service.ProductService;
 import static com.pos.ui.Main.*;
 import com.pos.entity.Product;
 import javax.imageio.ImageIO;
+import com.pos.enums.Status;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -182,7 +182,7 @@ public class ManageProducts extends javax.swing.JFrame {
             }
             else throw new IllegalStateException("INVALID " + options);
         } catch (RuntimeException runtimeException) {
-            if(temporaryString != null) Main.PROMPT.show.accept(status.toString(), true);
+            if(temporaryString != null) Main.PROMPT.show.accept(runtimeException.getMessage(), true);
         }
     } // </editor-fold>//
     
@@ -410,9 +410,10 @@ public class ManageProducts extends javax.swing.JFrame {
      * @param evt not used.
      */
     private void removeAllProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeAllProductsActionPerformed
+        Status status = Status.ERROR_REMOVING_ALL_PRODUCTS;
         try {
             if (EXPIRED_PRODUCTS.isEmpty()) throw new IllegalStateException("THERE ARE NO EXPIRED PRODUCTS TO BE REMOVED\nLIST IS EMPTY");
-            PRODUCT_SERVICE.deleteAllExpiredProducts();
+            status = PRODUCT_SERVICE.deleteAllExpiredProducts().get();
             EXPIRED_PRODUCTS.clear();
             loadExpiredProducts();
             refreshTable(EXPIRED_PRODUCTS_TABLE);

@@ -1,16 +1,15 @@
 package com.pos.dao;
 
-import com.pos.entity.Product;
-import com.pos.enums.Category;
+import static org.junit.jupiter.api.Assertions.*;
 import com.pos.service.ProductService;
 import org.junit.jupiter.api.Test;
+import com.pos.enums.Category;
+import com.pos.entity.Product;
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
+import java.time.Month;
+import java.util.List;
 
 class QueriesTest {
 

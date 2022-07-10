@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch4jConfig>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar>D:\myJavaProjects\point-of-sale\target\pos-1.0-SNAPSHOT-jar-with-dependencies.jar</jar>
+  <outfile>D:\Documents\COMPUTER PROGRAMMING\PointOfSale.exe</outfile>
+  <errTitle></errTitle>
+  <cmdLine></cmdLine>
+  <chdir>.</chdir>
+  <priority>normal</priority>
+  <downloadUrl>http://java.com/download</downloadUrl>
+  <supportUrl></supportUrl>
+  <stayAlive>false</stayAlive>
+  <restartOnCrash>false</restartOnCrash>
+  <manifest></manifest>
+  <icon>D:\Pictures\New folder\computer.ico</icon>
+  <singleInstance>
+    <mutexName>PointOfSale</mutexName>
+    <windowTitle>Point of Sale System</windowTitle>
+  </singleInstance>
+  <jre>
+    <path></path>
+    <bundledJre64Bit>false</bundledJre64Bit>
+    <bundledJreAsFallback>false</bundledJreAsFallback>
+    <minVersion>17</minVersion>
+    <maxVersion>18</maxVersion>
+    <jdkPreference>preferJre</jdkPreference>
+    <runtimeBits>64/32</runtimeBits>
+    <initialHeapSize>300</initialHeapSize>
+    <maxHeapSize>300</maxHeapSize>
+  </jre>
+  <versionInfo>
+    <fileVersion>1.2.1.0</fileVersion>
+    <txtFileVersion>1.2.1.0</txtFileVersion>
+    <fileDescription>Point of Sale System</fileDescription>
+    <copyright>Point of Sale System</copyright>
+    <productVersion>1.2.1.0</productVersion>
+    <txtProductVersion>1.2.1.0</txtProductVersion>
+    <productName>Point of Sale system</productName>
+    <companyName></companyName>
+    <internalName>Point of Sale</internalName>
+    <originalFilename>PointOfSale.exe</originalFilename>
+    <trademarks></trademarks>
+    <language>ENGLISH_US</language>
+  </versionInfo>
+</launch4jConfig>

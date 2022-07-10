@@ -112,7 +112,7 @@ public class ProgressBar extends javax.swing.JFrame {
 
             try {
                 for(int i = 0; i <= 100; i++ ) {
-                    Thread.sleep(RANDOM.nextInt(100) + 1);
+                    Thread.sleep(RANDOM.nextInt(50) + 1);
                     loggingOutProgress.percentage.setText(i + " %");
                     switch(i) {
                         case 5 -> {
@@ -162,7 +162,7 @@ public class ProgressBar extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, interruptedException.getMessage());
             }
         });
-        PROGRESS_BAR_THREAD.setPriority(Thread.MIN_PRIORITY);
+        PROGRESS_BAR_THREAD.setPriority(Thread.NORM_PRIORITY);
         PROGRESS_BAR_THREAD.start();
     } // </editor-fold>
 
