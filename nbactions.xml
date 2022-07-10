@@ -13,7 +13,7 @@
                 <exec.vmArgs></exec.vmArgs>
                 <exec.args>${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}</exec.args>
                 <exec.appArgs>hello world</exec.appArgs>
-                <exec.mainClass>com.pos.App</exec.mainClass>
+                <exec.mainClass>com.github.pitzzahh.App</exec.mainClass>
                 <exec.executable>java</exec.executable>
                 <exec.workingdir>D:\myJavaProjects\point-of-sale</exec.workingdir>
             </properties>
@@ -31,7 +31,7 @@
                 <exec.vmArgs>-agentlib:jdwp=transport=dt_socket,server=n,address=${jpda.address}</exec.vmArgs>
                 <exec.args>${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}</exec.args>
                 <exec.appArgs>hello world</exec.appArgs>
-                <exec.mainClass>com.pos.App</exec.mainClass>
+                <exec.mainClass>com.github.pitzzahh.App</exec.mainClass>
                 <exec.executable>java</exec.executable>
                 <jpda.listen>true</jpda.listen>
                 <exec.workingdir>D:\myJavaProjects\point-of-sale</exec.workingdir>
@@ -49,7 +49,7 @@
             <properties>
                 <exec.vmArgs></exec.vmArgs>
                 <exec.args>${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}</exec.args>
-                <exec.mainClass>com.pos.App</exec.mainClass>
+                <exec.mainClass>com.github.pitzzahh.App</exec.mainClass>
                 <exec.executable>java</exec.executable>
                 <exec.appArgs>hello world</exec.appArgs>
                 <exec.workingdir>D:\myJavaProjects\point-of-sale</exec.workingdir>

@@ -81,7 +81,7 @@
 
 						<manifest>
 							<addClasspath>true</addClasspath>
-							<mainClass>com.pos.App</mainClass>
+							<mainClass>com.github.pitzzahh.App</mainClass>
 						</manifest>
 
 						<manifestEntries>
