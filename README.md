@@ -1,4 +1,7 @@
 # point-of-sale
+![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white)
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+
 ![1](https://github.com/pitzzahh/point-of-sale/blob/0962af88d0e7115b207245555a434670e69d273b/main_ui.png?raw=true)
 
 # How to run the application
