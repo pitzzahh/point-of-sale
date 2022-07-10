@@ -56,7 +56,7 @@ public class ManageProducts extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Method that loads the available products which are not expired from the database to the List<Product> AVAILABLE_PRODUCTS.">//
     private void loadAvailableProducts() {
-        Main.ALL_PRODUCTS
+        ALL_PRODUCTS
                 .stream()
                 .map(p -> p.get())
                 .filter(p -> p.getExpirationDate().isAfter(LocalDate.now()))
@@ -104,6 +104,8 @@ public class ManageProducts extends javax.swing.JFrame {
                 defaultTableModel.addRow(data);
             }
         }
+        ALL_PRODUCTS.clear();
+        Main.getAllProductsToList();
         setProductsInfo();
         numberOfExpiredProducts.setText(String.valueOf(getExpiredProductsCount()));
         numberOfExpiredProducts.setForeground((getExpiredProductsCount() > 0) ? new java.awt.Color(255, 0, 0) : new java.awt.Color(0, 0, 255));
