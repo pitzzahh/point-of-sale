@@ -152,9 +152,6 @@ public class ProgressBar extends javax.swing.JFrame {
                     if (whatProgress == EDITING_PRODUCTS) {
                         assert manageProducts != null;
                         manageProducts.run();
-                        Main.ALL_PRODUCTS.clear();
-                        Main.getAllProductsToList();
-                        Main.setProductsInfo();
                     }
                     if (whatProgress == VIEWING_REVENUE) {
                         assert viewRevenue != null;
