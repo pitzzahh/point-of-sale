@@ -22,7 +22,7 @@
 
 # Note
 
-- Before running the application, execute the sql file stored in the resource folder. Without doing so the products will not be available.
+- Before running the application, execute the sql file stored in the resource folder. Without doing so the products will not be available, and the application will stuck at loading.
 - At the first start of the application, a text file will be created and stored in ```C:\Users\Public\check.txt```
 - The file denotes that the products have been inserted into the table.
 - If you delete the file and try to rerun the application, the products will be inserted again into the table in the database, which should not happen.
