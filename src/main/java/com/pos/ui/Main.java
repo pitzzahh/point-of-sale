@@ -361,7 +361,6 @@ public class Main extends JFrame {
     private void processOrder(int productId) {
         try {
             Optional<Product> product = ALL_PRODUCTS.stream().filter(p -> p.get().getId() == productId).findAny().orElse(Optional.empty());
-            System.out.println("PRODUCT: " + product);
             if(product.isEmpty()) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS NOT AVAILABLE");
             else if (isOutOfStock(productId)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS OUT OF STOCK");
             else if(isProductExpired(productId)) throw new IllegalStateException("CANNOT ADD PRODUCT\nPRODUCT IS EXPIRED");
