@@ -129,7 +129,7 @@ public class Main extends JFrame {
                 .map(Order::getQuantity)
                 .findAny()
                 .get();
-
+        if(productQuantity >= p.getStocks() && !isRemovingProduct) throw new IllegalStateException("CANNOT ADD MORE\nPRODUCT WILL BE OUT OF STOCK");
         if (productQuantity == 1 && isRemovingProduct) ORDERS_LIST.removeIf(o -> o.getName().equals(order.getName()));
         else {
             ORDERS_LIST.stream()
@@ -353,9 +353,10 @@ public class Main extends JFrame {
         refreshOrdersTable();
     } // </editor-fold>//
 
+    // <editor-fold defaultstate="collapsed" desc="Method that returns the product status a String.">//
     private static String getProductLabel(char PESO_SIGN, Hashtable expiredProducts, Hashtable outOfStockProducts, Hashtable priceList, int id) {
         return (expiredProducts.containsKey(id)) ? "EXPIRED" : (outOfStockProducts.containsKey(1)) ? "OUT OF STOCK" : (priceList.containsKey(id)) ? PESO_SIGN + " " + priceList.get(id) : "NOT AVAILABLE";
-    }
+    } // </editor-fold>//
 
     private void processOrder(int productId) {
         try {
