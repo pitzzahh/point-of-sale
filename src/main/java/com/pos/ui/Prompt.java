@@ -1,7 +1,7 @@
 package com.pos.ui;
 
-import javax.swing.*;
 import java.util.function.BiConsumer;
+import javax.swing.*;
 
 /**
  *

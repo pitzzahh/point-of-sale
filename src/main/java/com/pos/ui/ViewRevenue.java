@@ -1,7 +1,5 @@
 package com.pos.ui;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.AbstractApplicationContext;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import com.formdev.flatlaf.FlatDarkLaf;
@@ -9,7 +7,6 @@ import com.pos.service.SalesService;
 import com.pos.entity.Sales;
 import javax.imageio.ImageIO;
 import java.util.ArrayList;
-import com.pos.Config;
 import java.util.List;
 import javax.swing.*;
 import java.net.URL;
@@ -22,13 +19,12 @@ import java.awt.*;
 public class ViewRevenue extends javax.swing.JFrame {
     
     private final List<Sales> SALES = new ArrayList<>();
-    
-    private final AbstractApplicationContext CONTEXT=  new AnnotationConfigApplicationContext(Config.class);
-    
-    private final SalesService SALES_SERVICE = CONTEXT.getBean(SalesService.class);
+
+    private final SalesService SALES_SERVICE = new SalesService();
     
     // <editor-fold defaultstate="collapsed" desc="Creates new form ViewSales">//
     public ViewRevenue() {
+        SALES_SERVICE.setDataSource().accept(SalesService.getDataSource());
         FlatDarkLaf.setup();
         initComponents();
         setIcon();
@@ -64,9 +60,8 @@ public class ViewRevenue extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Method that computes the total revenue from profits.">//
     private void getTotalRevenue() {
-        double totalProfit = SALES_SERVICE.getAllProfit()
-                .get()
-                .stream()
+        double totalProfit = SALES.stream()
+                .map(Sales::getProfit)
                 .reduce(0.0, Double::sum);
         totalRevenue.setText(String.valueOf(Main.NUMBER_FORMAT.format(totalProfit)));
     } // </editor-fold>//

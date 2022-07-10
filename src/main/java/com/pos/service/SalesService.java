@@ -1,20 +1,12 @@
 package com.pos.service;
 
-import java.util.function.Consumer;
-import java.util.function.Supplier;
-import com.pos.entity.Sales;
-import java.util.List;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import com.pos.database.DatabaseConnection;
+import com.pos.dao.SalesDAOImplementation;
 
-/**
- *
- * @author peter
- */
-public interface SalesService {
-    
-    Supplier<List<Sales>>  getAllSales();
-    
-    Consumer<Sales> saveSales();
-    
-    Supplier<List<Double>> getAllProfit();
-    
+public class SalesService extends SalesDAOImplementation implements DatabaseConnection {
+
+    public static DriverManagerDataSource getDataSource() {
+        return DatabaseConnection.getDataSource();
+    }
 }

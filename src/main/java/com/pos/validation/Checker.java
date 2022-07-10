@@ -1,6 +1,5 @@
 package com.pos.validation;
 
-import javax.swing.*;
 import java.io.*;
 
 /**

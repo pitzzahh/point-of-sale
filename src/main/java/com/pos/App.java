@@ -118,13 +118,13 @@ public class App extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+
         try {
             UIManager.setLookAndFeel(new FlatDarkLaf());
         } catch (UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
+
         App app = new App();
         final Random RANDOM = new Random();
         app.setVisible(true);
@@ -141,7 +141,7 @@ public class App extends javax.swing.JFrame {
                     case 6 -> app.message.setText("LOADING..");
                     case 7 -> app.message.setText("LOADING...");
                     case 20 -> app.message.setText("INITIALIZING POINT OF SALES.");
-                        
+
                     case 30 -> app.message.setText("INITIALIZING POINT OF SALES..");
                     case 35 -> app.message.setText("INITIALIZING POINT OF SALES...");
                     case 40 -> app.message.setText("CONNECTING TO DATABASE.");

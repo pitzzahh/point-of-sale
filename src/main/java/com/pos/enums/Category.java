@@ -2,6 +2,6 @@ package com.pos.enums;
 
 public enum Category {
     CLEANING_PRODUCT,
-    BEVERAGE,
-    CHOCOLATE
+    CHOCOLATE,
+    BEVERAGE
 }

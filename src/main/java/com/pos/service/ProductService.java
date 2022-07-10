@@ -1,39 +1,13 @@
 package com.pos.service;
 
-import com.pos.entity.Product;
-import java.util.function.*;
-import java.util.Optional;
-import java.util.List;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import com.pos.dao.ProductDAOImplementation;
+import com.pos.database.DatabaseConnection;
 
-public interface ProductService {
+public class ProductService extends ProductDAOImplementation implements DatabaseConnection {
 
-    Supplier<List<Product>> getAllProducts();
-
-    Supplier<Integer> getExpiredProductsCount();
-
-    Consumer<Product> saveProduct();
-
-    Consumer<List<Product>> saveAllProducts();
-
-    Function<Integer, Optional<Product>> getProductById();
-    Function<Integer, Double> getProductPriceById();
-    
-    Function<String, Product> getProductByName();
-
-    Function<Integer, Integer> getProductStocksById();
-    
-    BiConsumer<Double, Integer> updateProductPriceById();
-
-    BiConsumer<Integer, String> updateProductStocksByName();
-
-    BiConsumer<Double, Integer> updateProductDiscountById();
-
-    Consumer<Integer> deleteProductById();
-
-    void deleteAllExpiredProducts();
-
-    void insertAllProductsToDatabase();
-    
-    void updateAllProductsExpirationDate();
+    public static DriverManagerDataSource getDataSource() {
+        return DatabaseConnection.getDataSource();
+    }
 
 }

@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS sales (
+    sales_number SERIAL NOT NULL PRIMARY KEY,
+    date_processed DATE NOT NULL,
+    profit DOUBLE PRECISION NOT NULL
+);
