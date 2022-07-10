@@ -30,12 +30,13 @@ public class Main extends JFrame {
 
     public static final String OS_NAME = System.getProperty("os.name", "").toUpperCase();
 
-    private static final ProductService PRODUCT_SERVICE = new ProductService();
+    public static final ProductService PRODUCT_SERVICE = new ProductService();
 
     private static final SalesService SALES_SERVICE = new SalesService();
 
     private final List<Order> ORDERS_LIST = new ArrayList<>();
-    private static List<Optional<Product>> ALL_PRODUCTS = new ArrayList<>();
+
+    public static List<Optional<Product>> ALL_PRODUCTS = new ArrayList<>();
 
     public static final NumberFormat NUMBER_FORMAT = NumberFormat.getInstance(Locale.ENGLISH);
 
@@ -45,10 +46,7 @@ public class Main extends JFrame {
     public Main() {
         PRODUCT_SERVICE.setDataSource().accept(ProductService.getDataSource());
         SALES_SERVICE.setDataSource().accept(SalesService.getDataSource());
-        PRODUCT_SERVICE.getAllProducts()
-                        .get()
-                        .stream()
-                        .forEach(ALL_PRODUCTS::add);
+        getAllProductsToList();
         FlatDarkLaf.setup();
         initComponents();
         setIcon();
@@ -63,6 +61,13 @@ public class Main extends JFrame {
         ordersTable.getColumnModel().getColumn(3).setCellRenderer(RENDERER);
         ordersTable.getColumnModel().getColumn(4).setCellRenderer(RENDERER);
     } // </editor-fold>
+
+    public static void getAllProductsToList() {
+        PRODUCT_SERVICE.getAllProducts()
+                        .get()
+                        .stream()
+                        .forEach(ALL_PRODUCTS::add);
+    }
 
     // <editor-fold defaultstate="collapsed" desc="Creates a Hashtable of expired products.">//
     private static Hashtable<Integer, String> getExpiredProducts() {

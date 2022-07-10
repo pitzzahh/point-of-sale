@@ -3,7 +3,6 @@ package com.pos.ui;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import com.formdev.flatlaf.FlatDarkLaf;
-import com.pos.service.ProductService;
 import static com.pos.ui.Main.*;
 import com.pos.entity.Product;
 import javax.imageio.ImageIO;
@@ -26,8 +25,6 @@ public class ManageProducts extends javax.swing.JFrame {
 
     public static List<Product> EXPIRED_PRODUCTS = new ArrayList<>();
 
-    private static final ProductService PRODUCT_SERVICE = new ProductService();
-
     private static final int AVAILABLE_PRODUCTS_TABLE = 1;
     private static final int EXPIRED_PRODUCTS_TABLE = 2;
     
@@ -37,7 +34,6 @@ public class ManageProducts extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Creates new form ExpiredProducts">//
     public ManageProducts() {
-        PRODUCT_SERVICE.setDataSource().accept(ProductService.getDataSource());
         FlatDarkLaf.setup();
         initComponents();
         setIcon();
@@ -60,9 +56,7 @@ public class ManageProducts extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Method that loads the available products which are not expired from the database to the List<Product> AVAILABLE_PRODUCTS.">//
     private void loadAvailableProducts() {
-        PRODUCT_SERVICE
-                .getAllProducts()
-                .get()
+        Main.ALL_PRODUCTS
                 .stream()
                 .map(p -> p.get())
                 .filter(p -> p.getExpirationDate().isAfter(LocalDate.now()))
@@ -72,9 +66,7 @@ public class ManageProducts extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Method that loads the expired products from the database to the List<Product> EXPIRED_PRODUCTS.">//
     private void loadExpiredProducts() {
-        PRODUCT_SERVICE
-                .getAllProducts()
-                .get()
+        Main.ALL_PRODUCTS
                 .stream()
                 .map(p -> p.get())
                 .filter(p -> p.getExpirationDate().isBefore(LocalDate.now()))
@@ -157,13 +149,13 @@ public class ManageProducts extends javax.swing.JFrame {
                     newStocks = Integer.parseInt(temporaryString);
                     if (newStocks <= 0) throw new IllegalStateException("NEW STOCK SHOULD NOT BE LESS THAN OR EQUAL TO 0");
                     if(product.get().getStocks() > newStocks) throw new IllegalStateException("NEW STOCKS SHOULD NOT BE LESS THAN CURRENT STOCKS");
-                    status = PRODUCT_SERVICE.updateProductStocksByName().apply(newStocks, product.get().getName());
+                    status = Main.PRODUCT_SERVICE.updateProductStocksByName().apply(newStocks, product.get().getName());
                 }
 
                 if(whatToUpdate == EDIT_PRICE) {
                     newPrice = Double.parseDouble(temporaryString);
                     if (newPrice <= 0) throw new IllegalStateException("INVALID PRICE\nPRICE SHOULD NOT BE LESS THAN OR EQUAL TO 0");
-                    status = PRODUCT_SERVICE.updateProductPriceById().apply(newPrice, selectedProductId);
+                    status = Main.PRODUCT_SERVICE.updateProductPriceById().apply(newPrice, selectedProductId);
                 }
 
                 if(whatToUpdate == EDIT_DISCOUNT) {
@@ -171,9 +163,9 @@ public class ManageProducts extends javax.swing.JFrame {
                     else newDiscount = Double.parseDouble(temporaryString);
                     double product_price = product.get().getPrice();
                     if (newDiscount >= product_price) throw new IllegalStateException("DISCOUNT SHOULD NOT BE GREATER THAN OR EQUAL TO THE PRICE OF THE PRODUCT");
-                    else if (newDiscount == 0) PRODUCT_SERVICE.updateProductDiscountById().apply(0.0, selectedProductId);
+                    else if (newDiscount == 0) Main.PRODUCT_SERVICE.updateProductDiscountById().apply(0.0, selectedProductId);
                     else if (newDiscount < 0 ) throw new IllegalStateException("DISCOUNT SHOULD NOT BE LESS THAN 0");
-                    status = PRODUCT_SERVICE.updateProductDiscountById().apply(newDiscount, selectedProductId);
+                    status = Main.PRODUCT_SERVICE.updateProductDiscountById().apply(newDiscount, selectedProductId);
                 }
                 AVAILABLE_PRODUCTS.clear();
                 loadAvailableProducts();
@@ -396,7 +388,7 @@ public class ManageProducts extends javax.swing.JFrame {
             int selectedProduct = getProductFromTable(EXPIRED_PRODUCTS_TABLE);
             if (EXPIRED_PRODUCTS.isEmpty()) throw new IllegalStateException("THERE ARE NO EXPIRED PRODUCTS TO BE REMOVED\nLIST IS EMPTY");
             if (selectedProduct == 0) throw new IllegalStateException("TO REMOVE A PRODUCT\nPLEASE SELECT A ROW FROM THE TABLE AND CLICK REMOVE PRODUCT");
-            PRODUCT_SERVICE.deleteProductById().apply(selectedProduct);
+            Main.PRODUCT_SERVICE.deleteProductById().apply(selectedProduct);
             EXPIRED_PRODUCTS.removeIf(product -> product.getId().equals(selectedProduct));
             Main.PROMPT.show.accept("PRODUCT REMOVED SUCCESSFULLY", false);
             refreshTable(EXPIRED_PRODUCTS_TABLE);
@@ -413,7 +405,7 @@ public class ManageProducts extends javax.swing.JFrame {
         Status status = Status.ERROR_REMOVING_ALL_PRODUCTS;
         try {
             if (EXPIRED_PRODUCTS.isEmpty()) throw new IllegalStateException("THERE ARE NO EXPIRED PRODUCTS TO BE REMOVED\nLIST IS EMPTY");
-            status = PRODUCT_SERVICE.deleteAllExpiredProducts().get();
+            status = Main.PRODUCT_SERVICE.deleteAllExpiredProducts().get();
             EXPIRED_PRODUCTS.clear();
             loadExpiredProducts();
             refreshTable(EXPIRED_PRODUCTS_TABLE);
