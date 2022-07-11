@@ -1,12 +1,12 @@
 package com.github.pitzzahh.ui;
 
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-import com.formdev.flatlaf.FlatDarkLaf;
 import static com.github.pitzzahh.ui.Main.*;
+import javax.swing.table.DefaultTableModel;
 import com.github.pitzzahh.entity.Product;
-import javax.imageio.ImageIO;
 import com.github.pitzzahh.enums.Status;
+import com.formdev.flatlaf.FlatDarkLaf;
+import javax.imageio.ImageIO;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -58,7 +58,7 @@ public class ManageProducts extends javax.swing.JFrame {
     private void loadAvailableProducts() {
         ALL_PRODUCTS
                 .stream()
-                .map(p -> p.get())
+                .map(Optional::get)
                 .filter(p -> p.getExpirationDate().isAfter(LocalDate.now()))
                 .forEach(AVAILABLE_PRODUCTS::add);
 
@@ -68,7 +68,7 @@ public class ManageProducts extends javax.swing.JFrame {
     private void loadExpiredProducts() {
         Main.ALL_PRODUCTS
                 .stream()
-                .map(p -> p.get())
+                .map(Optional::get)
                 .filter(p -> p.getExpirationDate().isBefore(LocalDate.now()))
                 .forEach(EXPIRED_PRODUCTS::add);
     } // </editor-fold>//
@@ -145,7 +145,7 @@ public class ManageProducts extends javax.swing.JFrame {
             double newPrice;
             double newDiscount;
             if (checkInput(temporaryString, whatToUpdate) || ((whatToUpdate == EDIT_DISCOUNT)) && temporaryString.equals("0")) {
-                Optional<Product> product = Optional.ofNullable(AVAILABLE_PRODUCTS.stream().filter(p -> p.getId() == selectedProductId).findAny().get());
+                Optional<Product> product = Optional.of(AVAILABLE_PRODUCTS.stream().filter(p -> p.getId() == selectedProductId).findAny().get());
 
                 if(whatToUpdate == EDIT_STOCKS) {
                     newStocks = Integer.parseInt(temporaryString);
@@ -404,14 +404,14 @@ public class ManageProducts extends javax.swing.JFrame {
      * @param evt not used.
      */
     private void removeAllProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeAllProductsActionPerformed
-        Status status = Status.ERROR_REMOVING_ALL_PRODUCTS;
+        Status status;
         try {
             if (EXPIRED_PRODUCTS.isEmpty()) throw new IllegalStateException("THERE ARE NO EXPIRED PRODUCTS TO BE REMOVED\nLIST IS EMPTY");
             status = Main.PRODUCT_SERVICE.deleteAllExpiredProducts().get();
             EXPIRED_PRODUCTS.clear();
             loadExpiredProducts();
             refreshTable(EXPIRED_PRODUCTS_TABLE);
-            Main.PROMPT.show.accept("EXPIRED PRODUCTS REMOVED SUCCESSFULLY", false);
+            Main.PROMPT.show.accept(status.toString(), false);
         } catch (RuntimeException runtimeException) {
             Main.PROMPT.show.accept(runtimeException.getMessage(), true);
         }
