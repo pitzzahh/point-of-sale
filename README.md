@@ -32,28 +32,22 @@
 - The text file is harmless.
 - The icons of the application will only appear when an internet connection is available (can't set icon with local files)
 
-[//]: # (### Add Maven Dependency)
+### Add Maven Dependency
 
-[//]: # (If you use Maven, add the following configuration to your project's `pom.xml`)
+If you use Maven, add the following configuration to your project's `pom.xml`
 
-[//]: # (```maven)
+```maven
 
-[//]: # (<dependencies>)
+<dependencies>
 
-[//]: # (    <!-- other dependencies are there -->)
+    <!-- other dependencies are there -->
+    <dependency>
+        <groupId>com.github.pitzzahh</groupId>
+        <artifactId>pos</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </dependency>
+    <!-- other dependencies are there -->
 
-[//]: # (    <dependency>)
+</dependencies>
 
-[//]: # (        <groupId>com.github.pitzzahh</groupId>)
-
-[//]: # (        <artifactId>point-of-sale</artifactId>)
-
-[//]: # (        <version>1.2.2</version>)
-
-[//]: # (    </dependency>)
-
-[//]: # (    <!-- other dependencies are there -->)
-
-[//]: # (</dependencies>)
-
-[//]: # (```)
+```
