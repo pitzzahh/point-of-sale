@@ -8,14 +8,11 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import static com.github.pitzzahh.enums.Status.*;
 
+import java.util.*;
 import java.util.function.Supplier;
-import java.util.OptionalDouble;
-import java.util.OptionalInt;
 
 import com.github.pitzzahh.enums.Status;
 import java.time.LocalDate;
-import java.util.Optional;
-import java.util.List;
 
 // TODO create a test for this.
 public class Queries {
@@ -25,18 +22,7 @@ public class Queries {
     }
 
     public static Optional<Long> getExpiredProductsCountQuery(JdbcTemplate jdbc) {
-        return Optional.ofNullable(getAllProductsQuery(jdbc).get().stream().filter(p -> p.get().getExpirationDate().isBefore(LocalDate.now())).count());
-    }
-
-    public static Status saveProductQuery(Product product, JdbcTemplate jdbc) {
-        final String QUERY = "INSERT INTO products(name, price, category, expiration_date, stocks_left, discount) VALUES (?, ?, ?, ?, ?, ?)";
-        int result = jdbc.update(QUERY, product.getName(), product.getPrice(), product.getCategory().toString(), product.getExpirationDate(), product.getStocks(), product.getDiscount());
-        return result > 0 ? PRODUCT_SAVED_SUCCESSFULLY : ERROR_SAVING_PRODUCT;
-    }
-
-    public static Status saveALlProductsQuery(List<Product> products, JdbcTemplate jdbc) {
-        products.stream().forEach(product -> saveProductQuery(product, jdbc));
-        return ALL_PRODUCTS_SAVED_SUCCESSFULLY;
+        return Optional.of(getAllProductsQuery(jdbc).get().stream().filter(p -> p.get().getExpirationDate().isBefore(LocalDate.now())).count());
     }
 
     public static Optional<Product> getProductByIdQuery(int id, JdbcTemplate jdbc) {
@@ -48,7 +34,7 @@ public class Queries {
 
     public static OptionalDouble getProductPriceByIdQuery(int id, JdbcTemplate jdbc) {
         try {
-            return OptionalDouble.of(jdbc.queryForObject("SELECT price FROM products WHERE product_id = ?", new Object[]{id}, new ProductMapper()).get().getPrice());
+            return OptionalDouble.of(Objects.requireNonNull(jdbc.queryForObject("SELECT price FROM products WHERE product_id = ?", new Object[]{id}, new ProductMapper())).get().getPrice());
         } catch (EmptyResultDataAccessException ignored) {}
         return OptionalDouble.empty();
     }
@@ -62,7 +48,7 @@ public class Queries {
 
     public static OptionalInt getProductStocksByIdQuery(int id, JdbcTemplate jdbc) {
         try {
-            return OptionalInt.of(jdbc.queryForObject("SELECT stocks_left FROM products WHERE product_id = ?", new Object[]{id}, new ProductMapper()).get().getStocks());
+            return OptionalInt.of(Objects.requireNonNull(jdbc.queryForObject("SELECT stocks_left FROM products WHERE product_id = ?", new Object[]{id}, new ProductMapper())).get().getStocks());
         } catch (EmptyResultDataAccessException ignored) {}
         return OptionalInt.empty();
     }
