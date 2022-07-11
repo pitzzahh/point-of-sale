@@ -11,6 +11,6 @@ public interface DatabaseConnection {
         dataSource.setUsername("postgres");
         dataSource.setPassword("!Password123");
         return dataSource;
-    };
+    }
 
 }
