@@ -25,7 +25,7 @@ INSERT INTO products(name, price, category, expiration_date, stocks_left, discou
 INSERT INTO products(name, price, category, expiration_date, stocks_left, discount) VALUES('LYSOL', 45.99, 'CLEANING_PRODUCT', '2023-01-01', 70, 0.0);
 INSERT INTO products(name, price, category, expiration_date, stocks_left, discount) VALUES('SURF', 60.12, 'CLEANING_PRODUCT', '2023-01-01', 100, 0.0);
 -- CHOCOLATES CATEGORY
-INSERT INTO products(name, price, category, expiration_date, stocks_left, discount) VALUES('HERSHEYS', 22.75, 'CHOCOLATE', '2022-07-03', 100, 0.0);
+INSERT INTO products(name, price, category, expiration_date, stocks_left, discount) VALUES('HERSHEY''S', 22.75, 'CHOCOLATE', '2022-07-03', 100, 0.0);
 INSERT INTO products(name, price, category, expiration_date, stocks_left, discount) VALUES('SNICKERS', 22.75, 'CHOCOLATE', '2022-08-04', 100, 0.0);
 INSERT INTO products(name, price, category, expiration_date, stocks_left, discount) VALUES('FERRERO ROCHER', 120.00, 'CHOCOLATE', '2022-08-05', 100, 0.0);
 INSERT INTO products(name, price, category, expiration_date, stocks_left, discount) VALUES('ESTHECHOC', 800.00, 'CHOCOLATE', '2022-08-06', 100, 0.0);
