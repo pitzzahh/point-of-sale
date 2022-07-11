@@ -1,12 +1,10 @@
 package com.github.pitzzahh.dao;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+import com.github.pitzzahh.service.ProductService;
 import com.github.pitzzahh.entity.Product;
 import com.github.pitzzahh.enums.Category;
-import com.github.pitzzahh.service.ProductService;
 import org.junit.jupiter.api.Test;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
