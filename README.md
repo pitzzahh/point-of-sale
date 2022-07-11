@@ -5,6 +5,27 @@
 ![1](https://github.com/pitzzahh/point-of-sale/blob/0962af88d0e7115b207245555a434670e69d273b/main_ui.png?raw=true)
 
 # How to run the application
+
+### Add Maven Dependency
+
+If you use Maven, add the following configuration to your project's `pom.xml`
+
+```maven
+
+<dependencies>
+
+    <!-- other dependencies are there -->
+    <dependency>
+        <groupId>com.github.pitzzahh</groupId>
+        <artifactId>point-of-sale</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </dependency>
+    <!-- other dependencies are there -->
+
+</dependencies>
+
+```
+
 ## Requirements
 
 - JDK 17 LTS or JDK 18 (JDK 1.8 would probably work)
@@ -32,22 +53,3 @@
 - The text file is harmless.
 - The icons of the application will only appear when an internet connection is available (can't set icon with local files)
 
-### Add Maven Dependency
-
-If you use Maven, add the following configuration to your project's `pom.xml`
-
-```maven
-
-<dependencies>
-
-    <!-- other dependencies are there -->
-    <dependency>
-        <groupId>com.github.pitzzahh</groupId>
-        <artifactId>point-of-sale</artifactId>
-        <version>1.0-SNAPSHOT</version>
-    </dependency>
-    <!-- other dependencies are there -->
-
-</dependencies>
-
-```
