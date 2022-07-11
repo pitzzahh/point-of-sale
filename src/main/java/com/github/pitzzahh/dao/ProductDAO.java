@@ -18,17 +18,7 @@ public interface ProductDAO {
 
     Optional<Long> getExpiredProductsCount();
 
-    Function<Product, Status> saveProduct();
-
-    Consumer<List<Product>> saveAllProducts();
-
-    Function<Integer, Optional<Product>> getProductById();
-
-    Function<Integer, OptionalDouble> getProductPriceById();
-
     Function<String, Optional<Product>> getProductByName();
-
-    Function<Integer, OptionalInt> getProductStocksById();
 
     BiFunction<Double, Integer, Status> updateProductPriceById();
 

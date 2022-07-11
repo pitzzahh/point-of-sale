@@ -1,13 +1,10 @@
 package com.github.pitzzahh.dao;
 
-import com.github.pitzzahh.entity.Product;
 import org.springframework.jdbc.core.JdbcTemplate;
 import static com.github.pitzzahh.dao.Queries.*;
-
-import java.util.OptionalDouble;
-import java.util.OptionalInt;
-import javax.sql.DataSource;
+import com.github.pitzzahh.entity.Product;
 import com.github.pitzzahh.enums.Status;
+import javax.sql.DataSource;
 import java.util.function.*;
 import java.util.Optional;
 import java.util.List;
@@ -35,34 +32,11 @@ public class ProductDAOImplementation implements ProductDAO {
         return getExpiredProductsCountQuery(jdbcTemplate);
     }
 
-    @Override
-    public Function<Product, Status> saveProduct() {
-        return product -> saveProductQuery(product, jdbcTemplate);
-    }
 
-    @Override
-    public Consumer<List<Product>> saveAllProducts() {
-        return products -> saveALlProductsQuery(products, jdbcTemplate);
-    }
-
-    @Override
-    public Function<Integer, Optional<Product>> getProductById() {
-        return id -> getProductByIdQuery(id, jdbcTemplate);
-    }
-
-    @Override
-    public Function<Integer, OptionalDouble> getProductPriceById() {
-        return id -> getProductPriceByIdQuery(id, jdbcTemplate);
-    }
 
     @Override
     public Function<String, Optional<Product>> getProductByName() {
         return name -> getProductByNameQuery(name, jdbcTemplate);
-    }
-
-    @Override
-    public Function<Integer, OptionalInt> getProductStocksById() {
-        return id -> getProductStocksByIdQuery(id, jdbcTemplate);
     }
 
     @Override
