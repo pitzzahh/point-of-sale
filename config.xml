@@ -2,11 +2,11 @@
 <launch4jConfig>
   <dontWrapJar>false</dontWrapJar>
   <headerType>gui</headerType>
-  <jar>D:\myJavaProjects\point-of-sale\target\pos-1.0-SNAPSHOT-jar-with-dependencies.jar</jar>
-  <outfile>D:\Documents\COMPUTER PROGRAMMING\PointOfSale.exe</outfile>
+  <jar>D:\myJavaProjects\point-of-sale\target\point-of-sale-1.0-SNAPSHOT-jar-with-dependencies.jar</jar>
+  <outfile>D:\Documents\COMPUTER PROGRAMMING\Point of Sale.exe</outfile>
   <errTitle></errTitle>
   <cmdLine></cmdLine>
-  <chdir>.</chdir>
+  <chdir></chdir>
   <priority>normal</priority>
   <downloadUrl>http://java.com/download</downloadUrl>
   <supportUrl></supportUrl>
@@ -30,16 +30,16 @@
     <maxHeapSize>300</maxHeapSize>
   </jre>
   <versionInfo>
-    <fileVersion>1.2.2.0</fileVersion>
-    <txtFileVersion>1.2.2.0</txtFileVersion>
+    <fileVersion>1.2.3.0</fileVersion>
+    <txtFileVersion>1.2.3.0</txtFileVersion>
     <fileDescription>Point of Sale System</fileDescription>
     <copyright>pitzzahh</copyright>
-    <productVersion>1.2.2.0</productVersion>
-    <txtProductVersion>1.2.2.0</txtProductVersion>
+    <productVersion>1.2.3.0</productVersion>
+    <txtProductVersion>1.2.3.0</txtProductVersion>
     <productName>Point of Sale system</productName>
     <companyName></companyName>
     <internalName>Point of Sale</internalName>
-    <originalFilename>PointOfSale.exe</originalFilename>
+    <originalFilename>Point of Sale.exe</originalFilename>
     <trademarks></trademarks>
     <language>ENGLISH_US</language>
   </versionInfo>
