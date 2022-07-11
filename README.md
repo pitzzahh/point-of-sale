@@ -47,9 +47,5 @@ If you use Maven, add the following configuration to your project's `pom.xml`
 # Note
 
 - Before running the application, execute the sql file stored in the resource folder. Without doing so the products will not be available, and the application will stuck at loading.
-- At the first start of the application, a text file will be created and stored in ```C:\Users\Public\check.txt```
-- The file denotes that the products have been inserted into the table.
-- If you delete the file and try to rerun the application, the products will be inserted again into the table in the database, which should not happen.
-- The text file is harmless.
 - The icons of the application will only appear when an internet connection is available (can't set icon with local files)
 - If you use the maven dependency, you don't need to download some of the requirements. The dependencies of this project will also be added to your project.
