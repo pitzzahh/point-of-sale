@@ -5,10 +5,31 @@
 ![1](https://github.com/pitzzahh/point-of-sale/blob/0962af88d0e7115b207245555a434670e69d273b/main_ui.png?raw=true)
 
 # How to run the application
+
+### Add Maven Dependency
+
+If you use Maven, add the following configuration to your project's `pom.xml`
+
+```maven
+
+<dependencies>
+
+    <!-- other dependencies are there -->
+    <dependency>
+        <groupId>com.github.pitzzahh</groupId>
+        <artifactId>point-of-sale</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </dependency>
+    <!-- other dependencies are there -->
+
+</dependencies>
+
+```
+
 ## Requirements
 
 - JDK 17 LTS or JDK 18 (JDK 1.8 would probably work)
-- PostgreSQL database named 'pos' (can change to any DBMS (h2 database doesn't seem to work))
+- PostgreSQL database named 'pos' (can change to any DBMS (h2 database doesn't seem to work)) 
 - Change username and password in the application.properties (username and password of your DBMS).
 - Change the URL of the database based on the URL of your DBMS.
 
@@ -31,23 +52,4 @@
 - If you delete the file and try to rerun the application, the products will be inserted again into the table in the database, which should not happen.
 - The text file is harmless.
 - The icons of the application will only appear when an internet connection is available (can't set icon with local files)
-
-### Add Maven Dependency
-
-If you use Maven, add the following configuration to your project's `pom.xml`
-
-```maven
-
-<dependencies>
-
-    <!-- other dependencies are there -->
-    <dependency>
-        <groupId>com.github.pitzzahh</groupId>
-        <artifactId>point-of-sale</artifactId>
-        <version>1.0-SNAPSHOT</version>
-    </dependency>
-    <!-- other dependencies are there -->
-
-</dependencies>
-
-```
+- If you use the maven dependency, you don't need to download some of the requirements. The dependencies of this project will also be added to your project.
