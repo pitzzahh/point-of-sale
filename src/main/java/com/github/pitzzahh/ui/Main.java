@@ -29,8 +29,6 @@ import java.awt.*;
  */
 public class Main extends JFrame {
 
-    public static final String OS_NAME = System.getProperty("os.name", "").toUpperCase();
-
     public static final ProductService PRODUCT_SERVICE = new ProductService();
 
     private static final SalesService SALES_SERVICE = new SalesService();
@@ -64,17 +62,14 @@ public class Main extends JFrame {
     } // </editor-fold>
 
     public static void getAllProductsToList() {
-        PRODUCT_SERVICE.getAllProducts()
-                        .get()
-                        .stream()
-                        .forEach(ALL_PRODUCTS::add);
+        ALL_PRODUCTS.addAll(PRODUCT_SERVICE.getAllProducts().get());
     }
 
     // <editor-fold defaultstate="collapsed" desc="Creates a Hashtable of expired products.">//
     private static Hashtable<Integer, String> getExpiredProducts() {
         return ALL_PRODUCTS
                 .stream()
-                .map(p -> p.get())
+                .map(Optional::get)
                 .filter(p -> p.getExpirationDate().isBefore(LocalDate.now()))
                 .collect(Collectors.toMap(
                         Product::getId, Product::getName,
@@ -143,11 +138,10 @@ public class Main extends JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Method that sets the product information on the labels.">//
     public static void setProductsInfo() {
-        final char PESO_SIGN = '₱';
 
         Hashtable<Integer, Double> priceList = ALL_PRODUCTS
                 .stream()
-                .map(p -> p.get())
+                .map(Optional::get)
                 .collect(Collectors.toMap(
                         Product::getId, Product::getPrice,
                         (key, value) -> {
@@ -161,7 +155,7 @@ public class Main extends JFrame {
 
         Hashtable<Integer, Boolean> outOfStockProducts = ALL_PRODUCTS
                 .stream()
-                .map(p -> p.get())
+                .map(Optional::get)
                 .filter(p -> p.getStocks() == 0)
                 .collect(Collectors.toMap(
                         Product::getId, p -> p.getStocks() == 0,
@@ -175,83 +169,83 @@ public class Main extends JFrame {
         /*
             Setting prices label for cleaning products
         */
-        cleanFirstPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 1));
-        spinMopPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 2));
-        windexPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 3));
-        cloroxPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 4));
-        dysonPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 5));
-        roombaPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 6));
-        cleanCutPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 7));
-        sureCleanPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 8));
-        arielPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 9));
-        joyPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 10));
-        smartPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 11));
-        domexPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 12));
-        mrMusclePrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 13));
-        lysolPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 14));
-        surfPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 15));
+        cleanFirstPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 1));
+        spinMopPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 2));
+        windexPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 3));
+        cloroxPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 4));
+        dysonPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 5));
+        roombaPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 6));
+        cleanCutPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 7));
+        sureCleanPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 8));
+        arielPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 9));
+        joyPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 10));
+        smartPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 11));
+        domexPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 12));
+        mrMusclePrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 13));
+        lysolPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 14));
+        surfPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 15));
 
         /*
             Setting prices label for chocolates
         */
-        hersheysPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 16));
-        snickersPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 17));
-        ferreroRocherPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 18));
-        esthechocPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 19));
-        flyingNoirPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 20));
-        drostePrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 21));
-        whittakersPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 22));
-        amedeiPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 23));
-        jacquesGeninPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 24));
-        richartPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 25));
-        patchiPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 26));
-        teuscherPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 27));
-        valrhonaPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 28));
-        dovePrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 29));
-        russelStoverPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 30));
-        ritterSportPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 31));
-        guyLianPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 32));
-        kinderPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 33));
-        marsPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 34));
-        tobleronePrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 35));
-        nestlePrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 36));
-        milkaPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 37));
-        ghirardelliPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 38));
-        cadburyPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 39));
-        godivaPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 40));
+        hersheysPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 16));
+        snickersPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 17));
+        ferreroRocherPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 18));
+        esthechocPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 19));
+        flyingNoirPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 20));
+        drostePrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 21));
+        whittakersPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 22));
+        amedeiPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 23));
+        jacquesGeninPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 24));
+        richartPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 25));
+        patchiPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 26));
+        teuscherPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 27));
+        valrhonaPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 28));
+        dovePrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 29));
+        russelStoverPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 30));
+        ritterSportPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 31));
+        guyLianPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 32));
+        kinderPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 33));
+        marsPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 34));
+        tobleronePrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 35));
+        nestlePrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 36));
+        milkaPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 37));
+        ghirardelliPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 38));
+        cadburyPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 39));
+        godivaPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 40));
 
         /*
             Setting price labels for beverages
         */
-        cocaColaPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 41));
-        pepsiPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 42));
-        redBullPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 43));
-        budWeiserPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 44));
-        heinekenPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 45));
-        gatoradePrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 46));
-        spritePrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 47));
-        minuteMaidPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 48));
-        tropicanaPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 49));
-        dolePrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 50));
-        koolAidPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 51));
-        sevenUpPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 52));
-        mountainDewPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 53));
-        liptonPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 54));
-        sunkistPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 55));
-        appleJuicePrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 56));
-        pineAppleJuicePrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 57));
-        blackCherryPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 58));
+        cocaColaPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 41));
+        pepsiPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 42));
+        redBullPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 43));
+        budWeiserPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 44));
+        heinekenPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 45));
+        gatoradePrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 46));
+        spritePrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 47));
+        minuteMaidPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 48));
+        tropicanaPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 49));
+        dolePrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 50));
+        koolAidPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 51));
+        sevenUpPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 52));
+        mountainDewPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 53));
+        liptonPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 54));
+        sunkistPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 55));
+        appleJuicePrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 56));
+        pineAppleJuicePrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 57));
+        blackCherryPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 58));
         // liquors
-        tequilaPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 59));
-        beerPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 60));
-        winePrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 61));
-        hardCiderPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 62));
-        meadPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 63));
-        ginPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 64));
-        brandyPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 65));
-        whiskyPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 66));
-        rumPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 67));
-        vodkaPrice.setText(getProductLabel(PESO_SIGN, expiredProducts, outOfStockProducts, priceList, 68));
+        tequilaPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 59));
+        beerPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 60));
+        winePrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 61));
+        hardCiderPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 62));
+        meadPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 63));
+        ginPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 64));
+        brandyPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 65));
+        whiskyPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 66));
+        rumPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 67));
+        vodkaPrice.setText(getProductLabel(expiredProducts, outOfStockProducts, priceList, 68));
     }// </editor-fold>//
 
     // <editor-fold defaultstate="collapsed" desc="Method that gets the number expired products and returns it.">//
@@ -318,7 +312,7 @@ public class Main extends JFrame {
 
     /**
      * Method that returns a value from the invoked method from the {@code ProductValidator} that checks if the product is expired.
-     * @param product the product to test for.
+     * @param id the id of a product to test for.
      * @return {@code true} if the product is expired.
      */
     // <editor-fold defaultstate="collapsed" desc="Method that returns a value from the invoked method from the {@code ProductValidator} that checks if the product is expired.">//
@@ -355,8 +349,8 @@ public class Main extends JFrame {
     } // </editor-fold>//
 
     // <editor-fold defaultstate="collapsed" desc="Method that returns the product status a String.">//
-    private static String getProductLabel(char PESO_SIGN, Hashtable expiredProducts, Hashtable outOfStockProducts, Hashtable priceList, int id) {
-        return (expiredProducts.containsKey(id)) ? "EXPIRED" : (outOfStockProducts.containsKey(1)) ? "OUT OF STOCK" : (priceList.containsKey(id)) ? PESO_SIGN + " " + priceList.get(id) : "NOT AVAILABLE";
+    private static String getProductLabel(Hashtable expiredProducts, Hashtable outOfStockProducts, Hashtable priceList, int id) {
+        return (expiredProducts.containsKey(id)) ? "EXPIRED" : (outOfStockProducts.containsKey(1)) ? "OUT OF STOCK" : (priceList.containsKey(id)) ? '₱' + " " + priceList.get(id) : "NOT AVAILABLE";
     } // </editor-fold>//
 
     private void processOrder(int productId) {
@@ -1687,7 +1681,7 @@ public class Main extends JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Method that calculates the payment.">//
     private void payActionPerformed(java.awt.event.ActionEvent evt) {
-        Status status = Status.ERROR_SAVING_SALES;
+        Status status;
         try {
             if (ORDERS_LIST.isEmpty()) throw new IllegalStateException("NO PRODUCTS TO PAY");
             if(cash.getText().trim().isEmpty()) throw new IllegalStateException("PLEASE INSERT YOUR CASH AMOUNT");
@@ -1703,7 +1697,7 @@ public class Main extends JFrame {
                     .build();
             ORDERS_LIST.forEach(
                     (order) -> {
-                        int currentProductStock = ALL_PRODUCTS.stream().filter(p -> p.get().getName() == order.getName()).iterator().next().get().getStocks();
+                        int currentProductStock = ALL_PRODUCTS.stream().filter(p -> Objects.equals(p.get().getName(), order.getName())).iterator().next().get().getStocks();
                         PRODUCT_SERVICE.updateProductStocksByName().apply((currentProductStock - order.getQuantity()), order.getName());
                     }
             );
