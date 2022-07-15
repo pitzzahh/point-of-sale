@@ -3,13 +3,16 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.github.pitzzahh</groupId>
+	<groupId>io.github.pitzzahh</groupId>
 	<artifactId>point-of-sale</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.2.3</version>
 
 	<properties>
+		<maven.test.skip>true</maven.test.skip>
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
         
 	<dependencies>
@@ -54,55 +57,104 @@
     </dependencies>
 
 	<build>
+
 		<plugins>
+
 			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>1.6.13</version>
+				<extensions>true</extensions>
+				<configuration>
+					<serverId>ossrh</serverId>
+					<nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+					<autoReleaseAfterClose>false</autoReleaseAfterClose>
+				</configuration>
+			</plugin>
 
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<version>3.2.0</version>
-
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.2.1</version>
 				<executions>
 					<execution>
-						<phase>package</phase>
+						<id>attach-sources</id>
 						<goals>
-							<goal>single</goal>
+							<goal>jar-no-fork</goal>
 						</goals>
 					</execution>
 				</executions>
-
-				<configuration>
-
-					<descriptorRefs>
-						<descriptorRef>jar-with-dependencies</descriptorRef>
-					</descriptorRefs>
-
-					<archive>
-						<index>true</index>
-
-						<manifest>
-							<addClasspath>true</addClasspath>
-							<mainClass>com.github.pitzzahh.App</mainClass>
-						</manifest>
-
-						<manifestEntries>
-							<mode>development</mode>
-							<url>${project.url}</url>
-						</manifestEntries>
-
-					</archive>
-
-				</configuration>
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9.1</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>1.5</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
+
 	</build>
 
+
+	<name>util-classes</name>
+	<description>This is a Java library that contains some utility classes that people can use on their project.</description>
+	<url>https://github.com/pitzzahh/point-of-sale</url>
+
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>http://www.opensource.org/licenses/mit-license.php</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Peter John Arao</name>
+			<email>araopj2191@gmail.com</email>
+			<organization>com.github.pitzzahh</organization>
+			<organizationUrl>https://github.com/pitzzahh/</organizationUrl>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:git://github.com/pitzzahh/point-of-sale.git</connection>
+		<developerConnection>scm:git:ssh://github.com:pitzzahh/point-of-sale.git</developerConnection>
+		<url>http://github.com/pitzzahh/point-of-sale</url>
+	</scm>
+
 	<distributionManagement>
-
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
 		<repository>
-			<id>internal</id>
-			<url>file://${project.build.directory}/mvn-repo</url>
+			<id>ossrh</id>
+			<url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
-
 	</distributionManagement>
 
 </project>
