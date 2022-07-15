@@ -1,15 +1,15 @@
 package com.github.pitzzahh;
 
 import com.formdev.flatlaf.FlatDarkLaf;
+import com.github.pitzzahh.ui.Main;
 import javax.imageio.ImageIO;
 import java.util.Random;
-import com.github.pitzzahh.ui.Main;
 import javax.swing.*;
 import java.net.URL;
 import java.awt.*;
 
 /**
- *
+ * UI that creates a loading screen at the very start of the application.
  * @author peter
  */
 public class App extends javax.swing.JFrame {

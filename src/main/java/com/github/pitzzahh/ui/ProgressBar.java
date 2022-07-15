@@ -8,7 +8,7 @@ import java.net.URL;
 import java.awt.*;
 
 /**
- *
+ * UI that creates a loading screen.
  * @author peter
  */
 public class ProgressBar extends javax.swing.JFrame {
@@ -89,7 +89,12 @@ public class ProgressBar extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    
+
+    /**
+     * Runs the frame.
+     * @param frame the jrame
+     * @param whatProgress if loading, or exiting.
+     */
     // <editor-fold defaultstate="collapsed" desc="Runs the frame.">
     public void run(final JFrame frame, int whatProgress) {
 

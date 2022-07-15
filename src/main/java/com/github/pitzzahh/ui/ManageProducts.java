@@ -16,7 +16,7 @@ import java.net.URL;
 import java.awt.*;
 
 /**
- *
+ * UI used to acces and modify the products details.
  * @author peter
  */
 public class ManageProducts extends javax.swing.JFrame {
@@ -54,6 +54,9 @@ public class ManageProducts extends javax.swing.JFrame {
         refreshTable(EXPIRED_PRODUCTS_TABLE);
     } // </editor-fold>//
 
+    /**
+     * Method that loads the available products which are not expired from the database to the List<Product> AVAILABLE_PRODUCTS.
+     */
     // <editor-fold defaultstate="collapsed" desc="Method that loads the available products which are not expired from the database to the List<Product> AVAILABLE_PRODUCTS.">//
     private void loadAvailableProducts() {
         ALL_PRODUCTS
@@ -64,6 +67,9 @@ public class ManageProducts extends javax.swing.JFrame {
 
     } // </editor-fold>//
 
+    /**
+     * Method that loads the expired products from the database to the List<Product> EXPIRED_PRODUCTS.
+     */
     // <editor-fold defaultstate="collapsed" desc="Method that loads the expired products from the database to the List<Product> EXPIRED_PRODUCTS.">//
     private void loadExpiredProducts() {
         Main.ALL_PRODUCTS
@@ -73,6 +79,10 @@ public class ManageProducts extends javax.swing.JFrame {
                 .forEach(EXPIRED_PRODUCTS::add);
     } // </editor-fold>//
 
+    /**
+     * Method that refresh the availableProductsTable.
+     * @param whatTable refers to the table if available products or expired products.
+     */
     // <editor-fold defaultstate="collapsed" desc="Method that refresh the availableProductsTable.">//
     private void refreshTable(int whatTable) {
         if (whatTable == 1) {
@@ -111,8 +121,13 @@ public class ManageProducts extends javax.swing.JFrame {
         numberOfExpiredProducts.setForeground((getExpiredProductsCount() > 0) ? new java.awt.Color(255, 0, 0) : new java.awt.Color(0, 0, 255));
     } // </editor-fold>//
 
-    // <editor-fold defaultstate="collapsed" desc="Method that makes an Order object based from the selection from the order table and returns it.">//
-    private int getProductFromTable(int whatTable) {
+    /**
+     * Method that returns the index of a product / sales when a table row is selected.
+     * @param whatTable refers to the table if available products or expired products.
+     * @return the index of the product from the table, otherwise 0.
+     */
+    // <editor-fold defaultstate="collapsed" desc="Method that returns the index of a product / sales when a table row is selected.">//
+    private int getProductIndexFromTheTable(int whatTable) {
         if(whatTable == 1) {
             try {
                 return Integer.parseInt(String.valueOf(availableProductsTable.getModel().getValueAt(availableProductsTable.getSelectedRow(), 0)));
@@ -130,12 +145,16 @@ public class ManageProducts extends javax.swing.JFrame {
         return 0;
     } // </editor-fold>//
 
+    /**
+     * Method that update the product information.
+     * @param whatToUpdate used for checking of what to update on the product info.
+     */
     // <editor-fold defaultstate="collapsed" desc="Method that update the product information. @param whatToUpdate used for checking of what to update on the product info.">//
     private void updateProduct(int whatToUpdate) {
         String temporaryString = "";
         Status status = Status.ERROR;
         try {
-            int selectedProductId = getProductFromTable(AVAILABLE_PRODUCTS_TABLE);
+            int selectedProductId = getProductIndexFromTheTable(AVAILABLE_PRODUCTS_TABLE);
             if (AVAILABLE_PRODUCTS.isEmpty()) throw new IllegalStateException("THERE ARE NO AVAILABLE PRODUCTS");
             String options = (whatToUpdate == EDIT_STOCKS) ? "STOCKS" : (whatToUpdate == EDIT_PRICE) ? "PRICE" : (whatToUpdate == EDIT_DISCOUNT) ? "DISCOUNT" : "NULL";
             if (selectedProductId == 0) throw new IllegalStateException("TO ADD " + options + "  TO A PRODUCT\nPLEASE SELECT A ROW FROM THE TABLE AND CLICK " + options);
@@ -179,7 +198,13 @@ public class ManageProducts extends javax.swing.JFrame {
             if(temporaryString != null) Main.PROMPT.show.accept(runtimeException.getMessage(), true);
         }
     } // </editor-fold>//
-    
+
+    /**
+     * Method that checks if the inputs of new product details is valid.
+     * @param stringToCheck contains an integer value or double value to be parsed.
+     * @param whatToUpdate used for checking of what to update on the product info.
+     * @return {@code true} if the string is a valid Integer or a Double value, otherwise false.
+     */
     // <editor-fold defaultstate="collapsed" desc="Method that checks if the inputs of new product details is valid. returns true if the string is a valid Integer or a Double value.">//
     private boolean checkInput(String stringToCheck, int whatToUpdate) {
         try {
@@ -387,7 +412,7 @@ public class ManageProducts extends javax.swing.JFrame {
      */
     private void removeProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeProductActionPerformed
         try {
-            int selectedProduct = getProductFromTable(EXPIRED_PRODUCTS_TABLE);
+            int selectedProduct = getProductIndexFromTheTable(EXPIRED_PRODUCTS_TABLE);
             if (EXPIRED_PRODUCTS.isEmpty()) throw new IllegalStateException("THERE ARE NO EXPIRED PRODUCTS TO BE REMOVED\nLIST IS EMPTY");
             if (selectedProduct == 0) throw new IllegalStateException("TO REMOVE A PRODUCT\nPLEASE SELECT A ROW FROM THE TABLE AND CLICK REMOVE PRODUCT");
             Main.PRODUCT_SERVICE.deleteProductById().apply(selectedProduct);

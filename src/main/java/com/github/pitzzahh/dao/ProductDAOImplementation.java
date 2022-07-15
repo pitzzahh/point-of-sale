@@ -9,6 +9,9 @@ import java.util.function.*;
 import java.util.Optional;
 import java.util.List;
 
+/**
+ * Implementation of the {@link ProductDAO}.
+ */
 public class ProductDAOImplementation implements ProductDAO {
 
     private DataSource dataSource;

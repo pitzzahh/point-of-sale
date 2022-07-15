@@ -8,6 +8,9 @@ import java.util.function.Supplier;
 import javax.sql.DataSource;
 import java.util.List;
 
+/**
+ * interface used to seperate logic on how to access the sales, some and data accessing operations.
+ */
 public interface SalesDAO {
 
     Consumer<DataSource> setDataSource();

@@ -1,5 +1,8 @@
 package com.github.pitzzahh.enums;
 
+/**
+ * enum used to clssify the status of a process.
+ */
 public enum Status {
     SUCCESS,
     PRODUCT_SAVED_SUCCESSFULLY,
