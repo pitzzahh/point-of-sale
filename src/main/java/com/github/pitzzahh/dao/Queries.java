@@ -1,20 +1,16 @@
 package com.github.pitzzahh.dao;
 
-import com.github.pitzzahh.entity.Product;
-import com.github.pitzzahh.entity.Sales;
-import com.github.pitzzahh.mapper.ProductMapper;
-import com.github.pitzzahh.mapper.SalesMapper;
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.core.JdbcTemplate;
-import static com.github.pitzzahh.enums.Status.*;
-
 import java.util.*;
-import java.util.function.Supplier;
-
-import com.github.pitzzahh.enums.Status;
 import java.time.LocalDate;
+import java.util.function.Supplier;
+import com.github.pitzzahh.enums.Status;
+import com.github.pitzzahh.entity.Sales;
+import com.github.pitzzahh.entity.Product;
+import com.github.pitzzahh.mapper.SalesMapper;
+import com.github.pitzzahh.mapper.ProductMapper;
+import static com.github.pitzzahh.enums.Status.*;
+import org.springframework.jdbc.core.JdbcTemplate;
 
-// TODO create a test for this.
 public class Queries {
 
     public static Supplier<List<Optional<Product>>> getAllProductsQuery(JdbcTemplate jdbc) {
@@ -27,30 +23,30 @@ public class Queries {
 
     public static Optional<Product> getProductByIdQuery(int id, JdbcTemplate jdbc) {
         try {
-            return jdbc.queryForObject("SELECT * FROM products WHERE product_id = ?", new Object[]{id}, new ProductMapper());
-        } catch (EmptyResultDataAccessException ignored) {}
-        return Optional.empty();
+            return jdbc.queryForObject("SELECT * FROM products WHERE product_id = ?", new ProductMapper(), id);
+        } catch (Exception exception) {
+            return Optional.empty();
+        }
     }
 
     public static OptionalDouble getProductPriceByIdQuery(int id, JdbcTemplate jdbc) {
         try {
-            return OptionalDouble.of(Objects.requireNonNull(jdbc.queryForObject("SELECT price FROM products WHERE product_id = ?", new Object[]{id}, new ProductMapper())).get().getPrice());
-        } catch (EmptyResultDataAccessException ignored) {}
-        return OptionalDouble.empty();
+            return OptionalDouble.of(jdbc.queryForObject("SELECT price FROM products WHERE product_id = ?", Double.class, id));
+        } catch (Exception exception) {
+            return OptionalDouble.empty();
+        }
     }
 
     public static Optional<Product> getProductByNameQuery(String productName, JdbcTemplate jdbc) {
         try {
-            return jdbc.queryForObject("SELECT * FROM products WHERE name = ?", new Object[]{productName}, new ProductMapper());
-        } catch (EmptyResultDataAccessException ignored) {}
-        return Optional.empty();
+            return jdbc.queryForObject("SELECT * FROM products WHERE name = ?", new ProductMapper(), productName);
+        } catch (Exception exception) {
+            return Optional.empty();
+        }
     }
 
     public static OptionalInt getProductStocksByIdQuery(int id, JdbcTemplate jdbc) {
-        try {
-            return OptionalInt.of(Objects.requireNonNull(jdbc.queryForObject("SELECT stocks_left FROM products WHERE product_id = ?", new Object[]{id}, new ProductMapper())).get().getStocks());
-        } catch (EmptyResultDataAccessException ignored) {}
-        return OptionalInt.empty();
+        return OptionalInt.of(jdbc.queryForObject("SELECT stocks_left FROM products WHERE product_id = ?", Integer.class, id));
     }
 
     public static Status updateProductPriceByIdQuery(double price, int id, JdbcTemplate jdbc) {
@@ -79,8 +75,8 @@ public class Queries {
     }
 
     public static Status saveSalesQuery(Sales sales, JdbcTemplate jdbc) {
-        final String QUERY = "INSERT INTO sales(date_processed, profit) VALUES (?, ?)";
-        int result = jdbc.update(QUERY, sales.getDateProcessed(), sales.getProfit());
+        final var QUERY = "INSERT INTO sales(date_processed, profit) VALUES (?, ?)";
+        final var result = jdbc.update(QUERY, sales.getDateProcessed(), sales.getProfit());
         return result > 0 ? SALES_SAVED_SUCCESSFULLY : ERROR_SAVING_SALES;
     }
 
