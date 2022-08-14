@@ -25,7 +25,7 @@ class QueriesTest {
                 .price(22.75)
                 .category(Category.CHOCOLATE)
                 .expirationDate(LocalDate.of(2022, Month.AUGUST, 4))
-                .stocks(100)
+                .stocks(99)
                 .discount(0.0)
                 .build();
         assertEquals(productOptional.get().hashCode(), product.hashCode());
@@ -37,8 +37,7 @@ class QueriesTest {
         productService.setDataSource().accept(ProductService.getDataSource());
 
         Optional<Product> product = productService.getProductByName().apply("HERSHEYS");
-        System.out.println(product.isEmpty());
-        product.ifPresentOrElse(System.out::println, () -> new IllegalStateException("NO AVAILABLE"));
+        assertEquals(Optional.empty(), product);
     }
 
     @Test
@@ -50,7 +49,6 @@ class QueriesTest {
                 .get()
                 .stream()
                 .forEach(ALL_PRODUCTS::add);
-        System.out.println("SIZE: " + ALL_PRODUCTS.size());
-        ALL_PRODUCTS.stream().forEach(System.out::println);
+        assertEquals(65, ALL_PRODUCTS.size());
     }
 }
